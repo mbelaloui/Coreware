@@ -89,6 +89,28 @@ void		ft_put_error(int error)
 	exit(error);		
 }
 
+BOOL		is_good_format(char *url_file)
+{
+	char **temp;
+	temp = ft_strsplit(url_file, '.');
+
+	if (ft_matlen(temp) != 2)
+	{
+		ft_printf("wrong format of file %s\n", url_file);
+		exit(2);
+	}
+
+
+ft_printf("nbr of partis %s\n", temp[1]);
+	if ( temp[1][0] != 's')
+	{
+		ft_printf("wrong extention file has to be file.s  not tacke just extention  %s\n", url_file);
+		exit(1);
+	}	
+	
+	return (T);	
+}
+
 void		run_pass_one(char *url_file)
 {
 
@@ -96,9 +118,13 @@ void		run_pass_one(char *url_file)
 	{
 		ft_printf("erreur no url file\n");
 	}
-	else
-		ft_printf("urls file >%s<\n reste a trster si le fichier est bien un .s\n"
-			"puis ouvrire le fichier est commancer a exraire les infos\n", url_file);
+	if (ft_comptword(url_file, ' ') != 1)
+	{
+		ft_printf("Error wrong format of url file\n");
+		exit(1);
+	}
+	else if (is_good_format(url_file))
+			ft_printf("ouvrire le fichier est commancer a exraire les infos\n", url_file);
 
 }
 
@@ -117,7 +143,7 @@ int		main(int argc, char **argv)
 		ft_put_error(ERROR_NO_PARAM);
 	else
 	{
-		ft_printf("options <%.32b>... : \nret pt = %d\n",op, pt);
+//		ft_printf("options <%.32b>... : \nret pt = %d\n",op, pt);
 		run_pass_one(param + pt);
 	}
 	return (0);
