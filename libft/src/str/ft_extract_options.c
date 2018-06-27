@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_extract_options.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/26 11:53:16 by mbelalou          #+#    #+#             */
+/*   Updated: 2018/06/26 11:53:47 by mbelalou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../inc/str.h"
+
 /*
-** puis tester si valde ou pas la ont recupr just les options 
+** puis tester si valde ou pas la ont recupr just les options
 **(faire le test pour le parammettre de -o out_put.cor
 ** ici si jamais je laisse cette option)
 **
@@ -14,7 +26,8 @@
 **	return -1 if the options is not reconized
 */
 
-int	ft_extract_options(char *param, unsigned long *op, BOOL is_option(char), void set_options(char, unsigned long *))
+int	ft_extract_options(char *param, unsigned long *op, BOOL is_option(char),
+		void set_options(char, unsigned long *))
 {
 	int index;
 
