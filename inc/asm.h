@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 11:55:39 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/06/26 12:22:47 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/06/27 14:17:51 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void				ft_error_param(int error, char *param);
 
 BOOL				ft_is_option(const char option);
 void				ft_set_options(char c, unsigned long *op);
-BOOL				ft_is_good_format_file(char *url_file);
+BOOL				ft_is_good_format_urlfile(char *url_file);
 void				ft_is_good_format_param(char *url_file);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 12:58:24 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/05/16 19:17:22 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/06/29 11:51:35 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void			ft_convert_string(t_format *format, va_list *ap)
 		format->len_temp = ft_strlen(str);
 	else
 		format->len_temp = 0;
-	if (!format->is_there_precision ||
-			((int)format->len_temp < format->precision))
+	if (!format->is_there_precision
+			|| ((int)format->len_temp < format->precision))
 		format->precision = format->len_temp;
 	ft_generat_ret(format, str);
 }

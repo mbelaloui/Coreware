@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 12:02:39 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/06/26 12:05:10 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/06/27 14:14:19 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	run(char *url_file)
 {
 	//good format of file
-		ft_is_good_format_param(url_file);
+	ft_is_good_format_param(url_file);
 	//get info file and check is well formated
 	//check options and print datas if mantioned
 	//translate file .s to file .cor

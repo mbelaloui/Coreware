@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 12:09:13 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/06/26 12:15:15 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/06/27 14:14:30 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ void	ft_is_good_format_param(char *url_file)
 		ft_error_param(ERROR_NO_URL_FILE, url_file);
 	if (ft_comptword(url_file, ' ') != 1)
 		ft_error_param(ERROR_MULTIPUL_PARAM, url_file);
-	else if (ft_is_good_format_file(url_file))
+	else if (ft_is_good_format_urlfile(url_file))
 		ft_printf("ouvrire le fichier est commancer a exraire les infos\n", url_file);
 }

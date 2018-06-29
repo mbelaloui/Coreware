@@ -12,7 +12,7 @@ SRC_ERROR	= ft_error_param.c
 SRCS_ERROR	= $(addprefix $(DIR_ERROR)/, $(SRC_ERROR))
 
 DIR_PARSING	= parsing
-SRC_PARSING	= ft_is_good_format_file.c ft_is_good_format_param.c\
+SRC_PARSING	= ft_is_good_format_urlfile.c ft_is_good_format_param.c\
 ft_is_option.c  ft_set_options.c
 
 SRCS_PARSING	= $(addprefix $(DIR_PARSING)/, $(SRC_PARSING))

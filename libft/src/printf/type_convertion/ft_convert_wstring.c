@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 12:43:06 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/05/03 16:41:23 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/06/29 11:50:54 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ void			ft_convert_wstring(t_format *format, va_list *ap)
 	if (wstr == NULL)
 		wstr = L"(null)";
 	format->len_temp = ft_wstringlen(wstr);
-	if (!format->is_there_precision ||
-			((int)format->len_temp < format->precision))
+	if (!format->is_there_precision
+			|| ((int)format->len_temp < format->precision))
 		format->precision = format->len_temp;
 	shift = manage_shift(wstr, format);
 	padd = (format->flags.zero) ? '0' : ' ';

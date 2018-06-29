@@ -6,7 +6,7 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2018/06/26 12:31:55 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/06/28 13:36:20 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 
 #ifndef OP_H
 # define OP_H
+
+# include "asm.h"
 
 # define IND_SIZE				2
 # define REG_SIZE				4
@@ -62,13 +64,14 @@ typedef char		t_arg_type;
 
 typedef struct		s_op
 {
-	char			*op;
-	int				a;
-	int				*c;
-	int				d;
-//	char			*e;
-//	int				f;
-//	int				g;
+	char			*name;
+	int				nbr_param;
+//	int				c;
+	int				mnemonique;
+	int				cycle;
+	char			*description;
+	int				g;
+	int				h;
 }					t_op;
 
 typedef struct		s_header
