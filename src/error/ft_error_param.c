@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 12:05:31 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/06/26 12:08:38 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/06/29 15:04:14 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** print usage
 */
 
-void	ft_error_param(int error, char *param)
+void		ft_error_param(int error, char *param)
 {
 	if (ERROR_NO_PARAM == error) // ici enlever les option et laisser le reste
 		ft_printf("{red}wrong nbr of params{eoc} %s\n");
