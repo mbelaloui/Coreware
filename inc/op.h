@@ -6,7 +6,7 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2018/06/29 15:12:27 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/07/03 20:05:36 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,12 @@ typedef char		t_arg_type;
 
 typedef struct		s_op
 {
-	char			*name;
-	int				nbr_param;
-//	int				c;
-	int				mnemonique;
-	int				cycle;
-	char			*description;
+	int				mnemonique;		//
+	char			*name;			//
+	int				nbr_param;		//
+	int				param;			//
+	int				cycle;			//
+	char			*description;	//
 	int				g;
 	int				h;
 }					t_op;

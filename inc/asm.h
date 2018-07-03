@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 11:55:39 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/06/29 15:12:18 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/07/03 20:04:54 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,18 @@
 # define ERROR_NO_URL_FILE			-3
 # define ERROR_MULTIPUL_PARAM		-4
 # define ERROR_WRONG_FORMAT_FILE	-5
+
+# define T_REG_P1					0x1
+# define T_DIR_P1					0x2
+# define T_IND_P1					0x4
+
+# define T_REG_P2					0x8
+# define T_DIR_P2					0x10
+# define T_IND_P2					0x20
+
+# define T_REG_P3					0x40
+# define T_DIR_P3					0x80
+# define T_IND_P3					0x100
 
 typedef	struct		s_instruction
 {
