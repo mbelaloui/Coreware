@@ -6,7 +6,7 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2018/07/03 20:05:36 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/07/04 21:26:15 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@
 # define COMMENT_LENGTH			(2048)
 # define COREWAR_EXEC_MAGIC		0xea83f3
 
+#define NBR_OP					17
+
 typedef char		t_arg_type;
 
 typedef struct		s_op
@@ -81,5 +83,33 @@ typedef struct		s_header
 	unsigned int	prog_size;
 	char			comment[COMMENT_LENGTH + 1];
 }					t_header;
+
+
+
+
+
+
+
+
+t_op				*ft_new_op(int mnemonique, char *name, int nbr_param,
+		int cycle);
+void				ft_put_op(t_op *op_tab[17]);
+void				ft_init_op_tab(t_op *op_tab[17]);
+void				ft_set_param(t_op *op_tab[17]);
+void				ft_put_op_param_3(t_op *op);
+void				ft_put_op_param_2(t_op *op);
+void				ft_put_op_param_1(t_op *op);
+char				*ft_get_name(t_op *op_tab);
+int					ft_get_cycle(t_op *op_tab);
+int					ft_get_type_param(t_op *op_tab);
+void				ft_put_typ_param(t_op *op_tab[17]);
+
+BOOL				ft_is_type_ok(t_op *op_tab, int type);
+
+
+
+
+
+
 
 #endif

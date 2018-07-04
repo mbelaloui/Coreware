@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 11:07:46 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/05/03 16:40:11 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/07/04 20:24:30 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void			ft_convert_nbr_base(t_format *format, va_list *ap)
 	uintmax_t	nbr;
 	char		temp_tab[SIZE_TAB_CONV * 2];
 
-	ft_memset(temp_tab, ' ', sizeof(temp_tab) - 1);
+	ft_bzero(temp_tab, (SIZE_TAB_CONV * 2) - 1);
 	nbr = va_arg(*ap, uintmax_t);
 	if (nbr != 0)
 	{
