@@ -6,11 +6,17 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/03 14:54:39 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/07/04 18:35:48 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/07/07 16:53:15 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/nbr.h"
+
+/*
+** ft_printf("len %d   ret %d ",tab_ret,  len_ret, size_nbr_ret);
+**	if (!tab_ret || (len_ret < size_nbr_ret))
+**		return ;
+*/
 
 void			ft_udecimal_to_base_stat(char *tab_ret, const uintmax_t nbr,
 		const int base, const int form)
@@ -26,8 +32,6 @@ void			ft_udecimal_to_base_stat(char *tab_ret, const uintmax_t nbr,
 	elem_base = (form == LOWER) ? "0123456789abcdef" : "0123456789ABCDEF";
 	size_nbr_ret = ft_get_len_value_ubase(nbr, base);
 	len_ret = ft_strlen(tab_ret);
-	if (!tab_ret || (len_ret < size_nbr_ret))
-		return ;
 	ft_memset(tab_ret, ' ', len_ret);
 	tab_ret[size_nbr_ret] = '\0';
 	while (size_nbr_ret--)

@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 17:17:28 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/07/04 18:20:53 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/07/07 17:27:10 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
 **	donner une op a la fonction qui retourne le nbr de cycle pour exe l'op
 **
-** peut evoluer dans ce sense 
+** peut evoluer dans ce sense
 ** paramettres d'entre un (id de l'op) +  la table // ou la table en static
 ** retourne le nbr de cycle de l'op
 */

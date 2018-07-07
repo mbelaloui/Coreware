@@ -6,13 +6,13 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 16:29:06 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/07/04 18:29:29 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/07/07 10:59:52 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/op.h"
 
-void	ft_init_op_tab(t_op *op_tab[17])
+void	ft_init_op_tab(t_op *op_tab[NBR_OP])
 {
 	op_tab[0] = ft_new_op(0, "NULL", 0, 0);
 	op_tab[1] = ft_new_op(1, "live", 1, 10);
