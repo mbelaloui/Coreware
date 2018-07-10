@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dell_list_charlist.c                            :+:      :+:    :+:   */
+/*   ft_open_r_file.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/28 12:34:59 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/07/10 17:12:22 by mbelalou         ###   ########.fr       */
+/*   Created: 2018/07/10 16:48:33 by mbelalou          #+#    #+#             */
+/*   Updated: 2018/07/10 17:09:01 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/charlist.h"
+#include "../../inc/file.h"
 
-BOOL	ft_dell_list_charlist(t_charlist **to_free)
+int		ft_open_r_file(char *url_file)
 {
-	t_charlist *pt;
+	int fd;
 
-	if (!to_free)
-		return (F);
-	pt = *to_free;
-	while (*to_free)
-	{
-		pt = *to_free;
-		*to_free = (*to_free)->next;
-		ft_dell_charlist(&pt);
-	}
-	*to_free = NULL;
-	return (T);
+	if (url_file == NULL)
+		return (ERROR_URL_FILE);
+	fd = open(url_file, O_RDONLY);
+	if (fd < 0)
+		return (ERROR_FD);
+	return (fd);
 }

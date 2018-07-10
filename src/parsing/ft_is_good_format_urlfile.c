@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/27 14:00:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/06/29 15:23:12 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/07/10 17:52:06 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ BOOL	ft_is_good_format_urlfile(char *url_file)
 		ft_error_param(ERROR_WRONG_FORMAT_FILE, url_file);
 	if (temp[1][0] != 's')
 		ft_error_param(ERROR_WRONG_FORMAT_FILE, url_file);
+	ft_free_mat(&temp);
 	return (T);
 }

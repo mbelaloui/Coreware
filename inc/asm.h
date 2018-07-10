@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 11:55:39 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/07/07 10:31:48 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/07/10 17:50:04 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ typedef	struct		s_instruction
 typedef struct		s_player
 {
 	char			*name;
+	char			*description;
 	t_charlist		*comment;
+	t_charlist		*file;
 	t_instruction	*instructioms;
 }					t_player;
 

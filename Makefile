@@ -11,11 +11,6 @@ DIR_ERROR			= error
 SRC_ERROR			= ft_error_param.c
 SRCS_ERROR			= $(addprefix $(DIR_ERROR)/, $(SRC_ERROR))
 
-DIR_PARSING			= parsing
-SRC_PARSING			= ft_is_good_format_urlfile.c ft_is_good_format_param.c\
-					  ft_is_option.c ft_set_options.c
-SRCS_PARSING		= $(addprefix $(DIR_PARSING)/, $(SRC_PARSING))
-
 DIR_OP				= op
 SRC_OP				= ft_dell_op.c ft_get_nbr_param.c ft_get_type_param.c\
 					  ft_is_type_ok.c ft_put_op.c ft_put_typ_param.c\
@@ -26,6 +21,10 @@ SRC_OP				= ft_dell_op.c ft_get_nbr_param.c ft_get_type_param.c\
 					  ft_set_param.c
 SRCS_OP				= $(addprefix $(DIR_OP)/, $(SRC_OP))
 
+DIR_PARSING			= parsing
+SRC_PARSING			= ft_is_good_format_urlfile.c ft_is_good_format_param.c\
+					  ft_is_option.c ft_set_options.c
+SRCS_PARSING		= $(addprefix $(DIR_PARSING)/, $(SRC_PARSING))
 #DIR_		=
 #SRC_		=
 #SRCS_		= $(addprefix $(DIR_)/, $(SRC_))
@@ -52,6 +51,7 @@ all					: $(NAME_ASM)
 
 
 $(NAME_ASM)			: $(LIBFT) $(OBJS_DIR) $(OBJS)
+	#@gcc $(OBJS) -L $(LIBFT_DIR) -lft -fsanitize=address -o $(NAME_ASM)
 	@gcc $(OBJS) -L $(LIBFT_DIR) -lft -o $(NAME_ASM)
 	@echo "$(GREEN)$(NAME_ASM) has been successfully created !$(WHITE)."
 	# -fsanitize=address

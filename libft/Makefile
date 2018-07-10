@@ -6,7 +6,7 @@
 #    By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 21:48:22 by mbelalou          #+#    #+#              #
-#    Updated: 2018/06/29 15:20:42 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/07/10 16:47:49 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SRC_CHAR	= ft_chartoint.c ft_isascii.c ft_islower.c ft_putchar.c ft_toupper.c\
 SRCS_CHAR	= $(addprefix $(DIR_CHAR)/, $(SRC_CHAR))
 
 DIR_FILE	= file
-SRC_FILE	= ft_open_file.c get_next_line.c
+SRC_FILE	= ft_open_r_file.c get_next_line.c
 SRCS_FILE	= $(addprefix $(DIR_FILE)/, $(SRC_FILE))
 
 DIR_INTLIST	= intlist

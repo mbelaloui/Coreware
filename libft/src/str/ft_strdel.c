@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 20:10:45 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/05/16 16:23:28 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/07/10 17:13:16 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@ BOOL	ft_strdel(char **str)
 		ft_memdel((void **)str);
 	else
 		return (F);
+	*str = NULL;
 	return (T);
 }
