@@ -6,7 +6,7 @@
 #    By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 21:48:22 by mbelalou          #+#    #+#              #
-#    Updated: 2018/07/10 16:47:49 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/07/11 16:33:41 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,7 +81,7 @@ SRC_STR		= ft_comptword.c ft_putendl_fd.c ft_strequ.c ft_strnequ.c\
 			  ft_strcut.c ft_strmapi.c ft_strtrim.c ft_itoa.c ft_strdel.c\
 			  ft_strncat.c ft_strupper.c ft_put_buf.c ft_strdup.c ft_strncmp.c\
 			  ft_putendl.c ft_strdup_stat.c ft_strncpy.c ft_format_str.c\
-			  ft_strjoin_clean.c ft_extract_options.c
+			  ft_strjoin_clean.c ft_extract_options.c ft_get_c_in_str.c
 SRCS_STR	= $(addprefix $(DIR_STR)/, $(SRC_STR))
 
 DIR_SYS		= sys

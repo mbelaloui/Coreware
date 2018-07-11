@@ -51,7 +51,7 @@ all					: $(NAME_ASM)
 
 
 $(NAME_ASM)			: $(LIBFT) $(OBJS_DIR) $(OBJS)
-	#@gcc $(OBJS) -L $(LIBFT_DIR) -lft -fsanitize=address -o $(NAME_ASM)
+	@#gcc $(OBJS) -L $(LIBFT_DIR) -lft -fsanitize=address -o $(NAME_ASM)
 	@gcc $(OBJS) -L $(LIBFT_DIR) -lft -o $(NAME_ASM)
 	@echo "$(GREEN)$(NAME_ASM) has been successfully created !$(WHITE)."
 	# -fsanitize=address

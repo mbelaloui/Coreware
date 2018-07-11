@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 12:34:59 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/07/10 17:12:22 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/07/11 15:44:52 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ BOOL	ft_dell_list_charlist(t_charlist **to_free)
 {
 	t_charlist *pt;
 
-	if (!to_free)
+	if (!to_free || !(*to_free))
 		return (F);
 	pt = *to_free;
 	while (*to_free)

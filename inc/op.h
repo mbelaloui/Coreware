@@ -6,7 +6,7 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2018/07/10 17:40:05 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/07/11 20:03:12 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,16 @@
 # define CHAMP_MAX_SIZE			(MEM_SIZE / 6)
 
 # define COMMENT_CHAR			'#'
+# define COMMENT_CHAR_1			';'
+
+# define COMMENT_CHAR_2			'/'
+# define COMMENT_CHAR_3			'*'
+
+# define COMMENT_STR_1			"//"
+# define COMMENT_STR_2			"/*"
+# define COMMENT_STR_3			"*/"
+
+
 # define LABEL_CHAR				':'
 # define DIRECT_CHAR			'%'
 # define SEPARATOR_CHAR			','
@@ -42,7 +52,9 @@
 # define LABEL_CHARS			"abcdefghijklmnopqrstuvwxyz_0123456789"
 
 # define NAME_CMD_STRING		".name"
+# define NAME_CMD_PARAM			"NAME_PARAM"
 # define COMMENT_CMD_STRING		".comment"
+# define DELIMITEUR				'\"'
 
 # define REG_NUMBER				16
 

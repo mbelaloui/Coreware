@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 12:05:02 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/07/04 18:26:18 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/07/11 16:33:11 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ intmax_t		ft_gettab_index(const char *tab, const char val);
 char			ft_gettab_val(const char *tab, const int index);
 char			*ft_getword(const char *s, const int idword,
 		const char separator);
+int				ft_get_c_in_str(const char *str, const char c);
 BOOL			ft_is_c_in_str(const char c, const char *str);
 BOOL			ft_isempty(const char *str);
 char			*ft_itoa(int nbr);
