@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 12:02:39 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/07/11 20:33:12 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/07/12 16:28:18 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,14 +167,17 @@ BOOL	ft_cp_list_charlist(t_charlist *src, t_charlist **dest)
 BOOL	ft_cut_add_charlist(char *src, int start, int max_size, t_charlist **dest)
 {
 	char	*line;
+	char	*temp;
 
 	if (!src || start > max_size || max_size == 0 || !dest)
 		return (F);
 	line = ft_strcut(src, start, max_size);
 	if (!line)
-		return (F);
-	ft_add_charlist(line, dest);
+		return (F && ft_strdel(&line));
+	temp = ft_format_str(line);
 	ft_strdel(&line);
+	ft_add_charlist(temp, dest);
+	ft_strdel(&temp);
 	return (T);
 }
 
@@ -208,6 +211,21 @@ void	ft_split_adv_sources(int index, t_charlist *file, t_charlist **comment,
 		ft_cut_add_charlist(file->data, 0, index, ret_file);
 }
 
+void	ft_split_adv_end_lm_sources(int index, t_charlist *file,
+		t_charlist **comment, t_charlist **ret_file)
+{
+	int len_line;
+
+	len_line = ft_strlen(file->data);
+	if (index)
+	{
+		ft_cut_add_charlist(file->data, index + 2, len_line, ret_file);
+		ft_cut_add_charlist(file->data, 0, index, comment);
+	}
+	else
+		ft_cut_add_charlist(file->data, index + 2, len_line, ret_file);
+}
+
 int		ft_get_start_advanced_comment(char *str)
 {
 	int i;
@@ -229,76 +247,49 @@ int		ft_get_start_ml_comment(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if ((str[i] == COMMENT_CHAR_2 && str[i + 1] == COMMENT_CHAR_3)
-				|| (str[i] == COMMENT_CHAR_3 && str[i + 1] == COMMENT_CHAR_2))
+		if ((str[i] == COMMENT_CHAR_2 && str[i + 1] == COMMENT_CHAR_3))
 			return (i);
 		i++;
 	}
 	return (-1);
 }
 
-void		manage_advenced_comment(t_charlist *file, t_charlist **comment)
+int		ft_get_end_ml_comment(char *str)
 {
-//	char *ret;
-//	BOOL cmt;
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if ((str[i] == COMMENT_CHAR_3 && str[i + 1] == COMMENT_CHAR_2))
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
+t_charlist	*manage_advenced_comment(t_charlist *file, t_charlist **comment,
+		t_charlist **ret_file)
+{
 	int index;
 	char *line;
 
-	line =NULL;
-//	if ((ret = ft_strstr(file->data, COMMENT_STR_2)))
+	line = NULL;
+	index = ft_get_end_ml_comment(file->data);
+	ft_split_adv_sources(index + 1 , file, comment, ret_file);
+	file = file->next;
+	while (file)
 	{
-		index = ft_get_start_ml_comment(file->data);
-		ft_printf("<%s>    index = %d     \n", file->data, index);
-		ft_printf("{yellow} <%s>{eoc}   ||  {green}<%s>{eoc}--\n",
-				ft_strcut(file->data, 0, index),
-				ft_strcut(file->data, index + 2, ft_strlen(file->data)));
+		if ((index = ft_get_end_ml_comment(file->data)) > -1)
+		{
+			ft_split_adv_end_lm_sources(index , file, comment, ret_file);
+			break;
+		}
+		else
+			ft_split_adv_sources(index , file, comment, ret_file);
+		file = file->next;
 	}
-
-	(void)comment;
-
-/*
-	{
-		cmt =T;
-		index = ft_get_start_advanced_comment(file->data);
-		ft_add_charlist(line, comment);
-		line = ft_strcut(file->data, 0, index);
-		ft_strdel(&file->data);
-		file->data = line;
-		while(file)
-		{
-
-
-			if ((ret = ft_strstr(file->data, COMMENT_STR_3)))
-			{
-				ft_printf("{yellow}<%s>{eoc}   ||  {green}<%s>{eoc}--\n",
-						ft_strcut(file->data, 0, index),
-						ft_strcut(file->data, index, ft_strlen(file->data)));
-				ft_add_charlist(line, comment);
-				line = ft_strcut(file->data, 0, index);
-				ft_strdel(&file->data);
-				file->data = line;
-
-
-				ft_printf("   *    %s\n", file->data);
-				cmt = F;
-				break;
-
-
-			}
-			if (file)
-			{
-				//ft_printf("   *    %s\n", pt_file->					data);
-				file = file->next;
-			}
-		}
-		if (cmt)
-		{
-			ft_printf("{Yellow}warning reaches the end of the file"
-					" without having closed the comment multi line\n"
-					"The file may be damaged{eoc}\n");
-		}
-
-	}*/
+	return (file);
 }
 
 void	ft_get_basic_comment(t_charlist *file, t_player *player)
@@ -316,12 +307,7 @@ void	ft_get_basic_comment(t_charlist *file, t_player *player)
 		else if ((index = ft_get_start_advanced_comment(file->data)) > -1)
 			ft_split_adv_sources(index , file, &comment, &ret_file);
 		else if ((index = ft_get_start_ml_comment(file->data)) > -1)
-		{
-			//ft_printf(" str <%s>\n", file->data);
-
-			manage_advenced_comment(file, &comment);
-			//			ft_split_adv_sources(index , file, &comment, &ret_file);
-		}
+			file = manage_advenced_comment(file, &comment, &ret_file);
 		else
 			ft_add_charlist(file->data, &ret_file);
 		file = file->next;
@@ -332,44 +318,37 @@ void	ft_get_basic_comment(t_charlist *file, t_player *player)
 	ft_dell_list_charlist(&comment);
 }
 
-/*void	ft_get_advenced_comment(t_charlist *file, t_player *player)
-  {
-  t_charlist *comment;
-  t_charlist *ret_file;
-  int index;
+/*void	norm_file(t_charlist **file)
+{
+	if (!file || !(*file))
+		return ;
+	while (*file)
+	{
+		
+	}
+}*/
 
-  comment = NULL;
-  ret_file = NULL;
-  while (file)
-  {
-  ft_printf("index %d  file <%s>\n",index,  file->data);
-  if ((ret = ft_strstr(pt_file->data, COMMENT_STR_1)))
-  {
-  index = ft_get_start_advanced_comment(pt_file->data);
-  {
-  ft_printf("{yellow}<%s>{eoc}   ||  {green}<%s>{eoc}--\n",
-  ft_strcut(pt_file->data, 0, index),
-  ft_strcut(pt_file->data, index, ft_strlen(pt_file->data)));
-  ft_add_charlist(line, &comment);
-  line = ft_strcut(pt_file->data, 0, index);
-  ft_strdel(&pt_file->data);
-  pt_file->data = line;
-  }
-  }
+t_charlist	*clear_file(t_charlist **file)
+{
+	char *temp;
+	t_charlist *temp_list;
+	t_charlist *sauv_temp_list;
 
-  if ((index = ft_get_start_basic_comment(file->data)) > -1)
-  ft_split_sources(index, file, &comment, &ret_file);
-  else
-  ft_add_charlist(file->data, &ret_file);
-  file = file->next;
-  }
-  ft_cp_list_charlist(ret_file, &player->file);
-  ft_dell_list_charlist(&ret_file);
-  ft_cp_list_charlist(comment, &player->comment);
-  ft_dell_list_charlist(&comment);
+	temp_list = NULL;
+	ft_cp_list_charlist(*file, &temp_list);
+	ft_dell_list_charlist(file);
+	sauv_temp_list = temp_list;
+	while (temp_list)
+	{
+		temp = ft_format_str(temp_list->data);
+		ft_add_charlist(temp, file);
+		ft_strdel(&temp);
+		temp_list = temp_list->next;
+	}
+	ft_dell_list_charlist(&sauv_temp_list);
+	return (*file);
+}
 
-  }
-  */
 void	run(char *url_file,t_player *player)
 {
 	t_charlist *file;
@@ -381,15 +360,13 @@ void	run(char *url_file,t_player *player)
 	fd = ft_open_r_file(url_file);
 	ft_read_file(fd, &file);
 	ft_get_basic_comment(file, player);
-	//	ft_get_advenced_comment(player->file, player);
-	//	ft_get_head_comment(player,fd);
 	ft_printf("****************file ****************************************\n{green}");
-
+	ft_put_list_charlist(player->file);
+	ft_printf("****************file ****************************************\n{cyan}");
+	clear_file(&player->file);
 	ft_put_list_charlist(player->file);
 	ft_printf("{eoc}****************comment ****************************************\n{yellow}");
-
 	ft_put_list_charlist(player->comment);
-
 	ft_printf("{eoc}");
 
 	ft_dell_list_charlist(&file);
