@@ -6,9 +6,15 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 12:02:39 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/07/12 16:28:18 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/07/12 16:31:35 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+**	faire une foncion format just pour corware qui remplace les espaces par des /t
+**	just pour faire jolie
+*/
+
 
 #include "../../inc/op.h"
 
