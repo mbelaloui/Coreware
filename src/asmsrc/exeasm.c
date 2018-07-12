@@ -18,7 +18,7 @@
 
 #include "../../inc/op.h"
 
-BOOL	get_name(char *name, char *str)
+BOOL	get_name(char **name, char *str)
 {
 	int i;
 
@@ -47,7 +47,7 @@ BOOL	get_name(char *name, char *str)
 				"found     <{red}%s %s{eoc}>",NAME_CMD_STRING, NAME_CMD_STRING, str);
 		exit(0);
 	}
-	name = str;
+	*name = str;
 	return (T);
 }
 
@@ -62,7 +62,7 @@ void	ft_get_head_comment(t_player *player, int fd)
 	if (!ft_strncmp(line, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)) 
 			&& line[ft_strlen(NAME_CMD_STRING)] == ' ')
 	{
-		get_name(player->name, line + ft_strlen(NAME_CMD_STRING) + 1);
+		get_name(&player->name, line + ft_strlen(NAME_CMD_STRING) + 1);
 		ft_printf("{green}OK line <%s>{eoc}", line);
 	}
 	else
@@ -124,6 +124,7 @@ void	ft_get_head_file(t_player *player, int fd)
 		ft_printf("voila");
 		*/
 	fd = 0;
+	(void)fd;
 	(void) player;
 }
 
@@ -278,9 +279,9 @@ t_charlist	*manage_advenced_comment(t_charlist *file, t_charlist **comment,
 		t_charlist **ret_file)
 {
 	int index;
-	char *line;
+//	char *line;
 
-	line = NULL;
+//	line = NULL;
 	index = ft_get_end_ml_comment(file->data);
 	ft_split_adv_sources(index + 1 , file, comment, ret_file);
 	file = file->next;
