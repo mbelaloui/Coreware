@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 12:02:39 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/07/13 16:19:48 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/07/13 16:29:25 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ BOOL	get_name(char *name, char *str)
 		i++;
 	else
 	{
-		ft_printf("ERROR bad paramettre format no <\" \">\n"
+		ft_printf("1 ERROR bad paramettre format no <\" \">\n"
 				"expected  <{red}%s {eoc}\"%s\">\n"
 				"found     <{red}%s %s{eoc}>",NAME_CMD_STRING, NAME_CMD_PARAM, NAME_CMD_STRING, str);
 		exit(0);
@@ -37,12 +37,16 @@ BOOL	get_name(char *name, char *str)
 	if ((ret = ft_strchr(str + i, DELIMITEUR)))
 	{
 		if (ft_strlen(ret) > 1)
-			ft_printf("voir si c'est pas un comment<%s>\n", ret );
-		ft_printf("param <%s>\t\tret <%s>\n", str + i, ret + 1);
+		{
+			ft_printf("ERROR bad paramettre format\n"
+				"<{red}%s {eoc}\"%s\"> should not have characters other than"
+				" comments after declaration.\n",NAME_CMD_STRING, NAME_CMD_PARAM);
+			exit(0);
+		}
 	}
 	else
 	{
-		ft_printf("ERROR bad paramettre format no <\" \">\n"
+		ft_printf("3 ERROR bad paramettre format no <\" \">\n"
 				"expected  <{red}%s {eoc}\"NAME_PROGRAME\">\n"
 				"found     <{red}%s %s{eoc}>",NAME_CMD_STRING, NAME_CMD_STRING, str);
 		exit(0);
