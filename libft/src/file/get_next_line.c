@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 00:30:31 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/05/17 12:05:02 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/07/13 13:37:42 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int					get_next_line(const int fd, char **line)
 	char				*temp;
 
 	result = 1;
-	if (fd < 0 || fd > MAXFD || (line == NULL) || !(*line = ft_strnew(0)))
+	if (fd < 0 || fd > MAX_FD || (line == NULL) || !(*line = ft_strnew(0)))
 		return (-1);
 	temp_buf = get_buf_fd(fd, &list);
 	if (!temp_buf->rest || ft_isempty(temp_buf->rest))

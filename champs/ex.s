@@ -1,4 +1,4 @@
-.name "bonjour"ss
+.name "bonjourss"
 ;.error #asd a
 .comment "comment"
 
@@ -12,7 +12,7 @@ liv:	;live	%1
 liv:	live	%1
 liv:	live	%1//
 liv:	//live	%1
-	ld	%:liv/*,r1
+	ld	%:liv,r1
 liv:	live	%1
 liv:	live	%1
-liv:	live	%1*/
+liv:	live	%1

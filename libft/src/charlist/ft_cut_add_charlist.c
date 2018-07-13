@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_open_r_file.c                                   :+:      :+:    :+:   */
+/*   ft_cut_add_charlist.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/10 16:48:33 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/07/13 13:35:22 by mbelalou         ###   ########.fr       */
+/*   Created: 2018/07/13 12:11:16 by mbelalou          #+#    #+#             */
+/*   Updated: 2018/07/13 16:20:31 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/file.h"
+#include "../../inc/charlist.h"
 
-int		ft_open_r_file(const char *url_file)
+BOOL	ft_cut_add_charlist(char *src, int start, int max_size,
+		t_charlist **dest)
 {
-	int fd;
+	char	*line;
+	char	*temp;
 
-	if (url_file == NULL)
-		return (ERROR_URL_FILE);
-	fd = open(url_file, O_RDONLY);
-	if (fd < 0)
-		return (ERROR_FD);
-	return (fd);
+	if (!src || start > max_size || max_size == 0 || !dest)
+		return (F);
+	line = ft_strcut(src, start, max_size);
+	if (!line)
+		return (F && ft_strdel(&line));
+	temp = ft_format_str(line);
+	ft_strdel(&line);
+	ft_add_charlist(temp, dest);
+	ft_strdel(&temp);
+	return (T);
 }

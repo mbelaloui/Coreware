@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 10:14:55 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/07/10 17:13:52 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/07/13 14:48:48 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "libft.h"
 
 # define BUFF_SIZE	4096
-# define MAXFD		4864
+# define MAX_FD		4864
 # define ERROR_URL_FILE -1
 # define ERROR_FD       -2
 
@@ -27,7 +27,7 @@ typedef struct			s_list_fd
 	struct s_list_fd	*next;
 }						t_list_fd;
 
-int						ft_open_r_file(char *url_file);
+int						ft_open_r_file(const char *url_file);
 int						get_next_line(const int fd, char **line);
 
 #endif

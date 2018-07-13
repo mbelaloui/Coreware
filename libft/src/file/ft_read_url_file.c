@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_open_r_file.c                                   :+:      :+:    :+:   */
+/*   ft_read_url_file.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/10 16:48:33 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/07/13 13:35:22 by mbelalou         ###   ########.fr       */
+/*   Created: 2018/07/13 12:52:51 by mbelalou          #+#    #+#             */
+/*   Updated: 2018/07/13 14:38:15 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/file.h"
+#include "../../inc/charlist.h"
 
-int		ft_open_r_file(const char *url_file)
+BOOL	ft_read_url_file(const char *url, t_charlist **file)
 {
-	int fd;
-
-	if (url_file == NULL)
-		return (ERROR_URL_FILE);
-	fd = open(url_file, O_RDONLY);
-	if (fd < 0)
-		return (ERROR_FD);
-	return (fd);
+	if (!url || !file)
+		return (F);
+	return (ft_read_fd_file(ft_open_r_file(url), file) ? T : F);
 }

@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 11:55:39 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/07/12 16:34:31 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/07/13 16:20:37 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define ASM_H
 
 # include "../libft/inc/libft.h"
+# include "op.h"
 
 # define ERROR_BAD_PARAM			-1
 # define ERROR_NO_PARAM				-2
@@ -55,5 +56,21 @@ BOOL				ft_is_option(const char option);
 void				ft_set_options(char c, unsigned long *op);
 BOOL				ft_is_good_format_urlfile(char *url_file);
 void				ft_is_good_format_param(char *url_file);
+void				ft_get_basic_comment(t_charlist *file, t_player *player);
+
+
+int					ft_get_start_ml_comment(char *str);
+int					ft_get_start_advanced_comment(char *str);
+int					ft_get_start_basic_comment(char *str);
+int					ft_get_end_ml_comment(char *str);
+
+void				ft_split_sources(int index, t_charlist *file,
+		t_charlist **comment, t_charlist **ret_file);
+void				ft_split_adv_sources(int index, t_charlist *file,
+		t_charlist **comment, t_charlist **ret_file);
+void				ft_split_adv_end_lm_sources(int index, t_charlist *file,
+		t_charlist **comment, t_charlist **ret_file);
+t_charlist			*ft_manage_advenced_comment(t_charlist *file,
+		t_charlist **comment, t_charlist **ret_file);
 
 #endif

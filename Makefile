@@ -23,8 +23,14 @@ SRCS_OP				= $(addprefix $(DIR_OP)/, $(SRC_OP))
 
 DIR_PARSING			= parsing
 SRC_PARSING			= ft_is_good_format_urlfile.c ft_is_good_format_param.c\
-					  ft_is_option.c ft_set_options.c
+					  ft_is_option.c ft_set_options.c ft_get_basic_comment.c\
+					  ft_get_end_ml_comment.c ft_get_start_ml_comment.c\
+					  ft_get_start_advanced_comment.c\
+					  ft_get_start_basic_comment.c ft_split_sources.c\
+					  ft_split_adv_sources.c ft_split_adv_end_lm_sources.c\
+					  ft_manage_advenced_comment.c
 SRCS_PARSING		= $(addprefix $(DIR_PARSING)/, $(SRC_PARSING))
+
 #DIR_		=
 #SRC_		=
 #SRCS_		= $(addprefix $(DIR_)/, $(SRC_))

@@ -6,7 +6,7 @@
 #    By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 21:48:22 by mbelalou          #+#    #+#              #
-#    Updated: 2018/07/11 16:33:41 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/07/13 14:59:30 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ SRC_CHAR	= ft_chartoint.c ft_isascii.c ft_islower.c ft_putchar.c ft_toupper.c\
 SRCS_CHAR	= $(addprefix $(DIR_CHAR)/, $(SRC_CHAR))
 
 DIR_FILE	= file
-SRC_FILE	= ft_open_r_file.c get_next_line.c
+SRC_FILE	= ft_open_r_file.c get_next_line.c ft_read_fd_file.c\
+			  ft_read_url_file.c
 SRCS_FILE	= $(addprefix $(DIR_FILE)/, $(SRC_FILE))
 
 DIR_INTLIST	= intlist
@@ -118,7 +119,8 @@ SRCS_NODELST= $(addprefix $(DIR_NODELST)/, $(SRC_NODELST))
 DIR_CHARLST	= charlist
 SRC_CHARLST	= ft_add_charlist.c ft_dell_charlist.c ft_dell_list_charlist.c\
 			  ft_new_charlist.c ft_put_charlist.c ft_isempty_charlist.c\
-			  ft_put_list_charlist.c ft_size_charlist.c
+			  ft_put_list_charlist.c ft_size_charlist.c ft_cp_list_charlist.c\
+			  ft_cut_add_charlist.c
 SRCS_CHARLST	= $(addprefix $(DIR_CHARLST)/, $(SRC_CHARLST))
 
 INC_DIR		= inc/

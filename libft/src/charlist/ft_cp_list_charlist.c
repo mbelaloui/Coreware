@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_open_r_file.c                                   :+:      :+:    :+:   */
+/*   ft_cp_list_charlist.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/10 16:48:33 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/07/13 13:35:22 by mbelalou         ###   ########.fr       */
+/*   Created: 2018/07/13 12:09:10 by mbelalou          #+#    #+#             */
+/*   Updated: 2018/07/13 12:10:53 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/file.h"
+#include "../../inc/charlist.h"
 
-int		ft_open_r_file(const char *url_file)
+BOOL	ft_cp_list_charlist(t_charlist *src, t_charlist **dest)
 {
-	int fd;
+	t_charlist *temp_dest;
 
-	if (url_file == NULL)
-		return (ERROR_URL_FILE);
-	fd = open(url_file, O_RDONLY);
-	if (fd < 0)
-		return (ERROR_FD);
-	return (fd);
+	temp_dest = *dest;
+	if (!src || !dest)
+		return (F);
+	while (src)
+	{
+		ft_add_charlist(src->data, &temp_dest);
+		src = src->next;
+	}
+	*dest = temp_dest;
+	return (T);
 }

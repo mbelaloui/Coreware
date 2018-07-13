@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_open_r_file.c                                   :+:      :+:    :+:   */
+/*   ft_read_fd_file.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/10 16:48:33 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/07/13 13:35:22 by mbelalou         ###   ########.fr       */
+/*   Created: 2018/07/13 12:51:05 by mbelalou          #+#    #+#             */
+/*   Updated: 2018/07/13 13:48:30 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/file.h"
+#include "../../inc/charlist.h"
 
-int		ft_open_r_file(const char *url_file)
+BOOL	ft_read_fd_file(const int fd, t_charlist **file)
 {
-	int fd;
+	char *line;
 
-	if (url_file == NULL)
-		return (ERROR_URL_FILE);
-	fd = open(url_file, O_RDONLY);
-	if (fd < 0)
-		return (ERROR_FD);
-	return (fd);
+	if (fd < 0 || fd > MAX_FD)
+		return (F);
+	line = NULL;
+	while (get_next_line(fd, &line))
+	{
+		ft_add_charlist(line, file);
+		ft_strdel(&line);
+	}
+	ft_strdel(&line);
+	return (T);
 }
