@@ -12,7 +12,7 @@
 
 #include "../../inc/mem.h"
 
-void	ft_bzero(void *str, size_t size)
+void	ft_bzero(void *str, const size_t size)
 {
 	ft_memset(str, '\0', size);
 }

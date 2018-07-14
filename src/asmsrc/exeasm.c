@@ -18,7 +18,7 @@
 
 #include "../../inc/op.h"
 
-BOOL	get_name(char *name, char *str)
+BOOL	get_name(char *str)
 {
 	int i;
 
@@ -32,7 +32,6 @@ BOOL	get_name(char *name, char *str)
 				"found     <{red}%s %s{eoc}>",NAME_CMD_STRING, NAME_CMD_PARAM, NAME_CMD_STRING, str);
 		exit(0);
 	}
-	//if (ft_is_c_in_str(DELIMITEUR, str + i))
 	char *ret;
 	if ((ret = ft_strchr(str + i, DELIMITEUR)))
 	{
@@ -51,29 +50,29 @@ BOOL	get_name(char *name, char *str)
 				"found     <{red}%s %s{eoc}>",NAME_CMD_STRING, NAME_CMD_STRING, str);
 		exit(0);
 	}
-	name = str;
+	//name = str;
 	return (T);
 }
 
 void	ft_get_head_comment(t_player *player)
 {
-	char *line;
+	//char *line;
 	t_charlist *file;
 
 	file = player->file;
 //	line = NULL;
 
 	// get name
-	line = file->data;
+//	line = file->data;
 
-	ft_printf("\n\n%s\n", line);
+	ft_printf("\n\n%s\n", file->data);
 
 	//	get_next_line(fd, &line);// && line && line[0] == '#') || !ft_strlen(line))
-	if (!ft_strncmp(line, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)) 
+	if (!ft_strncmp(file->data, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)) 
 			&& line[ft_strlen(NAME_CMD_STRING)] == ' ')
 	{
-		get_name(player->name, line + ft_strlen(NAME_CMD_STRING) + 1);
-		ft_printf("{green}OK line <%s>{eoc}", line);
+		/*player->name ft_strdup()*/ get_name(line + ft_strlen(NAME_CMD_STRING) + 1);
+		ft_printf("{green}OK line <%s>{eoc}",file->data);
 	}
 	else // le fichier ne commance pas avec le nom du champion
 	{

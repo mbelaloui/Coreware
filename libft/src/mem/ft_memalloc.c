@@ -12,7 +12,7 @@
 
 #include "../../inc/mem.h"
 
-void	*ft_memalloc(size_t size)
+void	*ft_memalloc(const size_t size)
 {
 	char	*result;
 

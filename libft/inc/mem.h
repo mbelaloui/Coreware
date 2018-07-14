@@ -15,8 +15,8 @@
 
 # include "libft.h"
 
-void	ft_bzero(void *str, size_t size);
-void	*ft_memalloc(size_t size);
+void	ft_bzero(void *str, const size_t size);
+void	*ft_memalloc(const size_t size);
 void	*ft_memccpy(void *dest, const void *src, int c, size_t max_size);
 void	*ft_memchr(const void *str, int c, size_t max_size);
 int		ft_memcmp(const void *str1, const void *str2, size_t size);
