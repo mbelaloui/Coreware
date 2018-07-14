@@ -23,7 +23,12 @@ char	*ft_strjoin(char const *str1, char const *str2)
 			return (NULL);
 		ft_strcat(result, str1);
 		ft_strcat(result, str2);
-		return (result);
 	}
-	return (NULL);
+	else
+	{
+		return ((str1) ? ft_strdup(str1) : ft_strdup(str2));
+	
+	}
+	return (result);
+//	return (NULL);
 }

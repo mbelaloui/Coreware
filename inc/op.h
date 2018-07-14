@@ -58,6 +58,9 @@
 
 # define REG_NUMBER				16
 
+#define DELIM_DECLARATION			'"'
+#define SEP					'~'
+
 # define CYCLE_TO_DIE			1536
 # define CYCLE_DELTA			50
 # define NBR_LIVE				21

@@ -50,9 +50,9 @@ t_charlist		*ft_manage_advenced_comment(t_charlist *file,
 		t_charlist **comment, t_charlist **ret_file)
 {
 	int		index;
-	char	*line;
+//	char	*line;
 
-	line = NULL;
+//	line = NULL;
 	if ((index = ft_get_end_ml_comment(file->data)) > -1)
 		return (get_linecomment(file, comment, ret_file, index));
 	index = ft_get_end_ml_comment(file->data);

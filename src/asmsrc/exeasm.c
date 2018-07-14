@@ -69,16 +69,16 @@ void	ft_get_head_comment(t_player *player)
 
 	//	get_next_line(fd, &line);// && line && line[0] == '#') || !ft_strlen(line))
 	if (!ft_strncmp(file->data, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)) 
-			&& line[ft_strlen(NAME_CMD_STRING)] == ' ')
+			&& file->data[ft_strlen(NAME_CMD_STRING)] == ' ')
 	{
-		/*player->name ft_strdup()*/ get_name(line + ft_strlen(NAME_CMD_STRING) + 1);
+		/*player->name ft_strdup()*/ get_name(file->data + ft_strlen(NAME_CMD_STRING) + 1);
 		ft_printf("{green}OK line <%s>{eoc}",file->data);
 	}
 	else // le fichier ne commance pas avec le nom du champion
 	{
 		ft_printf("{yellow}Error unknown param description file{eoc}\n"// {red}<%s>{eoc}.\n"
 				"expected  <{red}%s {eoc}\"NAME_PROGRAME\">\n"
-				"found     <{red}%s{eoc}>", NAME_CMD_STRING, line);
+				"found     <{red}%s{eoc}>", NAME_CMD_STRING, file->data);
 		exit(0);
 	}
 
@@ -135,6 +135,21 @@ void	ft_get_head_file(t_player *player)
 }
 */
 
+char	*ft_charlist_to_str(t_charlist *list)
+{
+	char *file_str = "";
+// voir s'il ya le char sep dir que fichier contien des caracteres interdis
+	file_str = ft_strdup(list->data);
+	list = list->next;
+	while (list)
+	{
+//		ft_printf("%s\n", file->data);
+
+		file_str = ft_strjoin_sep(file_str, list->data, '\n');
+		list = list->next;
+	}
+	return (file_str);
+}
 
 void	run(char *url_file,t_player *player)
 {
@@ -146,16 +161,37 @@ void	run(char *url_file,t_player *player)
 	ft_is_good_format_param(url_file);
 	if (!ft_read_url_file(url_file, &file))
 		return ; /// cas d'erruer probleme  de lecture fichier exit().....
+/*
 	ft_get_basic_comment(file, player);
 	ft_printf("****************file ****************************************\n{cyan}");
 	ft_put_list_charlist(player->file);
 	ft_printf("{eoc}****************comment ****************************************\n{yellow}");
 	ft_put_list_charlist(player->comment);
 	ft_printf("{eoc}");
+
 	ft_dell_list_charlist(&file);
+	file = player->file;
+*/	char *file_str = "";
+// voir s'il ya le char sep dir que fichier contien des caracteres interdis
+	if (file)
+		file_str = ft_charlist_to_str(file);
+	else
+	{
+		ft_printf("empty file \n");
+		exit(0);
+	}
+	if (ft_isempty(file_str))
+	{
+		ft_printf("empty file \n");
+		exit(0);
+	}
+	ft_printf("file_str \n%s\n", file_str);
 
-	ft_get_head_comment(player);
+//	tester si le fichier apres avoir enlever les commenaitres est vide ou pas 
 
+
+//	ft_get_head_comment(player);
+	(void)player;
 	//get info file and check is well formated
 	//check options and print datas if mantioned
 	//translate file .s to file .cor

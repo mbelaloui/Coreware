@@ -14,7 +14,8 @@
 
 BOOL	ft_isblank(const char c)
 {
-	if (c == '\t' || c == ' ' || c == '\v' || c == '\r' || c == '\f')
+	if (c == '\t' || c == ' ' || c == '\v' || c == '\r' || c == '\f'
+		|| c == '\n')
 		return (T);
 	return (F);
 }

@@ -1,6 +1,13 @@
-.name "s"asda
+.name "sasd:w
+asd
+"
 ;.error #asd a
-.comment "comment"
+.comment "commenti
+
+
+
+
+"
 
 //ici 		
 liv:	;live	%1
