@@ -126,7 +126,7 @@ int	get_index_end_line(char *str)
 	return (i);
 }
 
-char	*ft_purification_file(char *file)
+char	*ft_extract_comment(char *file)
 {
 	int i;
 	int index;
@@ -137,54 +137,53 @@ char	*ft_purification_file(char *file)
 	ret = ft_strnew(ft_strlen(file));
 	i = 0;
 	int len = ft_strlen(file);
-	index = 0;
 	while (i < len && file[i])
 	{
-	ft_printf("{red}\n 1 \n%s\n\n{eoc}", file +i);
+	//	ft_printf(" 1 {yellow}sdvsdvsd{eoc} %c\n", file[i]);
+	/*	if (file[i] == DELIM_DECLARATION)
+		{
+			index = get_index_end_declaration(file + i + 1);
+			to_add = ft_strcut(file,i,index + 1);
+			to_del = ret;
+			//ft_printf("aaaaaaaaaaaaaaaaa   %s\n", ret);
+			ret = ft_strjoin(ret, to_add );
+		//	ft_printf("aaaaaaaaaaaaaaaaa   %s\n", ret);
+			ft_strdel(&to_del);
+			ft_strdel(&to_add);
+		}
+*/
 		if (file[i] == SEP)
 		{
-	ft_printf("{red}\n 2 \n%s\n\n{eoc}", file +i);
-	to_add = ret;
-	ret = ft_strjoin(ret, "\n");
-	ft_printf("{yellow}\n %s\n{eoc}", ret);
-	ft_strdel(&to_add);
-	i++;
+			to_add = ret;
+			ret = ft_strjoin(ret, "~");
+			ft_strdel(&to_add);
+	//		ft_printf(" 2 {cyan} %d{eoc} %c -  %c\n",
+	//		i,file[i] , file[i - 1],i);
+			i++;
+		}else if(file[i] == '#' || file[i] == ';')
+		{
+			while (file[i] && file[i] != SEP)
+				i++;
+				//mettre tout ca dans list comment
 		}
-		else if(file[i] == '#' || file[i] == ';'
-	|| (file[i] && file[i] == '/' && file[i+ 1] == '/'))
+		else
 		{
-	
-	ft_printf("{red}\n 3 \n%s\n\n{eoc}", file +i);
-	while (file[i] && file[i] != SEP)
-		i++;
-		//mettre tout ca dans list comment
+//ft_printf("AA i = %d , index = %d \t",i, index);
+			index = i + get_index_end_line(file + i);
+//		ft_printf("get to_add  i = %d , index = %d -<%s> \n"
+//			,i, index, ft_strcut(file,i,index));
+			to_add = ft_strcut(file,i,index);
+//ft_printf("befor join str <%s> to add <%s> \n",ret, to_add);
+			char *to_del = ret;
+			ret = ft_strjoin(ret, to_add);
+			ft_strdel(&to_add);
+			ft_strdel(&to_del);
+//	ft_printf("after join {green}str <%s> mto add <%s> {eoc} \n",ret, to_add);
+			i = index;
 		}
-		else if (file[i] && file[i] == '/' && file[ i + 1] == '*')
-		{
-	ft_printf("{red}\n 4 \n%s\n\n{eoc}", file +i);
-	i += 2;
-	while (file[i] && file[i] != '*' && file[i + 1] != '/')
-	{
-		i++;
-	}
-	if(file[i] && file[i] == '*' && file[i + 1] == '/')
-		i += 2;
-	//mettre tout ca dans list comment
-		}else
-		{
-	ft_printf("{red}\n 5 \n%s\n\n{eoc}", file +i);
-	ft_printf("AV i = %d , index = %d \t",i, index);
-	index = i + get_index_end_line(file + i);
-	ft_printf("AP i = %d , index = %d \n",i, index);
-	to_add = ft_strcut(file,i,index);
-	char *to_del = ret;
-	ret = ft_strjoin(ret, to_add);
-	ft_strdel(&to_add);
-	ft_strdel(&to_del);
-	i = index;
 		//	i++;
-		}
 		//ft_temporize(2);
+		//ft_printf("{red}sdvsdvsd{eoc}\n");
 	}
 	return (ret);
 }
@@ -208,22 +207,17 @@ int	main(int argc, char **argv)
 	if (ft_isempty(file_str))   /// voir si le ficheir est pas vide
 		exit(0);
 
-//	ft_printf("str 1     <%s>\n\n", file_str);
+	ft_printf("str 1     <%s>\n\n", file_str);
 
-
+		
 	str = ft_prepare_file(file_str);
 
-//	ft_printf("str 2 <%s>\n", str);
+	ft_printf("str 2 <%s>\n", str);
+	
+	char *st = ft_extract_comment(str);
+	ft_printf("final str <%s>\n", st);
 
-	char *st = ft_purification_file(str);
-	ft_printf("str f <{green}%s{eoc}>\n", st);
 
-
-//	char **to_display = ft_strsplit(st, '~');
-
-//	ft_putmat(to_display);
-
-//	ft_free_mat(&to_display);
 	ft_strdel(&w);
 	ft_strdel(&str);
 	ft_strdel(&st);
