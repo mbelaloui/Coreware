@@ -1,6 +1,14 @@
 
 #include "../inc/op.h"
 
+
+/*
+** input	list of sring
+** output	sting
+**
+** cette fonction prend les elements de la list et les concataine dans une 
+** string en les separent avec le caractere definit
+*/
 char    *ft_charlist_to_str(t_charlist *list, char c)
 {
 	char *ret;
@@ -25,6 +33,7 @@ char    *ft_charlist_to_str(t_charlist *list, char c)
 /*
 ** cette fonction permet de prendre en compt les \n
 ** dans les declations dans le nom et description "  "
+** elever les '\n' entre les ""
 */
 
 char	*ft_prepare_file(char *file)
@@ -73,18 +82,16 @@ char	*ft_prepare_file(char *file)
 			i++;
 		}
 	}
-	//ret[cp] = '\0';
 	return (ret);
 }
 
 
 
-int	get_index_end_declaration(char *str)
+/*int	get_index_end_declaration(char *str)
 {
 	int i;
 
 	i = 0;
-//	ft_printf("%s\t 4444\n",str);
 	while (str[i])
 	{
 		if (str[i] == DELIM_DECLARATION)
@@ -93,7 +100,7 @@ int	get_index_end_declaration(char *str)
 	}
 	return (i);
 }
-
+*/
 BOOL	is_stop_char(char *str)
 {
 	if (str[0] == COMMENT_CHAR || str[0] == COMMENT_CHAR_1
@@ -120,11 +127,15 @@ int	get_index_end_line(char *str)
 		}
 		if (str[i])
 			i++;
-		//ft_printf("{green}dasd sa{eoc}", str[i]);
 	}
-//	ft_printf("\tend  = %d \n", i);
 	return (i);
 }
+
+
+/*
+** a terminer ajouter les commentaires dans une liste
+** split la fonction par apport a chaque type de comment
+*/
 
 char	*ft_purification_file(char *file)
 {
@@ -140,13 +151,13 @@ char	*ft_purification_file(char *file)
 	index = 0;
 	while (i < len && file[i])
 	{
-	ft_printf("{red}\n 1 \n%s\n\n{eoc}", file +i);
+//	ft_printf("{red}\n 1 \n%s\n\n{eoc}", file +i);
 		if (file[i] == SEP)
 		{
-	ft_printf("{red}\n 2 \n%s\n\n{eoc}", file +i);
+//	ft_printf("{red}\n 2 \n%s\n\n{eoc}", file +i);
 	to_add = ret;
 	ret = ft_strjoin(ret, "\n");
-	ft_printf("{yellow}\n %s\n{eoc}", ret);
+//	ft_printf("{yellow}\n %s\n{eoc}", ret);
 	ft_strdel(&to_add);
 	i++;
 		}
@@ -154,14 +165,14 @@ char	*ft_purification_file(char *file)
 	|| (file[i] && file[i] == '/' && file[i+ 1] == '/'))
 		{
 	
-	ft_printf("{red}\n 3 \n%s\n\n{eoc}", file +i);
+//	ft_printf("{red}\n 3 \n%s\n\n{eoc}", file +i);
 	while (file[i] && file[i] != SEP)
 		i++;
 		//mettre tout ca dans list comment
 		}
 		else if (file[i] && file[i] == '/' && file[ i + 1] == '*')
 		{
-	ft_printf("{red}\n 4 \n%s\n\n{eoc}", file +i);
+//	ft_printf("{red}\n 4 \n%s\n\n{eoc}", file +i);
 	i += 2;
 	while (file[i] && file[i] != '*' && file[i + 1] != '/')
 	{
@@ -172,10 +183,10 @@ char	*ft_purification_file(char *file)
 	//mettre tout ca dans list comment
 		}else
 		{
-	ft_printf("{red}\n 5 \n%s\n\n{eoc}", file +i);
-	ft_printf("AV i = %d , index = %d \t",i, index);
+//	ft_printf("{red}\n 5 \n%s\n\n{eoc}", file +i);
+//	ft_printf("AV i = %d , index = %d \t",i, index);
 	index = i + get_index_end_line(file + i);
-	ft_printf("AP i = %d , index = %d \n",i, index);
+//	ft_printf("AP i = %d , index = %d \n",i, index);
 	to_add = ft_strcut(file,i,index);
 	char *to_del = ret;
 	ret = ft_strjoin(ret, to_add);
