@@ -16,16 +16,18 @@ BOOL	ft_cut_add_charlist(char *src, int start, int max_size,
 		t_charlist **dest)
 {
 	char	*line;
-	char	*temp;
+//	char	*temp;
 
 	if (!src || start > max_size || max_size == 0 || !dest)
 		return (F);
 	line = ft_strcut(src, start, max_size);
 	if (!line)
 		return (F && ft_strdel(&line));
-	temp = ft_format_str(line);
+//	temp = ft_format_str(line);
+//	ft_strdel(&line);
+//	ft_add_charlist(temp, dest);
+	ft_add_charlist(line, dest);
 	ft_strdel(&line);
-	ft_add_charlist(temp, dest);
-	ft_strdel(&temp);
+//	ft_strdel(&temp);
 	return (T);
 }

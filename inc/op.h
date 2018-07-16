@@ -54,7 +54,7 @@
 # define NAME_CMD_STRING		".name"
 # define NAME_CMD_PARAM			"NAME_PARAM"
 # define COMMENT_CMD_STRING		".comment"
-# define DELIMITEUR				'\"'
+# define DELIMITEUR				'"'
 
 # define REG_NUMBER				16
 
@@ -121,5 +121,6 @@ int					ft_is_name_op(char *str);
 
 t_op				*ft_get_op(t_op *op_tab[NBR_OP], char *str);
 void				ft_put_desc_param(t_op *op_tab[NBR_OP]);
+
 
 #endif

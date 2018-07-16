@@ -163,7 +163,7 @@ int		ft_get_start_advanced_comment(char *str)
 	}
 	return (-1);
 }
-
+/*
 BOOL	ft_cp_list_charlist(t_charlist *src, t_charlist **dest)
 {
 	t_charlist *temp_dest;
@@ -193,7 +193,7 @@ BOOL	ft_cut_add_charlist(char *src, int start, int max_size, t_charlist **dest)
 	ft_strdel(&line);
 	return (T);
 }
-
+*/
 
 void	ft_get_comment(t_charlist *file, t_player *player)
 {
