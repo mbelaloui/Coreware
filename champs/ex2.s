@@ -1,7 +1,7 @@
 .name "n ame"
 .comment "comment"
 
-	live	%2147483647
+//	live	%2147483647
 	ld		-42,r1
 	ld		0,r2
 	ld		1,r99
@@ -11,7 +11,7 @@
 	st		r1,-42
 	st		r1,42
 	st		r1,r50
-toi:	st		r2,r3
+/*toi:	st		r2,r3
 bonjour:
 	add		r2,r5,r8
 	sub		r2,r5,r8
@@ -19,15 +19,15 @@ bonjour:
 	and		1,%2,r5
 	and		%1,2,r5
 	and		1,-2,r5
-	and		-1,2,r5
+*/	and		-1,2,r5
 	and		-1,-2,r5
-	and		1,%2,r5
+;	and		1,%2,r5
 	and		%1,2,r5
 	and		%-1,%-2,r5
-	and		r1,2,r5
+#	and		r1,2,r5
 	and		1,r2,r5
 	and		r1,r2,r5
-	or		1,2,r5
+//	or		1,2,r5
 	or		1,%2,r5
 	or		%1,2,r5
 	or		1,-2,r5

@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 11:55:39 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/07/13 16:20:37 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/07/18 16:44:51 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,7 @@ int				ft_get_index_end_line(char *str);
 char				*ft_purification_file(char *file, t_charlist **comment);
 void				ft_is_there_forbiden_char(t_charlist *file);
 void				ft_first_parsing(char *url_file, t_player *player);
+
+void				ft_get_head_comment(t_player *player);
 
 #endif

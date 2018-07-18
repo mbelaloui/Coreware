@@ -30,7 +30,8 @@ SRC_PARSING			= ft_is_good_format_urlfile.c ft_is_good_format_param.c\
 					  ft_split_adv_sources.c ft_split_adv_end_lm_sources.c\
 					  ft_manage_advenced_comment.c ft_get_index_end_line.c\
 					  ft_prepare_file.c ft_purification_file.c\
-					  ft_is_there_forbiden_char.c ft_first_parsing.c
+					  ft_is_there_forbiden_char.c ft_first_parsing.c\
+					  ft_get_head_comment.c
 SRCS_PARSING		= $(addprefix $(DIR_PARSING)/, $(SRC_PARSING))
 
 #DIR_		=

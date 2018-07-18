@@ -1,4 +1,7 @@
-.name "bonjour"ss
+.name "bonjour"
+//.name bonjour
+;.name "bonjour
+#.name "bonjour"ss
 ;.error #asd a
 .comment "comment"
 

@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 12:05:31 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/07/13 14:46:54 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/07/18 13:44:00 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 
 void		ft_error_param(int error, char *param)
 {
-	if (ERROR_NO_PARAM == error) // ici enlever les option et laisser le reste
+	if (ERROR_NO_PARAM == error)
 		ft_printf("{red}wrong nbr of params{eoc} %s\n");
-	else if (ERROR_BAD_PARAM == error) // garder les options et enlever le rest
+	else if (ERROR_BAD_PARAM == error)
 		ft_printf("{red}wrong param{eoc} : %s"
 				" : option not reconized.\n", param);
 	else if (ERROR_NO_URL_FILE == error)

@@ -1,5 +1,16 @@
-#include "../../inc/asm.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_prepare_file.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/18 13:44:30 by mbelalou          #+#    #+#             */
+/*   Updated: 2018/07/18 13:45:42 by mbelalou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "../../inc/asm.h"
 
 /*
 ** cette fonction permet de prendre en compt les \n
@@ -7,7 +18,7 @@
 ** elever les '\n' entre les ""
 */
 
-void    manage_special_line(char **ret, int *cp, char **file, int *i)
+static void	manage_special_line(char **ret, int *cp, char **file, int *i)
 {
 	(*ret)[(*cp)++] = (*file)[(*i)++];
 	while ((*file)[*i] && (*file)[*i] != DELIMITEUR)
@@ -27,12 +38,12 @@ void    manage_special_line(char **ret, int *cp, char **file, int *i)
 		(*ret)[(*cp)++] = (*file)[(*i)++];
 }
 
-char    *ft_prepare_file(t_charlist *listfile, char c)
+char		*ft_prepare_file(t_charlist *listfile, char c)
 {
-	char *ret;
-	int cp;
-	int i;
-	char *file;
+	char	*file;
+	char	*ret;
+	int		cp;
+	int		i;
 
 	ft_is_there_forbiden_char(listfile);
 	cp = 0;

@@ -6,7 +6,7 @@
 #    By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 21:48:22 by mbelalou          #+#    #+#              #
-#    Updated: 2018/07/13 14:59:30 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/07/18 11:34:16 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -195,7 +195,7 @@ fclean			:
 re				: fclean all
 
 norm 			:
-	@norminette | grep -B 1 "Error"
+	@norminette **/**.[ch] | grep -B 1 "Error"
 
 t				:
 	@make

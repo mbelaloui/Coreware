@@ -6,53 +6,54 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 12:47:25 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/07/13 16:20:33 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/07/18 16:45:06 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/asm.h"
 
-t_charlist *get_linecomment(t_charlist *file,
+/*
+** (void) ret_file;
+** (void)comment;
+*/
+
+static t_charlist	*get_linecomment(t_charlist *file,
 		t_charlist **comment, t_charlist **ret_file, int end)
 {
 	int start;
+
 	start = ft_get_start_ml_comment(file->data);
-
 	ft_printf("/**************************************************\\ \n");
-
 	if (ft_isempty(ft_strcut(file->data, start + 2, end)))
 	{
-		ft_printf("vide prendre la partie gauche et droite et les mettre dans la meme line\n");
-
-	ft_printf("avant start = <%d> [%s]",start, ft_strcut(file->data, 0, start ));
-	ft_printf("apres end   = <%d> [%s]\n",end , ft_strcut(file->data, end + 2 , ft_strlen(file->data)));
-
-	}else
-	{
-	ft_printf("avant start = <%d> [%s]\n",start, ft_strcut(file->data, 0, start ));
-	ft_printf("start = <%d>  [%s]\n",start, ft_strcut(file->data, start + 2, end));
-	ft_printf("apres end   = <%d> [%s]\n",end , ft_strcut(file->data, end + 2 , ft_strlen(file->data)));
+		ft_printf("vide prendre la partie gauche et droite et"
+				"les mettre dans la meme line\n");
+		ft_printf("avant start = <%d> [%s]", start,
+			ft_strcut(file->data, 0, start));
+		ft_printf("apres end   = <%d> [%s]\n",
+			end, ft_strcut(file->data, end + 2, ft_strlen(file->data)));
 	}
-// s'il ya des truaues avant
-	//	ft_cut_add_charlist(file->data, start, end - start, comment);
-//	ft_cut_add_charlist(file->data, start, end - start, comment);
+	else
+	{
+		ft_printf("avant start = <%d> [%s]\n",
+				start, ft_strcut(file->data, 0, start));
+		ft_printf("start = <%d>  [%s]\n",
+				start, ft_strcut(file->data, start + 2, end));
+		ft_printf("apres end   = <%d> [%s]\n",
+				end, ft_strcut(file->data, end + 2, ft_strlen(file->data)));
+	}
 
-// s'il ya des truques apres
-	//	ft_cut_add_charlist(file->data, start, end - start, comment);
-
-//	ft_printf("%s\n",file->data);
+	(void) comment;
 	(void) ret_file;
-	(void)comment;
+
 	return (file);
 }
 
-t_charlist		*ft_manage_advenced_comment(t_charlist *file,
+t_charlist			*ft_manage_advenced_comment(t_charlist *file,
 		t_charlist **comment, t_charlist **ret_file)
 {
 	int		index;
-//	char	*line;
 
-//	line = NULL;
 	if ((index = ft_get_end_ml_comment(file->data)) > -1)
 		return (get_linecomment(file, comment, ret_file, index));
 	index = ft_get_end_ml_comment(file->data);

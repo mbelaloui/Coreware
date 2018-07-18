@@ -6,13 +6,32 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 12:07:14 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/07/13 15:29:49 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/07/18 14:00:55 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/asm.h"
 
-// faire en sorte de detecter le pasage du head au src pour laisser un espace
+/*
+** faire en sorte de detecter le pasage du head au src pour laisser un espace
+** pour l'instant le proramme ne prend pas en compt les comment multie lignes
+** pour prendre en compt quelques cas il faut decommanter cette ligne
+** file = ft_manage_advenced_comment(file, &comment, &ret_file);
+**
+** mettre tout dans une chaine de caratctere
+** voir si on a jamais de '~' si oui file invalide
+** faire des strjoin entre chaque ligne et mettres des '~' entre chaque line
+** faire le traitement des commentaires entre chaque starte de comment et '~'
+** mettre a chaque fois la ligne du debut jusqu'a '~' dans un t_charlist
+** continuer le traitement
+**
+** pour le head sur plusieurs ligne ne pas mettre de '~' entre les ligne
+** quand c'est pas la fin de la donnee
+** ex : .name " voila
+** il n'y aura pas de '~' entre cette ligne et la premiere no la prochainne
+** line 3 nom	 ici ajouter le delimiteur"~.comment "meme
+** chose pour ici aussi comme dans name"
+*/
 
 static t_charlist	*clear_file(t_charlist **file)
 {
@@ -39,10 +58,6 @@ static t_charlist	*clear_file(t_charlist **file)
 	return (*file);
 }
 
-/*
-** regler sgf dans ml comment sur une seul ligne
-*/
-
 void				ft_get_basic_comment(t_charlist *file, t_player *player)
 {
 	t_charlist	*comment;
@@ -62,27 +77,6 @@ void				ft_get_basic_comment(t_charlist *file, t_player *player)
 			ft_printf("allez dans le fichier ft_get_basic_comment pour"
 					" comprendre .... \nciao\n");
 			exit(0);
-	/*
-	 * pour l'instant le proramme ne prend pas en compt les comment multie lignes
-	 * pour prendre en compt quelques cas il faut decommanter cette ligne 
-	 * file = ft_manage_advenced_comment(file, &comment, &ret_file);
-	 * 
-	 * 
-	 * mettre tout dans une chaine de caratctere 
-	 * voir si on a jamais de '~' si oui file invalide 
-	 * faire des strjoin entre chaque ligne et mettres des '~' entre chaque line
-	 * faire le traitement des commentaires entre chaque starte de comment et '~'
-	 * mettre a chaque fois la ligne du debut jusqu'a '~' dans un t_charlist
-	 * continuer le traitement
-	 *
-	 * pour le head sur plusieurs ligne ne pas mettre de '~' entre les ligne 
-	 * quand c'est pas la fin de la donnee
-	 * ex : .name " voila 
-	 *	il n'y aura pas de '~' entre cette ligne et la premiere no la prochainne
-	 *	line 3 nom	 ici ajouter le delimiteur"~.comment "meme 
-	 *	chose pour ici aussi comme dans name"
-	 *
-	 * */
 		}
 		else
 			ft_add_charlist(file->data, &ret_file);
