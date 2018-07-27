@@ -16,11 +16,12 @@
 # include "../libft/inc/libft.h"
 # include "op.h"
 
-# define ERROR_BAD_PARAM			-1
-# define ERROR_NO_PARAM				-2
-# define ERROR_NO_URL_FILE			-3
-# define ERROR_MULTIPUL_PARAM		-4
-# define ERROR_WRONG_FORMAT_FILE	-5
+# define ERROR_NO_PARAM			-1
+# define ERROR_MULTIPUL_PARAM		-2
+# define ERROR_WRONG_FORMAT_FILE	-3
+# define ERROR_READING_FILE		-4
+
+
 
 # define T_REG_P1					0x1
 # define T_DIR_P1					0x2
@@ -52,10 +53,13 @@ typedef struct		s_player
 
 void				ft_error_param(int error, char *param);
 
+void				ft_manage_url(char *url);
+void            ft_error_reading_file(int error);
+
+/*
+
 BOOL				ft_is_option(const char option);
 void				ft_set_options(char c, unsigned long *op);
-BOOL				ft_is_good_format_urlfile(char *url_file);
-void				ft_is_good_format_param(char *url_file);
 void				ft_get_basic_comment(t_charlist *file, t_player *player);
 
 
@@ -80,5 +84,5 @@ void				ft_is_there_forbiden_char(t_charlist *file);
 void				ft_first_parsing(char *url_file, t_player *player);
 
 void				ft_get_head_comment(t_player *player);
-
+*/
 #endif

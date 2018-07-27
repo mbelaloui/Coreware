@@ -14,6 +14,7 @@
 
 BOOL	ft_read_url_file(const char *url, t_charlist **file)
 {
+
 	if (!url || !file)
 		return (F);
 	return (ft_read_fd_file(ft_open_r_file(url), file) ? T : F);

@@ -33,17 +33,21 @@
 # define MEM_SIZE				(4*1024)
 # define IDX_MOD				(MEM_SIZE / 8)
 # define CHAMP_MAX_SIZE			(MEM_SIZE / 6)
+# define COMMENT_CHAR_1			'#'
+# define COMMENT_CHAR_2			';'
+# define COMMENT_CHAR_3			'/'
+# define COMMENT_CHAR_4			'*'
 
-# define COMMENT_CHAR			'#'
-# define COMMENT_CHAR_1			';'
+/*
+** # define COMMENT_STR_1			"//"
+** # define COMMENT_STR_2			*"
+** # define COMMENT_STR_3			"*"
 
-# define COMMENT_CHAR_2			'/'
-# define COMMENT_CHAR_3			'*'
 
-# define COMMENT_STR_1			"//"
-# define COMMENT_STR_2			"/*"
-# define COMMENT_STR_3			"*/"
-
+** # define ID_COMMENT_1			1
+** # define ID_COMMENT_2			2
+** # define ID_COMMENT_3			3
+*/
 
 # define LABEL_CHAR				':'
 # define DIRECT_CHAR			'%'
@@ -58,8 +62,9 @@
 
 # define REG_NUMBER				16
 
-#define DELIM_DECLARATION			'"'
+#define DEF					'"'
 #define SEP					'~'
+#define SPS					' '
 
 # define CYCLE_TO_DIE			1536
 # define CYCLE_DELTA			50

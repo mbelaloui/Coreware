@@ -3,12 +3,12 @@ NAME_ASM			= asm
 
 FLAGES				= -Wall -Wextra -Werror -c
 
-DIR_ASM				= asmsrc
-SRC_ASM				= exeasm.c
+DIR_ASM				= asm
+SRC_ASM				= exe.c
 SRCS_ASM			= $(addprefix $(DIR_ASM)/, $(SRC_ASM))
 
 DIR_ERROR			= error
-SRC_ERROR			= ft_error_param.c
+SRC_ERROR			= ft_error_param.c ft_error_reading_file.c
 SRCS_ERROR			= $(addprefix $(DIR_ERROR)/, $(SRC_ERROR))
 
 DIR_OP				= op
@@ -21,8 +21,12 @@ SRC_OP				= ft_dell_op.c ft_get_nbr_param.c ft_get_type_param.c\
 					  ft_set_param.c
 SRCS_OP				= $(addprefix $(DIR_OP)/, $(SRC_OP))
 
-DIR_PARSING			= parsing
-SRC_PARSING			= ft_is_good_format_urlfile.c ft_is_good_format_param.c\
+DIR_PARSING_ASM			= asm/parsing
+SRC_PARSING_ASM			= ft_manage_url.c
+
+
+
+#ft_is_good_format_urlfile.c ft_is_good_format_param.c\
 					  ft_is_option.c ft_set_options.c ft_get_basic_comment.c\
 					  ft_get_end_ml_comment.c ft_get_start_ml_comment.c\
 					  ft_get_start_advanced_comment.c\
@@ -32,7 +36,8 @@ SRC_PARSING			= ft_is_good_format_urlfile.c ft_is_good_format_param.c\
 					  ft_prepare_file.c ft_purification_file.c\
 					  ft_is_there_forbiden_char.c ft_first_parsing.c\
 					  ft_get_head_comment.c
-SRCS_PARSING		= $(addprefix $(DIR_PARSING)/, $(SRC_PARSING))
+
+SRCS_PARSING_ASM		= $(addprefix $(DIR_PARSING_ASM)/, $(SRC_PARSING_ASM))
 
 #DIR_		=
 #SRC_		=
@@ -46,7 +51,7 @@ LIBFT_DIR			= libft
 
 LIBFT				= libft.a
 
-SRCS				= $(SRCS_ASM) $(SRCS_PARSING) $(SRCS_ERROR) $(SRCS_OP)
+SRCS				= $(SRCS_ASM) $(SRCS_PARSING_ASM) $(SRCS_ERROR) $(SRCS_OP)
 
 RED					= \033[31m
 GREEN				= \033[32m
@@ -60,8 +65,8 @@ all					: $(NAME_ASM)
 
 
 $(NAME_ASM)			: $(LIBFT) $(OBJS_DIR) $(OBJS)
-	@#gcc $(OBJS) -L $(LIBFT_DIR) -lft -fsanitize=address -o $(NAME_ASM)
-	@gcc $(OBJS) -L $(LIBFT_DIR) -lft -o $(NAME_ASM)
+	@gcc $(OBJS) -L $(LIBFT_DIR) -lft -fsanitize=address -o $(NAME_ASM)
+	@#gcc $(OBJS) -L $(LIBFT_DIR) -lft -o $(NAME_ASM)
 	@echo "$(GREEN)$(NAME_ASM) has been successfully created !$(WHITE)."
 	# -fsanitize=address
 	@#say "$(NAME_ASM) has been successfully created !"
@@ -79,7 +84,7 @@ $(OBJS_DIR)			:
 	@mkdir -p $(OBJS_DIR);
 	@mkdir -p $(OBJS_DIR)$(DIR_ASM);
 	@mkdir -p $(OBJS_DIR)$(DIR_ERROR);
-	@mkdir -p $(OBJS_DIR)$(DIR_PARSING);
+	@mkdir -p $(OBJS_DIR)$(DIR_PARSING_ASM);
 	@mkdir -p $(OBJS_DIR)$(DIR_OP);
 
 

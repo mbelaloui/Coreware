@@ -16,21 +16,23 @@
 ** extraire les info utils de param
 ** print usage
 */
-
+/*	else if (ERROR_BAD_PARAM == error)
+		ft_printf("{red}wrong param{eoc} : \"%s\""
+				" : option not reconized.\n", param);
+*//*	else if (ERROR_NO_URL_FILE == error)
+		ft_printf("{red}wrong format param{eoc} : no url file found.\n");
+*/
 void		ft_error_param(int error, char *param)
 {
 	if (ERROR_NO_PARAM == error)
-		ft_printf("{red}wrong nbr of params{eoc} %s\n");
-	else if (ERROR_BAD_PARAM == error)
-		ft_printf("{red}wrong param{eoc} : %s"
-				" : option not reconized.\n", param);
-	else if (ERROR_NO_URL_FILE == error)
-		ft_printf("{red}wrong format param{eoc} : no url file found.\n");
+		ft_printf("{red}the program need a file.s as param{eoc}\n");
 	else if (ERROR_MULTIPUL_PARAM == error)
 		ft_printf("{red}wrong format param{eoc} : %s"
-				" : multipul sources file found.\n", param);
+				" : multipul params found.\n", param);
 	else if (ERROR_WRONG_FORMAT_FILE == error)
 		ft_printf("{red}wrong format file{eoc} : %s :"
 				" the src file hase to be <*.s>.\n", param);
+	//else
+		ft_printf("{red}error nu{eoc} : %d :",error);
 	exit(error);
 }

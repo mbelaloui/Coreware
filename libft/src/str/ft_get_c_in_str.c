@@ -25,5 +25,5 @@ int			ft_get_c_in_str(const char *str, const char c)
 			return (index);
 		index++;
 	}
-	return (0);
+	return (-1);
 }
