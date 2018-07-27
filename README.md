@@ -12,9 +12,12 @@
 		the simple comment start with <#>, <;> and <//> and end with the end of the ligne.
 		the multi ligne comment start with </*> and end with <*/>.
 
-		we make sure to exctract information <name, description> of the champion.
-		we make sure to extract the source code
-
 	the second phase parsing
+	
+	* extract information and make sure that the keywords are correct
+
+		exctract the informations from the head file <name, description> of the champion.
+		extarct the source code
+
 
 #VM
