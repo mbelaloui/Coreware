@@ -56,33 +56,4 @@ void				ft_error_param(int error, char *param);
 void				ft_manage_url(char *url);
 void            ft_error_reading_file(int error);
 
-/*
-
-BOOL				ft_is_option(const char option);
-void				ft_set_options(char c, unsigned long *op);
-void				ft_get_basic_comment(t_charlist *file, t_player *player);
-
-
-int					ft_get_start_ml_comment(char *str);
-int					ft_get_start_advanced_comment(char *str);
-int					ft_get_start_basic_comment(char *str);
-int					ft_get_end_ml_comment(char *str);
-
-void				ft_split_sources(int index, t_charlist *file,
-		t_charlist **comment, t_charlist **ret_file);
-void				ft_split_adv_sources(int index, t_charlist *file,
-		t_charlist **comment, t_charlist **ret_file);
-void				ft_split_adv_end_lm_sources(int index, t_charlist *file,
-		t_charlist **comment, t_charlist **ret_file);
-t_charlist			*ft_manage_advenced_comment(t_charlist *file,
-		t_charlist **comment, t_charlist **ret_file);
-
-char				*ft_prepare_file(t_charlist *file, char c);
-int				ft_get_index_end_line(char *str);
-char				*ft_purification_file(char *file, t_charlist **comment);
-void				ft_is_there_forbiden_char(t_charlist *file);
-void				ft_first_parsing(char *url_file, t_player *player);
-
-void				ft_get_head_comment(t_player *player);
-*/
 #endif
