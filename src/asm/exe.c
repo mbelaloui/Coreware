@@ -135,6 +135,12 @@ void	run(t_charlist *file)
 
 	file_clean = ft_clean_file(file);
 
+	// start extract information <head file>
+
+	// start extract source code
+
+	// traslate code source
+
 	//ft_printf("\n\n\n");
 	ft_put_list_charlist(file_clean);
 	ft_dell_list_charlist(&file_clean);
