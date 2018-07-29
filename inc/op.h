@@ -58,7 +58,7 @@
 # define NAME_CMD_STRING		".name"
 # define NAME_CMD_PARAM			"NAME_PARAM"
 # define COMMENT_CMD_STRING		".comment"
-# define DELIMITEUR				'"'
+//# define DELIMITEUR				'"'
 
 # define REG_NUMBER				16
 

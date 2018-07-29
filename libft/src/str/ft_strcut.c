@@ -17,7 +17,7 @@ char	*ft_strcut(const char *src, const size_t begin, const size_t end)
 	char	*dest;
 	size_t	pt;
 
-	if (src == NULL || begin > end)
+	if (src == NULL || begin >= end)
 		return (NULL);
 	dest = ft_strnew(end - begin);
 	if (dest == NULL)
