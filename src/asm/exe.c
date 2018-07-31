@@ -284,13 +284,23 @@ void	ft_free_player(t_player *player)
 	ft_strdel(&player->description);
 }
 
+
+
+
+
 /*****************************************************************/
 		//ft_extract_source.c
 /*****************************************************************/
 void	ft_extraire_source(t_charlist *sc, t_player *player)
 {
 	ft_put_list_charlist(sc);
-	(void)player;	
+
+	//fonction pour decouper une ligne 
+	//dedant detecter \il ya un label au debut 
+	//si non voir quel opcode 
+	//apres voir les conditions
+
+	(void)player;
 }
 
 /*****************************************************************/
@@ -320,11 +330,6 @@ BOOL	ft_extract_info(t_charlist *file, t_player *player)
 /*****************************************************************/
 		//ft_free_optab.c
 /*****************************************************************/
-void	free_op(t_op *op_tab)
-{
-	ft_strdel(&op_tab->name);
-}
-
 void	ft_free_optab(t_op *op_tab[NBR_OP])
 {
 	int i;
@@ -332,7 +337,7 @@ void	ft_free_optab(t_op *op_tab[NBR_OP])
 	i = 0;
 	while (i < NBR_OP)
 	{
-		free_op(op_tab[i]);
+		ft_strdel(&op_tab[i]->name);
 		free(op_tab[i]);
 		i++;
 	}
@@ -359,11 +364,10 @@ void	run(t_charlist *file)
 
 	ft_get_op_tab(op_tab);
 
-	ft_put_desc_param(op_tab);
-      ft_put_op(op_tab);
-//        ft_set_size_label(op_tab);
-       ft_put_size_label(op_tab);
-
+//	ft_put_desc_param(op_tab);
+//	ft_put_op(op_tab);
+//      ft_set_size_label(op_tab);
+//	ft_put_size_label(op_tab);
 	ft_free_optab(op_tab);
 
 	/************************************/

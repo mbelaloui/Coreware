@@ -34,29 +34,6 @@
 # define IDX_MOD				(MEM_SIZE / 8)
 # define CHAMP_MAX_SIZE			(MEM_SIZE / 6)
 
-
-
-# define COMMENT_CHAR_1			'#'
-# define COMMENT_CHAR_2			';'
-# define COMMENT_CHAR_3			'/'
-# define COMMENT_CHAR_4			'*'
-# define LABEL_CHAR			':'
-# define DIRECT_CHAR			'%'
-# define SEPARATOR_CHAR			','
-
-# define LABEL_CHARS			"abcdefghijklmnopqrstuvwxyz_0123456789"
-# define NAME_CMD_PARAM			"NAME_PARAM"
-# define DESCRIPTION_CMD_PARAM		"DESCRIPTION_PARAM"
-
-# define NAME_CMD_STRING		".name"
-# define COMMENT_CMD_STRING		".comment"
-#define DEF					'"'
-#define SEP					'~'
-#define SPS					' '
-
-
-
-
 # define REG_NUMBER				16
 # define CYCLE_TO_DIE			1536
 # define CYCLE_DELTA			50
