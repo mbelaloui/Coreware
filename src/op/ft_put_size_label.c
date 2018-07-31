@@ -26,7 +26,7 @@ void			ft_put_size_label(t_op *op_tab[17])
 	int i;
 
 	i = 0;
-	ft_printf("operation table / descption param :\n");
+	ft_printf("operation table / <size label,direct> param :\n");
 	ft_printf("| --------------------\t|\t----\t|\t---------\t|\t----------"
 			"\t|\n");
 	ft_printf("| Operation mnemonique\t|\tName\t|\tNbr param\t|\tsize Label"

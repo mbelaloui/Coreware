@@ -20,20 +20,48 @@
 # define ERROR_MULTIPUL_PARAM		-2
 # define ERROR_WRONG_FORMAT_FILE	-3
 # define ERROR_READING_FILE		-4
+# define ERROR_HEAD_NAME		-5
+# define ERROR_HEAD_COMMENT		-6
+# define ERROR_FORMAT_NAME		-7
+# define ERROR_FORMAT_COMMENT		-8
+# define ERROR_EMPTY_FILE		-9
+# define ERROR_BAD_CHAR_FILE		-10
 
 
 
-# define T_REG_P1					0x1
-# define T_DIR_P1					0x2
-# define T_IND_P1					0x4
+# define T_REG_P1				0x1
+# define T_DIR_P1				0x2
+# define T_IND_P1				0x4
 
-# define T_REG_P2					0x8
-# define T_DIR_P2					0x10
-# define T_IND_P2					0x20
+# define T_REG_P2				0x8
+# define T_DIR_P2				0x10
+# define T_IND_P2				0x20
 
-# define T_REG_P3					0x40
-# define T_DIR_P3					0x80
-# define T_IND_P3					0x100
+# define T_REG_P3				0x40
+# define T_DIR_P3				0x80
+# define T_IND_P3				0x100
+
+# define COMMENT_CHAR_1				'#'
+# define COMMENT_CHAR_2                 ';'
+# define COMMENT_CHAR_3                 '/'
+# define COMMENT_CHAR_4                 '*'
+# define LABEL_CHAR                     ':'
+# define DIRECT_CHAR                    '%'
+# define SEPARATOR_CHAR                 ','
+
+# define LABEL_CHARS                    "abcdefghijklmnopqrstuvwxyz_0123456789"
+# define NAME_CMD_PR	 	        "NAME_PARAM"
+# define COMMENT_CMD_PR     	     	"COMMENT_PARAM"
+
+# define NAME_CMD_STR                ".name"
+# define COMMENT_CMD_STR             ".comment"
+# define DEF                                     '"'
+# define SEP                                     '~'
+# define SPS                                     ' '
+
+
+
+
 
 typedef	struct		s_instruction
 {

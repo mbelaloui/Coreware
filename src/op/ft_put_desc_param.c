@@ -37,8 +37,8 @@ void			ft_put_desc_param(t_op *op_tab[17])
 	{
 		ft_printf("|\t%#.2X\t\t|\t%s\t|\t    %d\t\t|\t",
 			op_tab[i]->mnemonique, op_tab[i]->name, op_tab[i]->nbr_param);
-		(op_tab[i]->desc_param) ? ft_printf("need descriptiont\t|\n")
-			: ft_printf("don't need description\t|\n");
+		(op_tab[i]->desc_param) ? ft_printf("need the OPC\t\t|\n")
+			: ft_printf("don't need the OPC\t|\n");
 		i++;
 	}
 	if (!i)

@@ -1,6 +1,4 @@
-   .name   "name"
-
-  .comment "commen"
+.name   "s"
+.comment "ss"
   
-live:
-	aff %s
+	aff	r5

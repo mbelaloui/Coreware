@@ -26,7 +26,7 @@ void			ft_put_op(t_op *op_tab[17])
 	int i;
 
 	i = 0;
-	ft_printf("operation table :\n");
+	ft_printf("operation table / Type arguments :\n");
 	ft_printf("| --------------------\t|\t----\t|\t---------\t|\t-----\t|\t----"
 			"--\t\t|\n");
 	ft_printf("| Operation mnemonique\t|\tName\t|\tNbr param\t|\tCycle\t|\t par"

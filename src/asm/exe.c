@@ -104,15 +104,9 @@ void	check_for_bad_caracter(t_charlist *file)
 	char *temp;
 
 	if (!(temp = ft_charlist_to_str(file, SPS)))
-	{
-		ft_printf("empty file\n");
-		exit(0);
-	}
+		ft_error_reading_file(ERROR_EMPTY_FILE);
 	if(ft_is_c_in_str(SEP, temp))
-	{
-		ft_printf("bad caractere found\n");
-		exit(0);
-	}
+		ft_error_reading_file(ERROR_BAD_CHAR_FILE);
 	ft_strdel(&temp);
 }
 
@@ -146,7 +140,9 @@ t_charlist	*ft_clean_file(t_charlist *file)
 }
 
 /*****************************************************************/
-int	skip_spaces(char *str_file)
+		//ft_skiep_spaces.c
+/*****************************************************************/
+int	ft_skip_spaces(char *str_file)
 {
 	int i;
 
@@ -156,6 +152,9 @@ int	skip_spaces(char *str_file)
 	return (i);
 }
 
+/*****************************************************************/
+		//ft_get_index_end.c
+/*****************************************************************/
 int	ft_get_index_end(char *str_file)
 {
 	int i;
@@ -174,7 +173,10 @@ int	ft_get_index_end(char *str_file)
 	return (i);
 }
 
-int	get_data(char *str, char **data)
+/*****************************************************************/
+		//ft_get_data.c
+/*****************************************************************/
+int	ft_get_data(char *str, char **data)
 {
 	int end_def;
 
@@ -184,38 +186,59 @@ int	get_data(char *str, char **data)
 	return (end_def);
 }
 
+
+
+/*****************************************************************/
+		//ft_error_head.c
+/*****************************************************************/
+void	ft_error_head(int error, char *str_file)
+{
+	char **sc;
+
+	sc = ft_strsplit(str_file, SEP);
+	if (error == ERROR_FORMAT_NAME || error == ERROR_FORMAT_COMMENT)
+	{
+		ft_printf("{yellow}Error format description file.{eoc}\n"
+		"expected <{red}%s {eoc}\"%s\">\nfound    <{red}%s{eoc}>\n"
+		"NB : the description can not be empty.\n",
+		(error == ERROR_FORMAT_NAME) ? NAME_CMD_STR : COMMENT_CMD_STR,
+		(error == ERROR_FORMAT_NAME) ? NAME_CMD_PR : COMMENT_CMD_PR,
+		sc[0]);
+	}
+	else
+	{
+		ft_printf("{yellow}Error unknown param description file.{eoc}\n"
+		"expected <{red}%s {eoc}\"%s\">\nfound    <{red}%s{eoc}>",
+		(error == ERROR_HEAD_NAME) ? NAME_CMD_STR : COMMENT_CMD_STR,
+		(error == ERROR_HEAD_NAME) ? NAME_CMD_PR : COMMENT_CMD_PR,
+		sc[0]);
+	}
+	exit(error);
+}
+
+/*****************************************************************/
+		//ft_extraire_head_info.c
+/*****************************************************************/
 int	extraire_name(char *str_file, t_player *player)
 {
 	int start_cmd;
 	int len;
 	int ret;
 
-	start_cmd = skip_spaces(str_file);
-	len  = start_cmd + ft_strlen(NAME_CMD_STRING);
-
-	if (!ft_strncmp(str_file + start_cmd, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING))
+	start_cmd = ft_skip_spaces(str_file);
+	len  = start_cmd + ft_strlen(NAME_CMD_STR);
+	if (!ft_strncmp(str_file + start_cmd, NAME_CMD_STR, ft_strlen(NAME_CMD_STR))
 		&& str_file[len] == SPS)
         {
-		len  = len + skip_spaces(str_file + len);
-		if ( (ret = get_data(str_file + len, &(player->name))) < 0)
-		{
-			ft_printf("{red}error bad format of definition of %s{eoc}", NAME_CMD_STRING);
-			exit(-1);
-		}
-			if (ft_isempty(player->name))
-			{
-				ft_printf("empty description name \n");
-				exit(0);
-			}
-			ret += len;
+		len  = len + ft_skip_spaces(str_file + len);
+		if ((ret = ft_get_data(str_file + len, &(player->name))) < 0)
+			ft_error_head(ERROR_FORMAT_NAME, str_file);
+		if (ft_isempty(player->name))
+			ft_error_head(ERROR_FORMAT_NAME, str_file);
+		ret += len;
 	}
-	else // le fichier ne commance pas avec le nom du champion
-	{
-		ft_printf("{yellow}Error unknown param description file{eoc}\n"// {red}<%s>{eoc}.\n"
-		"expected  <{red}%s {eoc}\"NAME_CAHMPION\">\n"
-		"found     <{red}%s{eoc}>", NAME_CMD_STRING, str_file);
-		exit(0);
-	}
+	else
+		ft_error_head(ERROR_HEAD_NAME, str_file);
 	return (ret);
 }
 
@@ -225,35 +248,24 @@ int	extraire_description(char *str_file, t_player *player)
 	int len;
 	int ret;
 
-	start_cmd = skip_spaces(str_file);
-	len  = start_cmd+ ft_strlen(COMMENT_CMD_STRING);
-	if (!ft_strncmp(str_file + start_cmd, COMMENT_CMD_STRING, ft_strlen(COMMENT_CMD_STRING))
+	start_cmd = ft_skip_spaces(str_file);
+	len  = start_cmd+ ft_strlen(COMMENT_CMD_STR);
+	if (!ft_strncmp(str_file + start_cmd, COMMENT_CMD_STR, ft_strlen(COMMENT_CMD_STR))
 		&& str_file[len] == SPS)
         {
-		len  = len + skip_spaces(str_file + len);
-		if ( (ret = get_data(str_file + len, &(player->description))) < 0)
-		{
-			ft_printf("{red}error bad format of definition of %s{eoc}\n", COMMENT_CMD_STRING);
-			exit(-1);
-		}
-			if (ft_isempty(player->description))
-			{
-				ft_printf("empty description comment \n");
-				exit(0);
-			}
+		len  = len + ft_skip_spaces(str_file + len);
+		if ( (ret = ft_get_data(str_file + len, &(player->description))) < 0)
+			ft_error_head(ERROR_FORMAT_COMMENT, str_file);
+		if (ft_isempty(player->description))
+			ft_error_head(ERROR_FORMAT_COMMENT, str_file);
 		ret += len;
 	}
-	else // le fichier ne commance pas avec le nom du champion
-	{
-		ft_printf("{yellow}Error unknown param description file{eoc}\n"// {red}<%s>{eoc}.\n"
-		"expected  <{red}%s {eoc}\"NAME_PROGRAME\">\n"
-		"found     <{red}%s{eoc}>", COMMENT_CMD_STRING, str_file);
-		exit(0);
-	}
+	else
+		ft_error_head(ERROR_HEAD_COMMENT, str_file);
 	return (ret);
 }
 
-int	extraire_head_info(char *str_file, t_player *player)
+int	ft_extraire_head_info(char *str_file, t_player *player)
 {
 	int pt_ret;
 
@@ -262,52 +274,99 @@ int	extraire_head_info(char *str_file, t_player *player)
 	return (pt_ret);
 }
 
+/*****************************************************************/
+		//ft_free_player.c
+/*****************************************************************/
+	
 void	ft_free_player(t_player *player)
 {
 	ft_strdel(&player->name);
 	ft_strdel(&player->description);
-	//ft_strdel(&);
-	//ft_strdel(&);
 }
 
-BOOL	extract_info(t_charlist *file, t_player *player)
+/*****************************************************************/
+		//ft_extract_source.c
+/*****************************************************************/
+void	ft_extraire_source(t_charlist *sc, t_player *player)
+{
+	ft_put_list_charlist(sc);
+	(void)player;	
+}
+
+/*****************************************************************/
+		//ft_extract_info.c
+/*****************************************************************/
+BOOL	ft_extract_info(t_charlist *file, t_player *player)
 {
 	char *str_file;
 	int pt;
+	char *str;
 
 	if (!(str_file = ft_charlist_to_str(file, SEP)))
 		return (F);
-	// start extract information <head file>
-	pt = extraire_head_info(str_file, player);
-
-
+	pt = ft_extraire_head_info(str_file, player);
 	/*            extraire le source code */
-
-
-	// start extract source code
-	ft_printf("rest of the file<%s>\n", str_file+pt);
-
+	str = ft_format_str(str_file+pt);
 	ft_strdel(&str_file);
+	t_charlist *sc = ft_str_to_charlist(str, SEP);
+	// start extract source code
+	ft_extraire_source(sc, player);
+
+	ft_dell_list_charlist(&sc);
+	ft_strdel(&str);
 	return (T);
 }
 
+/*****************************************************************/
+		//ft_free_optab.c
+/*****************************************************************/
+void	free_op(t_op *op_tab)
+{
+	ft_strdel(&op_tab->name);
+}
+
+void	ft_free_optab(t_op *op_tab[NBR_OP])
+{
+	int i;
+
+	i = 0;
+	while (i < NBR_OP)
+	{
+		free_op(op_tab[i]);
+		free(op_tab[i]);
+		i++;
+	}
+}
+
+/*****************************************************************/
+		//exe.c
+/*****************************************************************/
 void	run(t_charlist *file)
 {
 	t_player player;
-
-	ft_bzero(&player, sizeof(player));
+	t_op *op_tab[NBR_OP];
 	t_charlist *file_clean;
 
-//	ft_printf("the file is ready to be read\n");
+	ft_bzero(&player, sizeof(player));
 	file_clean = ft_clean_file(file);
-//	ft_printf("the file is clean\n");
+	if (!ft_extract_info(file_clean, &player))
+		ft_error_reading_file(ERROR_EMPTY_FILE);
 
-	if (!extract_info(file_clean, &player))
-	{
-		ft_printf("empty file\n");
-		exit(0);
-	}
+//      ft_init_op_tab(op_tab);
+//      ft_set_param(op_tab);
 
+	/************************************/
+
+	ft_get_op_tab(op_tab);
+
+	ft_put_desc_param(op_tab);
+      ft_put_op(op_tab);
+//        ft_set_size_label(op_tab);
+       ft_put_size_label(op_tab);
+
+	ft_free_optab(op_tab);
+
+	/************************************/
 	// traslate code source
 	//ft_printf("\n\n\n");
 	ft_dell_list_charlist(&file_clean);
