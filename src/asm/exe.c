@@ -284,21 +284,141 @@ void	ft_free_player(t_player *player)
 	ft_strdel(&player->description);
 }
 
+/*****************************************************************/
+		//ft_error_label.c
+/*****************************************************************/
 
+void	ft_error_label(int error, char *label, char c, char *str)
+{
+//`"`	ft_printf("error == %d\n", error);
+	if (error == ERROR_END_CHAR_LABEL)
+		ft_printf("error char end of label expected <%s%c>\n"
+				"found <%s>\n", label,LABEL_CHAR, str);
+	else if (error == ERROR_FORMAT_LABEL)
+		ft_printf("error format label expected <%s%c>\n"
+				"found <%s%c>\nno end char label <%c> found\n"
+			, label,LABEL_CHAR,label,c, LABEL_CHAR);
+	exit(error);
+}
 
+/*****************************************************************/
+		//ft_get_label.c
+/*****************************************************************/
+BOOL	ft_get_label(char *str, char **label)
+{
+	int i;
+//	char *label;
+
+	if (ft_is_name_op(str) == -1)
+	{
+		i = 0;
+		while (str[i] && ft_is_c_in_str(str[i], LABEL_CHARS))
+			i++;
+		*label = ft_strcut(str, 0, i);
+		if (str[i])
+		{
+			if (str[i] == LABEL_CHAR && !str[i + 1])
+				return (T);// && ft_strdel(&label));
+			else
+				ft_error_label(ERROR_END_CHAR_LABEL, *label, str[i], str);
+		}
+		else
+			ft_error_label(ERROR_FORMAT_LABEL, *label, str[i], 0);
+//		ft_strdel(&label);
+	}
+//	else 	ft_printf("4-c'est pas un label <%s>\n", str);
+	return (F);
+}
+
+/*****************************************************************/
+		//ft_error_op.c
+/*****************************************************************/
+
+void	ft_error_op(int error, char *str)
+{
+//`"`	ft_printf("error == %d\n", error);
+	if (error == ERROR_OP)
+		ft_printf("error instruction <%s> not found\n", str);
+/*	else if (error == ERROR_FORMAT_OPLABEL)
+		ft_printf("error format label expected <%s%c>\n"
+				"found <%s%c>\nno end char label <%c> found\n"
+			, label,LABEL_CHAR,label,c, LABEL_CHAR);
+*/	exit(error);
+}
 
 
 /*****************************************************************/
 		//ft_extract_source.c
 /*****************************************************************/
+BOOL	get_op(char *str, char **op)
+{
+	if (ft_isempty(str))
+		return (F);
+	if (ft_is_name_op(str) == -1)
+		ft_error_op(ERROR_OP, str);
+	*op = ft_strdup(str);
+	return (T);
+}
+
+BOOL	get_args(char **str, char *op)
+{
+	int i;
+	char *args;
+
+	i = 0;
+	args = NULL;
+	while (str[i])
+	{
+		args = ft_strjoin_clear(&args, &str[i], FIRST);
+		i++;
+	}
+	ft_printf("args = %s\n", args);
+
+	ft_strdel(&args);
+	(void)op;
+	return (F);
+}
+
 void	ft_extraire_source(t_charlist *sc, t_player *player)
 {
-	ft_put_list_charlist(sc);
+//	ft_put_list_charlist(sc);
+	char **line;
+	int nu;
+	char *label;
+	char *op;
 
+	label =NULL;
+	op =NULL;
+	while (sc)
+	{
+		nu = 0;
+		if (!ft_isempty(sc->data))
+		{
+			line = ft_strsplit(sc->data, SPS);
+			if (ft_get_label(line[nu], &label))
+			{
+				nu++;
+				ft_printf("c'est un label <%s>\n", label);
+			}
+			if (get_op(line[nu], &op))
+			{
+				nu++;
+				ft_printf("op = %s\t", op);
+				get_args(&(line[nu]), op);
+			}
+		//	else
+		//		ft_printf("c'est pas un label [%s] <%s>\n", label, line[0]);
 	//fonction pour decouper une ligne 
 	//dedant detecter \il ya un label au debut 
 	//si non voir quel opcode 
 	//apres voir les conditions
+			ft_free_mat(&line);
+		ft_strdel(&label);
+		ft_strdel(&op);
+		}
+		sc = sc->next;
+	ft_printf(" ------------------------------------------------ \n");
+	}
 
 	(void)player;
 }
@@ -318,7 +438,7 @@ BOOL	ft_extract_info(t_charlist *file, t_player *player)
 	/*            extraire le source code */
 	str = ft_format_str(str_file+pt);
 	ft_strdel(&str_file);
-	t_charlist *sc = ft_str_to_charlist(str, SEP);
+	t_charlist *sc = ft_str_to_format_charlist(str, SEP);
 	// start extract source code
 	ft_extraire_source(sc, player);
 

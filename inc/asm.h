@@ -26,6 +26,9 @@
 # define ERROR_FORMAT_COMMENT		-8
 # define ERROR_EMPTY_FILE		-9
 # define ERROR_BAD_CHAR_FILE		-10
+# define ERROR_END_CHAR_LABEL		-11
+# define ERROR_FORMAT_LABEL		-12
+# define ERROR_OP			-13
 
 
 

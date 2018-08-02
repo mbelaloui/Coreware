@@ -12,22 +12,30 @@
 
 #include "../../inc/str.h"
 
-char	*ft_strjoin_clear(char *str1, char *str2, int del)
+static void	clear(char **str1, char **str2, int del)
+{
+	if (*str1 && (del == FIRST || del == BOTH))
+		ft_strdel(str1);
+	if (*str2 && (del == SECOND || del == BOTH))
+		ft_strdel(str2);
+
+}
+
+char		*ft_strjoin_clear(char **str1, char **str2, int del)
 {
 	char	*result;
 
-	if (str1 && str2)
+	result =  NULL;
+	if (*str1 && *str2)
 	{
-		result = ft_strnew(ft_strlen(str1) + ft_strlen(str2));
+		result = ft_strnew(ft_strlen(*str1) + ft_strlen(*str2));
 		if (result == NULL)
 			return (NULL);
-		ft_strcat(result, str1);
-		ft_strcat(result, str2);
-		if (del == 1 || del == 3)
-			ft_strdel(&str1);
-		if (del == 2 || del == 3)
-			ft_strdel(&str2);
-		return (result);
+		ft_strcat(result, *str1);
+		ft_strcat(result, *str2);
 	}
-	return (NULL);
+	else
+		result  = ((*str1) ? ft_strdup(*str1) : ft_strdup(*str2));
+	clear(str1, str2, del);
+	return (result);
 }

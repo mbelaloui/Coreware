@@ -122,7 +122,7 @@ SRC_CHARLST	= ft_add_charlist.c ft_dell_charlist.c ft_dell_list_charlist.c\
 			  ft_new_charlist.c ft_put_charlist.c ft_isempty_charlist.c\
 			  ft_put_list_charlist.c ft_size_charlist.c ft_cp_list_charlist.c\
 			  ft_cut_add_charlist.c ft_charlist_to_str.c ft_str_to_charlist.c\
-			  ft_charlist_to_format_str.c
+			  ft_charlist_to_format_str.c ft_str_to_format_charlist.c
 SRCS_CHARLST	= $(addprefix $(DIR_CHARLST)/, $(SRC_CHARLST))
 
 INC_DIR		= inc/

@@ -41,5 +41,7 @@ BOOL					ft_read_fd_file(const int fd, t_charlist **file);
 
 char					*ft_charlist_to_str(t_charlist *list, char c);
 char					*ft_charlist_to_format_str(t_charlist *list, char c);
+t_charlist				*ft_str_to_format_charlist(char *str, char sep);
+
 t_charlist				*ft_str_to_charlist(char *str, char sep);
 #endif
