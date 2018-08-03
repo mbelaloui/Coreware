@@ -18,6 +18,7 @@
 #ifndef OP_H
 # define OP_H
 
+# include "../libft/inc/libft.h"
 # include "asm.h"
 
 # define IND_SIZE				2

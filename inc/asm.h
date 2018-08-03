@@ -82,7 +82,7 @@ typedef struct		s_player
 	t_charlist		*comment;
 	t_charlist		*file;
 	t_instruction	*instructioms;
-	t_op		**op_tab;
+//	t_op		**op_tab;
 }					t_player;
 
 void				ft_error_param(int error, char *param);
