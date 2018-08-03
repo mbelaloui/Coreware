@@ -29,6 +29,7 @@
 # define ERROR_END_CHAR_LABEL		-11
 # define ERROR_FORMAT_LABEL		-12
 # define ERROR_OP			-13
+# define ERROR_FORMAT_LABEL_ARG		-14
 
 
 
@@ -61,6 +62,7 @@
 # define DEF                                     '"'
 # define SEP                                     '~'
 # define SPS                                     ' '
+# define REGISTRE_CHAR				'r'
 
 
 
@@ -80,6 +82,7 @@ typedef struct		s_player
 	t_charlist		*comment;
 	t_charlist		*file;
 	t_instruction	*instructioms;
+	t_op		**op_tab;
 }					t_player;
 
 void				ft_error_param(int error, char *param);

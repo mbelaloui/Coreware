@@ -17,7 +17,7 @@ SRCS_ERROR			= $(addprefix $(DIR_ERROR)/, $(SRC_ERROR))
 
 DIR_OP				= op
 SRC_OP				= ft_dell_op.c ft_get_nbr_param.c ft_get_type_param.c\
-					  ft_is_type_ok.c ft_put_op.c ft_put_typ_param.c\
+					  ft_is_type_ok.c ft_put_op.c ft_put_type_param.c\
 					  ft_set_size_label.c ft_get_cycle.c ft_get_op.c\
 					  ft_init_op_tab.c ft_new_op.c ft_put_op_param.c\
 					  ft_set_desc_param.c ft_get_name.c ft_get_op_tab.c\

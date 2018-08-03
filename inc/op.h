@@ -86,7 +86,7 @@ void				ft_put_op_param_1(t_op *op);
 char				*ft_get_name(t_op *op_tab);
 int					ft_get_cycle(t_op *op_tab);
 int					ft_get_type_param(t_op *op_tab);
-void				ft_put_typ_param(t_op *op_tab[NBR_OP]);
+void				ft_put_type_param(t_op *op_tab[NBR_OP]);
 void				ft_put_size_label(t_op *op_tab[NBR_OP]);
 
 BOOL				ft_dell_op(t_op *op_tab[NBR_OP]);

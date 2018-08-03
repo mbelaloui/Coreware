@@ -298,6 +298,8 @@ void	ft_error_label(int error, char *label, char c, char *str)
 		ft_printf("error format label expected <%s%c>\n"
 				"found <%s%c>\nno end char label <%c> found\n"
 			, label,LABEL_CHAR,label,c, LABEL_CHAR);
+	else if (error == ERROR_FORMAT_LABEL_ARG)
+		ft_printf("error format label arg\n");
 	exit(error);
 }
 
@@ -345,7 +347,22 @@ void	ft_error_op(int error, char *str)
 			, label,LABEL_CHAR,label,c, LABEL_CHAR);
 */	exit(error);
 }
+/*****************************************************************/
+		//is_label_arg.c
+/*****************************************************************/
+BOOL	is_label_arg(char *str)
+{
+	int i;
 
+	if (ft_is_name_op(str) == -1)
+	{
+		i = 0;
+		while (str[i] && ft_is_c_in_str(str[i], LABEL_CHARS))
+			i++;
+		return  (str[i]) ? F : T;
+	}
+	return (F);
+}
 
 /*****************************************************************/
 		//ft_extract_source.c
@@ -360,22 +377,195 @@ BOOL	get_op(char *str, char **op)
 	return (T);
 }
 
-BOOL	get_args(char **str, char *op)
+BOOL	is_direct(char *arg)
+{
+	if (arg[0] == DIRECT_CHAR)
+	{
+		if (arg[1] == LABEL_CHAR)
+			return (is_label_arg(arg + 2) ? T : F);
+		else
+			return (ft_isnumerique(arg + 1) ? T : F);
+	}
+	return (F);
+}
+
+BOOL	is_indirect(char *arg)
+{
+	if (arg[0] == LABEL_CHAR)
+		return (is_label_arg(arg + 1) ? T : F);
+	else if (ft_isnumerique(arg))
+		return (T);
+	return (F);
+}
+
+BOOL	is_registre(char *arg)
+{
+	int id_reg;
+
+	if (arg[0] == REGISTRE_CHAR)
+	{
+		if (ft_isdigit(arg[1]) && ft_isnumerique(arg + 1))
+		{
+			id_reg = ft_atoi(arg+1);
+			if (!id_reg || id_reg > REG_NUMBER)
+			{
+//				ft_printf("error id _registre\n");
+				return (F);
+			}
+			else
+			{
+//				ft_printf("registre id %d\n", id_reg);
+				return (T);
+			}
+		}
+		else
+		{
+//			ft_printf("wrong format registre\n");
+			return (F);
+		}
+	}
+	return (F);
+}
+
+int	get_id_pos_direct(int pos)
+{
+	if (pos == 1)
+		return (T_DIR_P1);
+	else if (pos == 2)
+		return (T_DIR_P2);
+	else
+		return (T_DIR_P3);
+}
+
+int	get_id_pos_indirect(int pos)
+{
+	if (pos == 1)
+		return (T_IND_P1);
+	else if (pos == 2)
+		return (T_IND_P2);
+	else
+		return (T_IND_P3);
+}
+
+
+int	get_id_pos_registre(int pos)
+{
+	if (pos == 1)
+		return (T_REG_P1);
+	else if (pos == 2)
+		return (T_REG_P2);
+	else
+		return (T_REG_P3);
+}
+
+int	get_type_param(char *arg, int pos)
+{
+	if (is_direct(arg))
+	{
+		ft_printf("{red} DIRECT {eoc}");
+		return (get_id_pos_direct(pos + 1));	
+	}
+	if (is_indirect(arg))
+	{
+		ft_printf("{yellow} INDIRECT {eoc}");
+		return (get_id_pos_indirect(pos + 1));	
+	}
+	if (is_registre(arg))
+	{
+		ft_printf("{BLUE} registre {eoc}");
+		return (get_id_pos_registre(pos + 1));	
+	}
+	
+//	(void) arg;
+//	(void) pos;
+	return (0);
+}
+
+BOOL	get_args(char **str, char *name_op, t_player *player, char *line)
 {
 	int i;
 	char *args;
+	char **tab_args;
 
 	i = 0;
 	args = NULL;
-	while (str[i])
+	if (!str[i])
 	{
-		args = ft_strjoin_clear(&args, &str[i], FIRST);
-		i++;
+		ft_printf("error no argument found\n");
+		exit(0);
 	}
-	ft_printf("args = %s\n", args);
 
+	while (str[i])
+		args = ft_strjoin_clear(&args, &str[i++], FIRST);
+
+ft_printf("args = %s\n", args);
+
+	t_op *op = ft_get_op(player->op_tab, name_op);
+
+
+	ft_printf("op = %#X   nbr_param = %d  desc = %.9b\n",
+	op->mnemonique, op->nbr_param, op->param);
+
+
+	tab_args = ft_strsplit(args, SEPARATOR_CHAR);
+
+
+	if (args[0] == SEPARATOR_CHAR 
+		|| args[ft_strlen(args) - 1] == SEPARATOR_CHAR)
+		ft_printf("error format argument\n");
+
+
+	if ((int)ft_matlen(tab_args) != op->nbr_param)
+		ft_printf("error nbr param instruction\n");
+	else
+		ft_printf("ok nbr param instruction\n");
+
+		int pos = 0;
+		int param;
+	while (tab_args[pos])
+	{
+		if (!(param = get_type_param(tab_args[pos], pos)))
+		{
+			ft_printf("error type param %s in line = %s\n", tab_args[pos], line);
+			exit(0);
+		}
+
+	ft_printf("param = %s   desc = %.9b\t",
+	tab_args[pos], param);
+	pos++;
+
+
+
+	// trouvr un moyen de renvoyer les args
+
+
+	}
+	ft_printf("\n");
+
+//	is_type_param_ok(tab_args, op->mnemonique);
+/*
+	{
+
+		while (tab_args[pos])
+		{
+			param = get_type_param(tab_args[pos], pos);
+			if (
+		}
+		
+		
+	}
+*/
+
+
+
+
+	
+	ft_putmat(tab_args);
+
+	ft_free_mat(&tab_args);
 	ft_strdel(&args);
 	(void)op;
+	(void)player;
 	return (F);
 }
 
@@ -404,7 +594,7 @@ void	ft_extraire_source(t_charlist *sc, t_player *player)
 			{
 				nu++;
 				ft_printf("op = %s\t", op);
-				get_args(&(line[nu]), op);
+				get_args(&(line[nu]), op, player, sc->data);
 			}
 		//	else
 		//		ft_printf("c'est pas un label [%s] <%s>\n", label, line[0]);
@@ -474,6 +664,8 @@ void	run(t_charlist *file)
 
 	ft_bzero(&player, sizeof(player));
 	file_clean = ft_clean_file(file);
+	ft_get_op_tab(op_tab);
+	player.op_tab = op_tab;
 	if (!ft_extract_info(file_clean, &player))
 		ft_error_reading_file(ERROR_EMPTY_FILE);
 
@@ -482,12 +674,14 @@ void	run(t_charlist *file)
 
 	/************************************/
 
-	ft_get_op_tab(op_tab);
 
 //	ft_put_desc_param(op_tab);
 //	ft_put_op(op_tab);
 //      ft_set_size_label(op_tab);
 //	ft_put_size_label(op_tab);
+	
+//	ft_put_type_param(op_tab);
+
 	ft_free_optab(op_tab);
 
 	/************************************/
