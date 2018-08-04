@@ -1,6 +1,18 @@
 #include "../../inc/asm.h"
 
 /*****************************************************************/
+		//ft_put_player.c
+/*****************************************************************/
+
+void	ft_put_player(t_player *player)
+{
+	ft_printf("name\t\t\t[%s]\ndesc\t\t\t[%s]\n\nurl out_put file\t[%s]\n"
+	,player->name, player->description, player->url_output);
+	ft_printf("sources coude :\n");
+//	ft_put_list_instruction(player->sc);
+}
+
+/*****************************************************************/
 		//ft_free_optab.c
 /*****************************************************************/
 void	ft_free_optab(t_op *op_tab[NBR_OP])
@@ -265,7 +277,7 @@ int	extraire_description(char *str_file, t_player *player)
 	int ret;
 
 	start_cmd = ft_skip_spaces(str_file);
-	len  = start_cmd+ ft_strlen(COMMENT_CMD_STR);
+	len  = start_cmd + ft_strlen(COMMENT_CMD_STR);
 	if (!ft_strncmp(str_file + start_cmd, COMMENT_CMD_STR, ft_strlen(COMMENT_CMD_STR))
 		&& str_file[len] == SPS)
         {
@@ -281,12 +293,48 @@ int	extraire_description(char *str_file, t_player *player)
 	return (ret);
 }
 
+char	*ft_replace_char_in_str(char *str, char rep, char repwith)
+{
+	char *ret;
+	int  len;
+	int i;
+
+	ret = NULL;
+	if (str && rep && repwith)
+	{
+		i = 0;
+		len = ft_strlen(str);
+		ret = ft_strnew(len);
+		while (str[i])
+		{
+			ret[i] = (str[i] == rep) ? repwith : str[i];
+			i++;
+		}
+	}
+	return (ret);
+}
+
+
+void	restore_head(t_player *player)
+{
+	char *name;
+	char *description;
+
+	name = ft_replace_char_in_str(player->name, SEP,RET);
+	ft_strdel(&player->name);
+	player->name = name;
+	description = ft_replace_char_in_str(player->description, SEP,RET);
+	ft_strdel(&player->description);
+	player->description = description;
+}
+
 int	ft_extraire_head_info(char *str_file, t_player *player)
 {
 	int pt_ret;
 
 	pt_ret = extraire_name(str_file, player);/// si name est vide erreur
 	pt_ret += extraire_description(str_file + pt_ret, player);/// si name est vide erreur
+	restore_head(player);
 	return (pt_ret);
 }
 
@@ -298,6 +346,7 @@ void	ft_free_player(t_player *player)
 {
 	ft_strdel(&player->name);
 	ft_strdel(&player->description);
+	ft_strdel(&player->url_output);
 }
 
 /*****************************************************************/
@@ -325,7 +374,6 @@ void	ft_error_label(int error, char *label, char c, char *str)
 BOOL	ft_get_label(char *str, char **label)
 {
 	int i;
-//	char *label;
 
 	if (ft_is_name_op(str) == -1)
 	{
@@ -342,9 +390,7 @@ BOOL	ft_get_label(char *str, char **label)
 		}
 		else
 			ft_error_label(ERROR_FORMAT_LABEL, *label, str[i], 0);
-//		ft_strdel(&label);
 	}
-//	else 	ft_printf("4-c'est pas un label <%s>\n", str);
 	return (F);
 }
 
@@ -363,8 +409,9 @@ void	ft_error_op(int error, char *str)
 			, label,LABEL_CHAR,label,c, LABEL_CHAR);
 */	exit(error);
 }
+
 /*****************************************************************/
-		//is_label_arg.c
+
 /*****************************************************************/
 BOOL	is_label_arg(char *str)
 {
@@ -381,18 +428,8 @@ BOOL	is_label_arg(char *str)
 }
 
 /*****************************************************************/
-		//ft_extract_source.c
-/*****************************************************************/
-BOOL	get_op(char *str, char **op)
-{
-	if (ft_isempty(str))
-		return (F);
-	if (ft_is_name_op(str) == -1)
-		ft_error_op(ERROR_OP, str);
-	*op = ft_strdup(str);
-	return (T);
-}
 
+/*****************************************************************/
 BOOL	is_direct(char *arg)
 {
 	if (arg[0] == DIRECT_CHAR)
@@ -405,6 +442,9 @@ BOOL	is_direct(char *arg)
 	return (F);
 }
 
+/*****************************************************************/
+
+/*****************************************************************/
 BOOL	is_indirect(char *arg)
 {
 	if (arg[0] == LABEL_CHAR)
@@ -414,6 +454,9 @@ BOOL	is_indirect(char *arg)
 	return (F);
 }
 
+/*****************************************************************/
+
+/*****************************************************************/
 BOOL	is_registre(char *arg)
 {
 	int id_reg;
@@ -424,7 +467,6 @@ BOOL	is_registre(char *arg)
 		{
 			id_reg = ft_atoi(arg+1);
 			if (!id_reg || id_reg > REG_NUMBER) 
-//ft_printf("error id _registre\n");
 				return (F);
 			else //	ft_printf("registre id %d\n", id_reg);
 				return (T);
@@ -435,6 +477,9 @@ BOOL	is_registre(char *arg)
 	return (F);
 }
 
+/*****************************************************************/
+
+/*****************************************************************/
 int	get_id_pos_direct(int pos)
 {
 	if (pos == 1)
@@ -445,6 +490,9 @@ int	get_id_pos_direct(int pos)
 		return (T_DIR_P3);
 }
 
+/*****************************************************************/
+
+/*****************************************************************/
 int	get_id_pos_indirect(int pos)
 {
 	if (pos == 1)
@@ -455,7 +503,9 @@ int	get_id_pos_indirect(int pos)
 		return (T_IND_P3);
 }
 
+/*****************************************************************/
 
+/*****************************************************************/
 int	get_id_pos_registre(int pos)
 {
 	if (pos == 1)
@@ -466,6 +516,9 @@ int	get_id_pos_registre(int pos)
 		return (T_REG_P3);
 }
 
+/*****************************************************************/
+
+/*****************************************************************/
 int	get_type_param(char *arg, int pos)
 {
 	if (is_direct(arg))//ft_printf("{red} DIRECT {eoc}");
@@ -477,89 +530,98 @@ int	get_type_param(char *arg, int pos)
 	return (0);
 }
 
-BOOL	get_args(char **str, char *name_op,char *line)
+/*****************************************************************/
+		//ft_error_args.c
+/*****************************************************************/
+void	ft_error_args(int error, char *op, char *args, char *arg)
+{
+	if (error == ERROR_ARG_NULL)
+		ft_printf("error no args found : [%s %s]\n", op, args);
+	else if (error == ERROR_NBR_ARG)
+		ft_printf("error nbr args in instruction [%s %s]\n", op, args);
+	else if (error == ERROR_FORMAT_ARG)
+		ft_printf("error format args in instruction [%s %s]\n", op, args);
+	else if (error == ERROR_TYPE_ARG)
+		ft_printf("error type args [%s] in instruction [%s %s]\n",arg, op, args);
+	else
+		ft_printf("error args [%s %s]\n", op, args);
+	exit(error);
+}
+/*****************************************************************/
+		//ft_extract_source.c
+/*****************************************************************/
+BOOL	get_op(char *str, char **op)
+{
+	if (ft_isempty(str))
+		return (F);
+	if (ft_is_name_op(str) == -1)
+		ft_error_op(ERROR_OP, str);
+	*op = ft_strdup(str);
+	return (T);
+}
+
+/*
+	ft_printf("%s -> op = %#X\t nbr_param = %d  desc = %.9b\n",
+	name_op,op->mnemonique, op->nbr_param, op->param);
+*/
+
+char	**prepare_args(char **str, char *name_op, t_op *op, char **args)
 {
 	int i;
-	char *args;
 	char **tab_args;
-	t_op *op_tab[NBR_OP];
-	
-	ft_get_op_tab(op_tab);
+
 	i = 0;
-	args = NULL;
 	if (!str[i])
-	{
-		ft_printf("error no argument found\n");
-		exit(0);
-	}
-
+		ft_error_args(ERROR_ARG_NULL, name_op, *args, NULL);
 	while (str[i])
-		args = ft_strjoin_clear(&args, &str[i++], FIRST);
+		*args = ft_strjoin_clear(args, &str[i++], FIRST);
+	if ((*args)[0] == SEPARATOR_CHAR 
+		|| (*args)[ft_strlen(*args) - 1] == SEPARATOR_CHAR)
+		ft_error_args(ERROR_FORMAT_ARG, name_op, *args, NULL);
 
-ft_printf("args = %s\n", args);
-
-	t_op *op = ft_get_op(op_tab, name_op);
-
-	ft_printf("op = %#X\tnbr_param = %d  desc = %.9b\n",
-	op->mnemonique, op->nbr_param, op->param);
-
-	tab_args = ft_strsplit(args, SEPARATOR_CHAR);
-
-
-	if (args[0] == SEPARATOR_CHAR 
-		|| args[ft_strlen(args) - 1] == SEPARATOR_CHAR)
-	{	ft_printf("error format argument\n");
-
-		exit(0);
-	}
+	tab_args = ft_strsplit(*args, SEPARATOR_CHAR);
 	if ((int)ft_matlen(tab_args) != op->nbr_param)
-	{	ft_printf("error nbr param instruction\n");
-		exit(0);
-	}
-	else
-		ft_printf("ok nbr param instruction\n");
+		ft_error_args(ERROR_NBR_ARG, name_op, *args, NULL);
+	return (tab_args);
+}
 
-		int pos = 0;
-		int param;
+void	handel_args(char **tab_args, char *name_op, char *args, t_op *op)
+{
+	int pos;
+	int param;
+
+	pos = 0;
 	while (tab_args[pos])
 	{
 		if (!(param = get_type_param(tab_args[pos], pos)))
-		{
-ft_printf("error type param %s in line = %s\n", tab_args[pos], line);
-			exit(0);
-		}
-	ft_printf("\n\tparam found  = %.9b\t", param);
-
-		if (param & op->param)
-			ft_printf("{green} good type of param  {eoc}\n");
-		else
-		{	ft_printf("{red} wrong type of param  {eoc}\n");
-			exit(0);
-		}
-	ft_printf("param = %s\tdesc = %.9b\t",
-	tab_args[pos], param);
-	pos++;
-
-
-
-	// trouvr un moyen de renvoyer les args
-
-
+			ft_error_args(ERROR_TYPE_ARG, name_op, args, tab_args[pos]);
+		if (!(param & op->param))
+			ft_error_args(ERROR_TYPE_ARG, name_op, args, tab_args[pos]);
+		pos++;
 	}
-	ft_printf("\n");
+}
 
-	ft_putmat(tab_args);
-	ft_free_optab(op_tab);
+BOOL	get_args(char **str, char *name_op)
+{
+	char *args;
+	char **tab_args;
+	t_op *op_tab[NBR_OP];
+	t_op *op;
 
-	ft_free_mat(&tab_args);
+	args = NULL;
+	ft_get_op_tab(op_tab);
+	op = ft_get_op(op_tab, name_op);
+	tab_args = prepare_args(str, name_op, op, &args);
+	handel_args(tab_args, name_op, args, op);
 	ft_strdel(&args);
-	(void)op;
+	ft_free_optab(op_tab);
+//	ft_putmat(tab_args);
+	ft_free_mat(&tab_args);
 	return (F);
 }
 
 void	ft_extraire_source(t_charlist *sc, t_player *player)
 {
-//	ft_put_list_charlist(sc);
 	char **line;
 	int nu;
 	char *label;
@@ -569,36 +631,28 @@ void	ft_extraire_source(t_charlist *sc, t_player *player)
 	op =NULL;
 	while (sc)
 	{
-		nu = 0;
-		if (!ft_isempty(sc->data))
+		if (!ft_isempty(sc->data) && !(nu = 0))
 		{
 			line = ft_strsplit(sc->data, SPS);
 			if (ft_get_label(line[nu], &label))
+				nu++;
+			if(get_op(line[nu], &op))
 			{
 				nu++;
-				ft_printf("c'est un label <%s>\n", label);
+				get_args(&(line[nu]), op);
 			}
-			if (get_op(line[nu], &op))
-			{
-				nu++;
-				ft_printf("op = %s\t", op);
-				get_args(&(line[nu]), op, sc->data);
-			}
-		//	else
-		//		ft_printf("c'est pas un label [%s] <%s>\n", label, line[0]);
-	//fonction pour decouper une ligne 
-	//dedant detecter \il ya un label au debut 
-	//si non voir quel opcode 
-	//apres voir les conditions
 			ft_free_mat(&line);
-		ft_strdel(&label);
-		ft_strdel(&op);
+			//add_end_scr(&src, label, op, args);
+			ft_strdel(&label);
+			ft_strdel(&op);
 		}
 		sc = sc->next;
-	ft_printf(" ------------------------------------------------ \n");
 	}
-
+	//player->src = src;
 	(void)player;
+
+//	ft_put_list_charlist(player->file);
+
 }
 
 /*****************************************************************/
@@ -620,6 +674,7 @@ BOOL	ft_extract_info(t_charlist *file, t_player *player)
 	// start extract source code
 	ft_extraire_source(sc, player);
 
+	ft_put_player(player);
 	ft_dell_list_charlist(&sc);
 	ft_strdel(&str);
 	return (T);
@@ -628,35 +683,19 @@ BOOL	ft_extract_info(t_charlist *file, t_player *player)
 /*****************************************************************/
 		//exe.c
 /*****************************************************************/
-void	run(t_charlist *file)
+void	run(t_charlist *file, char *url_output)
 {
 	t_player player;
 	t_charlist *file_clean;
 
 	ft_bzero(&player, sizeof(player));
+	player.url_output = url_output;
 	file_clean = ft_clean_file(file);
-	//player.op_tab = op_tab;
 	if (!ft_extract_info(file_clean, &player))
 		ft_error_reading_file(ERROR_EMPTY_FILE);
-
-//      ft_init_op_tab(op_tab);
-//      ft_set_param(op_tab);
-
-	/************************************/
-
-
-//	ft_put_desc_param(op_tab);
-//	ft_put_op(op_tab);
-//      ft_set_size_label(op_tab);
-//	ft_put_size_label(op_tab);
-	
-//	ft_put_type_param(op_tab);
-
-	//ft_free_optab(op_tab);
-
 	/************************************/
 	// traslate code source
-	//ft_printf("\n\n\n");
+
 	ft_dell_list_charlist(&file_clean);
 	ft_free_player(&player);
 }
@@ -665,7 +704,8 @@ int	main(int argc, char **argv)
 {
 	t_charlist		*file;
 	char                    *param;
-	
+	char			*url_output;
+
 	file = NULL;
 	param = ft_mat_to_str(argv, 1);
 	if (argc == 1)
@@ -674,11 +714,11 @@ int	main(int argc, char **argv)
 		ft_error_param(ERROR_MULTIPUL_PARAM, param);
 	else
 	{
-		ft_manage_url(param);
+		url_output = ft_manage_url(param);
 		if (!ft_read_url_file(param, &file))
 			ft_error_reading_file(ERROR_READING_FILE);
 		ft_strdel(&param);
-		run(file);
+		run(file, url_output);
 		ft_dell_list_charlist(&file);
 	}
 	return (0);

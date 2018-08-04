@@ -30,6 +30,11 @@
 # define ERROR_FORMAT_LABEL		-12
 # define ERROR_OP			-13
 # define ERROR_FORMAT_LABEL_ARG		-14
+# define ERROR_ARG_NULL			-15
+# define ERROR_NBR_ARG			-16
+# define ERROR_FORMAT_ARG		-17
+# define ERROR_BAD_ARG			-18
+# define ERROR_TYPE_ARG			-18
 
 
 
@@ -61,33 +66,33 @@
 # define COMMENT_CMD_STR             ".comment"
 # define DEF                                     '"'
 # define SEP                                     '~'
+# define RET                                     '\n'
 # define SPS                                     ' '
 # define REGISTRE_CHAR				'r'
 
-
+# define FORMAT_INPUT				"s"
+# define FORMAT_OUTPUT				".cor"
 
 
 
 typedef	struct		s_instruction
 {
-	char			*label;
-	char			*opcode;
-	t_charlist		*param;
-}					t_instruction;
+	char		*label;
+	char		*opcode;
+	t_charlist	*param;
+}			t_instruction;
 
 typedef struct		s_player
 {
-	char			*name;
-	char			*description;
-	t_charlist		*comment;
-	t_charlist		*file;
-	t_instruction	*instructioms;
-//	t_op		**op_tab;
-}					t_player;
+	char		*name;
+	char		*description;
+	char		*url_output;
+	t_instruction	*sc;
+}			t_player;
 
-void				ft_error_param(int error, char *param);
+void			ft_error_param(int error, char *param);
 
-void				ft_manage_url(char *url);
-void            ft_error_reading_file(int error);
+char 			*ft_manage_url(char *url);
+void			ft_error_reading_file(int error);
 
 #endif

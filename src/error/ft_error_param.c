@@ -32,7 +32,7 @@ void		ft_error_param(int error, char *param)
 	else if (ERROR_WRONG_FORMAT_FILE == error)
 		ft_printf("{red}wrong format file{eoc} : %s :"
 				" the src file hase to be <*.s>.\n", param);
-	//else
-		ft_printf("{red}error nu{eoc} : %d :",error);
+	else
+		ft_printf("{red}error param{eoc} : %d :",error);
 	exit(error);
 }
