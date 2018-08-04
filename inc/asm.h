@@ -35,6 +35,7 @@
 # define ERROR_FORMAT_ARG		-17
 # define ERROR_BAD_ARG			-18
 # define ERROR_TYPE_ARG			-18
+# define ERROR_INSTRUCTION		-19
 
 
 
@@ -82,12 +83,18 @@ typedef	struct		s_instruction
 	t_charlist	*param;
 }			t_inst;
 
+typedef	struct		s_list_inst
+{
+	t_inst		*data;
+	struct s_list_inst	*next;
+}			t_instlist;
+
 typedef struct		s_player
 {
 	char		*name;
 	char		*description;
 	char		*url_output;
-	t_inst		*src;
+	t_instlist		*src;
 }			t_player;
 
 void			ft_error_param(int error, char *param);

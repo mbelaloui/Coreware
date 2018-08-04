@@ -1,6 +1,29 @@
 #include "../../inc/asm.h"
 
 /*****************************************************************/
+		//ft_put_inst.c
+/*****************************************************************/
+void	ft_put_inst(t_inst *inst)
+{
+	ft_printf("label [%s] op  [%s]  args [",
+	inst->label, inst->opcode);
+	ft_put_list_charlist_join(inst->param);
+	ft_printf("]\n");
+}
+
+/*****************************************************************/
+		//ft_put_instlist.c
+/*****************************************************************/
+void	ft_put_instlist(t_instlist *list)
+{
+	while (list)
+	{
+		ft_put_inst(list->data);
+		list = list->next;
+	}
+}
+
+/*****************************************************************/
 		//ft_put_player.c
 /*****************************************************************/
 
@@ -9,7 +32,41 @@ void	ft_put_player(t_player *player)
 	ft_printf("name\t\t\t[%s]\ndesc\t\t\t[%s]\n\nurl out_put file\t[%s]\n"
 	,player->name, player->description, player->url_output);
 	ft_printf("sources coude :\n");
-//	ft_put_list_instruction(player->sc);
+	ft_put_instlist(player->src);
+}
+
+
+/*****************************************************************/
+		//ft_free_inst.c
+/*****************************************************************/
+void	ft_dell_inst(t_inst **inst)
+{
+	ft_strdel(&((*inst)->label));
+	ft_strdel(&((*inst)->opcode));
+	ft_dell_list_charlist(&(*inst)->param);
+	free(*inst);
+	*inst = NULL;
+}
+
+/*****************************************************************/
+		//ft_dell_bgn_intlist.c
+/*****************************************************************/
+BOOL	ft_dell_list_instlist(t_instlist **to_free)
+{
+	t_instlist	*pt;
+
+	if (!to_free || !(*to_free))
+		return (F);
+	pt = *to_free;
+	while (*to_free)
+	{
+		pt = *to_free;
+		*to_free = (*to_free)->next;
+		ft_dell_inst(&(pt->data));
+		free(pt);
+	}
+	*to_free = NULL;
+	return (T);
 }
 
 /*****************************************************************/
@@ -21,18 +78,8 @@ void	ft_free_player(t_player *player)
 	ft_strdel(&player->name);
 	ft_strdel(&player->description);
 	ft_strdel(&player->url_output);
-}
-
-/*****************************************************************/
-		//ft_free_inst.c
-/*****************************************************************/
-void	ft_free_inst(t_inst **inst)
-{
-	ft_strdel(&((*inst)->label));
-	ft_strdel(&((*inst)->opcode));
-	ft_dell_list_charlist(&(*inst)->param);
-	free(*inst);
-	*inst = NULL;
+	ft_dell_list_instlist(&player->src);
+	//	ft_free_inst(&inst); //delet this ligne
 }
 
 /*****************************************************************/
@@ -49,6 +96,30 @@ void	ft_free_optab(t_op *op_tab[NBR_OP])
 		free(op_tab[i]);
 		i++;
 	}
+}
+/*****************************************************************/
+		//ft_add_end_instlist.c
+/*****************************************************************/
+BOOL    ft_add_end_instlist(t_inst *inst, t_instlist **list)
+{
+	t_instlist      *pt_list;
+	t_instlist      *temp;
+
+	if (!inst)
+		return (F);
+	temp = malloc(sizeof(*temp));
+	temp->data = inst;
+	temp->next = NULL;
+	if (!(*list))
+		*list = temp;
+	else
+	{
+		pt_list = *list;
+		while (pt_list->next)
+			pt_list = pt_list->next;
+		pt_list->next = temp;
+	}
+	return (T);
 }
 
 /*****************************************************************/
@@ -115,6 +186,16 @@ void	ft_error_head(int error, char *str_file)
 }
 
 /*****************************************************************/
+		//ft_error_inst.c
+/*****************************************************************/
+void	ft_error_inst(int error)
+{
+	if (error == ERROR_INSTRUCTION)
+		ft_printf("error instruction \n");
+	exit(0);
+}
+			
+/*****************************************************************/
 		//ft_error_args.c
 /*****************************************************************/
 void	ft_error_args(int error, char *op, char *args, char *arg)
@@ -130,6 +211,23 @@ void	ft_error_args(int error, char *op, char *args, char *arg)
 	else
 		ft_printf("error args [%s %s]\n", op, args);
 	exit(error);
+}
+
+/*****************************************************************/
+		//ft_new_inst.c
+/*****************************************************************/
+t_inst	*ft_new_inst(char *label, char *op, char **args)
+{
+	t_inst *ret;
+
+	if (!(ret = malloc(sizeof(*ret))))
+		exit(0);
+	ret->label = label;
+	ret->opcode =op;
+	ret->param = ft_mat_to_charlist(args);
+
+
+	return(ret);
 }
 
 /*****************************************************************/
@@ -584,7 +682,7 @@ BOOL	get_label(char *str, char **label)
 		if (str[i])
 		{
 			if (str[i] == LABEL_CHAR && !str[i + 1])
-				return (T);// && ft_strdel(&label));
+				return (T);
 			else
 				ft_error_label(ERROR_END_CHAR_LABEL, *label, str[i], str);
 		}
@@ -623,30 +721,8 @@ BOOL	get_args(char **str, char *name_op)
 	ft_handle_args(tab_args, name_op, args, op);
 	ft_strdel(&args);
 	ft_free_optab(op_tab);
-//	ft_putmat(tab_args);
 	ft_free_mat(&tab_args);
 	return (F);
-}
-
-t_inst	*ft_new_inst(char *label, char *op, char **args)
-{
-	t_inst *ret;
-
-	if (!(ret = malloc(sizeof(*ret))))
-		exit(0);
-	ret->label = label;
-	ret->opcode =op;
-	ret->param = ft_mat_to_charlist(args);
-
-
-	return(ret);
-}
-void	ft_put_inst(t_inst *inst)
-{
-	ft_printf("label [%s] op  [%s]  args [",
-	inst->label, inst->opcode);
-	ft_put_list_charlist_join(inst->param);
-	ft_printf("]\n");
 }
 
 t_inst	*quarry_line(t_charlist *sc,char *label, char *op)
@@ -673,15 +749,15 @@ t_inst	*quarry_line(t_charlist *sc,char *label, char *op)
 	return (NULL);
 }
 
-
 void	ft_extraire_source(t_charlist *sc, t_player *player)
 {
 	char *label;
 	char *op;
-	//t_instlist *src;
+	t_instlist *src;
 	t_inst *inst;
 
-	op =NULL;
+	src = NULL;
+	op = NULL;
 	label = NULL;
 	while (sc)
 	{
@@ -689,19 +765,12 @@ void	ft_extraire_source(t_charlist *sc, t_player *player)
 		{
 			inst = quarry_line(sc, label, op);
 			if (inst == NULL)
-			{
-				ft_printf("error inst\n");
-				exit(0);
-			}
-		//	ft_put_inst(inst);
-		//	add_end_scr(&src, inst);    code this fonction
-			ft_free_inst(&inst); //delet this ligne
+				ft_error_inst(ERROR_INSTRUCTION);
+			ft_add_end_instlist(inst, &src);
 		}
 		sc = sc->next;
 	}
-	(void)player;
-	//player->src = src;
-//	ft_put_list_charlist(player->file);
+	player->src = src;
 }
 
 /*****************************************************************/
@@ -723,9 +792,9 @@ BOOL	ft_extract_info(t_charlist *file, t_player *player)
 	// start extract source code
 	ft_extraire_source(sc, player);
 
-	ft_put_player(player);
 	ft_dell_list_charlist(&sc);
 	ft_strdel(&str);
+	ft_put_player(player);
 	return (T);
 }
 
@@ -742,6 +811,7 @@ void	run(t_charlist *file, char *url_output)
 	file_clean = ft_clean_file(file);
 	if (!ft_extract_info(file_clean, &player))
 		ft_error_reading_file(ERROR_EMPTY_FILE);
+	
 	/************************************/
 	// traslate code source
 
