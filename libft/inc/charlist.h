@@ -23,6 +23,7 @@ typedef struct			s_charlist
 
 void					ft_put_charlist(t_charlist *data);
 void					ft_put_list_charlist(t_charlist *data);
+void					ft_put_list_charlist_join(t_charlist *data);
 t_charlist				*ft_new_charlist(const char *data);
 BOOL					ft_add_charlist(char *data, t_charlist **list);
 
@@ -44,4 +45,6 @@ char					*ft_charlist_to_format_str(t_charlist *list, char c);
 t_charlist				*ft_str_to_format_charlist(char *str, char sep);
 
 t_charlist				*ft_str_to_charlist(char *str, char sep);
+t_charlist				*ft_mat_to_charlist(char **mat);
+
 #endif

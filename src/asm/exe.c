@@ -24,6 +24,18 @@ void	ft_free_player(t_player *player)
 }
 
 /*****************************************************************/
+		//ft_free_inst.c
+/*****************************************************************/
+void	ft_free_inst(t_inst **inst)
+{
+	ft_strdel(&((*inst)->label));
+	ft_strdel(&((*inst)->opcode));
+	ft_dell_list_charlist(&(*inst)->param);
+	free(*inst);
+	*inst = NULL;
+}
+
+/*****************************************************************/
 		//ft_free_optab.c
 /*****************************************************************/
 void	ft_free_optab(t_op *op_tab[NBR_OP])
@@ -616,10 +628,32 @@ BOOL	get_args(char **str, char *name_op)
 	return (F);
 }
 
-void	quarry_line(t_charlist *sc,char *label, char *op)
+t_inst	*ft_new_inst(char *label, char *op, char **args)
+{
+	t_inst *ret;
+
+	if (!(ret = malloc(sizeof(*ret))))
+		exit(0);
+	ret->label = label;
+	ret->opcode =op;
+	ret->param = ft_mat_to_charlist(args);
+
+
+	return(ret);
+}
+void	ft_put_inst(t_inst *inst)
+{
+	ft_printf("label [%s] op  [%s]  args [",
+	inst->label, inst->opcode);
+	ft_put_list_charlist_join(inst->param);
+	ft_printf("]\n");
+}
+
+t_inst	*quarry_line(t_charlist *sc,char *label, char *op)
 {
 	char **args;
 	int nu;
+	t_inst *inst;
 
 	nu = 0;
 	if (!ft_isempty(sc->data))
@@ -632,26 +666,37 @@ void	quarry_line(t_charlist *sc,char *label, char *op)
 			nu++;
 			get_args(&(args[nu]), op);
 		}
-	// new_instruction(label, op, args);
-		ft_strdel(&label);
-		ft_strdel(&op);
+		inst = ft_new_inst(label, op, args + nu);
 		ft_free_mat(&args);
+		return (inst);
 	}
-	//return (instruction);
+	return (NULL);
 }
+
 
 void	ft_extraire_source(t_charlist *sc, t_player *player)
 {
 	char *label;
 	char *op;
+	//t_instlist *src;
+	t_inst *inst;
 
 	op =NULL;
 	label = NULL;
 	while (sc)
 	{
-		/*inst = */quarry_line(sc, label, op);
-
-		//add_end_scr(&src, inst);
+		if (!ft_isempty(sc->data))
+		{
+			inst = quarry_line(sc, label, op);
+			if (inst == NULL)
+			{
+				ft_printf("error inst\n");
+				exit(0);
+			}
+		//	ft_put_inst(inst);
+		//	add_end_scr(&src, inst);    code this fonction
+			ft_free_inst(&inst); //delet this ligne
+		}
 		sc = sc->next;
 	}
 	(void)player;

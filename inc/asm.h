@@ -80,14 +80,14 @@ typedef	struct		s_instruction
 	char		*label;
 	char		*opcode;
 	t_charlist	*param;
-}			t_instruction;
+}			t_inst;
 
 typedef struct		s_player
 {
 	char		*name;
 	char		*description;
 	char		*url_output;
-	t_instruction	*src;
+	t_inst		*src;
 }			t_player;
 
 void			ft_error_param(int error, char *param);
