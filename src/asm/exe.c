@@ -13,6 +13,17 @@ void	ft_put_player(t_player *player)
 }
 
 /*****************************************************************/
+		//ft_free_player.c
+/*****************************************************************/
+	
+void	ft_free_player(t_player *player)
+{
+	ft_strdel(&player->name);
+	ft_strdel(&player->description);
+	ft_strdel(&player->url_output);
+}
+
+/*****************************************************************/
 		//ft_free_optab.c
 /*****************************************************************/
 void	ft_free_optab(t_op *op_tab[NBR_OP])
@@ -29,7 +40,88 @@ void	ft_free_optab(t_op *op_tab[NBR_OP])
 }
 
 /*****************************************************************/
-//		ft_extract_simple_comment.c
+		//ft_error_label.c
+/*****************************************************************/
+
+void	ft_error_label(int error, char *label, char c, char *str)
+{
+//`"`	ft_printf("error == %d\n", error);
+	if (error == ERROR_END_CHAR_LABEL)
+		ft_printf("error char end of label expected <%s%c>\n"
+				"found <%s>\n", label,LABEL_CHAR, str);
+	else if (error == ERROR_FORMAT_LABEL)
+		ft_printf("error format label expected <%s%c>\n"
+				"found <%s%c>\nno end char label <%c> found\n"
+			, label,LABEL_CHAR,label,c, LABEL_CHAR);
+	else if (error == ERROR_FORMAT_LABEL_ARG)
+		ft_printf("error format label arg\n");
+	exit(error);
+}
+
+/*****************************************************************/
+		//ft_error_op.c
+/*****************************************************************/
+
+void	ft_error_op(int error, char *str)
+{
+//`"`	ft_printf("error == %d\n", error);
+	if (error == ERROR_OP)
+		ft_printf("error instruction <%s> not found\n", str);
+/*	else if (error == ERROR_FORMAT_OPLABEL)
+		ft_printf("error format label expected <%s%c>\n"
+				"found <%s%c>\nno end char label <%c> found\n"
+			, label,LABEL_CHAR,label,c, LABEL_CHAR);
+*/	exit(error);
+}
+
+/*****************************************************************/
+		//ft_error_head.c
+/*****************************************************************/
+void	ft_error_head(int error, char *str_file)
+{
+	char **sc;
+
+	sc = ft_strsplit(str_file, SEP);
+	if (error == ERROR_FORMAT_NAME || error == ERROR_FORMAT_COMMENT)
+	{
+		ft_printf("{yellow}Error format description file.{eoc}\n"
+		"expected <{red}%s {eoc}\"%s\">\nfound    <{red}%s{eoc}>\n"
+		"NB : the description can not be empty.\n",
+		(error == ERROR_FORMAT_NAME) ? NAME_CMD_STR : COMMENT_CMD_STR,
+		(error == ERROR_FORMAT_NAME) ? NAME_CMD_PR : COMMENT_CMD_PR,
+		sc[0]);
+	}
+	else
+	{
+		ft_printf("{yellow}Error unknown param description file.{eoc}\n"
+		"expected <{red}%s {eoc}\"%s\">\nfound    <{red}%s{eoc}>",
+		(error == ERROR_HEAD_NAME) ? NAME_CMD_STR : COMMENT_CMD_STR,
+		(error == ERROR_HEAD_NAME) ? NAME_CMD_PR : COMMENT_CMD_PR,
+		sc[0]);
+	}
+	exit(error);
+}
+
+/*****************************************************************/
+		//ft_error_args.c
+/*****************************************************************/
+void	ft_error_args(int error, char *op, char *args, char *arg)
+{
+	if (error == ERROR_ARG_NULL)
+		ft_printf("error no args found : [%s %s]\n", op, args);
+	else if (error == ERROR_NBR_ARG)
+		ft_printf("error nbr args in instruction [%s %s]\n", op, args);
+	else if (error == ERROR_FORMAT_ARG)
+		ft_printf("error format args in instruction [%s %s]\n", op, args);
+	else if (error == ERROR_TYPE_ARG)
+		ft_printf("error type args [%s] in instruction [%s %s]\n",arg, op, args);
+	else
+		ft_printf("error args [%s %s]\n", op, args);
+	exit(error);
+}
+
+/*****************************************************************/
+		//ft_extract_simple_comment.c
 /*****************************************************************/
 BOOL		is_start_simpl_comment(char *str)
 {
@@ -214,36 +306,29 @@ int	ft_get_data(char *str, char **data)
 	return (end_def);
 }
 
-
-
 /*****************************************************************/
-		//ft_error_head.c
+		//ft_replace_char_in_str.c
 /*****************************************************************/
-void	ft_error_head(int error, char *str_file)
+char	*ft_replace_char_in_str(char *str, char rep, char repwith)
 {
-	char **sc;
+	char *ret;
+	int  len;
+	int i;
 
-	sc = ft_strsplit(str_file, SEP);
-	if (error == ERROR_FORMAT_NAME || error == ERROR_FORMAT_COMMENT)
+	ret = NULL;
+	if (str && rep && repwith)
 	{
-		ft_printf("{yellow}Error format description file.{eoc}\n"
-		"expected <{red}%s {eoc}\"%s\">\nfound    <{red}%s{eoc}>\n"
-		"NB : the description can not be empty.\n",
-		(error == ERROR_FORMAT_NAME) ? NAME_CMD_STR : COMMENT_CMD_STR,
-		(error == ERROR_FORMAT_NAME) ? NAME_CMD_PR : COMMENT_CMD_PR,
-		sc[0]);
+		i = 0;
+		len = ft_strlen(str);
+		ret = ft_strnew(len);
+		while (str[i])
+		{
+			ret[i] = (str[i] == rep) ? repwith : str[i];
+			i++;
+		}
 	}
-	else
-	{
-		ft_printf("{yellow}Error unknown param description file.{eoc}\n"
-		"expected <{red}%s {eoc}\"%s\">\nfound    <{red}%s{eoc}>",
-		(error == ERROR_HEAD_NAME) ? NAME_CMD_STR : COMMENT_CMD_STR,
-		(error == ERROR_HEAD_NAME) ? NAME_CMD_PR : COMMENT_CMD_PR,
-		sc[0]);
-	}
-	exit(error);
+	return (ret);
 }
-
 /*****************************************************************/
 		//ft_extraire_head_info.c
 /*****************************************************************/
@@ -293,27 +378,6 @@ int	extraire_description(char *str_file, t_player *player)
 	return (ret);
 }
 
-char	*ft_replace_char_in_str(char *str, char rep, char repwith)
-{
-	char *ret;
-	int  len;
-	int i;
-
-	ret = NULL;
-	if (str && rep && repwith)
-	{
-		i = 0;
-		len = ft_strlen(str);
-		ret = ft_strnew(len);
-		while (str[i])
-		{
-			ret[i] = (str[i] == rep) ? repwith : str[i];
-			i++;
-		}
-	}
-	return (ret);
-}
-
 
 void	restore_head(t_player *player)
 {
@@ -339,39 +403,163 @@ int	ft_extraire_head_info(char *str_file, t_player *player)
 }
 
 /*****************************************************************/
-		//ft_free_player.c
+		//ft_is_label_arg.c
 /*****************************************************************/
-	
-void	ft_free_player(t_player *player)
+BOOL	ft_is_label_arg(char *str)
 {
-	ft_strdel(&player->name);
-	ft_strdel(&player->description);
-	ft_strdel(&player->url_output);
+	int i;
+
+	if (ft_is_name_op(str) == -1)
+	{
+		i = 0;
+		while (str[i] && ft_is_c_in_str(str[i], LABEL_CHARS))
+			i++;
+		return  (str[i]) ? F : T;
+	}
+	return (F);
 }
 
 /*****************************************************************/
-		//ft_error_label.c
+		//ft_is_direct.c
 /*****************************************************************/
-
-void	ft_error_label(int error, char *label, char c, char *str)
+BOOL	ft_is_direct(char *arg)
 {
-//`"`	ft_printf("error == %d\n", error);
-	if (error == ERROR_END_CHAR_LABEL)
-		ft_printf("error char end of label expected <%s%c>\n"
-				"found <%s>\n", label,LABEL_CHAR, str);
-	else if (error == ERROR_FORMAT_LABEL)
-		ft_printf("error format label expected <%s%c>\n"
-				"found <%s%c>\nno end char label <%c> found\n"
-			, label,LABEL_CHAR,label,c, LABEL_CHAR);
-	else if (error == ERROR_FORMAT_LABEL_ARG)
-		ft_printf("error format label arg\n");
-	exit(error);
+	if (arg[0] == DIRECT_CHAR)
+	{
+		if (arg[1] == LABEL_CHAR)
+			return (ft_is_label_arg(arg + 2) ? T : F);
+		else
+			return (ft_isnumerique(arg + 1) ? T : F);
+	}
+	return (F);
 }
 
 /*****************************************************************/
-		//ft_get_label.c
+		//ft_is_indirect.c
 /*****************************************************************/
-BOOL	ft_get_label(char *str, char **label)
+BOOL	ft_is_indirect(char *arg)
+{
+	if (arg[0] == LABEL_CHAR)
+		return (ft_is_label_arg(arg + 1) ? T : F);
+	else if (ft_isnumerique(arg))
+		return (T);
+	return (F);
+}
+
+/*****************************************************************/
+		//ft_is_registre.c
+/*****************************************************************/
+BOOL	ft_is_registre(char *arg)
+{
+	int id_reg;
+
+	if (arg[0] == REGISTRE_CHAR)
+	{
+		if (ft_isdigit(arg[1]) && ft_isnumerique(arg + 1))
+		{
+			id_reg = ft_atoi(arg+1);
+			if (!id_reg || id_reg > REG_NUMBER) 
+				return (F);
+			else //	ft_printf("registre id %d\n", id_reg);
+				return (T);
+		}
+		else//	ft_printf("wrong format registre\n");
+			return (F);
+	}
+	return (F);
+}
+
+/*****************************************************************/
+		//ft_get_type_args.c
+/*****************************************************************/
+int	get_id_pos_direct(int pos)
+{
+	if (pos == 1)
+		return (T_DIR_P1);
+	else if (pos == 2)
+		return (T_DIR_P2);
+	else
+		return (T_DIR_P3);
+}
+
+int	get_id_pos_indirect(int pos)
+{
+	if (pos == 1)
+		return (T_IND_P1);
+	else if (pos == 2)
+		return (T_IND_P2);
+	else
+		return (T_IND_P3);
+}
+
+int	get_id_pos_registre(int pos)
+{
+	if (pos == 1)
+		return (T_REG_P1);
+	else if (pos == 2)
+		return (T_REG_P2);
+	else
+		return (T_REG_P3);
+}
+
+int	ft_get_type_args(char *arg, int pos)
+{
+	if (ft_is_direct(arg))//ft_printf("{red} DIRECT {eoc}");
+		return (get_id_pos_direct(pos + 1));	
+	if (ft_is_indirect(arg))//ft_printf("{yellow} INDIRECT {eoc}");
+		return (get_id_pos_indirect(pos + 1));	
+	if (ft_is_registre(arg))//ft_printf("{BLUE} registre {eoc}");
+		return (get_id_pos_registre(pos + 1));	
+	return (0);
+}
+
+
+/*****************************************************************/
+	//ft_prepare_args.c
+/*****************************************************************/
+char	**ft_prepare_args(char **str, char *name_op, t_op *op, char **args)
+{
+	int i;
+	char **tab_args;
+
+	i = 0;
+	if (!str[i])
+		ft_error_args(ERROR_ARG_NULL, name_op, *args, NULL);
+	while (str[i])
+		*args = ft_strjoin_clear(args, &str[i++], FIRST);
+	if ((*args)[0] == SEPARATOR_CHAR 
+		|| (*args)[ft_strlen(*args) - 1] == SEPARATOR_CHAR)
+		ft_error_args(ERROR_FORMAT_ARG, name_op, *args, NULL);
+
+	tab_args = ft_strsplit(*args, SEPARATOR_CHAR);
+	if ((int)ft_matlen(tab_args) != op->nbr_param)
+		ft_error_args(ERROR_NBR_ARG, name_op, *args, NULL);
+	return (tab_args);
+}
+
+/*****************************************************************/
+		//ft_handle_args.c
+/*****************************************************************/
+void	ft_handle_args(char **tab_args, char *name_op, char *args, t_op *op)
+{
+	int pos;
+	int param;
+
+	pos = 0;
+	while (tab_args[pos])
+	{
+		if (!(param = ft_get_type_args(tab_args[pos], pos)))
+			ft_error_args(ERROR_TYPE_ARG, name_op, args, tab_args[pos]);
+		if (!(param & op->param))
+			ft_error_args(ERROR_TYPE_ARG, name_op, args, tab_args[pos]);
+		pos++;
+	}
+}
+
+/*****************************************************************/
+		//ft_extract_source.c
+/*****************************************************************/
+BOOL	get_label(char *str, char **label)
 {
 	int i;
 
@@ -394,162 +582,6 @@ BOOL	ft_get_label(char *str, char **label)
 	return (F);
 }
 
-/*****************************************************************/
-		//ft_error_op.c
-/*****************************************************************/
-
-void	ft_error_op(int error, char *str)
-{
-//`"`	ft_printf("error == %d\n", error);
-	if (error == ERROR_OP)
-		ft_printf("error instruction <%s> not found\n", str);
-/*	else if (error == ERROR_FORMAT_OPLABEL)
-		ft_printf("error format label expected <%s%c>\n"
-				"found <%s%c>\nno end char label <%c> found\n"
-			, label,LABEL_CHAR,label,c, LABEL_CHAR);
-*/	exit(error);
-}
-
-/*****************************************************************/
-
-/*****************************************************************/
-BOOL	is_label_arg(char *str)
-{
-	int i;
-
-	if (ft_is_name_op(str) == -1)
-	{
-		i = 0;
-		while (str[i] && ft_is_c_in_str(str[i], LABEL_CHARS))
-			i++;
-		return  (str[i]) ? F : T;
-	}
-	return (F);
-}
-
-/*****************************************************************/
-
-/*****************************************************************/
-BOOL	is_direct(char *arg)
-{
-	if (arg[0] == DIRECT_CHAR)
-	{
-		if (arg[1] == LABEL_CHAR)
-			return (is_label_arg(arg + 2) ? T : F);
-		else
-			return (ft_isnumerique(arg + 1) ? T : F);
-	}
-	return (F);
-}
-
-/*****************************************************************/
-
-/*****************************************************************/
-BOOL	is_indirect(char *arg)
-{
-	if (arg[0] == LABEL_CHAR)
-		return (is_label_arg(arg + 1) ? T : F);
-	else if (ft_isnumerique(arg))
-		return (T);
-	return (F);
-}
-
-/*****************************************************************/
-
-/*****************************************************************/
-BOOL	is_registre(char *arg)
-{
-	int id_reg;
-
-	if (arg[0] == REGISTRE_CHAR)
-	{
-		if (ft_isdigit(arg[1]) && ft_isnumerique(arg + 1))
-		{
-			id_reg = ft_atoi(arg+1);
-			if (!id_reg || id_reg > REG_NUMBER) 
-				return (F);
-			else //	ft_printf("registre id %d\n", id_reg);
-				return (T);
-		}
-		else//	ft_printf("wrong format registre\n");
-			return (F);
-	}
-	return (F);
-}
-
-/*****************************************************************/
-
-/*****************************************************************/
-int	get_id_pos_direct(int pos)
-{
-	if (pos == 1)
-		return (T_DIR_P1);
-	else if (pos == 2)
-		return (T_DIR_P2);
-	else
-		return (T_DIR_P3);
-}
-
-/*****************************************************************/
-
-/*****************************************************************/
-int	get_id_pos_indirect(int pos)
-{
-	if (pos == 1)
-		return (T_IND_P1);
-	else if (pos == 2)
-		return (T_IND_P2);
-	else
-		return (T_IND_P3);
-}
-
-/*****************************************************************/
-
-/*****************************************************************/
-int	get_id_pos_registre(int pos)
-{
-	if (pos == 1)
-		return (T_REG_P1);
-	else if (pos == 2)
-		return (T_REG_P2);
-	else
-		return (T_REG_P3);
-}
-
-/*****************************************************************/
-
-/*****************************************************************/
-int	get_type_param(char *arg, int pos)
-{
-	if (is_direct(arg))//ft_printf("{red} DIRECT {eoc}");
-		return (get_id_pos_direct(pos + 1));	
-	if (is_indirect(arg))//ft_printf("{yellow} INDIRECT {eoc}");
-		return (get_id_pos_indirect(pos + 1));	
-	if (is_registre(arg))//ft_printf("{BLUE} registre {eoc}");
-		return (get_id_pos_registre(pos + 1));	
-	return (0);
-}
-
-/*****************************************************************/
-		//ft_error_args.c
-/*****************************************************************/
-void	ft_error_args(int error, char *op, char *args, char *arg)
-{
-	if (error == ERROR_ARG_NULL)
-		ft_printf("error no args found : [%s %s]\n", op, args);
-	else if (error == ERROR_NBR_ARG)
-		ft_printf("error nbr args in instruction [%s %s]\n", op, args);
-	else if (error == ERROR_FORMAT_ARG)
-		ft_printf("error format args in instruction [%s %s]\n", op, args);
-	else if (error == ERROR_TYPE_ARG)
-		ft_printf("error type args [%s] in instruction [%s %s]\n",arg, op, args);
-	else
-		ft_printf("error args [%s %s]\n", op, args);
-	exit(error);
-}
-/*****************************************************************/
-		//ft_extract_source.c
-/*****************************************************************/
 BOOL	get_op(char *str, char **op)
 {
 	if (ft_isempty(str))
@@ -565,42 +597,6 @@ BOOL	get_op(char *str, char **op)
 	name_op,op->mnemonique, op->nbr_param, op->param);
 */
 
-char	**prepare_args(char **str, char *name_op, t_op *op, char **args)
-{
-	int i;
-	char **tab_args;
-
-	i = 0;
-	if (!str[i])
-		ft_error_args(ERROR_ARG_NULL, name_op, *args, NULL);
-	while (str[i])
-		*args = ft_strjoin_clear(args, &str[i++], FIRST);
-	if ((*args)[0] == SEPARATOR_CHAR 
-		|| (*args)[ft_strlen(*args) - 1] == SEPARATOR_CHAR)
-		ft_error_args(ERROR_FORMAT_ARG, name_op, *args, NULL);
-
-	tab_args = ft_strsplit(*args, SEPARATOR_CHAR);
-	if ((int)ft_matlen(tab_args) != op->nbr_param)
-		ft_error_args(ERROR_NBR_ARG, name_op, *args, NULL);
-	return (tab_args);
-}
-
-void	handel_args(char **tab_args, char *name_op, char *args, t_op *op)
-{
-	int pos;
-	int param;
-
-	pos = 0;
-	while (tab_args[pos])
-	{
-		if (!(param = get_type_param(tab_args[pos], pos)))
-			ft_error_args(ERROR_TYPE_ARG, name_op, args, tab_args[pos]);
-		if (!(param & op->param))
-			ft_error_args(ERROR_TYPE_ARG, name_op, args, tab_args[pos]);
-		pos++;
-	}
-}
-
 BOOL	get_args(char **str, char *name_op)
 {
 	char *args;
@@ -611,8 +607,8 @@ BOOL	get_args(char **str, char *name_op)
 	args = NULL;
 	ft_get_op_tab(op_tab);
 	op = ft_get_op(op_tab, name_op);
-	tab_args = prepare_args(str, name_op, op, &args);
-	handel_args(tab_args, name_op, args, op);
+	tab_args = ft_prepare_args(str, name_op, op, &args);
+	ft_handle_args(tab_args, name_op, args, op);
 	ft_strdel(&args);
 	ft_free_optab(op_tab);
 //	ft_putmat(tab_args);
@@ -620,39 +616,47 @@ BOOL	get_args(char **str, char *name_op)
 	return (F);
 }
 
+void	quarry_line(t_charlist *sc,char *label, char *op)
+{
+	char **args;
+	int nu;
+
+	nu = 0;
+	if (!ft_isempty(sc->data))
+	{
+		args = ft_strsplit(sc->data, SPS);
+		if (get_label(args[nu], &label))
+			nu++;
+		if(get_op(args[nu], &op))
+		{
+			nu++;
+			get_args(&(args[nu]), op);
+		}
+	// new_instruction(label, op, args);
+		ft_strdel(&label);
+		ft_strdel(&op);
+		ft_free_mat(&args);
+	}
+	//return (instruction);
+}
+
 void	ft_extraire_source(t_charlist *sc, t_player *player)
 {
-	char **line;
-	int nu;
 	char *label;
 	char *op;
 
-	label =NULL;
 	op =NULL;
+	label = NULL;
 	while (sc)
 	{
-		if (!ft_isempty(sc->data) && !(nu = 0))
-		{
-			line = ft_strsplit(sc->data, SPS);
-			if (ft_get_label(line[nu], &label))
-				nu++;
-			if(get_op(line[nu], &op))
-			{
-				nu++;
-				get_args(&(line[nu]), op);
-			}
-			ft_free_mat(&line);
-			//add_end_scr(&src, label, op, args);
-			ft_strdel(&label);
-			ft_strdel(&op);
-		}
+		/*inst = */quarry_line(sc, label, op);
+
+		//add_end_scr(&src, inst);
 		sc = sc->next;
 	}
-	//player->src = src;
 	(void)player;
-
+	//player->src = src;
 //	ft_put_list_charlist(player->file);
-
 }
 
 /*****************************************************************/

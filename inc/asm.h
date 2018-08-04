@@ -87,7 +87,7 @@ typedef struct		s_player
 	char		*name;
 	char		*description;
 	char		*url_output;
-	t_instruction	*sc;
+	t_instruction	*src;
 }			t_player;
 
 void			ft_error_param(int error, char *param);
