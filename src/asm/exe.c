@@ -125,7 +125,6 @@ BOOL    ft_add_end_instlist(t_inst *inst, t_instlist **list)
 /*****************************************************************/
 		//ft_error_label.c
 /*****************************************************************/
-
 void	ft_error_label(int error, char *label, char c, char *str)
 {
 //`"`	ft_printf("error == %d\n", error);
@@ -144,7 +143,6 @@ void	ft_error_label(int error, char *label, char c, char *str)
 /*****************************************************************/
 		//ft_error_op.c
 /*****************************************************************/
-
 void	ft_error_op(int error, char *str)
 {
 //`"`	ft_printf("error == %d\n", error);
@@ -623,7 +621,6 @@ int	ft_get_type_args(char *arg, int pos)
 	return (0);
 }
 
-
 /*****************************************************************/
 	//ft_prepare_args.c
 /*****************************************************************/
@@ -789,13 +786,22 @@ BOOL	ft_extract_info(t_charlist *file, t_player *player)
 	str = ft_format_str(str_file+pt);
 	ft_strdel(&str_file);
 	t_charlist *sc = ft_str_to_format_charlist(str, SEP);
+	
 	// start extract source code
 	ft_extraire_source(sc, player);
-
 	ft_dell_list_charlist(&sc);
 	ft_strdel(&str);
-	ft_put_player(player);
+//
 	return (T);
+}
+
+/*****************************************************************/
+		//ft_translate_sc.c
+/*****************************************************************/
+
+void	ft_translate(t_player *player)
+{
+	ft_put_player(player);
 }
 
 /*****************************************************************/
@@ -813,7 +819,8 @@ void	run(t_charlist *file, char *url_output)
 		ft_error_reading_file(ERROR_EMPTY_FILE);
 	
 	/************************************/
-	// traslate code source
+	//traslate code source
+	ft_translate(&player);
 
 	ft_dell_list_charlist(&file_clean);
 	ft_free_player(&player);
