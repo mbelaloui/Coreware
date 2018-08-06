@@ -704,25 +704,22 @@ BOOL	get_op(char *str, char **op)
 	name_op,op->mnemonique, op->nbr_param, op->param);
 */
 
-BOOL	get_args(char **str, char *name_op)
+BOOL	get_args(char **str, char *name_op, t_op *op_tab[NBR_OP])
 {
 	char *args;
 	char **tab_args;
-	t_op *op_tab[NBR_OP];
 	t_op *op;
 
 	args = NULL;
-	ft_get_op_tab(op_tab);
 	op = ft_get_op(op_tab, name_op);
 	tab_args = ft_prepare_args(str, name_op, op, &args);
 	ft_handle_args(tab_args, name_op, args, op);
 	ft_strdel(&args);
-	ft_free_optab(op_tab);
 	ft_free_mat(&tab_args);
 	return (F);
 }
 
-t_inst	*quarry_line(t_charlist *sc,char *label, char *op)
+t_inst	*quarry_line(t_charlist *sc,char *label, char *op, t_op *op_tab[NBR_OP])
 {
 	char **args;
 	int nu;
@@ -737,7 +734,7 @@ t_inst	*quarry_line(t_charlist *sc,char *label, char *op)
 		if(get_op(args[nu], &op))
 		{
 			nu++;
-			get_args(&(args[nu]), op);
+			get_args(&(args[nu]), op, op_tab);
 		}
 		inst = ft_new_inst(label, op, args + nu);
 		ft_free_mat(&args);
@@ -746,7 +743,7 @@ t_inst	*quarry_line(t_charlist *sc,char *label, char *op)
 	return (NULL);
 }
 
-void	ft_extraire_source(t_charlist *sc, t_player *player)
+void	ft_extraire_source(t_charlist *sc, t_player *player, t_op *op_tab[NBR_OP])
 {
 	char *label;
 	char *op;
@@ -760,7 +757,7 @@ void	ft_extraire_source(t_charlist *sc, t_player *player)
 	{
 		if (!ft_isempty(sc->data))
 		{
-			inst = quarry_line(sc, label, op);
+			inst = quarry_line(sc, label, op, op_tab);
 			if (inst == NULL)
 				ft_error_inst(ERROR_INSTRUCTION);
 			ft_add_end_instlist(inst, &src);
@@ -773,7 +770,7 @@ void	ft_extraire_source(t_charlist *sc, t_player *player)
 /*****************************************************************/
 		//ft_extract_info.c
 /*****************************************************************/
-BOOL	ft_extract_info(t_charlist *file, t_player *player)
+BOOL	ft_extract_info(t_charlist *file, t_player *player, t_op *op_tab[NBR_OP])
 {
 	char *str_file;
 	int pt;
@@ -788,7 +785,7 @@ BOOL	ft_extract_info(t_charlist *file, t_player *player)
 	t_charlist *sc = ft_str_to_format_charlist(str, SEP);
 	
 	// start extract source code
-	ft_extraire_source(sc, player);
+	ft_extraire_source(sc, player, op_tab);
 	ft_dell_list_charlist(&sc);
 	ft_strdel(&str);
 //
@@ -799,9 +796,11 @@ BOOL	ft_extract_info(t_charlist *file, t_player *player)
 		//ft_translate_sc.c
 /*****************************************************************/
 
-void	ft_translate(t_player *player)
+void	ft_translate(t_player *player, t_op *op_tab[NBR_OP])
 {
 	ft_put_player(player);
+
+	ft_put_size_label(op_tab);
 }
 
 /*****************************************************************/
@@ -811,18 +810,21 @@ void	run(t_charlist *file, char *url_output)
 {
 	t_player player;
 	t_charlist *file_clean;
+	t_op *op_tab[NBR_OP];
 
 	ft_bzero(&player, sizeof(player));
 	player.url_output = url_output;
 	file_clean = ft_clean_file(file);
-	if (!ft_extract_info(file_clean, &player))
+	ft_get_op_tab(op_tab);
+	if (!ft_extract_info(file_clean, &player, op_tab))
 		ft_error_reading_file(ERROR_EMPTY_FILE);
 	
 	/************************************/
 	//traslate code source
-	ft_translate(&player);
+	ft_translate(&player, op_tab);
 
 	ft_dell_list_charlist(&file_clean);
+	ft_free_optab(op_tab);
 	ft_free_player(&player);
 }
 
