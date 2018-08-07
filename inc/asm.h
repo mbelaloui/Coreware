@@ -73,13 +73,16 @@
 
 # define FORMAT_INPUT				"s"
 # define FORMAT_OUTPUT				".cor"
-
+# define SIZE_INST				6
 
 
 typedef	struct		s_instruction
 {
 	char		*label;
 	char		*opcode;
+	BOOL		desc;
+	int		add[SIZE_INST];
+	int		size_inst;
 	t_charlist	*param;
 }			t_inst;
 

@@ -58,7 +58,7 @@ $(NAME_ASM)			: $(LIBFT) $(OBJS_DIR) $(OBJS)
 	@#say "$(NAME_ASM) has been successfully created !"
 
 
-$(OBJS_DIR)%.o		: ./src/%.c
+$(OBJS_DIR)%.o		: ./src/%.c $(INC_DIR)
 	@echo "$< $(GREEN) compiled $(WHITE)"
 	@echo "\033[1A \033[2K \033[A"
 	@gcc $(FLAGES) $< -o $@

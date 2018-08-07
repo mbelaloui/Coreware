@@ -16,7 +16,10 @@ void	ft_put_list_charlist_join(t_charlist *list)
 {
 	while (list && list->data)
 	{
-		ft_printf("%s", list->data);
+		if (list->next)
+			ft_printf("%s, ", list->data);
+		else
+			ft_printf("%s", list->data);
 		list = list->next;
 	}
 }

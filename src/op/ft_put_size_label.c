@@ -39,7 +39,7 @@ void			ft_put_size_label(t_op *op_tab[17])
 			op_tab[i]->mnemonique, op_tab[i]->name, op_tab[i]->nbr_param,
 			op_tab[i]->size_label);
 		i++;
-	}
+}
 	if (!i)
 		vide();
 	ft_printf("| --------------------\t|\t----\t|\t---------\t|\t----------"

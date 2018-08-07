@@ -5,10 +5,20 @@
 /*****************************************************************/
 void	ft_put_inst(t_inst *inst)
 {
-	ft_printf("label [%s] op  [%s]  args [",
+	ft_printf("label : [%s]\nop  {%s}  args [",
 	inst->label, inst->opcode);
 	ft_put_list_charlist_join(inst->param);
 	ft_printf("]\n");
+	ft_printf("size op \t[%d]\n",inst->add[1]);
+	if (inst->add[3] != -1)
+		ft_printf("size arg 1 \t[%d]\n",inst->add[3]);
+	if (inst->add[4] != -1)
+		ft_printf("size arg 2 \t[%d]\n",inst->add[4]);
+	if (inst->add[5] != -1)
+		ft_printf("size arg 3 \t[%d]\n",inst->add[5]);
+	if (inst->add[2] != -1)
+		ft_printf("+ [%d] size description\n",inst->add[2]);
+	ft_printf("size inst {green}%d{eoc}\n\n", inst->size_inst);
 }
 
 /*****************************************************************/
@@ -16,11 +26,18 @@ void	ft_put_inst(t_inst *inst)
 /*****************************************************************/
 void	ft_put_instlist(t_instlist *list)
 {
+	int size_program;
+
+	size_program = 0;
 	while (list)
 	{
+   	ft_printf(" +++++++++++++++++++++++++++++++++++++++++++++++++\n");
 		ft_put_inst(list->data);
+		size_program += list->data->size_inst;
 		list = list->next;
 	}
+
+	ft_printf("size programme %d \n", size_program);
 }
 
 /*****************************************************************/
@@ -31,7 +48,8 @@ void	ft_put_player(t_player *player)
 {
 	ft_printf("name\t\t\t[%s]\ndesc\t\t\t[%s]\n\nurl out_put file\t[%s]\n"
 	,player->name, player->description, player->url_output);
-	ft_printf("sources coude :\n");
+	ft_printf("\n\n\n");
+	ft_printf("size inst :\n\n");
 	ft_put_instlist(player->src);
 }
 
@@ -214,16 +232,22 @@ void	ft_error_args(int error, char *op, char *args, char *arg)
 /*****************************************************************/
 		//ft_new_inst.c
 /*****************************************************************/
-t_inst	*ft_new_inst(char *label, char *op, char **args)
+t_inst	*ft_new_inst(char *label, char *op, t_charlist *args)
 {
 	t_inst *ret;
+	int	i;
 
+	i = 0;
 	if (!(ret = malloc(sizeof(*ret))))
 		exit(0);
 	ret->label = label;
 	ret->opcode =op;
-	ret->param = ft_mat_to_charlist(args);
-
+	ret->param = args;
+	while (i < 6)
+	{
+		ret->add[i] = -1;
+		i++;	
+	}
 
 	return(ret);
 }
@@ -513,7 +537,7 @@ int	ft_extraire_head_info(char *str_file, t_player *player)
 /*****************************************************************/
 		//ft_is_label_arg.c
 /*****************************************************************/
-BOOL	ft_is_label_arg(char *str)
+BOOL	ft_is_label(char *str)
 {
 	int i;
 
@@ -535,7 +559,7 @@ BOOL	ft_is_direct(char *arg)
 	if (arg[0] == DIRECT_CHAR)
 	{
 		if (arg[1] == LABEL_CHAR)
-			return (ft_is_label_arg(arg + 2) ? T : F);
+			return (ft_is_label(arg + 2) ? T : F);
 		else
 			return (ft_isnumerique(arg + 1) ? T : F);
 	}
@@ -548,7 +572,7 @@ BOOL	ft_is_direct(char *arg)
 BOOL	ft_is_indirect(char *arg)
 {
 	if (arg[0] == LABEL_CHAR)
-		return (ft_is_label_arg(arg + 1) ? T : F);
+		return (ft_is_label(arg + 1) ? T : F);
 	else if (ft_isnumerique(arg))
 		return (T);
 	return (F);
@@ -639,10 +663,84 @@ char	**ft_prepare_args(char **str, char *name_op, t_op *op, char **args)
 		ft_error_args(ERROR_FORMAT_ARG, name_op, *args, NULL);
 
 	tab_args = ft_strsplit(*args, SEPARATOR_CHAR);
+
+//ft_putmat(tab_args);
+
 	if ((int)ft_matlen(tab_args) != op->nbr_param)
 		ft_error_args(ERROR_NBR_ARG, name_op, *args, NULL);
 	return (tab_args);
 }
+
+
+/*****************************************************************/
+	//ft_is_need_desc_op.c
+/*****************************************************************/
+BOOL	ft_is_need_desc_op(char *name_op, t_op *op_tab[NBR_OP])
+{
+	t_op *op;
+
+	op = ft_get_op(op_tab, name_op);
+	return (op->desc_param);
+}
+
+/*****************************************************************/
+		//ft_get_size_inst.c
+/*****************************************************************/
+int	get_size_arg(char *arg, t_op *op_tab[NBR_OP], char *name)
+{
+	t_op *op;
+
+	op = ft_get_op(op_tab, name);
+	if (ft_is_direct(arg))
+		return (op->size_label);
+	if (ft_is_indirect(arg))
+		return (IND_SIZE);
+	if (ft_is_registre(arg))
+		return (REG_SIZE);
+	return (-1);
+}
+
+int	get_size_inst(t_inst *inst)
+{
+	int size;
+	int i;
+
+	size = 0;
+	i = 0;
+	while (i < SIZE_INST)
+	{
+		if (inst->add[i] != -1)
+			size += inst->add[i];
+		i++;	
+	}
+	return (size);
+}
+
+void	ft_get_size_inst(t_inst *inst, t_op *op_tab[NBR_OP])
+{
+	int i;
+	t_charlist *pt;
+
+	inst->add[0] = (inst->label) ? 0 : -1;
+	if (inst->opcode)
+	{
+		inst->add[1] = 1;	
+		inst->add[2] = (ft_is_need_desc_op(inst->opcode, op_tab))
+		? 1 : -1;
+		i = 3;
+		pt = inst->param;
+		while (pt)
+		{
+			inst->add[i++] = get_size_arg(pt->data, op_tab,
+			inst->opcode);	
+			pt = pt->next;
+		}
+	}
+	else
+		inst->add[1] = -1;
+	inst->size_inst = get_size_inst(inst);
+}
+
 
 /*****************************************************************/
 		//ft_handle_args.c
@@ -656,9 +754,11 @@ void	ft_handle_args(char **tab_args, char *name_op, char *args, t_op *op)
 	while (tab_args[pos])
 	{
 		if (!(param = ft_get_type_args(tab_args[pos], pos)))
-			ft_error_args(ERROR_TYPE_ARG, name_op, args, tab_args[pos]);
+			ft_error_args(ERROR_TYPE_ARG,
+			name_op, args, tab_args[pos]);
 		if (!(param & op->param))
-			ft_error_args(ERROR_TYPE_ARG, name_op, args, tab_args[pos]);
+			ft_error_args(ERROR_TYPE_ARG,
+			name_op, args, tab_args[pos]);
 		pos++;
 	}
 }
@@ -681,10 +781,12 @@ BOOL	get_label(char *str, char **label)
 			if (str[i] == LABEL_CHAR && !str[i + 1])
 				return (T);
 			else
-				ft_error_label(ERROR_END_CHAR_LABEL, *label, str[i], str);
+				ft_error_label(ERROR_END_CHAR_LABEL,
+				*label, str[i], str);
 		}
 		else
-			ft_error_label(ERROR_FORMAT_LABEL, *label, str[i], 0);
+			ft_error_label(ERROR_FORMAT_LABEL, *label,
+			str[i], 0);
 	}
 	return (F);
 }
@@ -699,24 +801,21 @@ BOOL	get_op(char *str, char **op)
 	return (T);
 }
 
-/*
-	ft_printf("%s -> op = %#X\t nbr_param = %d  desc = %.9b\n",
-	name_op,op->mnemonique, op->nbr_param, op->param);
-*/
-
-BOOL	get_args(char **str, char *name_op, t_op *op_tab[NBR_OP])
+t_charlist	*get_args(char **str, char *name_op, t_op *op_tab[NBR_OP])
 {
 	char *args;
 	char **tab_args;
 	t_op *op;
+	t_charlist *ret_args;
 
 	args = NULL;
 	op = ft_get_op(op_tab, name_op);
 	tab_args = ft_prepare_args(str, name_op, op, &args);
 	ft_handle_args(tab_args, name_op, args, op);
 	ft_strdel(&args);
+	ret_args = ft_mat_to_charlist(tab_args);
 	ft_free_mat(&tab_args);
-	return (F);
+	return (ret_args);
 }
 
 t_inst	*quarry_line(t_charlist *sc,char *label, char *op, t_op *op_tab[NBR_OP])
@@ -724,8 +823,10 @@ t_inst	*quarry_line(t_charlist *sc,char *label, char *op, t_op *op_tab[NBR_OP])
 	char **args;
 	int nu;
 	t_inst *inst;
+	t_charlist *list_args;
 
 	nu = 0;
+	list_args = NULL;
 	if (!ft_isempty(sc->data))
 	{
 		args = ft_strsplit(sc->data, SPS);
@@ -734,9 +835,9 @@ t_inst	*quarry_line(t_charlist *sc,char *label, char *op, t_op *op_tab[NBR_OP])
 		if(get_op(args[nu], &op))
 		{
 			nu++;
-			get_args(&(args[nu]), op, op_tab);
+			list_args = get_args(&(args[nu]), op, op_tab);
 		}
-		inst = ft_new_inst(label, op, args + nu);
+		inst = ft_new_inst(label, op, list_args);
 		ft_free_mat(&args);
 		return (inst);
 	}
@@ -760,6 +861,7 @@ void	ft_extraire_source(t_charlist *sc, t_player *player, t_op *op_tab[NBR_OP])
 			inst = quarry_line(sc, label, op, op_tab);
 			if (inst == NULL)
 				ft_error_inst(ERROR_INSTRUCTION);
+			ft_get_size_inst(inst, op_tab);
 			ft_add_end_instlist(inst, &src);
 		}
 		sc = sc->next;
@@ -795,12 +897,24 @@ BOOL	ft_extract_info(t_charlist *file, t_player *player, t_op *op_tab[NBR_OP])
 /*****************************************************************/
 		//ft_translate_sc.c
 /*****************************************************************/
+void	init_symbole_tab(t_player *player)
+{
+	while (player->src)
+	{
+		ft_printf(player->src);
+	}
+}
 
 void	ft_translate(t_player *player, t_op *op_tab[NBR_OP])
 {
-	ft_put_player(player);
+//	ft_put_player(player);
 
-	ft_put_size_label(op_tab);
+	init_symole_tab(player);
+
+//	ft_put_size_label(op_tab);
+//	ft_put_desc_param(op_tab);
+//	ft_put_size_label(op_tab);
+	(void)op_tab;
 }
 
 /*****************************************************************/
