@@ -61,6 +61,7 @@ void	ft_dell_inst(t_inst **inst)
 {
 	ft_strdel(&((*inst)->label));
 	ft_strdel(&((*inst)->opcode));
+	ft_strdel(&((*inst)->add));
 	ft_dell_list_charlist(&(*inst)->param);
 	free(*inst);
 	*inst = NULL;
@@ -250,13 +251,14 @@ t_inst	*ft_new_inst(char *label, char *op, t_charlist *args)
 		ret->size[i] = -1;
 		i++;	
 	}
-	i = 0;
+	ret->add = NULL;
+	/*i = 0;
 	while (i < 6)
 	{
-		ret->add[i] = -1;
+			ret->add[i] = -1;
 		i++;	
 	}
-
+*/
 	return(ret);
 }
 
@@ -1010,28 +1012,6 @@ void	ft_put_list_symbole(t_symbole *list)
 }
 
 /*****************************************************************/
-		//ft_translate_sc.c
-/*****************************************************************/
-t_symbole	*init_symbole_tab(t_player *player)
-{
-	t_instlist *sc;
-	t_symbole *symbole;
-	int add;
-
-	add = 0;
-	symbole = NULL;
-	sc = player->src;
-	while (sc)
-	{
-		if (sc->data->label)
-			ft_add_symbole(sc->data->label, add, &symbole);
-		add += sc->data->size_inst;
-		sc = sc->next;
-	}
-	return (symbole);
-}
-
-/*****************************************************************/
 		//ft_set_used_label.c
 /*****************************************************************/
 void	ft_set_used_label(char *symbole, t_symbole *list)
@@ -1107,6 +1087,79 @@ void	ft_check_for_label(t_symbole *symbole, t_instlist *src)
 /*****************************************************************/
 		//ft_translate.c
 /*****************************************************************/
+t_symbole	*init_symbole_tab(t_player *player)
+{
+	t_instlist *sc;
+	t_symbole *symbole;
+	int add;
+
+	add = 0;
+	symbole = NULL;
+	sc = player->src;
+	while (sc)
+	{
+		if (sc->data->label)
+			ft_add_symbole(sc->data->label, add, &symbole);
+		add += sc->data->size_inst;
+		sc = sc->next;
+	}
+	return (symbole);
+}
+
+intmax_t	ft_get_size_bin_inst(int tab[SIZE_INST])
+{
+	int i;
+	intmax_t somme;
+	
+	i = 0;
+	somme = 0;
+	while (i < SIZE_INST)
+	{
+		if (tab[i] != -1)
+			somme += tab[i];
+		i++;
+	}
+	return (somme);
+}
+
+void	set_data(t_inst *inst, t_op *op_tab[NBR_OP])
+{
+	t_op *op;
+
+	op = ft_get_op(op_tab, inst->opcode);
+	ft_printf("inst operation = <%s>  code = %d [%.2x]\n",
+	inst->opcode, op->mnemonique, op->mnemonique);
+	ft_printf("need desc %s\n", (inst->size[2] != -1) ? "oui" : "non" );
+
+	int i = 3;
+	while (i < SIZE_INST)
+	{
+		if (inst->size[i] != -1)
+		ft_printf("size arg %d = %d\n", i, inst->size[i] );
+		i++;
+	}
+}
+
+void	translate(t_instlist *src, t_op *op_tab[NBR_OP])
+{
+	intmax_t size_inst;
+	t_instlist *pt;
+
+	pt = src;
+	int i =0;
+	while (pt)
+	{
+		size_inst = ft_get_size_bin_inst(pt->data->size);
+		pt->data->add = ft_strnew(size_inst);
+		set_data(pt->data, op_tab);
+		
+	//	ft_printf("size inst %d = %ld\n", i, size_inst);
+		i++;
+		pt = pt->next;
+	}
+	(void)src;
+}
+
 void	ft_translate(t_player *player, t_op *op_tab[NBR_OP])
 {
 	t_symbole *symbole;
@@ -1114,13 +1167,14 @@ void	ft_translate(t_player *player, t_op *op_tab[NBR_OP])
 	symbole = init_symbole_tab(player);
 //	ft_put_list_symbole(symbole);
 	ft_check_for_label(symbole, player->src);
-//	ft_put_list_symbole(symbole);
 
 	
+	translate(player->src, op_tab);
+
+//	ft_put_player(player);
+//	ft_put_list_symbole(symbole);
 
 	ft_dell_list_symbole(&symbole);
-		ft_put_player(player);
-
 	(void)op_tab;
 }
 
