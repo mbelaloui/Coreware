@@ -9,15 +9,15 @@ void	ft_put_inst(t_inst *inst)
 	inst->label, inst->opcode);
 	ft_put_list_charlist_join(inst->param);
 	ft_printf("]\n");
-	ft_printf("size op \t[%d]\n",inst->add[1]);
-	if (inst->add[3] != -1)
-		ft_printf("size arg 1 \t[%d]\n",inst->add[3]);
-	if (inst->add[4] != -1)
-		ft_printf("size arg 2 \t[%d]\n",inst->add[4]);
-	if (inst->add[5] != -1)
-		ft_printf("size arg 3 \t[%d]\n",inst->add[5]);
-	if (inst->add[2] != -1)
-		ft_printf("+ [%d] size description\n",inst->add[2]);
+	ft_printf("size op \t[%d]\n",inst->size[1]);
+	if (inst->size[3] != -1)
+		ft_printf("size arg 1 \t[%d]\n",inst->size[3]);
+	if (inst->size[4] != -1)
+		ft_printf("size arg 2 \t[%d]\n",inst->size[4]);
+	if (inst->size[5] != -1)
+		ft_printf("size arg 3 \t[%d]\n",inst->size[5]);
+	if (inst->size[2] != -1)
+		ft_printf("+ [%d] size description\n",inst->size[2]);
 	ft_printf("size inst {green}%d{eoc}\n\n", inst->size_inst);
 }
 
@@ -239,12 +239,18 @@ t_inst	*ft_new_inst(char *label, char *op, t_charlist *args)
 	t_inst *ret;
 	int	i;
 
-	i = 0;
 	if (!(ret = malloc(sizeof(*ret))))
 		exit(0);
 	ret->label = label;
 	ret->opcode =op;
 	ret->param = args;
+	i = 0;
+	while (i < 6)
+	{
+		ret->size[i] = -1;
+		i++;	
+	}
+	i = 0;
 	while (i < 6)
 	{
 		ret->add[i] = -1;
@@ -711,8 +717,8 @@ int	get_size_inst(t_inst *inst)
 	i = 0;
 	while (i < SIZE_INST)
 	{
-		if (inst->add[i] != -1)
-			size += inst->add[i];
+		if (inst->size[i] != -1)
+			size += inst->size[i];
 		i++;	
 	}
 	return (size);
@@ -723,23 +729,23 @@ void	ft_get_size_inst(t_inst *inst, t_op *op_tab[NBR_OP])
 	int i;
 	t_charlist *pt;
 
-	inst->add[0] = (inst->label) ? 0 : -1;
+	inst->size[0] = (inst->label) ? 0 : -1;
 	if (inst->opcode)
 	{
-		inst->add[1] = 1;	
-		inst->add[2] = (ft_is_need_desc_op(inst->opcode, op_tab))
+		inst->size[1] = 1;	
+		inst->size[2] = (ft_is_need_desc_op(inst->opcode, op_tab))
 		? 1 : -1;
 		i = 3;
 		pt = inst->param;
 		while (pt)
 		{
-			inst->add[i++] = get_size_arg(pt->data, op_tab,
+			inst->size[i++] = get_size_arg(pt->data, op_tab,
 			inst->opcode);	
 			pt = pt->next;
 		}
 	}
 	else
-		inst->add[1] = -1;
+		inst->size[1] = -1;
 	inst->size_inst = get_size_inst(inst);
 }
 
