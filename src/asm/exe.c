@@ -155,6 +155,8 @@ void	ft_error_label(int error, char *label, char c, char *str)
 			, label,LABEL_CHAR,label,c, LABEL_CHAR);
 	else if (error == ERROR_FORMAT_LABEL_ARG)
 		ft_printf("error format label arg\n");
+	else if (error == ERROR_LABEL_NOT_DECLARED)
+		ft_printf("{red}error label %s used but not declared{eoc}\n", label);
 	exit(error);
 }
 
@@ -895,25 +897,224 @@ BOOL	ft_extract_info(t_charlist *file, t_player *player, t_op *op_tab[NBR_OP])
 }
 
 /*****************************************************************/
+		//ft_new_symbole.c
+/*****************************************************************/
+t_symbole	*ft_new_symbole(char *sym, int add)
+{
+	t_symbole *ret;
+
+	ret = malloc(sizeof(*ret));
+	ret->data = ft_strdup(sym);
+	ret->add = add;
+	ret->used = F;
+	ret->next = NULL;
+	return (ret);
+}
+
+/*****************************************************************/
+		//ft_is_in_symbole.c
+/*****************************************************************/
+int	ft_is_in_symbole(char *symbole, t_symbole *list)
+{
+	while (list)
+	{
+//	ft_printf("<%s>\n<%s>\n\n", symbole, list->data);
+		if (!ft_strcmp(list->data, symbole))
+			return (list->add);
+		list = list->next;
+	}
+	return (-1);
+}
+
+/*****************************************************************/
+		//ft_add_symbole.c
+/*****************************************************************/
+BOOL    ft_add_symbole(char *data, int add, t_symbole **list)
+{
+	t_symbole      *temp_node;
+	t_symbole      *pt_list;
+
+	if (!(temp_node = ft_new_symbole(data, add)))
+		return (F);
+	if ( ft_is_in_symbole(data, *list) > -1)
+		ft_printf("{yellow}warning, double declaration of"
+		" label %s{eoc}\n", data);
+	if (!(*list))
+		*list = temp_node;
+	else
+	{
+		pt_list = *list;
+		while (pt_list->next)
+			pt_list = pt_list->next;
+		pt_list->next = temp_node;
+	}
+	return (T);
+}
+
+/*****************************************************************/
+		//ft_dell_symbole.c
+/*****************************************************************/
+BOOL    ft_dell_symbole(t_symbole **to_free)
+{
+	if (to_free && *to_free)
+	{
+		ft_strdel(&(*to_free)->data);
+		free(*to_free);
+		*to_free = NULL;
+		return (T);
+	}
+	return (F);
+}
+
+/*****************************************************************/
+		//ft_dell_list_symbole.c
+/*****************************************************************/
+BOOL    ft_dell_list_symbole(t_symbole **to_free)
+{
+	t_symbole *pt;
+
+	if (!to_free || !(*to_free))
+		return (F);
+	pt = *to_free;
+	while (*to_free)
+	{
+		pt = *to_free;
+		*to_free = (*to_free)->next;
+		ft_dell_symbole(&pt);
+	}
+	*to_free = NULL;
+	return (T);
+}
+
+/*****************************************************************/
+		//ft_put_list_symbole.c
+/*****************************************************************/
+void	ft_put_list_symbole(t_symbole *list)
+{
+	ft_printf("|\t-----\t\t|\t-------\t|\t-----\t|\n");
+	ft_printf("|\tlabel\t\t|\taddress\t|\tused\t|\n");
+	ft_printf("|\t-----\t\t|\t-------\t|\t-----\t|\n");
+	while (list)
+	{
+		ft_printf("|\t%s\t\t|\t%d\t|\t %s\t|\n",
+		list->data, list->add, (list->used) ? "yes" : "no");
+		list = list->next;
+	}
+	ft_printf("|\t-----\t\t|\t-------\t|\t-----\t|\n");
+}
+
+/*****************************************************************/
 		//ft_translate_sc.c
 /*****************************************************************/
-void	init_symbole_tab(t_player *player)
+t_symbole	*init_symbole_tab(t_player *player)
 {
-	while (player->src)
+	t_instlist *sc;
+	t_symbole *symbole;
+	int add;
+
+	add = 0;
+	symbole = NULL;
+	sc = player->src;
+	while (sc)
 	{
-		ft_printf(player->src);
+		if (sc->data->label)
+			ft_add_symbole(sc->data->label, add, &symbole);
+		add += sc->data->size_inst;
+		sc = sc->next;
+	}
+	return (symbole);
+}
+
+/*****************************************************************/
+		//ft_set_used_label.c
+/*****************************************************************/
+void	ft_set_used_label(char *symbole, t_symbole *list)
+{
+	while (list)
+	{
+		if (!ft_strcmp(list->data, symbole))
+		{
+			list->used = T;
+			return ;
+		}
+		list = list->next;
 	}
 }
 
+/*****************************************************************/
+		//ft_check_for_label.c
+/*****************************************************************/
+void	handel_indirect_label(char *arg, t_symbole *symbole)
+{
+	if (ft_is_in_symbole(arg, symbole) > -1)
+		ft_set_used_label(arg , symbole);
+	else
+		ft_error_label(ERROR_LABEL_NOT_DECLARED, arg , 0, NULL);
+}
+
+void	handel_direct_label(char *arg, t_symbole *symbole)
+{
+	if (ft_is_in_symbole(arg, symbole) >-1)
+		ft_set_used_label(arg, symbole);
+	else
+		ft_error_label(ERROR_LABEL_NOT_DECLARED, arg , 0, NULL);
+}
+
+void	check_symbole_tab(t_symbole *symbole)
+{
+	while (symbole)
+	{
+		if (!symbole->used)
+		{
+			ft_printf("{yellow} warning label [%s]"
+			" declared but not used{eoc}\n", symbole->data);
+		}
+		symbole = symbole->next;
+	}
+}
+
+void	ft_check_for_label(t_symbole *symbole, t_instlist *src)
+{
+	char *arg;
+	t_charlist *args;
+	t_instlist *pt;
+
+	pt = src;
+	while (pt)
+	{
+		args = pt->data->param;
+		while (args)
+		{
+			arg = args->data;
+			if (arg[0] == LABEL_CHAR && ft_is_label(arg + 1))
+				handel_indirect_label(arg + 1, symbole);
+			if  (arg[0] == DIRECT_CHAR && arg[1] == LABEL_CHAR
+				&& ft_is_label(arg + 2))
+				handel_direct_label(arg + 2, symbole);
+			args = args->next;
+		}
+		pt = pt->next;
+	}
+	check_symbole_tab(symbole);
+}
+
+/*****************************************************************/
+		//ft_translate.c
+/*****************************************************************/
 void	ft_translate(t_player *player, t_op *op_tab[NBR_OP])
 {
-//	ft_put_player(player);
+	t_symbole *symbole;
 
-	init_symole_tab(player);
+	symbole = init_symbole_tab(player);
+//	ft_put_list_symbole(symbole);
+	ft_check_for_label(symbole, player->src);
+//	ft_put_list_symbole(symbole);
 
-//	ft_put_size_label(op_tab);
-//	ft_put_desc_param(op_tab);
-//	ft_put_size_label(op_tab);
+	
+
+	ft_dell_list_symbole(&symbole);
+		ft_put_player(player);
+
 	(void)op_tab;
 }
 

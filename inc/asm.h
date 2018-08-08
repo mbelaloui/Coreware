@@ -36,6 +36,7 @@
 # define ERROR_BAD_ARG			-18
 # define ERROR_TYPE_ARG			-18
 # define ERROR_INSTRUCTION		-19
+# define ERROR_LABEL_NOT_DECLARED	-20
 
 
 
@@ -91,6 +92,14 @@ typedef	struct		s_list_inst
 	t_inst		*data;
 	struct s_list_inst	*next;
 }			t_instlist;
+
+typedef struct			s_symbole
+{
+	char			*data;
+	int			add;
+	BOOL			used;
+	struct s_symbole	*next;
+}				t_symbole;
 
 typedef struct		s_player
 {
