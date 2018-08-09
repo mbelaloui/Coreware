@@ -1,0 +1,821 @@
+[33m warning label [tir] declared but not used[0m
+inst operation = <[31mlive[0m>  code = 1 [01]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 4	
+inst operation = <[31mld[0m>  code = 2 [02]
+need desc oui
+desc args = [32m10010000 [33m90 [31m 144[0m
+size arg 1 = 4	size arg 2 = 1	
+inst operation = <[31mld[0m>  code = 2 [02]
+need desc oui
+desc args = [32m10010000 [33m90 [31m 144[0m
+size arg 1 = 4	size arg 2 = 1	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31msti[0m>  code = 11 [0b]
+need desc oui
+desc args = [32m01101000 [33m68 [31m 104[0m
+size arg 1 = 1	size arg 2 = 2	size arg 3 = 2	
+inst operation = <[31mld[0m>  code = 2 [02]
+need desc oui
+desc args = [32m10010000 [33m90 [31m 144[0m
+size arg 1 = 4	size arg 2 = 1	
+inst operation = <[31mld[0m>  code = 2 [02]
+need desc oui
+desc args = [32m10010000 [33m90 [31m 144[0m
+size arg 1 = 4	size arg 2 = 1	
+inst operation = <[31mld[0m>  code = 2 [02]
+need desc oui
+desc args = [32m10010000 [33m90 [31m 144[0m
+size arg 1 = 4	size arg 2 = 1	
+inst operation = <[31mld[0m>  code = 2 [02]
+need desc oui
+desc args = [32m10010000 [33m90 [31m 144[0m
+size arg 1 = 4	size arg 2 = 1	
+inst operation = <[31mlive[0m>  code = 1 [01]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 4	
+inst operation = <[31mfork[0m>  code = 12 [0c]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mlive[0m>  code = 1 [01]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 4	
+inst operation = <[31msub[0m>  code = 5 [05]
+need desc oui
+desc args = [32m01010100 [33m54 [31m 84[0m
+size arg 1 = 1	size arg 2 = 1	size arg 3 = 1	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mld[0m>  code = 2 [02]
+need desc oui
+desc args = [32m10010000 [33m90 [31m 144[0m
+size arg 1 = 4	size arg 2 = 1	
+inst operation = <[31mfork[0m>  code = 12 [0c]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mlive[0m>  code = 1 [01]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 4	
+inst operation = <[31msti[0m>  code = 11 [0b]
+need desc oui
+desc args = [32m01101000 [33m68 [31m 104[0m
+size arg 1 = 1	size arg 2 = 2	size arg 3 = 2	
+inst operation = <[31msti[0m>  code = 11 [0b]
+need desc oui
+desc args = [32m01101000 [33m68 [31m 104[0m
+size arg 1 = 1	size arg 2 = 2	size arg 3 = 2	
+inst operation = <[31msti[0m>  code = 11 [0b]
+need desc oui
+desc args = [32m01101000 [33m68 [31m 104[0m
+size arg 1 = 1	size arg 2 = 2	size arg 3 = 2	
+inst operation = <[31msti[0m>  code = 11 [0b]
+need desc oui
+desc args = [32m01101000 [33m68 [31m 104[0m
+size arg 1 = 1	size arg 2 = 2	size arg 3 = 2	
+inst operation = <[31mld[0m>  code = 2 [02]
+need desc oui
+desc args = [32m10010000 [33m90 [31m 144[0m
+size arg 1 = 4	size arg 2 = 1	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mld[0m>  code = 2 [02]
+need desc oui
+desc args = [32m10010000 [33m90 [31m 144[0m
+size arg 1 = 4	size arg 2 = 1	
+inst operation = <[31mld[0m>  code = 2 [02]
+need desc oui
+desc args = [32m10010000 [33m90 [31m 144[0m
+size arg 1 = 4	size arg 2 = 1	
+inst operation = <[31mld[0m>  code = 2 [02]
+need desc oui
+desc args = [32m10010000 [33m90 [31m 144[0m
+size arg 1 = 4	size arg 2 = 1	
+inst operation = <[31mlive[0m>  code = 1 [01]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 4	
+inst operation = <[31msti[0m>  code = 11 [0b]
+need desc oui
+desc args = [32m01100100 [33m64 [31m 100[0m
+size arg 1 = 1	size arg 2 = 2	size arg 3 = 1	
+inst operation = <[31msti[0m>  code = 11 [0b]
+need desc oui
+desc args = [32m01100100 [33m64 [31m 100[0m
+size arg 1 = 1	size arg 2 = 2	size arg 3 = 1	
+inst operation = <[31madd[0m>  code = 4 [04]
+need desc oui
+desc args = [32m01010100 [33m54 [31m 84[0m
+size arg 1 = 1	size arg 2 = 1	size arg 3 = 1	
+inst operation = <[31madd[0m>  code = 4 [04]
+need desc oui
+desc args = [32m01010100 [33m54 [31m 84[0m
+size arg 1 = 1	size arg 2 = 1	size arg 3 = 1	
+inst operation = <[31msub[0m>  code = 5 [05]
+need desc oui
+desc args = [32m01010100 [33m54 [31m 84[0m
+size arg 1 = 1	size arg 2 = 1	size arg 3 = 1	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mld[0m>  code = 2 [02]
+need desc oui
+desc args = [32m10010000 [33m90 [31m 144[0m
+size arg 1 = 4	size arg 2 = 1	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31msub[0m>  code = 5 [05]
+need desc oui
+desc args = [32m01010100 [33m54 [31m 84[0m
+size arg 1 = 1	size arg 2 = 1	size arg 3 = 1	
+inst operation = <[31madd[0m>  code = 4 [04]
+need desc oui
+desc args = [32m01010100 [33m54 [31m 84[0m
+size arg 1 = 1	size arg 2 = 1	size arg 3 = 1	
+inst operation = <[31mldi[0m>  code = 10 [0a]
+need desc oui
+desc args = [32m10010100 [33m94 [31m 148[0m
+size arg 1 = 2	size arg 2 = 1	size arg 3 = 1	
+inst operation = <[31msti[0m>  code = 11 [0b]
+need desc oui
+desc args = [32m01100100 [33m64 [31m 100[0m
+size arg 1 = 1	size arg 2 = 2	size arg 3 = 1	
+inst operation = <[31mlive[0m>  code = 1 [01]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 4	
+inst operation = <[31mld[0m>  code = 2 [02]
+need desc oui
+desc args = [32m10010000 [33m90 [31m 144[0m
+size arg 1 = 4	size arg 2 = 1	
+inst operation = <[31msti[0m>  code = 11 [0b]
+need desc oui
+desc args = [32m01100100 [33m64 [31m 100[0m
+size arg 1 = 1	size arg 2 = 2	size arg 3 = 1	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31msti[0m>  code = 11 [0b]
+need desc oui
+desc args = [32m01101000 [33m68 [31m 104[0m
+size arg 1 = 1	size arg 2 = 2	size arg 3 = 2	
+inst operation = <[31mldi[0m>  code = 10 [0a]
+need desc oui
+desc args = [32m10100100 [33ma4 [31m 164[0m
+size arg 1 = 2	size arg 2 = 2	size arg 3 = 1	
+inst operation = <[31msti[0m>  code = 11 [0b]
+need desc oui
+desc args = [32m01101000 [33m68 [31m 104[0m
+size arg 1 = 1	size arg 2 = 2	size arg 3 = 2	
+inst operation = <[31mldi[0m>  code = 10 [0a]
+need desc oui
+desc args = [32m10100100 [33ma4 [31m 164[0m
+size arg 1 = 2	size arg 2 = 2	size arg 3 = 1	
+inst operation = <[31msti[0m>  code = 11 [0b]
+need desc oui
+desc args = [32m01101000 [33m68 [31m 104[0m
+size arg 1 = 1	size arg 2 = 2	size arg 3 = 2	
+inst operation = <[31msti[0m>  code = 11 [0b]
+need desc oui
+desc args = [32m01101000 [33m68 [31m 104[0m
+size arg 1 = 1	size arg 2 = 2	size arg 3 = 2	
+inst operation = <[31msti[0m>  code = 11 [0b]
+need desc oui
+desc args = [32m01101000 [33m68 [31m 104[0m
+size arg 1 = 1	size arg 2 = 2	size arg 3 = 2	
+inst operation = <[31mld[0m>  code = 2 [02]
+need desc oui
+desc args = [32m10010000 [33m90 [31m 144[0m
+size arg 1 = 4	size arg 2 = 1	
+inst operation = <[31mld[0m>  code = 2 [02]
+need desc oui
+desc args = [32m10010000 [33m90 [31m 144[0m
+size arg 1 = 4	size arg 2 = 1	
+inst operation = <[31mld[0m>  code = 2 [02]
+need desc oui
+desc args = [32m10010000 [33m90 [31m 144[0m
+size arg 1 = 4	size arg 2 = 1	
+inst operation = <[31mld[0m>  code = 2 [02]
+need desc oui
+desc args = [32m10010000 [33m90 [31m 144[0m
+size arg 1 = 4	size arg 2 = 1	
+inst operation = <[31mlive[0m>  code = 1 [01]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 4	
+inst operation = <[31msub[0m>  code = 5 [05]
+need desc oui
+desc args = [32m01010100 [33m54 [31m 84[0m
+size arg 1 = 1	size arg 2 = 1	size arg 3 = 1	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mfork[0m>  code = 12 [0c]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mst[0m>  code = 3 [03]
+need desc oui
+desc args = [32m01010000 [33m50 [31m 80[0m
+size arg 1 = 1	size arg 2 = 1	
+inst operation = <[31mxor[0m>  code = 8 [08]
+need desc oui
+desc args = [32m01010100 [33m54 [31m 84[0m
+size arg 1 = 1	size arg 2 = 1	size arg 3 = 1	
+inst operation = <[31madd[0m>  code = 4 [04]
+need desc oui
+desc args = [32m01010100 [33m54 [31m 84[0m
+size arg 1 = 1	size arg 2 = 1	size arg 3 = 1	
+inst operation = <[31madd[0m>  code = 4 [04]
+need desc oui
+desc args = [32m01010100 [33m54 [31m 84[0m
+size arg 1 = 1	size arg 2 = 1	size arg 3 = 1	
+inst operation = <[31mld[0m>  code = 2 [02]
+need desc oui
+desc args = [32m10010000 [33m90 [31m 144[0m
+size arg 1 = 4	size arg 2 = 1	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31madd[0m>  code = 4 [04]
+need desc oui
+desc args = [32m01010100 [33m54 [31m 84[0m
+size arg 1 = 1	size arg 2 = 1	size arg 3 = 1	
+inst operation = <[31madd[0m>  code = 4 [04]
+need desc oui
+desc args = [32m01010100 [33m54 [31m 84[0m
+size arg 1 = 1	size arg 2 = 1	size arg 3 = 1	
+inst operation = <[31madd[0m>  code = 4 [04]
+need desc oui
+desc args = [32m01010100 [33m54 [31m 84[0m
+size arg 1 = 1	size arg 2 = 1	size arg 3 = 1	
+inst operation = <[31mld[0m>  code = 2 [02]
+need desc oui
+desc args = [32m10010000 [33m90 [31m 144[0m
+size arg 1 = 4	size arg 2 = 1	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mlive[0m>  code = 1 [01]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 4	
+inst operation = <[31mld[0m>  code = 2 [02]
+need desc oui
+desc args = [32m10010000 [33m90 [31m 144[0m
+size arg 1 = 4	size arg 2 = 1	
+inst operation = <[31msti[0m>  code = 11 [0b]
+need desc oui
+desc args = [32m01101000 [33m68 [31m 104[0m
+size arg 1 = 1	size arg 2 = 2	size arg 3 = 2	
+inst operation = <[31mld[0m>  code = 2 [02]
+need desc oui
+desc args = [32m10010000 [33m90 [31m 144[0m
+size arg 1 = 4	size arg 2 = 1	
+inst operation = <[31msti[0m>  code = 11 [0b]
+need desc oui
+desc args = [32m01101000 [33m68 [31m 104[0m
+size arg 1 = 1	size arg 2 = 2	size arg 3 = 2	
+inst operation = <[31mld[0m>  code = 2 [02]
+need desc oui
+desc args = [32m10010000 [33m90 [31m 144[0m
+size arg 1 = 4	size arg 2 = 1	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31msti[0m>  code = 11 [0b]
+need desc oui
+desc args = [32m01101000 [33m68 [31m 104[0m
+size arg 1 = 1	size arg 2 = 2	size arg 3 = 2	
+inst operation = <[31msti[0m>  code = 11 [0b]
+need desc oui
+desc args = [32m01101000 [33m68 [31m 104[0m
+size arg 1 = 1	size arg 2 = 2	size arg 3 = 2	
+inst operation = <[31msti[0m>  code = 11 [0b]
+need desc oui
+desc args = [32m01101000 [33m68 [31m 104[0m
+size arg 1 = 1	size arg 2 = 2	size arg 3 = 2	
+inst operation = <[31msti[0m>  code = 11 [0b]
+need desc oui
+desc args = [32m01101000 [33m68 [31m 104[0m
+size arg 1 = 1	size arg 2 = 2	size arg 3 = 2	
+inst operation = <[31msti[0m>  code = 11 [0b]
+need desc oui
+desc args = [32m01101000 [33m68 [31m 104[0m
+size arg 1 = 1	size arg 2 = 2	size arg 3 = 2	
+inst operation = <[31msti[0m>  code = 11 [0b]
+need desc oui
+desc args = [32m01101000 [33m68 [31m 104[0m
+size arg 1 = 1	size arg 2 = 2	size arg 3 = 2	
+inst operation = <[31msti[0m>  code = 11 [0b]
+need desc oui
+desc args = [32m01101000 [33m68 [31m 104[0m
+size arg 1 = 1	size arg 2 = 2	size arg 3 = 2	
+inst operation = <[31msti[0m>  code = 11 [0b]
+need desc oui
+desc args = [32m01101000 [33m68 [31m 104[0m
+size arg 1 = 1	size arg 2 = 2	size arg 3 = 2	
+inst operation = <[31msti[0m>  code = 11 [0b]
+need desc oui
+desc args = [32m01101000 [33m68 [31m 104[0m
+size arg 1 = 1	size arg 2 = 2	size arg 3 = 2	
+inst operation = <[31msti[0m>  code = 11 [0b]
+need desc oui
+desc args = [32m01101000 [33m68 [31m 104[0m
+size arg 1 = 1	size arg 2 = 2	size arg 3 = 2	
+inst operation = <[31msti[0m>  code = 11 [0b]
+need desc oui
+desc args = [32m01101000 [33m68 [31m 104[0m
+size arg 1 = 1	size arg 2 = 2	size arg 3 = 2	
+inst operation = <[31mlive[0m>  code = 1 [01]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 4	
+inst operation = <[31mlive[0m>  code = 1 [01]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 4	
+inst operation = <[31mlive[0m>  code = 1 [01]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 4	
+inst operation = <[31mlive[0m>  code = 1 [01]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 4	
+inst operation = <[31mlive[0m>  code = 1 [01]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 4	
+inst operation = <[31mlive[0m>  code = 1 [01]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 4	
+inst operation = <[31mlive[0m>  code = 1 [01]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 4	
+inst operation = <[31mlive[0m>  code = 1 [01]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 4	
+inst operation = <[31mlive[0m>  code = 1 [01]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 4	
+inst operation = <[31mlive[0m>  code = 1 [01]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 4	
+inst operation = <[31mlive[0m>  code = 1 [01]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 4	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mlive[0m>  code = 1 [01]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 4	
+inst operation = <[31mld[0m>  code = 2 [02]
+need desc oui
+desc args = [32m10010000 [33m90 [31m 144[0m
+size arg 1 = 4	size arg 2 = 1	
+inst operation = <[31msti[0m>  code = 11 [0b]
+need desc oui
+desc args = [32m01101000 [33m68 [31m 104[0m
+size arg 1 = 1	size arg 2 = 2	size arg 3 = 2	
+inst operation = <[31mor[0m>  code = 7 [07]
+need desc oui
+desc args = [32m01010100 [33m54 [31m 84[0m
+size arg 1 = 1	size arg 2 = 1	size arg 3 = 1	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31msub[0m>  code = 5 [05]
+need desc oui
+desc args = [32m01010100 [33m54 [31m 84[0m
+size arg 1 = 1	size arg 2 = 1	size arg 3 = 1	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mld[0m>  code = 2 [02]
+need desc oui
+desc args = [32m10010000 [33m90 [31m 144[0m
+size arg 1 = 4	size arg 2 = 1	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mld[0m>  code = 2 [02]
+need desc oui
+desc args = [32m10010000 [33m90 [31m 144[0m
+size arg 1 = 4	size arg 2 = 1	
+inst operation = <[31msti[0m>  code = 11 [0b]
+need desc oui
+desc args = [32m01101000 [33m68 [31m 104[0m
+size arg 1 = 1	size arg 2 = 2	size arg 3 = 2	
+inst operation = <[31mld[0m>  code = 2 [02]
+need desc oui
+desc args = [32m10010000 [33m90 [31m 144[0m
+size arg 1 = 4	size arg 2 = 1	
+inst operation = <[31msti[0m>  code = 11 [0b]
+need desc oui
+desc args = [32m01101000 [33m68 [31m 104[0m
+size arg 1 = 1	size arg 2 = 2	size arg 3 = 2	
+inst operation = <[31mld[0m>  code = 2 [02]
+need desc oui
+desc args = [32m10010000 [33m90 [31m 144[0m
+size arg 1 = 4	size arg 2 = 1	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mld[0m>  code = 2 [02]
+need desc oui
+desc args = [32m10010000 [33m90 [31m 144[0m
+size arg 1 = 4	size arg 2 = 1	
+inst operation = <[31msub[0m>  code = 5 [05]
+need desc oui
+desc args = [32m01010100 [33m54 [31m 84[0m
+size arg 1 = 1	size arg 2 = 1	size arg 3 = 1	
+inst operation = <[31mand[0m>  code = 6 [06]
+need desc oui
+desc args = [32m01100100 [33m64 [31m 100[0m
+size arg 1 = 1	size arg 2 = 4	size arg 3 = 1	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mld[0m>  code = 2 [02]
+need desc oui
+desc args = [32m10010000 [33m90 [31m 144[0m
+size arg 1 = 4	size arg 2 = 1	
+inst operation = <[31madd[0m>  code = 4 [04]
+need desc oui
+desc args = [32m01010100 [33m54 [31m 84[0m
+size arg 1 = 1	size arg 2 = 1	size arg 3 = 1	
+inst operation = <[31madd[0m>  code = 4 [04]
+need desc oui
+desc args = [32m01010100 [33m54 [31m 84[0m
+size arg 1 = 1	size arg 2 = 1	size arg 3 = 1	
+inst operation = <[31mld[0m>  code = 2 [02]
+need desc oui
+desc args = [32m10010000 [33m90 [31m 144[0m
+size arg 1 = 4	size arg 2 = 1	
+inst operation = <[31mld[0m>  code = 2 [02]
+need desc oui
+desc args = [32m10010000 [33m90 [31m 144[0m
+size arg 1 = 4	size arg 2 = 1	
+inst operation = <[31mldi[0m>  code = 10 [0a]
+need desc oui
+desc args = [32m10010100 [33m94 [31m 148[0m
+size arg 1 = 2	size arg 2 = 1	size arg 3 = 1	
+inst operation = <[31msti[0m>  code = 11 [0b]
+need desc oui
+desc args = [32m01010100 [33m54 [31m 84[0m
+size arg 1 = 1	size arg 2 = 1	size arg 3 = 1	
+inst operation = <[31msti[0m>  code = 11 [0b]
+need desc oui
+desc args = [32m01010100 [33m54 [31m 84[0m
+size arg 1 = 1	size arg 2 = 1	size arg 3 = 1	
+inst operation = <[31mlive[0m>  code = 1 [01]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 4	
+inst operation = <[31mld[0m>  code = 2 [02]
+need desc oui
+desc args = [32m10010000 [33m90 [31m 144[0m
+size arg 1 = 4	size arg 2 = 1	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mld[0m>  code = 2 [02]
+need desc oui
+desc args = [32m10010000 [33m90 [31m 144[0m
+size arg 1 = 4	size arg 2 = 1	
+inst operation = <[31mld[0m>  code = 2 [02]
+need desc oui
+desc args = [32m10010000 [33m90 [31m 144[0m
+size arg 1 = 4	size arg 2 = 1	
+inst operation = <[31mld[0m>  code = 2 [02]
+need desc oui
+desc args = [32m10010000 [33m90 [31m 144[0m
+size arg 1 = 4	size arg 2 = 1	
+inst operation = <[31mlive[0m>  code = 1 [01]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 4	
+inst operation = <[31msti[0m>  code = 11 [0b]
+need desc oui
+desc args = [32m01100100 [33m64 [31m 100[0m
+size arg 1 = 1	size arg 2 = 2	size arg 3 = 1	
+inst operation = <[31msti[0m>  code = 11 [0b]
+need desc oui
+desc args = [32m01100100 [33m64 [31m 100[0m
+size arg 1 = 1	size arg 2 = 2	size arg 3 = 1	
+inst operation = <[31madd[0m>  code = 4 [04]
+need desc oui
+desc args = [32m01010100 [33m54 [31m 84[0m
+size arg 1 = 1	size arg 2 = 1	size arg 3 = 1	
+inst operation = <[31madd[0m>  code = 4 [04]
+need desc oui
+desc args = [32m01010100 [33m54 [31m 84[0m
+size arg 1 = 1	size arg 2 = 1	size arg 3 = 1	
+inst operation = <[31msub[0m>  code = 5 [05]
+need desc oui
+desc args = [32m01010100 [33m54 [31m 84[0m
+size arg 1 = 1	size arg 2 = 1	size arg 3 = 1	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mld[0m>  code = 2 [02]
+need desc oui
+desc args = [32m10010000 [33m90 [31m 144[0m
+size arg 1 = 4	size arg 2 = 1	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mzjmp[0m>  code = 9 [09]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 2	
+inst operation = <[31mlive[0m>  code = 1 [01]
+need desc non
+desc args = [32m00000000 [33m0 [31m 0[0m
+size arg 1 = 4	

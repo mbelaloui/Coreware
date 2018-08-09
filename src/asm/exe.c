@@ -9,15 +9,15 @@ void	ft_put_inst(t_inst *inst)
 	inst->label, inst->opcode);
 	ft_put_list_charlist_join(inst->param);
 	ft_printf("]\n");
-	ft_printf("size op \t[%d]\n",inst->size[1]);
-	if (inst->size[3] != -1)
-		ft_printf("size arg 1 \t[%d]\n",inst->size[3]);
-	if (inst->size[4] != -1)
-		ft_printf("size arg 2 \t[%d]\n",inst->size[4]);
-	if (inst->size[5] != -1)
-		ft_printf("size arg 3 \t[%d]\n",inst->size[5]);
-	if (inst->size[2] != -1)
-		ft_printf("+ [%d] size description\n",inst->size[2]);
+	ft_printf("size op \t[%d]\n",inst->size[OPPR]);
+	if (inst->size[ARG1] != -1)
+		ft_printf("size arg 1 \t[%d]\n",inst->size[ARG1]);
+	if (inst->size[ARG2] != -1)
+		ft_printf("size arg 2 \t[%d]\n",inst->size[ARG2]);
+	if (inst->size[ARG3] != -1)
+		ft_printf("size arg 3 \t[%d]\n",inst->size[ARG3]);
+	if (inst->size[DESC] != -1)
+		ft_printf("+ [%d] size description\n",inst->size[DESC]);
 	ft_printf("size inst {green}%d{eoc}\n\n", inst->size_inst);
 }
 
@@ -589,9 +589,9 @@ BOOL	ft_is_indirect(char *arg)
 }
 
 /*****************************************************************/
-		//ft_is_registre.c
+		//ft_is_register.c
 /*****************************************************************/
-BOOL	ft_is_registre(char *arg)
+BOOL	ft_is_register(char *arg)
 {
 	int id_reg;
 
@@ -634,7 +634,7 @@ int	get_id_pos_indirect(int pos)
 		return (T_IND_P3);
 }
 
-int	get_id_pos_registre(int pos)
+int	get_id_pos_register(int pos)
 {
 	if (pos == 1)
 		return (T_REG_P1);
@@ -650,8 +650,8 @@ int	ft_get_type_args(char *arg, int pos)
 		return (get_id_pos_direct(pos + 1));	
 	if (ft_is_indirect(arg))//ft_printf("{yellow} INDIRECT {eoc}");
 		return (get_id_pos_indirect(pos + 1));	
-	if (ft_is_registre(arg))//ft_printf("{BLUE} registre {eoc}");
-		return (get_id_pos_registre(pos + 1));	
+	if (ft_is_register(arg))//ft_printf("{BLUE} registre {eoc}");
+		return (get_id_pos_register(pos + 1));	
 	return (0);
 }
 
@@ -705,7 +705,7 @@ int	get_size_arg(char *arg, t_op *op_tab[NBR_OP], char *name)
 		return (op->size_label);
 	if (ft_is_indirect(arg))
 		return (IND_SIZE);
-	if (ft_is_registre(arg))
+	if (ft_is_register(arg))
 		return (REG_SIZE);
 	return (-1);
 }
@@ -731,23 +731,25 @@ void	ft_get_size_inst(t_inst *inst, t_op *op_tab[NBR_OP])
 	int i;
 	t_charlist *pt;
 
-	inst->size[0] = (inst->label) ? 0 : -1;
+	inst->size[LABL] = (inst->label) ? 0 : -1;
 	if (inst->opcode)
 	{
-		inst->size[1] = 1;	
-		inst->size[2] = (ft_is_need_desc_op(inst->opcode, op_tab))
+		inst->size[OPPR] = 1;	
+		inst->size[DESC] = (ft_is_need_desc_op(inst->opcode, op_tab))
 		? 1 : -1;
 		i = 3;
 		pt = inst->param;
+//		ft_printf("\n************************\n inst %s \n", inst->opcode);
 		while (pt)
 		{
 			inst->size[i++] = get_size_arg(pt->data, op_tab,
 			inst->opcode);	
+//			ft_printf("\nvoila param size %d \n", inst->size[i - 1]);
 			pt = pt->next;
 		}
 	}
 	else
-		inst->size[1] = -1;
+		inst->size[OPPR] = -1;
 	inst->size_inst = get_size_inst(inst);
 }
 
@@ -1085,6 +1087,69 @@ void	ft_check_for_label(t_symbole *symbole, t_instlist *src)
 }
 
 /*****************************************************************/
+		//ft_get_desc_args.c
+/*****************************************************************/
+int		get_desc_arg(char *arg)
+{
+	if (!arg)
+		return (0);
+	if (ft_is_direct(arg))
+		return (DESC_DIR);
+	if (ft_is_indirect(arg))
+		return (DESC_IND);
+	if (ft_is_register(arg))
+		return (DESC_REG);
+
+		return (0);
+}
+
+int		ft_get_desc_args(t_charlist *param)
+{
+	t_charlist *pt;
+	int desc;
+	char *arg1;
+	char *arg2;
+
+	arg1 = NULL;
+	arg2 = NULL;
+	desc = 0;
+	pt = param;
+	arg1 = pt->data;
+	if (pt->next)
+	{
+		pt = pt->next;
+		arg2 = pt->data;
+		if (pt->next)
+		{
+			pt = pt->next;
+			desc = desc | get_desc_arg(pt->data);
+		}
+		desc = desc >> 2 | get_desc_arg(arg2);
+	}
+	desc = desc >> 2 | get_desc_arg(arg1);
+	return (desc);
+}
+
+/*****************************************************************/
+		//ft_get_size_bin_inst.c
+/*****************************************************************/
+int	ft_get_size_bin_inst(int size[SIZE_INST])
+{
+	int i;
+	int somme;
+	
+	i = 0;
+	somme = 0;
+	while (i < SIZE_INST)
+	{
+		if (size[i] != -1)
+			somme += size[i];
+		i++;
+	}
+	return (somme);
+}
+
+/*****************************************************************/
 		//ft_translate.c
 /*****************************************************************/
 t_symbole	*init_symbole_tab(t_player *player)
@@ -1106,43 +1171,43 @@ t_symbole	*init_symbole_tab(t_player *player)
 	return (symbole);
 }
 
-intmax_t	ft_get_size_bin_inst(int tab[SIZE_INST])
+char	*get_arg_bin(t_charlist *param)
 {
-	int i;
-	intmax_t somme;
-	
-	i = 0;
-	somme = 0;
-	while (i < SIZE_INST)
+	t_charlist *pt;
+
+	pt = param;
+	while (pt)
 	{
-		if (tab[i] != -1)
-			somme += tab[i];
-		i++;
+	//	if (inst->size[i] != -1)
+	//	ft_printf("size arg %d = %d\t", i - 2, inst->size[i]);
+		pt = pt->next;
 	}
-	return (somme);
+	return (0);
 }
 
 void	set_data(t_inst *inst, t_op *op_tab[NBR_OP])
 {
 	t_op *op;
+	int desc;
 
+	desc = 0;
 	op = ft_get_op(op_tab, inst->opcode);
-	ft_printf("inst operation = <%s>  code = %d [%.2x]\n",
-	inst->opcode, op->mnemonique, op->mnemonique);
-	ft_printf("need desc %s\n", (inst->size[2] != -1) ? "oui" : "non" );
+	ft_printf("inst operation = <{red}%s{eoc}>  code = [%.2x]\n",
+	inst->opcode, op->mnemonique);
+//	ft_printf("need desc %s\n", (inst->size[DESC] != -1) ? "oui" : "non" );
+	if (inst->size[DESC] != -1)
+		desc = ft_get_desc_args(inst->param);
+	ft_printf("desc args = {green}%.8b {Yellow}%x {red} %d{eoc}\n",
+	desc, desc, desc);
 
-	int i = 3;
-	while (i < SIZE_INST)
-	{
-		if (inst->size[i] != -1)
-		ft_printf("size arg %d = %d\n", i, inst->size[i] );
-		i++;
-	}
+	get_arg_bin(inst->param);
+
+	ft_printf("\n\n");
 }
 
-void	translate(t_instlist *src, t_op *op_tab[NBR_OP])
+void	run_translate(t_instlist *src, t_op *op_tab[NBR_OP])
 {
-	intmax_t size_inst;
+	int size_inst;
 	t_instlist *pt;
 
 	pt = src;
@@ -1169,7 +1234,7 @@ void	ft_translate(t_player *player, t_op *op_tab[NBR_OP])
 	ft_check_for_label(symbole, player->src);
 
 	
-	translate(player->src, op_tab);
+	run_translate(player->src, op_tab);
 
 //	ft_put_player(player);
 //	ft_put_list_symbole(symbole);

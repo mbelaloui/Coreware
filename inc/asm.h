@@ -38,8 +38,6 @@
 # define ERROR_INSTRUCTION		-19
 # define ERROR_LABEL_NOT_DECLARED	-20
 
-
-
 # define T_REG_P1				0x1
 # define T_DIR_P1				0x2
 # define T_IND_P1				0x4
@@ -76,6 +74,12 @@
 # define FORMAT_OUTPUT				".cor"
 # define SIZE_INST				6
 
+# define LABL					0
+# define OPPR					1
+# define DESC					2
+# define ARG1					3
+# define ARG2					4
+# define ARG3					5
 
 typedef	struct		s_instruction
 {

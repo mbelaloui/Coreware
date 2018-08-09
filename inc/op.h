@@ -46,6 +46,11 @@
 # define T_IND					4
 # define T_LAB					8
 
+
+# define DESC_REG				0x40
+# define DESC_DIR				0x80
+# define DESC_IND				0xC0
+
 # define PROG_NAME_LENGTH		(128)
 # define COMMENT_LENGTH			(2048)
 # define COREWAR_EXEC_MAGIC		0xea83f3
