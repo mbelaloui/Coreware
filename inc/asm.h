@@ -38,6 +38,9 @@
 # define ERROR_INSTRUCTION		-19
 # define ERROR_LABEL_NOT_DECLARED	-20
 
+# define IND_REF			255255
+# define DIR_REF			255255255255
+
 # define T_REG_P1				0x1
 # define T_DIR_P1				0x2
 # define T_IND_P1				0x4
@@ -89,6 +92,7 @@ typedef	struct		s_instruction
 	BOOL		desc;
 	int		size[SIZE_INST];
 	int		size_inst;
+	int		position;
 	t_charlist	*param;
 }			t_inst;
 

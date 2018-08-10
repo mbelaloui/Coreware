@@ -5,6 +5,7 @@
 /*****************************************************************/
 void	ft_put_inst(t_inst *inst)
 {
+	ft_printf("address inst{green}%d{eoc}\n\n", inst->position);
 	ft_printf("label : [%s]\nop  {%s}  args [",
 	inst->label, inst->opcode);
 	ft_put_list_charlist_join(inst->param);
@@ -252,6 +253,7 @@ t_inst	*ft_new_inst(char *label, char *op, t_charlist *args)
 		i++;	
 	}
 	ret->add = NULL;
+	ret->position = 0;
 	/*i = 0;
 	while (i < 6)
 	{
@@ -545,7 +547,7 @@ int	ft_extraire_head_info(char *str_file, t_player *player)
 }
 
 /*****************************************************************/
-		//ft_is_label_arg.c
+		//ft_is_label.c
 /*****************************************************************/
 BOOL	ft_is_label(char *str)
 {
@@ -862,7 +864,9 @@ void	ft_extraire_source(t_charlist *sc, t_player *player, t_op *op_tab[NBR_OP])
 	char *op;
 	t_instlist *src;
 	t_inst *inst;
+	int	add_inst;
 
+	add_inst = 0;
 	src = NULL;
 	op = NULL;
 	label = NULL;
@@ -874,6 +878,8 @@ void	ft_extraire_source(t_charlist *sc, t_player *player, t_op *op_tab[NBR_OP])
 			if (inst == NULL)
 				ft_error_inst(ERROR_INSTRUCTION);
 			ft_get_size_inst(inst, op_tab);
+			inst->position = add_inst;
+			add_inst += inst->size_inst;
 			ft_add_end_instlist(inst, &src);
 		}
 		sc = sc->next;
@@ -1171,41 +1177,104 @@ t_symbole	*init_symbole_tab(t_player *player)
 	return (symbole);
 }
 
-char	*get_arg_bin(t_charlist *param)
+char	*get_arg_bin(t_inst *inst, t_symbole *symbole)
 {
 	t_charlist *pt;
 
-	pt = param;
+	pt = inst->param;
+	int i = ARG1;
+	int add_label;
+	intmax_t add_out;
 	while (pt)
 	{
-	//	if (inst->size[i] != -1)
-	//	ft_printf("size arg %d = %d\t", i - 2, inst->size[i]);
+		//if (inst->size[i] != -1)
+		ft_printf("arg [%s] size = %d\n", pt->data, inst->size[i]);
+
+		char *arg = pt->data;
+
+		if (ft_is_direct(arg))// && !ft_is_label(arg))
+		{
+			
+			if ((add_label = ft_is_in_symbole(arg + 2, symbole)) >-1)
+			{
+//			ft_printf(" add_label = %d inst_position %d\n",
+//			add_label, inst->position);
+				add_out = add_label - inst->position;
+				if (add_out < 0)
+				{
+				//	add_out++;
+//			ft_printf(" size %d ", inst->size[i]);
+			ft_printf(" dir_ref %ld + add_out %d = %ld\n\n",
+			DIR_REF, add_out, DIR_REF + add_out);
+
+				if (inst->size[i] == IND_SIZE)
+					add_out = IND_REF + add_out;
+				else if (inst->size[i] == DIR_SIZE)
+					add_out = DIR_REF + add_out;
+				}
+			//if (ft_is_label(arg + 2))
+	ft_printf("\t{blue}label dir{eoc} -%s- add %d  diff[%ld]\n",arg+2,
+			add_label, add_out);
+			
+			}
+			else
+		ft_printf("\tdirect *%d*\n",ft_atoi(arg + 1));
+		}
+		else if (ft_is_indirect(arg))
+		{
+			if ((add_label = ft_is_in_symbole(arg + 1, symbole)) >-1)
+			{
+
+				add_out = add_label - inst->position;
+				if (add_out < 0)
+				{
+					add_out++;
+				if (inst->size[i] == IND_SIZE)
+					add_out = IND_REF + add_out;
+				else if (inst->size[i] == DIR_SIZE)
+					add_out = DIR_REF + add_out;
+				}
+
+
+	ft_printf("\t{blue}label ind {eoc} -%s- add %d  diff[%ld]\n",arg+1,
+			add_label, add_out);
+		
+		}else
+		ft_printf("\tindirect <%d>\n",ft_atoi(arg ));
+		}
+		else if (ft_is_register(arg))
+			ft_printf("\tregister [%d]\n",ft_atoi(arg+1 ));
+						//return (DESC_DIR);
 		pt = pt->next;
+		i++;
 	}
 	return (0);
 }
 
-void	set_data(t_inst *inst, t_op *op_tab[NBR_OP])
+void	set_data(t_inst *inst, t_op *op_tab[NBR_OP], t_symbole *symbole)
 {
 	t_op *op;
 	int desc;
 
 	desc = 0;
 	op = ft_get_op(op_tab, inst->opcode);
+	ft_printf("inst position  = <{red}%d{eoc}>\n", inst->position);
 	ft_printf("inst operation = <{red}%s{eoc}>  code = [%.2x]\n",
 	inst->opcode, op->mnemonique);
-//	ft_printf("need desc %s\n", (inst->size[DESC] != -1) ? "oui" : "non" );
+//ft_printf("need desc %s\n", (inst->size[DESC] != -1) ? "oui" : "non" );
 	if (inst->size[DESC] != -1)
-		desc = ft_get_desc_args(inst->param);
+	{	desc = ft_get_desc_args(inst->param);
 	ft_printf("desc args = {green}%.8b {Yellow}%x {red} %d{eoc}\n",
 	desc, desc, desc);
+	}else
+		ft_printf("no desc args\n");
 
-	get_arg_bin(inst->param);
+	get_arg_bin(inst, symbole);
 
 	ft_printf("\n\n");
 }
 
-void	run_translate(t_instlist *src, t_op *op_tab[NBR_OP])
+void	run_translate(t_instlist *src, t_op *op_tab[NBR_OP], t_symbole *symbole)
 {
 	int size_inst;
 	t_instlist *pt;
@@ -1216,9 +1285,10 @@ void	run_translate(t_instlist *src, t_op *op_tab[NBR_OP])
 	{
 		size_inst = ft_get_size_bin_inst(pt->data->size);
 		pt->data->add = ft_strnew(size_inst);
-		set_data(pt->data, op_tab);
+		set_data(pt->data, op_tab, symbole);
 		
 	//	ft_printf("size inst %d = %ld\n", i, size_inst);
+
 		i++;
 		pt = pt->next;
 	}
@@ -1230,11 +1300,10 @@ void	ft_translate(t_player *player, t_op *op_tab[NBR_OP])
 	t_symbole *symbole;
 
 	symbole = init_symbole_tab(player);
-//	ft_put_list_symbole(symbole);
+	ft_put_list_symbole(symbole);
 	ft_check_for_label(symbole, player->src);
 
-	
-	run_translate(player->src, op_tab);
+	run_translate(player->src, op_tab, symbole);
 
 //	ft_put_player(player);
 //	ft_put_list_symbole(symbole);
@@ -1289,5 +1358,8 @@ int	main(int argc, char **argv)
 		run(file, url_output);
 		ft_dell_list_charlist(&file);
 	}
+	(void)argc;
+	(void)argv;
+
 	return (0);
 }

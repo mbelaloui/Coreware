@@ -25,6 +25,8 @@
 # define IND_SIZE				2
 # define DIR_SIZE				4
 
+
+
 # define REG_CODE				1
 # define DIR_CODE				2
 # define IND_CODE				3
