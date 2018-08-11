@@ -88,7 +88,9 @@ typedef	struct		s_instruction
 {
 	char		*label;
 	char		*opcode;
-	char		*add;
+	int		*add;
+
+
 	BOOL		desc;
 	int		size[SIZE_INST];
 	int		size_inst;
