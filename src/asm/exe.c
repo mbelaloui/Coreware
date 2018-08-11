@@ -252,7 +252,7 @@ t_inst	*ft_new_inst(char *label, char *op, t_charlist *args)
 		ret->size[i] = -1;
 		i++;	
 	}
-//	ret->add = NULL;
+	ret->add = NULL;
 	ret->position = 0;
 /*	i = 0;
 	while (i < 6)
@@ -1248,6 +1248,92 @@ void	ft_get_arg_translat(t_inst *inst, t_symbole *symbole, int *add, int i)
 }
 
 /*****************************************************************/
+		//ft_put_source_hexa.c
+/*****************************************************************/
+void	put_source_hexa_bis1(int i, t_inst *data)
+{
+	int size;
+	unsigned int *ret;
+	t_charlist *arg;
+
+	arg = data->param;
+	while (arg)
+	{
+		size = data->size[i];
+		ret = ft_int_to_byts(data->add[i - 2], size);
+		if (size == REG_SIZE)
+			ft_printf("[{green}%.2hx{eoc}]\t", ret[0]);
+		else if (size == IND_SIZE)
+			ft_printf("[{red}%.2hx{eoc}][{red}%.2hx{eoc}]\t"
+				, ret[0], ret[1]);
+		else if (size == DIR_SIZE)
+			ft_printf("[{blue}%.2hx{eoc}][{blue}%.2hx{eoc}]"
+			" [{blue}%.2hx{eoc}][{blue}%.2hx{eoc}]\t"
+				,ret[0],ret[1],ret[2],ret[3]);
+		free(ret);
+		i++;
+		arg = arg->next;
+	}
+}
+
+void	put_source_hexa_bis2(int i, t_inst *data)
+{
+	t_charlist *arg;
+	int size;
+	unsigned int *ret;
+	
+	arg = data->param;
+	while (arg)
+	{
+		size = data->size[i + 1];
+		ret = ft_int_to_byts(data->add[i], size);
+		if (size == 1)
+			ft_printf("[{green}%.2hx{eoc}]\t",ret[0]);
+		else if (size == 2)
+			ft_printf("[{red}%.2hx{eoc}][{red}%.2hx{eoc}]\t"
+			,ret[0],ret[1]);
+		else
+		{
+			ft_printf("[{blue}%.2hx{eoc}][{blue}%.2hx{eoc}]"
+			" [{blue}%.2hx{eoc}][{blue}%.2hx{eoc}]\t"
+				,ret[0],ret[1],ret[2],ret[3]);
+		}
+		free(ret);
+		i++;
+		arg = arg->next;
+	}
+}
+
+void	ft_put_source_hexa(t_player *player)
+{
+	t_instlist *pt;
+	int i;
+
+	pt = player->src;
+	ft_printf(" mnemonique\tdescription\targ1\t\trg2\t\targ3\n     ");
+	while (pt)
+	{
+		if (pt->data->opcode)
+		{
+			i = 0;
+		ft_printf("%.2x\t\t", pt->data->add[i++]);
+		if (pt->data->size[DESC] == -1)
+		{
+			ft_printf("\t\t");	
+			put_source_hexa_bis1(i + 2, pt->data);
+		}
+		else
+		{
+			ft_printf("%x\t\t", pt->data->add[i++]);
+			put_source_hexa_bis2(i, pt->data);
+		}
+		ft_printf("\n     ");
+		}
+		pt = pt->next;
+	}
+}
+
+/*****************************************************************/
 		//ft_translate.c
 /*****************************************************************/
 void	set_data(t_inst *inst, t_op *op_tab[NBR_OP], t_symbole *symbole)
@@ -1276,12 +1362,14 @@ void	run_translate(t_instlist *src, t_op *op_tab[NBR_OP], t_symbole *symbole)
 	pt = src;
 	while (pt)
 	{
-		ft_get_size_bin_inst(pt->data->size);
-		set_data(pt->data, op_tab, symbole);
+		if (pt->data->opcode)
+		{
+			ft_get_size_bin_inst(pt->data->size);
+			set_data(pt->data, op_tab, symbole);
+		}
 		pt = pt->next;
 	}
 }
-
 void	ft_translate(t_player *player, t_op *op_tab[NBR_OP])
 {
 	t_symbole *symbole;
@@ -1289,99 +1377,11 @@ void	ft_translate(t_player *player, t_op *op_tab[NBR_OP])
 	symbole = ft_init_symbole_tab(player);
 //	ft_put_list_symbole(symbole);
 	ft_check_for_label(symbole, player->src);
-
 	run_translate(player->src, op_tab, symbole);
-
-	t_instlist *pt;
-
-	pt = player->src;
-
-	ft_printf("/ *********************************************** \\\n");
-
-	pt = player->src;
-	ft_printf(" mnemonique\tdescription\targ1\t\trg2\t\targ3\n     ");
-	while (pt)
-	{
-		int i = 0;
-		ft_printf("%.2x\t\t", pt->data->add[i++]);
-	//	i++;
-		if (pt->data->size[DESC] == -1)
-			ft_printf("\t\t");	
-		else
-			ft_printf("%x\t\t", pt->data->add[i++]);
-		if (pt->data->size[DESC] == -1)
-		{
-//			ft_printf("{green}%d{eoc}\t", pt->data->size[i]);
-//			ft_printf("{red}****{eoc}");
-			i += 2;
-//			ft_printf("{green}%d{eoc}\t", pt->data->size[i]);
-		t_charlist *t;
-		t = pt->data->param;
-		while (t)
-		{
-	//	ft_printf("{blue}size{eoc} [%d] ",size);
-		int size;
-		size = pt->data->size[i];
-		unsigned int *ret = ft_int_to_byts(pt->data->add[i-2], size);
-//	ft_printf(" val = %ld  ", pt->data->add[i - 2]);	
-		if (size == 1)
-			ft_printf("[{green}%.2hx{eoc}]\t",ret[0]);
-		else if (size == 2)
-			ft_printf("[{red}%.2hx{eoc}][{red}%.2hx{eoc}]\t"
-			,ret[0],ret[1]);
-		else
-		{
-//			ft_printf("i %d val = %d  ",i, pt->data->add[i -1]);
-			ft_printf("[{blue}%.2hx{eoc}][{blue}%.2hx{eoc}] [{blue}%.2hx{eoc}][{blue}%.2hx{eoc}]\t"
-			,ret[0],ret[1],ret[2],ret[3]);
-		}
-
-		free(ret);
-		i++;
-
-//			ft_printf("%d\t\t", pt->data->add[i++]);
-			t = t->next;
-		}
-		}
-		else
-		{
-	t_charlist *t;
-		t = pt->data->param;
-		while (t)
-		{
-	//	ft_printf("{blue}size{eoc} [%d] ",size);
-		int size;
-		size = pt->data->size[i + 1];
-		unsigned int *ret = ft_int_to_byts(pt->data->add[i], size);
-//	ft_printf(" val = %ld  ", pt->data->add[i ]);	
-		if (size == 1)
-			ft_printf("[{green}%.2hx{eoc}]\t",ret[0]);
-		else if (size == 2)
-			ft_printf("[{red}%.2hx{eoc}][{red}%.2hx{eoc}]\t"
-			,ret[0],ret[1]);
-		else
-		{
-//			ft_printf("i %d val = %d  ",i, pt->data->add[i -1]);
-			ft_printf("[{blue}%.2hx{eoc}][{blue}%.2hx{eoc}] [{blue}%.2hx{eoc}][{blue}%.2hx{eoc}]\t"
-			,ret[0],ret[1],ret[2],ret[3]);
-		}
-
-		free(ret);
-		i++;
-
-//			ft_printf("%d\t\t", pt->data->add[i++]);
-			t = t->next;
-		}
-		}
-			ft_printf("\n     ");
-		pt = pt->next;
-	}
-
+	ft_put_source_hexa(player);
 //	ft_put_player(player);
 //	ft_put_list_symbole(symbole);
-
 	ft_dell_list_symbole(&symbole);
-	(void)op_tab;
 }
 
 /*****************************************************************/

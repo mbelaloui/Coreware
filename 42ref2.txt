@@ -1,5 +1,4 @@
 [33m warning label [tir] declared but not used[0m
-/ *********************************************** \
  mnemonique	description	arg1		rg2		arg3
      01				[[34m00[0m][[34m00[0m] [[34m00[0m][[34m2a[0m]	
      02		90		[[34m00[0m][[34m00[0m] [[34m00[0m][[34m00[0m]	[[32m05[0m]	
