@@ -1161,34 +1161,31 @@ unsigned int     *ft_int_to_byts(int val, int size)
 {
 	unsigned int *ret;
 
-	ret = NULL;
-	if (size == 4)
+	if (!(ret = malloc(sizeof(int) * size)))
+		return (NULL);
+	if (size == DIR_SIZE)
 	{
-		ret = malloc(sizeof(int) * 4);
 		ret[3] = (((unsigned int)val) << 24) >> 24;
 		ret[2] = (((unsigned int)val) << 16) >> 24;
 		ret[1] = (((unsigned int)val) << 8) >> 24;
 		ret[0] = ((unsigned int)val) >> 24;
 	}
-	else if (size == 2)
+	else if (size == IND_SIZE)
 	{
-		ret = malloc(sizeof(int) * 2);
 		ret[1] = ((unsigned int)val << 24) >> 24;
 		ret[0] = (((unsigned int)val) << 16) >> 24;
-	}else if (size == 1)
-	{
-		ret = malloc(sizeof(int) * 1);
-		ret[0] = ((unsigned int)val);
 	}
+	else if (size == REG_SIZE)
+		ret[0] = ((unsigned int)val);
 	else 
 		ret = NULL;
 	return (ret);
 }
 
 /*****************************************************************/
-		//ft_translate.c
+		//ft_init_symbole_tab.c
 /*****************************************************************/
-t_symbole	*init_symbole_tab(t_player *player)
+t_symbole	*ft_init_symbole_tab(t_player *player)
 {
 	t_instlist *sc;
 	t_symbole *symbole;
@@ -1207,33 +1204,42 @@ t_symbole	*init_symbole_tab(t_player *player)
 	return (symbole);
 }
 
-void	get_arg_translat(t_inst *inst, t_symbole *symbole, int *add, int in)
+/*****************************************************************/
+		//ft_get_arg_translat.c
+/*****************************************************************/
+
+int	get_direct(t_inst *inst, char *dir, t_symbole *symbole)
+{
+	int add_label;
+
+	if ((add_label = ft_is_in_symbole(dir + 1, symbole)) >-1)
+		return (add_label - inst->position);
+	else
+		return (ft_atoi(dir));
+}
+
+int	get_indirect(t_inst *inst, char *ind, t_symbole *symbole)
+{
+	int add_label;
+
+	if ((add_label = ft_is_in_symbole(ind + 1, symbole)) >-1)
+		return (add_label - inst->position);
+	else 
+		return (ft_atoi(ind));
+}
+
+void	ft_get_arg_translat(t_inst *inst, t_symbole *symbole, int *add, int i)
 {
 	intmax_t add_out;
 	t_charlist *pt;
-	int add_label;
-	int i;
 
-	i = in;
 	pt = inst->param;
 	while (pt)
 	{
 		if (ft_is_direct(pt->data))
-		{
-			if ((add_label = ft_is_in_symbole(
-				pt->data + 2, symbole)) >-1)
-				add_out = add_label - inst->position;
-			else
-				add_out = ft_atoi(pt->data + 1);
-		}
+			add_out = get_direct(inst, pt->data + 1, symbole);
 		else if (ft_is_indirect(pt->data))
-		{
-			if ((add_label = ft_is_in_symbole(
-				pt->data + 1, symbole)) >-1)
-				add_out = add_label - inst->position;
-			else 
-				add_out = ft_atoi(pt->data);
-		}
+			add_out = get_indirect(inst, pt->data, symbole);
 		else if (ft_is_register(pt->data))
 			add_out = ft_atoi(pt->data + 1);
 		add[i++] = add_out;
@@ -1241,7 +1247,9 @@ void	get_arg_translat(t_inst *inst, t_symbole *symbole, int *add, int in)
 	}
 }
 
-
+/*****************************************************************/
+		//ft_translate.c
+/*****************************************************************/
 void	set_data(t_inst *inst, t_op *op_tab[NBR_OP], t_symbole *symbole)
 {
 	t_op *op;
@@ -1249,28 +1257,16 @@ void	set_data(t_inst *inst, t_op *op_tab[NBR_OP], t_symbole *symbole)
 	int i;
 
 	i = 0;
-	inst->add = malloc(sizeof(int) * inst->size_inst);
 	desc = 0;
+	inst->add = malloc(sizeof(int) * inst->size_inst);
 	op = ft_get_op(op_tab, inst->opcode);
-//	ft_printf("inst add position  = <{red}%d{eoc}>\n", inst->position);
-	inst->add[i] = inst->position;
-//	ft_printf("inst operation = <{red}%s{eoc}>  code = [%.2d]\n",
-//	inst->opcode, op->mnemonique);
-	
-	inst->add[i] = op->mnemonique;
-	i++;
+	inst->add[i++] = op->mnemonique;
 	if (inst->size[DESC] != -1)
 	{
 		desc = ft_get_desc_args(inst->param);
-//	ft_printf("desc args = {green}%.8b {Yellow}%x {red} %d{eoc}\n",
-//		desc, desc, desc);
-		inst->add[i] = desc;
-		i++;
+		inst->add[i++] = desc;
 	}
-/*	else
-		ft_printf("no desc args\n");
-*/	get_arg_translat(inst, symbole, inst->add, i);
-	ft_printf("\n\n");
+	ft_get_arg_translat(inst, symbole, inst->add, i);
 }
 
 void	run_translate(t_instlist *src, t_op *op_tab[NBR_OP], t_symbole *symbole)
@@ -1284,14 +1280,13 @@ void	run_translate(t_instlist *src, t_op *op_tab[NBR_OP], t_symbole *symbole)
 		set_data(pt->data, op_tab, symbole);
 		pt = pt->next;
 	}
-	(void)src;
 }
 
 void	ft_translate(t_player *player, t_op *op_tab[NBR_OP])
 {
 	t_symbole *symbole;
 
-	symbole = init_symbole_tab(player);
+	symbole = ft_init_symbole_tab(player);
 //	ft_put_list_symbole(symbole);
 	ft_check_for_label(symbole, player->src);
 
@@ -1300,27 +1295,7 @@ void	ft_translate(t_player *player, t_op *op_tab[NBR_OP])
 	t_instlist *pt;
 
 	pt = player->src;
-/*	ft_printf(" mnemonique\tdescription\targ1\t\trg2\t\targ3\n\t");
-	while (pt)
-	{
-		int i = 0;
-		ft_printf("%d\t", pt->data->add[i++]);
-	//	i++;
-		if (pt->data->size[DESC] == -1)
-			ft_printf("\t\t");	
-		else
-			ft_printf("%d\t\t", pt->data->add[i++]);
-		t_charlist *t;
-		t = pt->data->param;
-		while (t)
-		{
-			ft_printf("%d\t\t", pt->data->add[i++]);
-			t = t->next;
-		}
-		ft_printf("\n\t");
-		pt = pt->next;
-	}
-*/	
+
 	ft_printf("/ *********************************************** \\\n");
 
 	pt = player->src;
@@ -1489,3 +1464,65 @@ ft_printf("val = [%hd][%hd] [%hd][%hd] \n",ret[0],ret[1],ret[2],ret[3]);
 */
 	return (0);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*	ft_printf(" mnemonique\tdescription\targ1\t\trg2\t\targ3\n\t");
+	while (pt)
+	{
+		int i = 0;
+		ft_printf("%d\t", pt->data->add[i++]);
+	//	i++;
+		if (pt->data->size[DESC] == -1)
+			ft_printf("\t\t");	
+		else
+			ft_printf("%d\t\t", pt->data->add[i++]);
+		t_charlist *t;
+		t = pt->data->param;
+		while (t)
+		{
+			ft_printf("%d\t\t", pt->data->add[i++]);
+			t = t->next;
+		}
+		ft_printf("\n\t");
+		pt = pt->next;
+	}
+*/	
