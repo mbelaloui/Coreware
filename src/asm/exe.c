@@ -1156,6 +1156,31 @@ int	ft_get_size_bin_inst(int size[SIZE_INST])
 }
 
 /*****************************************************************/
+		//ft_int_to_byts.c
+/*****************************************************************/
+unsigned int     *ft_int_to_byts(int val, int size)
+{
+	unsigned int *ret;
+
+	ret = NULL;
+	if (size == 4)
+	{
+		ret = malloc(sizeof(int) * 4);
+		ret[3] = (((unsigned int)val) << 24) >> 24;
+		ret[2] = (((unsigned int)val) << 16) >> 24;
+		ret[1] = (((unsigned int)val) << 8) >> 24;
+		ret[0] = ((unsigned int)val) >> 24;
+	}
+	else if (size == 2)
+	{
+		ret = malloc(sizeof(int) * 2);
+		ret[1] = ((unsigned int)val << 24) >> 24;
+		ret[0] = (((unsigned int)val) << 16) >> 24;
+	}
+	return (ret);
+}
+
+/*****************************************************************/
 		//ft_translate.c
 /*****************************************************************/
 t_symbole	*init_symbole_tab(t_player *player)
@@ -1177,6 +1202,7 @@ t_symbole	*init_symbole_tab(t_player *player)
 	return (symbole);
 }
 
+	
 char	*get_arg_bin(t_inst *inst, t_symbole *symbole)
 {
 	t_charlist *pt;
@@ -1185,9 +1211,10 @@ char	*get_arg_bin(t_inst *inst, t_symbole *symbole)
 	int i = ARG1;
 	int add_label;
 	intmax_t add_out;
+	unsigned int *ret;
+
 	while (pt)
 	{
-		//if (inst->size[i] != -1)
 		ft_printf("arg [%s] size = %d\n", pt->data, inst->size[i]);
 
 		char *arg = pt->data;
@@ -1197,10 +1224,8 @@ char	*get_arg_bin(t_inst *inst, t_symbole *symbole)
 			
 			if ((add_label = ft_is_in_symbole(arg + 2, symbole)) >-1)
 			{
-//			ft_printf(" add_label = %d inst_position %d\n",
-//			add_label, inst->position);
 				add_out = add_label - inst->position;
-				if (add_out < 0)
+				/*if (add_out < 0)
 				{
 				//	add_out++;
 //			ft_printf(" size %d ", inst->size[i]);
@@ -1211,11 +1236,19 @@ char	*get_arg_bin(t_inst *inst, t_symbole *symbole)
 					add_out = IND_REF + add_out;
 				else if (inst->size[i] == DIR_SIZE)
 					add_out = DIR_REF + add_out;
-				}
-			//if (ft_is_label(arg + 2))
-	ft_printf("\t{blue}label dir{eoc} -%s- add %d  diff[%ld]\n",arg+2,
-			add_label, add_out);
-			
+				}*/
+
+
+		ret = ft_int_to_byts(add_out, inst->size[i]);
+
+if (inst->size[i] == 2)
+		ft_printf("{blue}label dir{eoc} -%s- add [%hd][%hd] \n",
+		arg+ 2, ret[0],ret[1]);
+else
+	ft_printf("{blue}label dir{eoc} -%s- add [%hd][%hd] [%hd][%hd] \n"
+	,arg + 2, ret[0],ret[1],ret[2],ret[3]);
+
+free(ret);
 			}
 			else
 		ft_printf("\tdirect *%d*\n",ft_atoi(arg + 1));
@@ -1226,7 +1259,7 @@ char	*get_arg_bin(t_inst *inst, t_symbole *symbole)
 			{
 
 				add_out = add_label - inst->position;
-				if (add_out < 0)
+/*				if (add_out < 0)
 				{
 					add_out++;
 				if (inst->size[i] == IND_SIZE)
@@ -1235,9 +1268,19 @@ char	*get_arg_bin(t_inst *inst, t_symbole *symbole)
 					add_out = DIR_REF + add_out;
 				}
 
+*/
+		ret = ft_int_to_byts(add_out, inst->size[i]);
+if (inst->size[i] == 2)
+		ft_printf("{blue}label ind {eoc} -%s- add [%hd][%hd] \n",
+		arg+ 2, ret[0],ret[1]);
+else
+	ft_printf("{blue}label ind {eoc} -%s- add [%hd][%hd] [%hd][%hd] \n"
+	,arg + 2, ret[0],ret[1],ret[2],ret[3]);
 
-	ft_printf("\t{blue}label ind {eoc} -%s- add %d  diff[%ld]\n",arg+1,
-			add_label, add_out);
+free(ret);
+	
+//	ft_printf("\t{blue}label ind {eoc} -%s- add [%hd][]  diff[%ld]\n",arg+1,
+//			add_label, add_out);
 		
 		}else
 		ft_printf("\tindirect <%d>\n",ft_atoi(arg ));
@@ -1360,6 +1403,35 @@ int	main(int argc, char **argv)
 	}
 	(void)argc;
 	(void)argv;
+	
+/*	
+	unsigned int *ret;
 
+	ft_printf("\n -------------------------\n");
+	ret = ft_int_to_byts(4, 2);
+ft_printf("val = [%hd][%hd] \n",ret[0],ret[1]);
+	free(ret);
+	ret = ft_int_to_byts(4, 4);
+ft_printf("val = [%hd][%hd] [%hd][%hd] \n",ret[0],ret[1],ret[2],ret[3]);
+	free(ret);
+	ret = ft_int_to_byts(2, 2);
+ft_printf("val = [%hd][%hd] \n",ret[0],ret[1]);
+	free(ret);
+	ret = ft_int_to_byts(2, 4);
+ft_printf("val = [%hd][%hd] [%hd][%hd] \n",ret[0],ret[1],ret[2],ret[3]);
+	free(ret);
+	ret = ft_int_to_byts(-53, 2);
+ft_printf("val = [%hd][%hd] \n",ret[0],ret[1]);
+	free(ret);
+	ret = ft_int_to_byts(-42, 2);
+ft_printf("val = [%hd][%hd] \n",ret[0],ret[1]);
+	free(ret);
+	ret = ft_int_to_byts(-360, 2);
+ft_printf("val = [%hd][%hd] \n",ret[0],ret[1]);
+	free(ret);
+	ret = ft_int_to_byts(633, 4);
+ft_printf("val = [%hd][%hd] [%hd][%hd] \n",ret[0],ret[1],ret[2],ret[3]);
+	free(ret);
+*/
 	return (0);
 }
