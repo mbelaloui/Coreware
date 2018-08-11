@@ -1,0 +1,1332 @@
+[33m warning label [tir] declared but not used[0m
+inst add position  = <[31m0[0m>
+inst operation = <[31mlive[0m>  code = [01]
+
+
+inst add position  = <[31m5[0m>
+inst operation = <[31mld[0m>  code = [02]
+desc args = [32m10010000 [33m90 [31m 144[0m
+
+
+inst add position  = <[31m12[0m>
+inst operation = <[31mld[0m>  code = [02]
+desc args = [32m10010000 [33m90 [31m 144[0m
+
+
+inst add position  = <[31m19[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m22[0m>
+inst operation = <[31msti[0m>  code = [11]
+desc args = [32m01101000 [33m68 [31m 104[0m
+
+
+inst add position  = <[31m29[0m>
+inst operation = <[31mld[0m>  code = [02]
+desc args = [32m10010000 [33m90 [31m 144[0m
+
+
+inst add position  = <[31m36[0m>
+inst operation = <[31mld[0m>  code = [02]
+desc args = [32m10010000 [33m90 [31m 144[0m
+
+
+inst add position  = <[31m43[0m>
+inst operation = <[31mld[0m>  code = [02]
+desc args = [32m10010000 [33m90 [31m 144[0m
+
+
+inst add position  = <[31m50[0m>
+inst operation = <[31mld[0m>  code = [02]
+desc args = [32m10010000 [33m90 [31m 144[0m
+
+
+inst add position  = <[31m57[0m>
+inst operation = <[31mlive[0m>  code = [01]
+
+
+inst add position  = <[31m62[0m>
+inst operation = <[31mfork[0m>  code = [12]
+
+
+inst add position  = <[31m65[0m>
+inst operation = <[31mlive[0m>  code = [01]
+
+
+inst add position  = <[31m70[0m>
+inst operation = <[31msub[0m>  code = [05]
+desc args = [32m01010100 [33m54 [31m 84[0m
+
+
+inst add position  = <[31m75[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m78[0m>
+inst operation = <[31mld[0m>  code = [02]
+desc args = [32m10010000 [33m90 [31m 144[0m
+
+
+inst add position  = <[31m85[0m>
+inst operation = <[31mfork[0m>  code = [12]
+
+
+inst add position  = <[31m88[0m>
+inst operation = <[31mlive[0m>  code = [01]
+
+
+inst add position  = <[31m93[0m>
+inst operation = <[31msti[0m>  code = [11]
+desc args = [32m01101000 [33m68 [31m 104[0m
+
+
+inst add position  = <[31m100[0m>
+inst operation = <[31msti[0m>  code = [11]
+desc args = [32m01101000 [33m68 [31m 104[0m
+
+
+inst add position  = <[31m107[0m>
+inst operation = <[31msti[0m>  code = [11]
+desc args = [32m01101000 [33m68 [31m 104[0m
+
+
+inst add position  = <[31m114[0m>
+inst operation = <[31msti[0m>  code = [11]
+desc args = [32m01101000 [33m68 [31m 104[0m
+
+
+inst add position  = <[31m121[0m>
+inst operation = <[31mld[0m>  code = [02]
+desc args = [32m10010000 [33m90 [31m 144[0m
+
+
+inst add position  = <[31m128[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m131[0m>
+inst operation = <[31mld[0m>  code = [02]
+desc args = [32m10010000 [33m90 [31m 144[0m
+
+
+inst add position  = <[31m138[0m>
+inst operation = <[31mld[0m>  code = [02]
+desc args = [32m10010000 [33m90 [31m 144[0m
+
+
+inst add position  = <[31m145[0m>
+inst operation = <[31mld[0m>  code = [02]
+desc args = [32m10010000 [33m90 [31m 144[0m
+
+
+inst add position  = <[31m152[0m>
+inst operation = <[31mlive[0m>  code = [01]
+
+
+inst add position  = <[31m157[0m>
+inst operation = <[31msti[0m>  code = [11]
+desc args = [32m01100100 [33m64 [31m 100[0m
+
+
+inst add position  = <[31m163[0m>
+inst operation = <[31msti[0m>  code = [11]
+desc args = [32m01100100 [33m64 [31m 100[0m
+
+
+inst add position  = <[31m169[0m>
+inst operation = <[31madd[0m>  code = [04]
+desc args = [32m01010100 [33m54 [31m 84[0m
+
+
+inst add position  = <[31m174[0m>
+inst operation = <[31madd[0m>  code = [04]
+desc args = [32m01010100 [33m54 [31m 84[0m
+
+
+inst add position  = <[31m179[0m>
+inst operation = <[31msub[0m>  code = [05]
+desc args = [32m01010100 [33m54 [31m 84[0m
+
+
+inst add position  = <[31m184[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m187[0m>
+inst operation = <[31mld[0m>  code = [02]
+desc args = [32m10010000 [33m90 [31m 144[0m
+
+
+inst add position  = <[31m194[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m197[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m200[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m203[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m206[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m209[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m212[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m215[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m218[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m221[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m224[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m227[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m230[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m233[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m236[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m239[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m242[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m245[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m248[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m251[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m254[0m>
+inst operation = <[31msub[0m>  code = [05]
+desc args = [32m01010100 [33m54 [31m 84[0m
+
+
+inst add position  = <[31m259[0m>
+inst operation = <[31madd[0m>  code = [04]
+desc args = [32m01010100 [33m54 [31m 84[0m
+
+
+inst add position  = <[31m264[0m>
+inst operation = <[31mldi[0m>  code = [10]
+desc args = [32m10010100 [33m94 [31m 148[0m
+
+
+inst add position  = <[31m270[0m>
+inst operation = <[31msti[0m>  code = [11]
+desc args = [32m01100100 [33m64 [31m 100[0m
+
+
+inst add position  = <[31m276[0m>
+inst operation = <[31mlive[0m>  code = [01]
+
+
+inst add position  = <[31m281[0m>
+inst operation = <[31mld[0m>  code = [02]
+desc args = [32m10010000 [33m90 [31m 144[0m
+
+
+inst add position  = <[31m288[0m>
+inst operation = <[31msti[0m>  code = [11]
+desc args = [32m01100100 [33m64 [31m 100[0m
+
+
+inst add position  = <[31m294[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m297[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m300[0m>
+inst operation = <[31msti[0m>  code = [11]
+desc args = [32m01101000 [33m68 [31m 104[0m
+
+
+inst add position  = <[31m307[0m>
+inst operation = <[31mldi[0m>  code = [10]
+desc args = [32m10100100 [33ma4 [31m 164[0m
+
+
+inst add position  = <[31m314[0m>
+inst operation = <[31msti[0m>  code = [11]
+desc args = [32m01101000 [33m68 [31m 104[0m
+
+
+inst add position  = <[31m321[0m>
+inst operation = <[31mldi[0m>  code = [10]
+desc args = [32m10100100 [33ma4 [31m 164[0m
+
+
+inst add position  = <[31m328[0m>
+inst operation = <[31msti[0m>  code = [11]
+desc args = [32m01101000 [33m68 [31m 104[0m
+
+
+inst add position  = <[31m335[0m>
+inst operation = <[31msti[0m>  code = [11]
+desc args = [32m01101000 [33m68 [31m 104[0m
+
+
+inst add position  = <[31m342[0m>
+inst operation = <[31msti[0m>  code = [11]
+desc args = [32m01101000 [33m68 [31m 104[0m
+
+
+inst add position  = <[31m349[0m>
+inst operation = <[31mld[0m>  code = [02]
+desc args = [32m10010000 [33m90 [31m 144[0m
+
+
+inst add position  = <[31m356[0m>
+inst operation = <[31mld[0m>  code = [02]
+desc args = [32m10010000 [33m90 [31m 144[0m
+
+
+inst add position  = <[31m363[0m>
+inst operation = <[31mld[0m>  code = [02]
+desc args = [32m10010000 [33m90 [31m 144[0m
+
+
+inst add position  = <[31m370[0m>
+inst operation = <[31mld[0m>  code = [02]
+desc args = [32m10010000 [33m90 [31m 144[0m
+
+
+inst add position  = <[31m377[0m>
+inst operation = <[31mlive[0m>  code = [01]
+
+
+inst add position  = <[31m382[0m>
+inst operation = <[31msub[0m>  code = [05]
+desc args = [32m01010100 [33m54 [31m 84[0m
+
+
+inst add position  = <[31m387[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m390[0m>
+inst operation = <[31mfork[0m>  code = [12]
+
+
+inst add position  = <[31m393[0m>
+inst operation = <[31mst[0m>  code = [03]
+desc args = [32m01010000 [33m50 [31m 80[0m
+
+
+inst add position  = <[31m397[0m>
+inst operation = <[31mxor[0m>  code = [08]
+desc args = [32m01010100 [33m54 [31m 84[0m
+
+
+inst add position  = <[31m402[0m>
+inst operation = <[31madd[0m>  code = [04]
+desc args = [32m01010100 [33m54 [31m 84[0m
+
+
+inst add position  = <[31m407[0m>
+inst operation = <[31madd[0m>  code = [04]
+desc args = [32m01010100 [33m54 [31m 84[0m
+
+
+inst add position  = <[31m412[0m>
+inst operation = <[31mld[0m>  code = [02]
+desc args = [32m10010000 [33m90 [31m 144[0m
+
+
+inst add position  = <[31m419[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m422[0m>
+inst operation = <[31madd[0m>  code = [04]
+desc args = [32m01010100 [33m54 [31m 84[0m
+
+
+inst add position  = <[31m427[0m>
+inst operation = <[31madd[0m>  code = [04]
+desc args = [32m01010100 [33m54 [31m 84[0m
+
+
+inst add position  = <[31m432[0m>
+inst operation = <[31madd[0m>  code = [04]
+desc args = [32m01010100 [33m54 [31m 84[0m
+
+
+inst add position  = <[31m437[0m>
+inst operation = <[31mld[0m>  code = [02]
+desc args = [32m10010000 [33m90 [31m 144[0m
+
+
+inst add position  = <[31m444[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m447[0m>
+inst operation = <[31mlive[0m>  code = [01]
+
+
+inst add position  = <[31m452[0m>
+inst operation = <[31mld[0m>  code = [02]
+desc args = [32m10010000 [33m90 [31m 144[0m
+
+
+inst add position  = <[31m459[0m>
+inst operation = <[31msti[0m>  code = [11]
+desc args = [32m01101000 [33m68 [31m 104[0m
+
+
+inst add position  = <[31m466[0m>
+inst operation = <[31mld[0m>  code = [02]
+desc args = [32m10010000 [33m90 [31m 144[0m
+
+
+inst add position  = <[31m473[0m>
+inst operation = <[31msti[0m>  code = [11]
+desc args = [32m01101000 [33m68 [31m 104[0m
+
+
+inst add position  = <[31m480[0m>
+inst operation = <[31mld[0m>  code = [02]
+desc args = [32m10010000 [33m90 [31m 144[0m
+
+
+inst add position  = <[31m487[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m490[0m>
+inst operation = <[31msti[0m>  code = [11]
+desc args = [32m01101000 [33m68 [31m 104[0m
+
+
+inst add position  = <[31m497[0m>
+inst operation = <[31msti[0m>  code = [11]
+desc args = [32m01101000 [33m68 [31m 104[0m
+
+
+inst add position  = <[31m504[0m>
+inst operation = <[31msti[0m>  code = [11]
+desc args = [32m01101000 [33m68 [31m 104[0m
+
+
+inst add position  = <[31m511[0m>
+inst operation = <[31msti[0m>  code = [11]
+desc args = [32m01101000 [33m68 [31m 104[0m
+
+
+inst add position  = <[31m518[0m>
+inst operation = <[31msti[0m>  code = [11]
+desc args = [32m01101000 [33m68 [31m 104[0m
+
+
+inst add position  = <[31m525[0m>
+inst operation = <[31msti[0m>  code = [11]
+desc args = [32m01101000 [33m68 [31m 104[0m
+
+
+inst add position  = <[31m532[0m>
+inst operation = <[31msti[0m>  code = [11]
+desc args = [32m01101000 [33m68 [31m 104[0m
+
+
+inst add position  = <[31m539[0m>
+inst operation = <[31msti[0m>  code = [11]
+desc args = [32m01101000 [33m68 [31m 104[0m
+
+
+inst add position  = <[31m546[0m>
+inst operation = <[31msti[0m>  code = [11]
+desc args = [32m01101000 [33m68 [31m 104[0m
+
+
+inst add position  = <[31m553[0m>
+inst operation = <[31msti[0m>  code = [11]
+desc args = [32m01101000 [33m68 [31m 104[0m
+
+
+inst add position  = <[31m560[0m>
+inst operation = <[31msti[0m>  code = [11]
+desc args = [32m01101000 [33m68 [31m 104[0m
+
+
+inst add position  = <[31m567[0m>
+inst operation = <[31mlive[0m>  code = [01]
+
+
+inst add position  = <[31m572[0m>
+inst operation = <[31mlive[0m>  code = [01]
+
+
+inst add position  = <[31m577[0m>
+inst operation = <[31mlive[0m>  code = [01]
+
+
+inst add position  = <[31m582[0m>
+inst operation = <[31mlive[0m>  code = [01]
+
+
+inst add position  = <[31m587[0m>
+inst operation = <[31mlive[0m>  code = [01]
+
+
+inst add position  = <[31m592[0m>
+inst operation = <[31mlive[0m>  code = [01]
+
+
+inst add position  = <[31m597[0m>
+inst operation = <[31mlive[0m>  code = [01]
+
+
+inst add position  = <[31m602[0m>
+inst operation = <[31mlive[0m>  code = [01]
+
+
+inst add position  = <[31m607[0m>
+inst operation = <[31mlive[0m>  code = [01]
+
+
+inst add position  = <[31m612[0m>
+inst operation = <[31mlive[0m>  code = [01]
+
+
+inst add position  = <[31m617[0m>
+inst operation = <[31mlive[0m>  code = [01]
+
+
+inst add position  = <[31m622[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m625[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m628[0m>
+inst operation = <[31mlive[0m>  code = [01]
+
+
+inst add position  = <[31m633[0m>
+inst operation = <[31mld[0m>  code = [02]
+desc args = [32m10010000 [33m90 [31m 144[0m
+
+
+inst add position  = <[31m640[0m>
+inst operation = <[31msti[0m>  code = [11]
+desc args = [32m01101000 [33m68 [31m 104[0m
+
+
+inst add position  = <[31m647[0m>
+inst operation = <[31mor[0m>  code = [07]
+desc args = [32m01010100 [33m54 [31m 84[0m
+
+
+inst add position  = <[31m652[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m655[0m>
+inst operation = <[31msub[0m>  code = [05]
+desc args = [32m01010100 [33m54 [31m 84[0m
+
+
+inst add position  = <[31m660[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m663[0m>
+inst operation = <[31mld[0m>  code = [02]
+desc args = [32m10010000 [33m90 [31m 144[0m
+
+
+inst add position  = <[31m670[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m673[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m676[0m>
+inst operation = <[31mld[0m>  code = [02]
+desc args = [32m10010000 [33m90 [31m 144[0m
+
+
+inst add position  = <[31m683[0m>
+inst operation = <[31msti[0m>  code = [11]
+desc args = [32m01101000 [33m68 [31m 104[0m
+
+
+inst add position  = <[31m690[0m>
+inst operation = <[31mld[0m>  code = [02]
+desc args = [32m10010000 [33m90 [31m 144[0m
+
+
+inst add position  = <[31m697[0m>
+inst operation = <[31msti[0m>  code = [11]
+desc args = [32m01101000 [33m68 [31m 104[0m
+
+
+inst add position  = <[31m704[0m>
+inst operation = <[31mld[0m>  code = [02]
+desc args = [32m10010000 [33m90 [31m 144[0m
+
+
+inst add position  = <[31m711[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m714[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m717[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m720[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m723[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m726[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m729[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m732[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m735[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m738[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m741[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m744[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m747[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m750[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m753[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m756[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m759[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m762[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m765[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m768[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m771[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m774[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m777[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m780[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m783[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m786[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m789[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m792[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m795[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m798[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m801[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m804[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m807[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m810[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m813[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m816[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m819[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m822[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m825[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m828[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m831[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m834[0m>
+inst operation = <[31mld[0m>  code = [02]
+desc args = [32m10010000 [33m90 [31m 144[0m
+
+
+inst add position  = <[31m841[0m>
+inst operation = <[31msub[0m>  code = [05]
+desc args = [32m01010100 [33m54 [31m 84[0m
+
+
+inst add position  = <[31m846[0m>
+inst operation = <[31mand[0m>  code = [06]
+desc args = [32m01100100 [33m64 [31m 100[0m
+
+
+inst add position  = <[31m854[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m857[0m>
+inst operation = <[31mld[0m>  code = [02]
+desc args = [32m10010000 [33m90 [31m 144[0m
+
+
+inst add position  = <[31m864[0m>
+inst operation = <[31madd[0m>  code = [04]
+desc args = [32m01010100 [33m54 [31m 84[0m
+
+
+inst add position  = <[31m869[0m>
+inst operation = <[31madd[0m>  code = [04]
+desc args = [32m01010100 [33m54 [31m 84[0m
+
+
+inst add position  = <[31m874[0m>
+inst operation = <[31mld[0m>  code = [02]
+desc args = [32m10010000 [33m90 [31m 144[0m
+
+
+inst add position  = <[31m881[0m>
+inst operation = <[31mld[0m>  code = [02]
+desc args = [32m10010000 [33m90 [31m 144[0m
+
+
+inst add position  = <[31m888[0m>
+inst operation = <[31mldi[0m>  code = [10]
+desc args = [32m10010100 [33m94 [31m 148[0m
+
+
+inst add position  = <[31m894[0m>
+inst operation = <[31msti[0m>  code = [11]
+desc args = [32m01010100 [33m54 [31m 84[0m
+
+
+inst add position  = <[31m899[0m>
+inst operation = <[31msti[0m>  code = [11]
+desc args = [32m01010100 [33m54 [31m 84[0m
+
+
+inst add position  = <[31m904[0m>
+inst operation = <[31mlive[0m>  code = [01]
+
+
+inst add position  = <[31m909[0m>
+inst operation = <[31mld[0m>  code = [02]
+desc args = [32m10010000 [33m90 [31m 144[0m
+
+
+inst add position  = <[31m916[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m919[0m>
+inst operation = <[31mld[0m>  code = [02]
+desc args = [32m10010000 [33m90 [31m 144[0m
+
+
+inst add position  = <[31m926[0m>
+inst operation = <[31mld[0m>  code = [02]
+desc args = [32m10010000 [33m90 [31m 144[0m
+
+
+inst add position  = <[31m933[0m>
+inst operation = <[31mld[0m>  code = [02]
+desc args = [32m10010000 [33m90 [31m 144[0m
+
+
+inst add position  = <[31m940[0m>
+inst operation = <[31mlive[0m>  code = [01]
+
+
+inst add position  = <[31m945[0m>
+inst operation = <[31msti[0m>  code = [11]
+desc args = [32m01100100 [33m64 [31m 100[0m
+
+
+inst add position  = <[31m951[0m>
+inst operation = <[31msti[0m>  code = [11]
+desc args = [32m01100100 [33m64 [31m 100[0m
+
+
+inst add position  = <[31m957[0m>
+inst operation = <[31madd[0m>  code = [04]
+desc args = [32m01010100 [33m54 [31m 84[0m
+
+
+inst add position  = <[31m962[0m>
+inst operation = <[31madd[0m>  code = [04]
+desc args = [32m01010100 [33m54 [31m 84[0m
+
+
+inst add position  = <[31m967[0m>
+inst operation = <[31msub[0m>  code = [05]
+desc args = [32m01010100 [33m54 [31m 84[0m
+
+
+inst add position  = <[31m972[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m975[0m>
+inst operation = <[31mld[0m>  code = [02]
+desc args = [32m10010000 [33m90 [31m 144[0m
+
+
+inst add position  = <[31m982[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m985[0m>
+inst operation = <[31mzjmp[0m>  code = [09]
+
+
+inst add position  = <[31m988[0m>
+inst operation = <[31mlive[0m>  code = [01]
+
+
+ mnemonique	description	arg1		rg2		arg3
+	1			42		
+	2	144		0		5		
+	2	144		0		5		
+	9			281		
+	11	104		1		130		1		
+	2	144		2304		10		
+	2	144		1		5		
+	2	144		0		11		
+	2	144		4		3		
+	1			42		
+	12			69		
+	1			742		
+	5	84		3		5		3		
+	9			372		
+	2	144		0		11		
+	12			212		
+	1			42		
+	11	104		10		-510		0		
+	11	104		10		-404		0		
+	11	104		10		-303		0		
+	11	104		10		-202		0		
+	2	144		0		11		
+	9			-71		
+	2	144		368		2		
+	2	144		0		3		
+	2	144		4		4		
+	1			1		
+	11	100		10		-510		2		
+	11	100		10		-510		3		
+	4	84		4		5		4		
+	4	84		3		4		3		
+	5	84		2		4		2		
+	9			-53		
+	2	144		0		11		
+	9			-42		
+	9			293		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	5	84		6		4		6		
+	4	84		6		6		11		
+	10	148		-64		6		7		
+	11	100		7		-510		11		
+	1			1		
+	2	144		0		10		
+	11	100		7		-250		6		
+	9			-192		
+	9			376		
+	11	104		1		333		2		
+	10	164		326		3		2		
+	11	104		2		-314		-4		
+	10	164		312		-1		2		
+	11	104		2		-328		-8		
+	11	104		1		-59		1		
+	11	104		1		35		1		
+	2	144		0		2		
+	2	144		8		3		
+	2	144		1		4		
+	2	144		0		6		
+	1			1		
+	5	84		3		4		3		
+	9			253		
+	12			32		
+	3	80		5		2		
+	8	84		10		10		10		
+	4	84		10		10		10		
+	4	84		6		6		6		
+	2	144		0		10		
+	9			-42		
+	4	84		2		4		2		
+	4	84		6		6		6		
+	4	84		6		4		6		
+	2	144		0		10		
+	9			-67		
+	1			42		
+	2	144		9		3		
+	11	104		3		-259		-6		
+	2	144		2		3		
+	11	104		3		-273		-16		
+	2	144		0		3		
+	9			189		
+	11	104		1		77		1		
+	11	104		1		75		1		
+	11	104		1		73		1		
+	11	104		1		71		1		
+	11	104		1		69		1		
+	11	104		1		67		1		
+	11	104		1		65		1		
+	11	104		1		63		1		
+	11	104		1		61		1		
+	11	104		1		59		1		
+	11	104		1		57		1		
+	1			1		
+	1			1		
+	1			1		
+	1			1		
+	1			1		
+	1			1		
+	1			1		
+	1			1		
+	1			1		
+	1			1		
+	1			1		
+	9			-55		
+	9			-135		
+	1			0		
+	2	144		1		1		
+	11	104		1		264		1		
+	7	84		2		2		2		
+	9			182		
+	5	84		2		4		2		
+	9			-406		
+	2	144		0		2		
+	9			-180		
+	9			246		
+	2	144		9		3		
+	11	104		3		305		-6		
+	2	144		2		3		
+	11	104		3		291		-16		
+	2	144		0		3		
+	9			-221		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	9			0		
+	2	144		10		8		
+	5	84		6		8		6		
+	6	100		6		-2147483648		8		
+	9			15		
+	2	144		118		8		
+	4	84		6		8		6		
+	4	84		6		6		6		
+	2	144		272		8		
+	2	144		29		9		
+	10	148		-174		6		7		
+	11	84		7		8		6		
+	11	84		7		9		6		
+	1			1		
+	2	144		0		10		
+	9			186		
+	2	144		425		2		
+	2	144		0		3		
+	2	144		4		4		
+	1			42		
+	11	100		10		43		2		
+	11	100		10		37		3		
+	4	84		4		5		4		
+	4	84		3		4		3		
+	5	84		2		4		2		
+	9			-53		
+	2	144		0		11		
+	9			-42		
+	9			-360		
+	1			633		
+	/ *********************************************** \
+ mnemonique	description	arg1		rg2		arg3
+     01				[[34m00[0m][[34m00[0m] [[34m00[0m][[34m2a[0m]	
+     02		90		[[34m00[0m][[34m00[0m] [[34m00[0m][[34m00[0m]	[[32m05[0m]	
+     02		90		[[34m00[0m][[34m00[0m] [[34m00[0m][[34m00[0m]	[[32m05[0m]	
+     09				[[31m01[0m][[31m19[0m]	
+     0b		68		[[32m01[0m]	[[31m00[0m][[31m82[0m]	[[31m00[0m][[31m01[0m]	
+     02		90		[[34m00[0m][[34m00[0m] [[34m09[0m][[34m00[0m]	[[32m0a[0m]	
+     02		90		[[34m00[0m][[34m00[0m] [[34m00[0m][[34m01[0m]	[[32m05[0m]	
+     02		90		[[34m00[0m][[34m00[0m] [[34m00[0m][[34m00[0m]	[[32m0b[0m]	
+     02		90		[[34m00[0m][[34m00[0m] [[34m00[0m][[34m04[0m]	[[32m03[0m]	
+     01				[[34m00[0m][[34m00[0m] [[34m00[0m][[34m2a[0m]	
+     0c				[[31m00[0m][[31m45[0m]	
+     01				[[34m00[0m][[34m00[0m] [[34m02[0m][[34me6[0m]	
+     05		54		[[32m03[0m]	[[32m05[0m]	[[32m03[0m]	
+     09				[[31m01[0m][[31m74[0m]	
+     02		90		[[34m00[0m][[34m00[0m] [[34m00[0m][[34m00[0m]	[[32m0b[0m]	
+     0c				[[31m00[0m][[31md4[0m]	
+     01				[[34m00[0m][[34m00[0m] [[34m00[0m][[34m2a[0m]	
+     0b		68		[[32m0a[0m]	[[31mfe[0m][[31m02[0m]	[[31m00[0m][[31m00[0m]	
+     0b		68		[[32m0a[0m]	[[31mfe[0m][[31m6c[0m]	[[31m00[0m][[31m00[0m]	
+     0b		68		[[32m0a[0m]	[[31mfe[0m][[31md1[0m]	[[31m00[0m][[31m00[0m]	
+     0b		68		[[32m0a[0m]	[[31mff[0m][[31m36[0m]	[[31m00[0m][[31m00[0m]	
+     02		90		[[34m00[0m][[34m00[0m] [[34m00[0m][[34m00[0m]	[[32m0b[0m]	
+     09				[[31mff[0m][[31mb9[0m]	
+     02		90		[[34m00[0m][[34m00[0m] [[34m01[0m][[34m70[0m]	[[32m02[0m]	
+     02		90		[[34m00[0m][[34m00[0m] [[34m00[0m][[34m00[0m]	[[32m03[0m]	
+     02		90		[[34m00[0m][[34m00[0m] [[34m00[0m][[34m04[0m]	[[32m04[0m]	
+     01				[[34m00[0m][[34m00[0m] [[34m00[0m][[34m01[0m]	
+     0b		64		[[32m0a[0m]	[[31mfe[0m][[31m02[0m]	[[32m02[0m]	
+     0b		64		[[32m0a[0m]	[[31mfe[0m][[31m02[0m]	[[32m03[0m]	
+     04		54		[[32m04[0m]	[[32m05[0m]	[[32m04[0m]	
+     04		54		[[32m03[0m]	[[32m04[0m]	[[32m03[0m]	
+     05		54		[[32m02[0m]	[[32m04[0m]	[[32m02[0m]	
+     09				[[31mff[0m][[31mcb[0m]	
+     02		90		[[34m00[0m][[34m00[0m] [[34m00[0m][[34m00[0m]	[[32m0b[0m]	
+     09				[[31mff[0m][[31md6[0m]	
+     09				[[31m01[0m][[31m25[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     05		54		[[32m06[0m]	[[32m04[0m]	[[32m06[0m]	
+     04		54		[[32m06[0m]	[[32m06[0m]	[[32m0b[0m]	
+     0a		94		[[31mff[0m][[31mc0[0m]	[[32m06[0m]	[[32m07[0m]	
+     0b		64		[[32m07[0m]	[[31mfe[0m][[31m02[0m]	[[32m0b[0m]	
+     01				[[34m00[0m][[34m00[0m] [[34m00[0m][[34m01[0m]	
+     02		90		[[34m00[0m][[34m00[0m] [[34m00[0m][[34m00[0m]	[[32m0a[0m]	
+     0b		64		[[32m07[0m]	[[31mff[0m][[31m06[0m]	[[32m06[0m]	
+     09				[[31mff[0m][[31m40[0m]	
+     09				[[31m01[0m][[31m78[0m]	
+     0b		68		[[32m01[0m]	[[31m01[0m][[31m4d[0m]	[[31m00[0m][[31m02[0m]	
+     0a		a4		[[31m01[0m][[31m46[0m]	[[31m00[0m][[31m03[0m]	[[32m02[0m]	
+     0b		68		[[32m02[0m]	[[31mfe[0m][[31mc6[0m]	[[31mff[0m][[31mfc[0m]	
+     0a		a4		[[31m01[0m][[31m38[0m]	[[31mff[0m][[31mff[0m]	[[32m02[0m]	
+     0b		68		[[32m02[0m]	[[31mfe[0m][[31mb8[0m]	[[31mff[0m][[31mf8[0m]	
+     0b		68		[[32m01[0m]	[[31mff[0m][[31mc5[0m]	[[31m00[0m][[31m01[0m]	
+     0b		68		[[32m01[0m]	[[31m00[0m][[31m23[0m]	[[31m00[0m][[31m01[0m]	
+     02		90		[[34m00[0m][[34m00[0m] [[34m00[0m][[34m00[0m]	[[32m02[0m]	
+     02		90		[[34m00[0m][[34m00[0m] [[34m00[0m][[34m08[0m]	[[32m03[0m]	
+     02		90		[[34m00[0m][[34m00[0m] [[34m00[0m][[34m01[0m]	[[32m04[0m]	
+     02		90		[[34m00[0m][[34m00[0m] [[34m00[0m][[34m00[0m]	[[32m06[0m]	
+     01				[[34m00[0m][[34m00[0m] [[34m00[0m][[34m01[0m]	
+     05		54		[[32m03[0m]	[[32m04[0m]	[[32m03[0m]	
+     09				[[31m00[0m][[31mfd[0m]	
+     0c				[[31m00[0m][[31m20[0m]	
+     03		50		[[32m05[0m]	[[32m02[0m]	
+     08		54		[[32m0a[0m]	[[32m0a[0m]	[[32m0a[0m]	
+     04		54		[[32m0a[0m]	[[32m0a[0m]	[[32m0a[0m]	
+     04		54		[[32m06[0m]	[[32m06[0m]	[[32m06[0m]	
+     02		90		[[34m00[0m][[34m00[0m] [[34m00[0m][[34m00[0m]	[[32m0a[0m]	
+     09				[[31mff[0m][[31md6[0m]	
+     04		54		[[32m02[0m]	[[32m04[0m]	[[32m02[0m]	
+     04		54		[[32m06[0m]	[[32m06[0m]	[[32m06[0m]	
+     04		54		[[32m06[0m]	[[32m04[0m]	[[32m06[0m]	
+     02		90		[[34m00[0m][[34m00[0m] [[34m00[0m][[34m00[0m]	[[32m0a[0m]	
+     09				[[31mff[0m][[31mbd[0m]	
+     01				[[34m00[0m][[34m00[0m] [[34m00[0m][[34m2a[0m]	
+     02		90		[[34m00[0m][[34m00[0m] [[34m00[0m][[34m09[0m]	[[32m03[0m]	
+     0b		68		[[32m03[0m]	[[31mfe[0m][[31mfd[0m]	[[31mff[0m][[31mfa[0m]	
+     02		90		[[34m00[0m][[34m00[0m] [[34m00[0m][[34m02[0m]	[[32m03[0m]	
+     0b		68		[[32m03[0m]	[[31mfe[0m][[31mef[0m]	[[31mff[0m][[31mf0[0m]	
+     02		90		[[34m00[0m][[34m00[0m] [[34m00[0m][[34m00[0m]	[[32m03[0m]	
+     09				[[31m00[0m][[31mbd[0m]	
+     0b		68		[[32m01[0m]	[[31m00[0m][[31m4d[0m]	[[31m00[0m][[31m01[0m]	
+     0b		68		[[32m01[0m]	[[31m00[0m][[31m4b[0m]	[[31m00[0m][[31m01[0m]	
+     0b		68		[[32m01[0m]	[[31m00[0m][[31m49[0m]	[[31m00[0m][[31m01[0m]	
+     0b		68		[[32m01[0m]	[[31m00[0m][[31m47[0m]	[[31m00[0m][[31m01[0m]	
+     0b		68		[[32m01[0m]	[[31m00[0m][[31m45[0m]	[[31m00[0m][[31m01[0m]	
+     0b		68		[[32m01[0m]	[[31m00[0m][[31m43[0m]	[[31m00[0m][[31m01[0m]	
+     0b		68		[[32m01[0m]	[[31m00[0m][[31m41[0m]	[[31m00[0m][[31m01[0m]	
+     0b		68		[[32m01[0m]	[[31m00[0m][[31m3f[0m]	[[31m00[0m][[31m01[0m]	
+     0b		68		[[32m01[0m]	[[31m00[0m][[31m3d[0m]	[[31m00[0m][[31m01[0m]	
+     0b		68		[[32m01[0m]	[[31m00[0m][[31m3b[0m]	[[31m00[0m][[31m01[0m]	
+     0b		68		[[32m01[0m]	[[31m00[0m][[31m39[0m]	[[31m00[0m][[31m01[0m]	
+     01				[[34m00[0m][[34m00[0m] [[34m00[0m][[34m01[0m]	
+     01				[[34m00[0m][[34m00[0m] [[34m00[0m][[34m01[0m]	
+     01				[[34m00[0m][[34m00[0m] [[34m00[0m][[34m01[0m]	
+     01				[[34m00[0m][[34m00[0m] [[34m00[0m][[34m01[0m]	
+     01				[[34m00[0m][[34m00[0m] [[34m00[0m][[34m01[0m]	
+     01				[[34m00[0m][[34m00[0m] [[34m00[0m][[34m01[0m]	
+     01				[[34m00[0m][[34m00[0m] [[34m00[0m][[34m01[0m]	
+     01				[[34m00[0m][[34m00[0m] [[34m00[0m][[34m01[0m]	
+     01				[[34m00[0m][[34m00[0m] [[34m00[0m][[34m01[0m]	
+     01				[[34m00[0m][[34m00[0m] [[34m00[0m][[34m01[0m]	
+     01				[[34m00[0m][[34m00[0m] [[34m00[0m][[34m01[0m]	
+     09				[[31mff[0m][[31mc9[0m]	
+     09				[[31mff[0m][[31m79[0m]	
+     01				[[34m00[0m][[34m00[0m] [[34m00[0m][[34m00[0m]	
+     02		90		[[34m00[0m][[34m00[0m] [[34m00[0m][[34m01[0m]	[[32m01[0m]	
+     0b		68		[[32m01[0m]	[[31m01[0m][[31m08[0m]	[[31m00[0m][[31m01[0m]	
+     07		54		[[32m02[0m]	[[32m02[0m]	[[32m02[0m]	
+     09				[[31m00[0m][[31mb6[0m]	
+     05		54		[[32m02[0m]	[[32m04[0m]	[[32m02[0m]	
+     09				[[31mfe[0m][[31m6a[0m]	
+     02		90		[[34m00[0m][[34m00[0m] [[34m00[0m][[34m00[0m]	[[32m02[0m]	
+     09				[[31mff[0m][[31m4c[0m]	
+     09				[[31m00[0m][[31mf6[0m]	
+     02		90		[[34m00[0m][[34m00[0m] [[34m00[0m][[34m09[0m]	[[32m03[0m]	
+     0b		68		[[32m03[0m]	[[31m01[0m][[31m31[0m]	[[31mff[0m][[31mfa[0m]	
+     02		90		[[34m00[0m][[34m00[0m] [[34m00[0m][[34m02[0m]	[[32m03[0m]	
+     0b		68		[[32m03[0m]	[[31m01[0m][[31m23[0m]	[[31mff[0m][[31mf0[0m]	
+     02		90		[[34m00[0m][[34m00[0m] [[34m00[0m][[34m00[0m]	[[32m03[0m]	
+     09				[[31mff[0m][[31m23[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     09				[[31m00[0m][[31m00[0m]	
+     02		90		[[34m00[0m][[34m00[0m] [[34m00[0m][[34m0a[0m]	[[32m08[0m]	
+     05		54		[[32m06[0m]	[[32m08[0m]	[[32m06[0m]	
+     06		64		[[32m06[0m]	[[34m80[0m][[34m00[0m] [[34m00[0m][[34m00[0m]	[[32m08[0m]	
+     09				[[31m00[0m][[31m0f[0m]	
+     02		90		[[34m00[0m][[34m00[0m] [[34m00[0m][[34m76[0m]	[[32m08[0m]	
+     04		54		[[32m06[0m]	[[32m08[0m]	[[32m06[0m]	
+     04		54		[[32m06[0m]	[[32m06[0m]	[[32m06[0m]	
+     02		90		[[34m00[0m][[34m00[0m] [[34m01[0m][[34m10[0m]	[[32m08[0m]	
+     02		90		[[34m00[0m][[34m00[0m] [[34m00[0m][[34m1d[0m]	[[32m09[0m]	
+     0a		94		[[31mff[0m][[31m52[0m]	[[32m06[0m]	[[32m07[0m]	
+     0b		54		[[32m07[0m]	[[32m08[0m]	[[32m06[0m]	
+     0b		54		[[32m07[0m]	[[32m09[0m]	[[32m06[0m]	
+     01				[[34m00[0m][[34m00[0m] [[34m00[0m][[34m01[0m]	
+     02		90		[[34m00[0m][[34m00[0m] [[34m00[0m][[34m00[0m]	[[32m0a[0m]	
+     09				[[31m00[0m][[31mba[0m]	
+     02		90		[[34m00[0m][[34m00[0m] [[34m01[0m][[34ma9[0m]	[[32m02[0m]	
+     02		90		[[34m00[0m][[34m00[0m] [[34m00[0m][[34m00[0m]	[[32m03[0m]	
+     02		90		[[34m00[0m][[34m00[0m] [[34m00[0m][[34m04[0m]	[[32m04[0m]	
+     01				[[34m00[0m][[34m00[0m] [[34m00[0m][[34m2a[0m]	
+     0b		64		[[32m0a[0m]	[[31m00[0m][[31m2b[0m]	[[32m02[0m]	
+     0b		64		[[32m0a[0m]	[[31m00[0m][[31m25[0m]	[[32m03[0m]	
+     04		54		[[32m04[0m]	[[32m05[0m]	[[32m04[0m]	
+     04		54		[[32m03[0m]	[[32m04[0m]	[[32m03[0m]	
+     05		54		[[32m02[0m]	[[32m04[0m]	[[32m02[0m]	
+     09				[[31mff[0m][[31mcb[0m]	
+     02		90		[[34m00[0m][[34m00[0m] [[34m00[0m][[34m00[0m]	[[32m0b[0m]	
+     09				[[31mff[0m][[31md6[0m]	
+     09				[[31mfe[0m][[31m98[0m]	
+     01				[[34m00[0m][[34m00[0m] [[34m02[0m][[34m79[0m]	
+     

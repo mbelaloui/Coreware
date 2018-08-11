@@ -1252,25 +1252,25 @@ void	set_data(t_inst *inst, t_op *op_tab[NBR_OP], t_symbole *symbole)
 	inst->add = malloc(sizeof(int) * inst->size_inst);
 	desc = 0;
 	op = ft_get_op(op_tab, inst->opcode);
-/*	ft_printf("inst add position  = <{red}%d{eoc}>\n", inst->position);
+//	ft_printf("inst add position  = <{red}%d{eoc}>\n", inst->position);
 	inst->add[i] = inst->position;
-	ft_printf("inst operation = <{red}%s{eoc}>  code = [%.2d]\n",
-	inst->opcode, op->mnemonique);
-*/	
+//	ft_printf("inst operation = <{red}%s{eoc}>  code = [%.2d]\n",
+//	inst->opcode, op->mnemonique);
+	
 	inst->add[i] = op->mnemonique;
 	i++;
 	if (inst->size[DESC] != -1)
 	{
 		desc = ft_get_desc_args(inst->param);
-/*		ft_printf("desc args = {green}%.8b {Yellow}%x {red} %d{eoc}\n",
-		desc, desc, desc);
-*/		inst->add[i] = desc;
+//	ft_printf("desc args = {green}%.8b {Yellow}%x {red} %d{eoc}\n",
+//		desc, desc, desc);
+		inst->add[i] = desc;
 		i++;
 	}
 /*	else
 		ft_printf("no desc args\n");
 */	get_arg_translat(inst, symbole, inst->add, i);
-//	ft_printf("\n\n");
+	ft_printf("\n\n");
 }
 
 void	run_translate(t_instlist *src, t_op *op_tab[NBR_OP], t_symbole *symbole)
@@ -1300,12 +1300,12 @@ void	ft_translate(t_player *player, t_op *op_tab[NBR_OP])
 	t_instlist *pt;
 
 	pt = player->src;
-	ft_printf(" mnemonique\tdescription\targ1\t\trg2\t\targ3\n\t");
+/*	ft_printf(" mnemonique\tdescription\targ1\t\trg2\t\targ3\n\t");
 	while (pt)
 	{
 		int i = 0;
-		ft_printf("%d\t", pt->data->add[i]);
-		i++;
+		ft_printf("%d\t", pt->data->add[i++]);
+	//	i++;
 		if (pt->data->size[DESC] == -1)
 			ft_printf("\t\t");	
 		else
@@ -1320,38 +1320,46 @@ void	ft_translate(t_player *player, t_op *op_tab[NBR_OP])
 		ft_printf("\n\t");
 		pt = pt->next;
 	}
-
-	ft_printf("/***********************************************\\\n");
+*/	
+	ft_printf("/ *********************************************** \\\n");
 
 	pt = player->src;
 	ft_printf(" mnemonique\tdescription\targ1\t\trg2\t\targ3\n     ");
 	while (pt)
 	{
 		int i = 0;
-		ft_printf("%.2x\t\t", pt->data->add[i]);
-		i++;
-		if (pt->data->size[DESC] == -1){i++;
-			ft_printf("\t\t");	}
+		ft_printf("%.2x\t\t", pt->data->add[i++]);
+	//	i++;
+		if (pt->data->size[DESC] == -1)
+			ft_printf("\t\t");	
 		else
 			ft_printf("%x\t\t", pt->data->add[i++]);
+		if (pt->data->size[DESC] == -1)
+		{
+//			ft_printf("{green}%d{eoc}\t", pt->data->size[i]);
+//			ft_printf("{red}****{eoc}");
+			i += 2;
+//			ft_printf("{green}%d{eoc}\t", pt->data->size[i]);
 		t_charlist *t;
 		t = pt->data->param;
 		while (t)
 		{
-
-
-		int size = pt->data->size[i + 1];
 	//	ft_printf("{blue}size{eoc} [%d] ",size);
-		unsigned int *ret = ft_int_to_byts(pt->data->add[i], size);
+		int size;
+		size = pt->data->size[i];
+		unsigned int *ret = ft_int_to_byts(pt->data->add[i-2], size);
+//	ft_printf(" val = %ld  ", pt->data->add[i - 2]);	
 		if (size == 1)
-			ft_printf("[{green}%.2hx{eoc}]\t\t",ret[0]);
+			ft_printf("[{green}%.2hx{eoc}]\t",ret[0]);
 		else if (size == 2)
-			ft_printf("[{red}%.2hx{eoc}][{red}%.2hx{eoc}]\t\t"
+			ft_printf("[{red}%.2hx{eoc}][{red}%.2hx{eoc}]\t"
 			,ret[0],ret[1]);
 		else
-			ft_printf("[{blue}%.2hx{eoc}][{blue}%.2hx{eoc}] [{blue}%.2hx{eoc}][{blue}%.2hx{eoc}]\t\t"
+		{
+//			ft_printf("i %d val = %d  ",i, pt->data->add[i -1]);
+			ft_printf("[{blue}%.2hx{eoc}][{blue}%.2hx{eoc}] [{blue}%.2hx{eoc}][{blue}%.2hx{eoc}]\t"
 			,ret[0],ret[1],ret[2],ret[3]);
-
+		}
 
 		free(ret);
 		i++;
@@ -1359,7 +1367,38 @@ void	ft_translate(t_player *player, t_op *op_tab[NBR_OP])
 //			ft_printf("%d\t\t", pt->data->add[i++]);
 			t = t->next;
 		}
-		ft_printf("\n     ");
+		}
+		else
+		{
+	t_charlist *t;
+		t = pt->data->param;
+		while (t)
+		{
+	//	ft_printf("{blue}size{eoc} [%d] ",size);
+		int size;
+		size = pt->data->size[i + 1];
+		unsigned int *ret = ft_int_to_byts(pt->data->add[i], size);
+//	ft_printf(" val = %ld  ", pt->data->add[i ]);	
+		if (size == 1)
+			ft_printf("[{green}%.2hx{eoc}]\t",ret[0]);
+		else if (size == 2)
+			ft_printf("[{red}%.2hx{eoc}][{red}%.2hx{eoc}]\t"
+			,ret[0],ret[1]);
+		else
+		{
+//			ft_printf("i %d val = %d  ",i, pt->data->add[i -1]);
+			ft_printf("[{blue}%.2hx{eoc}][{blue}%.2hx{eoc}] [{blue}%.2hx{eoc}][{blue}%.2hx{eoc}]\t"
+			,ret[0],ret[1],ret[2],ret[3]);
+		}
+
+		free(ret);
+		i++;
+
+//			ft_printf("%d\t\t", pt->data->add[i++]);
+			t = t->next;
+		}
+		}
+			ft_printf("\n     ");
 		pt = pt->next;
 	}
 
