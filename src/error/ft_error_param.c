@@ -25,14 +25,15 @@
 void		ft_error_param(int error, char *param)
 {
 	if (ERROR_NO_PARAM == error)
-		ft_printf("{red}the program need a file.s as param{eoc}\n");
+		ft_printf("{red}Error{eoc} the program need a file.s"
+		" as param\n");
 	else if (ERROR_MULTIPUL_PARAM == error)
-		ft_printf("{red}wrong format param{eoc} : %s"
-				" : multipul params found.\n", param);
+		ft_printf("{red}Error{eoc} wrong format param : %s"
+		" : multipul params found.\n", param);
 	else if (ERROR_WRONG_FORMAT_FILE == error)
-		ft_printf("{red}wrong format file{eoc} : %s :"
-				" the src file hase to be <*.s>.\n", param);
+		ft_printf("{red}Error{eoc} wrong format file : %s :"
+		" the src file hase to be <*.s>.\n", param);
 	else
-		ft_printf("{red}error param{eoc} : %d :",error);
+		ft_printf("{red}Error param{eoc} : %d\n",error);
 	exit(error);
 }

@@ -5,18 +5,17 @@
 /*****************************************************************/
 void	ft_put_inst(t_inst *inst)
 {
-	ft_printf("address inst{green}%d{eoc}\n\n", inst->position);
+	ft_printf("address inst {green}%d{eoc}\n\n", inst->position);
 	ft_printf("label : [%s]\nop  {%s}  args [",
 	inst->label, inst->opcode);
 	ft_put_list_charlist_join(inst->param);
 	ft_printf("]\n");
-	ft_printf("size op \t[%d]\n",inst->size[OPPR]);
 	if (inst->size[ARG1] != -1)
-		ft_printf("size arg 1 \t[%d]\n",inst->size[ARG1]);
+		ft_printf("size arg 1 \t[{blue}%d{eoc}]\n",inst->size[ARG1]);
 	if (inst->size[ARG2] != -1)
-		ft_printf("size arg 2 \t[%d]\n",inst->size[ARG2]);
+		ft_printf("size arg 2 \t[{blue}%d{eoc}]\n",inst->size[ARG2]);
 	if (inst->size[ARG3] != -1)
-		ft_printf("size arg 3 \t[%d]\n",inst->size[ARG3]);
+		ft_printf("size arg 3 \t[{blue}%d{eoc}]\n",inst->size[ARG3]);
 	if (inst->size[DESC] != -1)
 		ft_printf("+ [%d] size description\n",inst->size[DESC]);
 	ft_printf("size inst {green}%d{eoc}\n\n", inst->size_inst);
@@ -53,8 +52,23 @@ void	ft_put_instlist(t_instlist *list)
 		size_program += list->data->size_inst;
 		list = list->next;
 	}
+	ft_printf("size programme {green}%d{eoc} \n", size_program);
+}
 
-	ft_printf("size programme %d \n", size_program);
+/*****************************************************************/
+		//ft_warning.c
+/*****************************************************************/
+void	ft_warning(int id_warn, int size, char *data)
+{
+	if (id_warn == WARNING_SIZE_CHAMP)
+		ft_printf("{yellow}Warning{eoc} champion size %d,"
+		" it should be less than %d\n", size, CHAMP_MAX_SIZE);
+	else if (id_warn == WARNING_DOUBLE_DEF_LAB)
+		ft_printf("{yellow}Warning{eoc} double declaration of"
+		" label %s\n", data);
+	else if (id_warn == WARNING_UNUSED_LAB)
+		ft_printf("{yellow}Warning{eoc} label [%s]"
+			" declared but not used\n", data);
 }
 
 /*****************************************************************/
@@ -63,10 +77,9 @@ void	ft_put_instlist(t_instlist *list)
 
 void	ft_put_player(t_player *player)
 {
-	ft_printf("name\t\t\t[%s]\ndesc\t\t\t[%s]\n\nurl out_put file\t[%s]\n"
+	ft_printf("\nname\t\t\t[%s]\ndesc\t\t\t[%s]\n\nurl out_put file\t[%s]\n"
 	,player->name, player->description, player->url_output);
-	ft_printf("\n\n\n");
-	ft_printf("size inst :\n\n");
+	ft_printf("\n\n");
 	ft_put_instlist(player->src);
 }
 
@@ -163,18 +176,20 @@ BOOL    ft_add_end_instlist(t_inst *inst, t_instlist **list)
 /*****************************************************************/
 void	ft_error_label(int error, char *label, char c, char *str)
 {
-//`"`	ft_printf("error == %d\n", error);
 	if (error == ERROR_END_CHAR_LABEL)
-		ft_printf("error char end of label expected <%s%c>\n"
+		ft_printf("{red}Error{eoc} char end of label expected <%s%c>\n"
 				"found <%s>\n", label,LABEL_CHAR, str);
 	else if (error == ERROR_FORMAT_LABEL)
-		ft_printf("error format label expected <%s%c>\n"
+		ft_printf("{red}Error{eoc} format label expected <%s%c>\n"
 				"found <%s%c>\nno end char label <%c> found\n"
 			, label,LABEL_CHAR,label,c, LABEL_CHAR);
 	else if (error == ERROR_FORMAT_LABEL_ARG)
-		ft_printf("error format label arg\n");
+		ft_printf("{red}Error{eoc} format label arg\n");
 	else if (error == ERROR_LABEL_NOT_DECLARED)
-		ft_printf("{red}error label %s used but not declared{eoc}\n", label);
+		ft_printf("{red}Error{eoc} label %s used but not"
+		" declared\n", label);
+	else
+		ft_printf("{red}Error{eoc} label\n");	
 	exit(error);
 }
 
@@ -184,7 +199,7 @@ void	ft_error_label(int error, char *label, char c, char *str)
 void	ft_error_op(int error, char *str)
 {
 	if (error == ERROR_OP)
-		ft_printf("error instruction <%s> not found\n", str);
+		ft_printf("{ref}Error{eoc} instruction <%s> not found\n", str);
 	exit(error);
 }
 
@@ -204,14 +219,14 @@ void	ft_error_head(int error, char *str_file)
 		(error == ERROR_FORMAT_NAME) ? NAME_CMD_PR : COMMENT_CMD_PR,
 		sc[0]);
 	else if (error == ERROR_LEN_NAME || ERROR_LEN_COMMENT)
-		ft_printf("error len %s should not be supperior to %d "
-		"len %s file [%d]\n", (error == ERROR_LEN_NAME) ? NAME_CMD_STR
+		ft_printf("{red}Error{eoc}len %s should not be supperior to %d"
+		" len %s file [%d]\n", (error == ERROR_LEN_NAME) ? NAME_CMD_STR
 		:COMMENT_CMD_STR, (error == ERROR_LEN_NAME) ? PROG_NAME_LENGTH
 		: COMMENT_LENGTH, (error == ERROR_LEN_NAME) ? NAME_CMD_STR
 		:COMMENT_CMD_STR, ft_strlen(str_file));
 	else
-		ft_printf("{yellow}Error unknown param description file.{eoc}\n"
-		"expected <{red}%s {eoc}\"%s\">\nfound    <{red}%s{eoc}>",
+		ft_printf("{red}Error unknown param description file.{eoc}\n"
+		"expected <{red}%s {eoc}\"%s\">\nfound    <{red}%s{eoc}>\n",
 		(error == ERROR_HEAD_NAME) ? NAME_CMD_STR : COMMENT_CMD_STR,
 		(error == ERROR_HEAD_NAME) ? NAME_CMD_PR : COMMENT_CMD_PR,
 		sc[0]);
@@ -224,8 +239,8 @@ void	ft_error_head(int error, char *str_file)
 void	ft_error_inst(int error)
 {
 	if (error == ERROR_INSTRUCTION)
-		ft_printf("error instruction \n");
-	exit(0);
+		ft_printf("{red}Error instruction {eoc}\n");
+	exit(error);
 }
 			
 /*****************************************************************/
@@ -234,15 +249,19 @@ void	ft_error_inst(int error)
 void	ft_error_args(int error, char *op, char *args, char *arg)
 {
 	if (error == ERROR_ARG_NULL)
-		ft_printf("error no args found : [%s %s]\n", op, args);
+		ft_printf("{red}Error{eoc} no args found : [%s %s]\n",
+		op, args);
 	else if (error == ERROR_NBR_ARG)
-		ft_printf("error nbr args in instruction [%s %s]\n", op, args);
+		ft_printf("{red}Error{eoc} nbr args in instruction [%s %s]\n",
+		op, args);
 	else if (error == ERROR_FORMAT_ARG)
-		ft_printf("error format args in instruction [%s %s]\n", op, args);
+		ft_printf("{red}Error{eoc} format args in instruction"
+		" [%s %s]\n", op, args);
 	else if (error == ERROR_TYPE_ARG)
-		ft_printf("error type args [%s] in instruction [%s %s]\n",arg, op, args);
+		ft_printf("{red}Error{eoc} type args [%s] in instruction"
+		" [%s %s]\n",arg, op, args);
 	else
-		ft_printf("error args [%s %s]\n", op, args);
+		ft_printf("{red}Error{eoc} args [%s %s]\n", op, args);
 	exit(error);
 }
 
@@ -267,13 +286,7 @@ t_inst	*ft_new_inst(char *label, char *op, t_charlist *args)
 	}
 	ret->add = NULL;
 	ret->position = 0;
-/*	i = 0;
-	while (i < 6)
-	{
-		ret->add[i] = 0;
-		i++;	
-	}
-*/	return(ret);
+	return(ret);
 }
 
 /*****************************************************************/
@@ -969,8 +982,7 @@ BOOL    ft_add_symbole(char *data, int add, t_symbole **list)
 	if (!(temp_node = ft_new_symbole(data, add)))
 		return (F);
 	if ( ft_is_in_symbole(data, *list) > -1)
-		ft_printf("{yellow}warning, double declaration of"
-		" label %s{eoc}\n", data);
+		ft_warning(WARNING_DOUBLE_DEF_LAB, 0, data);	
 	if (!(*list))
 		*list = temp_node;
 	else
@@ -1075,10 +1087,7 @@ void	check_symbole_tab(t_symbole *symbole)
 	while (symbole)
 	{
 		if (!symbole->used)
-		{
-			ft_printf("{yellow} warning label [%s]"
-			" declared but not used{eoc}\n", symbole->data);
-		}
+			ft_warning(WARNING_UNUSED_LAB, 0, symbole->data);
 		symbole = symbole->next;
 	}
 }
@@ -1417,15 +1426,20 @@ void	ft_translate(t_player *player, t_op *op_tab[NBR_OP])
 //	ft_put_list_symbole(symbole);
 	ft_check_for_label(symbole, player->src);
 	run_translate(player->src, op_tab, symbole);
-	ft_put_source_hexa(player);
-//	ft_put_player(player);
+//	ft_put_source_hexa(player);
+	ft_put_player(player);
 //	ft_put_list_symbole(symbole);
 	ft_dell_list_symbole(&symbole);
 }
-
 /*****************************************************************/
 		//exe.c
 /*****************************************************************/
+void	make_out_put(t_player *player, t_op *op_tab[NBR_OP])
+{
+	(void)player;
+	(void)op_tab;
+}
+
 void	run(t_charlist *file, char *url_output)
 {
 	t_player player;
@@ -1438,11 +1452,13 @@ void	run(t_charlist *file, char *url_output)
 	ft_get_op_tab(op_tab);
 	if (!ft_extract_info(file_clean, &player, op_tab))
 		ft_error_reading_file(ERROR_EMPTY_FILE);
-	
-	/************************************/
+	if (ft_get_size_program(player.src) > CHAMP_MAX_SIZE)
+		ft_warning(WARNING_SIZE_CHAMP,
+		ft_get_size_program(player.src), NULL);
+/************************************/
 	//traslate code source
 	ft_translate(&player, op_tab);
-
+	make_out_put(&player, op_tab);
 	ft_dell_list_charlist(&file_clean);
 	ft_free_optab(op_tab);
 	ft_free_player(&player);
