@@ -23,6 +23,22 @@ void	ft_put_inst(t_inst *inst)
 }
 
 /*****************************************************************/
+		//ft_get_size_program.c
+/*****************************************************************/
+int	ft_get_size_program(t_instlist *list)
+{
+	int size_program;
+
+	size_program = 0;
+	while (list)
+	{
+		size_program += list->data->size_inst;
+		list = list->next;
+	}
+	return (size_program);
+}
+
+/*****************************************************************/
 		//ft_put_instlist.c
 /*****************************************************************/
 void	ft_put_instlist(t_instlist *list)
@@ -1453,37 +1469,6 @@ int	main(int argc, char **argv)
 		run(file, url_output);
 		ft_dell_list_charlist(&file);
 	}
-/*	
-	(void)argc;
-	(void)argv;
-	unsigned int *ret;
-
-	ft_printf("\n -------------------------\n");
-	ret = ft_int_to_byts(4, 2);
-ft_printf("val = [%hd][%hd] \n",ret[0],ret[1]);
-	free(ret);
-	ret = ft_int_to_byts(4, 4);
-ft_printf("val = [%hd][%hd] [%hd][%hd] \n",ret[0],ret[1],ret[2],ret[3]);
-	free(ret);
-	ret = ft_int_to_byts(2, 2);
-ft_printf("val = [%hd][%hd] \n",ret[0],ret[1]);
-	free(ret);
-	ret = ft_int_to_byts(2, 4);
-ft_printf("val = [%hd][%hd] [%hd][%hd] \n",ret[0],ret[1],ret[2],ret[3]);
-	free(ret);
-	ret = ft_int_to_byts(-53, 2);
-ft_printf("val = [%hd][%hd] \n",ret[0],ret[1]);
-	free(ret);
-	ret = ft_int_to_byts(-42, 2);
-ft_printf("val = [%hd][%hd] \n",ret[0],ret[1]);
-	free(ret);
-	ret = ft_int_to_byts(-360, 2);
-ft_printf("val = [%hd][%hd] \n",ret[0],ret[1]);
-	free(ret);
-	ret = ft_int_to_byts(633, 4);
-ft_printf("val = [%hd][%hd] [%hd][%hd] \n",ret[0],ret[1],ret[2],ret[3]);
-	free(ret);
-*/
 	return (0);
 }
 
