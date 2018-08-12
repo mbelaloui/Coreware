@@ -37,6 +37,8 @@
 # define ERROR_TYPE_ARG			-18
 # define ERROR_INSTRUCTION		-19
 # define ERROR_LABEL_NOT_DECLARED	-20
+# define ERROR_LEN_NAME			-21
+# define ERROR_LEN_COMMENT		-22
 
 # define IND_REF			255255
 # define DIR_REF			255255255255

@@ -167,14 +167,9 @@ void	ft_error_label(int error, char *label, char c, char *str)
 /*****************************************************************/
 void	ft_error_op(int error, char *str)
 {
-//`"`	ft_printf("error == %d\n", error);
 	if (error == ERROR_OP)
 		ft_printf("error instruction <%s> not found\n", str);
-/*	else if (error == ERROR_FORMAT_OPLABEL)
-		ft_printf("error format label expected <%s%c>\n"
-				"found <%s%c>\nno end char label <%c> found\n"
-			, label,LABEL_CHAR,label,c, LABEL_CHAR);
-*/	exit(error);
+	exit(error);
 }
 
 /*****************************************************************/
@@ -186,22 +181,24 @@ void	ft_error_head(int error, char *str_file)
 
 	sc = ft_strsplit(str_file, SEP);
 	if (error == ERROR_FORMAT_NAME || error == ERROR_FORMAT_COMMENT)
-	{
 		ft_printf("{yellow}Error format description file.{eoc}\n"
 		"expected <{red}%s {eoc}\"%s\">\nfound    <{red}%s{eoc}>\n"
 		"NB : the description can not be empty.\n",
 		(error == ERROR_FORMAT_NAME) ? NAME_CMD_STR : COMMENT_CMD_STR,
 		(error == ERROR_FORMAT_NAME) ? NAME_CMD_PR : COMMENT_CMD_PR,
 		sc[0]);
-	}
+	else if (error == ERROR_LEN_NAME || ERROR_LEN_COMMENT)
+		ft_printf("error len %s should not be supperior to %d "
+		"len %s file [%d]\n", (error == ERROR_LEN_NAME) ? NAME_CMD_STR
+		:COMMENT_CMD_STR, (error == ERROR_LEN_NAME) ? PROG_NAME_LENGTH
+		: COMMENT_LENGTH, (error == ERROR_LEN_NAME) ? NAME_CMD_STR
+		:COMMENT_CMD_STR, ft_strlen(str_file));
 	else
-	{
 		ft_printf("{yellow}Error unknown param description file.{eoc}\n"
 		"expected <{red}%s {eoc}\"%s\">\nfound    <{red}%s{eoc}>",
 		(error == ERROR_HEAD_NAME) ? NAME_CMD_STR : COMMENT_CMD_STR,
 		(error == ERROR_HEAD_NAME) ? NAME_CMD_PR : COMMENT_CMD_PR,
 		sc[0]);
-	}
 	exit(error);
 }
 
@@ -495,6 +492,8 @@ int	extraire_name(char *str_file, t_player *player)
 	}
 	else
 		ft_error_head(ERROR_HEAD_NAME, str_file);
+	if (ft_strlen(player->name) > PROG_NAME_LENGTH)
+		ft_error_head(ERROR_LEN_NAME, player->name);
 	return (ret);
 }
 
@@ -518,6 +517,8 @@ int	extraire_description(char *str_file, t_player *player)
 	}
 	else
 		ft_error_head(ERROR_HEAD_COMMENT, str_file);
+	if (ft_strlen(player->description) > COMMENT_LENGTH)
+		ft_error_head(ERROR_LEN_COMMENT, player->description);
 	return (ret);
 }
 
@@ -1250,6 +1251,19 @@ void	ft_get_arg_translat(t_inst *inst, t_symbole *symbole, int *add, int i)
 /*****************************************************************/
 		//ft_put_source_hexa.c
 /*****************************************************************/
+void	put_delim(int i, BOOL with)
+{
+	int del;
+
+	del = (with) ? 5 : 6;
+	
+	while (i < del)
+	{
+		ft_printf("   \t  -  \t    |");
+		i++;
+	}
+}
+
 void	put_source_hexa_bis1(int i, t_inst *data)
 {
 	int size;
@@ -1262,18 +1276,19 @@ void	put_source_hexa_bis1(int i, t_inst *data)
 		size = data->size[i];
 		ret = ft_int_to_byts(data->add[i - 2], size);
 		if (size == REG_SIZE)
-			ft_printf("[{green}%.2hx{eoc}]\t", ret[0]);
+			ft_printf("\t[{green}%.2hx{eoc}]\t    | ", ret[0]);
 		else if (size == IND_SIZE)
-			ft_printf("[{red}%.2hx{eoc}][{red}%.2hx{eoc}]\t"
-				, ret[0], ret[1]);
+			ft_printf("     [{red}%.2hx{eoc}] [{red}%.2hx{eoc}]\t"
+			"    | ", ret[0], ret[1]);
 		else if (size == DIR_SIZE)
-			ft_printf("[{blue}%.2hx{eoc}][{blue}%.2hx{eoc}]"
-			" [{blue}%.2hx{eoc}][{blue}%.2hx{eoc}]\t"
+			ft_printf(" [{blue}%.2hx{eoc}][{blue}%.2hx{eoc}]"
+			" [{blue}%.2hx{eoc}][{blue}%.2hx{eoc}] | "
 				,ret[0],ret[1],ret[2],ret[3]);
 		free(ret);
 		i++;
 		arg = arg->next;
 	}
+	put_delim(i, F);
 }
 
 void	put_source_hexa_bis2(int i, t_inst *data)
@@ -1287,50 +1302,57 @@ void	put_source_hexa_bis2(int i, t_inst *data)
 	{
 		size = data->size[i + 1];
 		ret = ft_int_to_byts(data->add[i], size);
-		if (size == 1)
-			ft_printf("[{green}%.2hx{eoc}]\t",ret[0]);
-		else if (size == 2)
-			ft_printf("[{red}%.2hx{eoc}][{red}%.2hx{eoc}]\t"
-			,ret[0],ret[1]);
-		else
-		{
-			ft_printf("[{blue}%.2hx{eoc}][{blue}%.2hx{eoc}]"
-			" [{blue}%.2hx{eoc}][{blue}%.2hx{eoc}]\t"
+		if (size == REG_SIZE)
+			ft_printf("\t[{green}%.2hx{eoc}]\t    | \t",ret[0]);
+		else if (size == IND_SIZE)
+			ft_printf("     [{red}%.2hx{eoc}] [{red}%.2hx{eoc}]\t"
+			"    |\t",ret[0],ret[1]);
+		else if (size == DIR_SIZE)
+			ft_printf(" [{blue}%.2hx{eoc}][{blue}%.2hx{eoc}]"
+			" [{blue}%.2hx{eoc}][{blue}%.2hx{eoc}] |\t"
 				,ret[0],ret[1],ret[2],ret[3]);
-		}
 		free(ret);
 		i++;
 		arg = arg->next;
 	}
+	put_delim(i, T);
 }
 
-void	ft_put_source_hexa(t_player *player)
+void	put_data(t_player *player)
 {
 	t_instlist *pt;
 	int i;
 
 	pt = player->src;
-	ft_printf(" mnemonique\tdescription\targ1\t\trg2\t\targ3\n     ");
-	while (pt)
+	while (pt && !(i = 0))
 	{
 		if (pt->data->opcode)
 		{
-			i = 0;
-		ft_printf("%.2x\t\t", pt->data->add[i++]);
-		if (pt->data->size[DESC] == -1)
-		{
-			ft_printf("\t\t");	
-			put_source_hexa_bis1(i + 2, pt->data);
-		}
-		else
-		{
-			ft_printf("%x\t\t", pt->data->add[i++]);
-			put_source_hexa_bis2(i, pt->data);
-		}
-		ft_printf("\n     ");
+			ft_printf("| %.2x\t| ", pt->data->add[i++]);
+			if (pt->data->size[DESC] == -1)
+			{
+				ft_printf("  -   |");	
+				put_source_hexa_bis1(i + 2, pt->data);
+			}
+			else
+			{
+				ft_printf(" %x   |", pt->data->add[i++]);
+				put_source_hexa_bis2(i, pt->data);
+			}
+			ft_printf("\n");
 		}
 		pt = pt->next;
 	}
+}
+
+void	ft_put_source_hexa(t_player *player)
+{
+	ft_printf(" _____ \t ______\t \t____\t     \t\t____\t     \t\t____\n");
+	ft_printf("\n| code \t|  ocp \t|\targ1\t    |\t\targ2\t    |\t\targ3\t"
+	"    |\n");
+	ft_printf("  ---- \t   ----\t \t----\t     \t\t----\t     \t\t----\n");
+	put_data(player);
+	ft_printf("  ---- \t   ----\t \t----\t     \t\t----\t     \t\t----\n");
 }
 
 /*****************************************************************/
@@ -1370,6 +1392,7 @@ void	run_translate(t_instlist *src, t_op *op_tab[NBR_OP], t_symbole *symbole)
 		pt = pt->next;
 	}
 }
+
 void	ft_translate(t_player *player, t_op *op_tab[NBR_OP])
 {
 	t_symbole *symbole;
@@ -1430,10 +1453,9 @@ int	main(int argc, char **argv)
 		run(file, url_output);
 		ft_dell_list_charlist(&file);
 	}
+/*	
 	(void)argc;
 	(void)argv;
-	
-/*	
 	unsigned int *ret;
 
 	ft_printf("\n -------------------------\n");
@@ -1505,7 +1527,10 @@ ft_printf("val = [%hd][%hd] [%hd][%hd] \n",ret[0],ret[1],ret[2],ret[3]);
 
 
 
-/*	ft_printf(" mnemonique\tdescription\targ1\t\trg2\t\targ3\n\t");
+/*
+		decimal
+		
+	ft_printf(" mnemonique\tdescription\targ1\t\trg2\t\targ3\n\t");
 	while (pt)
 	{
 		int i = 0;
