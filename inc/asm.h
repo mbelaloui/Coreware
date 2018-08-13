@@ -94,10 +94,10 @@ typedef	struct		s_instruction
 	char		*label;
 	char		*opcode;
 	int		*add;
+	int		size[SIZE_INST];
 
 
 	BOOL		desc;
-	int		size[SIZE_INST];
 	int		size_inst;
 	int		position;
 	t_charlist	*param;

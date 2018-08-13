@@ -128,7 +128,6 @@ void	ft_free_player(t_player *player)
 	ft_strdel(&player->description);
 	ft_strdel(&player->url_output);
 	ft_dell_list_instlist(&player->src);
-	//	ft_free_inst(&inst); //delet this ligne
 }
 
 /*****************************************************************/
@@ -405,24 +404,15 @@ t_charlist	*ft_clean_file(t_charlist *file)
 	char *temp;
 	t_charlist *ret;
 
-	// convert charlist to str join whit SEP
-	// return null if file s empty
-
-
 	check_for_bad_caracter(file);
 	if (!(str_file = ft_charlist_to_str(file, SEP)))
 		return (NULL);
-	// phase 1 manage simple comment starting char "; // #"
 	temp = str_file;
 	str_file = ft_extract_simpl_comment(str_file);
 	ft_strdel(&temp);
-
-	// phase 2 manage multi ligns comment starting char " /* "
 	temp = str_file;
 	str_file = ft_extract_ml_comment(str_file);
 	ft_strdel(&temp);
-
-	// convert str to charlist split compared to SEP
 	ret = ft_str_to_charlist(str_file, SEP);
 	ft_strdel(&str_file);
 	return (ret);
@@ -498,6 +488,7 @@ char	*ft_replace_char_in_str(char *str, char rep, char repwith)
 	}
 	return (ret);
 }
+
 /*****************************************************************/
 		//ft_extraire_head_info.c
 /*****************************************************************/
@@ -509,8 +500,8 @@ int	extraire_name(char *str_file, t_player *player)
 
 	start_cmd = ft_skip_spaces(str_file);
 	len  = start_cmd + ft_strlen(NAME_CMD_STR);
-	if (!ft_strncmp(str_file + start_cmd, NAME_CMD_STR, ft_strlen(NAME_CMD_STR))
-		&& str_file[len] == SPS)
+	if (!ft_strncmp(str_file + start_cmd, NAME_CMD_STR,
+		ft_strlen(NAME_CMD_STR)) && str_file[len] == SPS)
         {
 		len  = len + ft_skip_spaces(str_file + len);
 		if ((ret = ft_get_data(str_file + len, &(player->name))) < 0)
@@ -534,11 +525,12 @@ int	extraire_description(char *str_file, t_player *player)
 
 	start_cmd = ft_skip_spaces(str_file);
 	len  = start_cmd + ft_strlen(COMMENT_CMD_STR);
-	if (!ft_strncmp(str_file + start_cmd, COMMENT_CMD_STR, ft_strlen(COMMENT_CMD_STR))
-		&& str_file[len] == SPS)
+	if (!ft_strncmp(str_file + start_cmd,COMMENT_CMD_STR,
+		ft_strlen(COMMENT_CMD_STR)) && str_file[len] == SPS)
         {
 		len  = len + ft_skip_spaces(str_file + len);
-		if ( (ret = ft_get_data(str_file + len, &(player->description))) < 0)
+		if ( (ret = ft_get_data(str_file + len,
+			&(player->description))) < 0)
 			ft_error_head(ERROR_FORMAT_COMMENT, str_file);
 		if (ft_isempty(player->description))
 			ft_error_head(ERROR_FORMAT_COMMENT, str_file);
@@ -569,8 +561,8 @@ int	ft_extraire_head_info(char *str_file, t_player *player)
 {
 	int pt_ret;
 
-	pt_ret = extraire_name(str_file, player);/// si name est vide erreur
-	pt_ret += extraire_description(str_file + pt_ret, player);/// si name est vide erreur
+	pt_ret = extraire_name(str_file, player);
+	pt_ret += extraire_description(str_file + pt_ret, player);
 	restore_head(player);
 	return (pt_ret);
 }
@@ -633,10 +625,10 @@ BOOL	ft_is_register(char *arg)
 			id_reg = ft_atoi(arg+1);
 			if (!id_reg || id_reg > REG_NUMBER) 
 				return (F);
-			else //	ft_printf("registre id %d\n", id_reg);
+			else
 				return (T);
 		}
-		else//	ft_printf("wrong format registre\n");
+		else
 			return (F);
 	}
 	return (F);
@@ -675,6 +667,11 @@ int	get_id_pos_register(int pos)
 		return (T_REG_P3);
 }
 
+/*
+	utiliser les printf pour afficher le type des variables 
+	dans la vm !!!!
+*/
+
 int	ft_get_type_args(char *arg, int pos)
 {
 	if (ft_is_direct(arg))//ft_printf("{red} DIRECT {eoc}");
@@ -702,11 +699,7 @@ char	**ft_prepare_args(char **str, char *name_op, t_op *op, char **args)
 	if ((*args)[0] == SEPARATOR_CHAR 
 		|| (*args)[ft_strlen(*args) - 1] == SEPARATOR_CHAR)
 		ft_error_args(ERROR_FORMAT_ARG, name_op, *args, NULL);
-
 	tab_args = ft_strsplit(*args, SEPARATOR_CHAR);
-
-//ft_putmat(tab_args);
-
 	if ((int)ft_matlen(tab_args) != op->nbr_param)
 		ft_error_args(ERROR_NBR_ARG, name_op, *args, NULL);
 	return (tab_args);
@@ -770,12 +763,10 @@ void	ft_get_size_inst(t_inst *inst, t_op *op_tab[NBR_OP])
 		? 1 : -1;
 		i = 3;
 		pt = inst->param;
-//		ft_printf("\n************************\n inst %s \n", inst->opcode);
 		while (pt)
 		{
 			inst->size[i++] = get_size_arg(pt->data, op_tab,
 			inst->opcode);	
-//			ft_printf("\nvoila param size %d \n", inst->size[i - 1]);
 			pt = pt->next;
 		}
 	}
@@ -783,7 +774,6 @@ void	ft_get_size_inst(t_inst *inst, t_op *op_tab[NBR_OP])
 		inst->size[OPPR] = -1;
 	inst->size_inst = get_size_inst(inst);
 }
-
 
 /*****************************************************************/
 		//ft_handle_args.c
@@ -887,7 +877,8 @@ t_inst	*quarry_line(t_charlist *sc,char *label, char *op, t_op *op_tab[NBR_OP])
 	return (NULL);
 }
 
-void	ft_extraire_source(t_charlist *sc, t_player *player, t_op *op_tab[NBR_OP])
+void	ft_extraire_source(t_charlist *sc, t_player *player,
+t_op *op_tab[NBR_OP])
 {
 	char *label;
 	char *op;
@@ -928,16 +919,12 @@ BOOL	ft_extract_info(t_charlist *file, t_player *player, t_op *op_tab[NBR_OP])
 	if (!(str_file = ft_charlist_to_str(file, SEP)))
 		return (F);
 	pt = ft_extraire_head_info(str_file, player);
-	/*            extraire le source code */
 	str = ft_format_str(str_file+pt);
 	ft_strdel(&str_file);
 	t_charlist *sc = ft_str_to_format_charlist(str, SEP);
-	
-	// start extract source code
 	ft_extraire_source(sc, player, op_tab);
 	ft_dell_list_charlist(&sc);
 	ft_strdel(&str);
-//
 	return (T);
 }
 
@@ -963,7 +950,6 @@ int	ft_is_in_symbole(char *symbole, t_symbole *list)
 {
 	while (list)
 	{
-//	ft_printf("<%s>\n<%s>\n\n", symbole, list->data);
 		if (!ft_strcmp(list->data, symbole))
 			return (list->add);
 		list = list->next;
@@ -1423,23 +1409,147 @@ void	ft_translate(t_player *player, t_op *op_tab[NBR_OP])
 	t_symbole *symbole;
 
 	symbole = ft_init_symbole_tab(player);
-//	ft_put_list_symbole(symbole);
 	ft_check_for_label(symbole, player->src);
 	run_translate(player->src, op_tab, symbole);
-//	ft_put_source_hexa(player);
-	ft_put_player(player);
-//	ft_put_list_symbole(symbole);
+	ft_put_source_hexa(player);
 	ft_dell_list_symbole(&symbole);
 }
 /*****************************************************************/
-		//exe.c
+		//ft_put_head.c
 /*****************************************************************/
-void	make_out_put(t_player *player, t_op *op_tab[NBR_OP])
+
+void	put_bynary(int data, int size, int fd)
 {
-	(void)player;
-	(void)op_tab;
+	unsigned int *ret;
+
+	ret = ft_int_to_byts(data, size);
+	if (size == REG_SIZE)
+	{
+		write(fd,&ret[0] , 1);
+	}
+	else if (size == IND_SIZE)
+	{
+		write(fd,&ret[0] , 1);
+		write(fd,&ret[1] , 1);
+	}
+	else if (size == DIR_SIZE)
+	{
+		write(fd,&ret[0] , 1);
+		write(fd,&ret[1] , 1);
+		write(fd,&ret[2] , 1);
+		write(fd,&ret[3] , 1);
+	}
+	free(ret);
 }
 
+void	put_name(t_player *player, int fd)
+{
+	char *str;
+
+	str = ft_strnew(PROG_NAME_LENGTH);
+	ft_strlcat(str, player->name, ft_strlen(player->name) + 1);
+	write(fd, str , PROG_NAME_LENGTH);
+	ft_strdel(&str);
+}
+
+void	put_size(t_player *player, int fd)
+{
+	int i;
+	unsigned int     *ret;
+
+	ret = ft_int_to_byts(ft_get_size_program(player->src), 4);
+	i = 0;
+	while (i < 4)
+	{
+		write(fd,&ret[i] , 1);
+		i++;
+	}
+	free(ret);
+}
+
+void	put_comment(t_player *player, int fd)
+{
+	char *str;
+	
+	str = ft_strnew(COMMENT_LENGTH);
+	ft_strlcat(str, player->description,
+	ft_strlen(player->description) + 1);
+	write(fd, str , COMMENT_LENGTH);
+	ft_strdel(&str);
+}
+
+void	ft_put_head(t_player *player, int fd)
+{
+	put_bynary(COREWAR_EXEC_MAGIC, 4, fd);
+	put_name(player, fd);
+	put_bynary(0, 4, fd);
+	put_size(player, fd);
+	put_comment(player, fd);
+	put_bynary(0, 4, fd);
+}
+
+
+/*****************************************************************/
+		//ft_put_src.c
+/*****************************************************************/
+void	put_binary_args(t_inst *inst, int fd)
+{
+	t_charlist *arg;
+	int y;
+	int i;
+
+	arg = inst->param;
+	i = 1;
+	put_bynary(inst->add[i], inst->size[DESC], fd);
+	i++;
+	y = 0;
+	while (arg)
+	{
+		put_bynary(inst->add[i], inst->size[ARG1 + y], fd);
+		i++;
+		y++;
+		arg =arg->next;
+	}
+}
+
+void	ft_put_src(t_player *player, int fd)
+{
+	t_instlist *pt;
+	int i;
+
+	pt = player->src;
+	while (pt)
+	{
+		i = 0;
+		if (pt->data->opcode)
+		{
+			put_bynary(pt->data->add[i],
+			pt->data->size[OPPR], fd);
+			if (pt->data->size[DESC] == -1)
+				put_bynary(pt->data->add[1],
+				pt->data->size[ARG1], fd);
+			else
+				put_binary_args(pt->data,fd);
+		}
+		pt = pt->next;
+	}
+}
+
+/*****************************************************************/
+		//ft_make_out_put.c
+/*****************************************************************/
+void	ft_make_out_put(t_player *player)
+{
+	int fd;
+	
+	fd = open("123",  O_WRONLY | O_CREAT, 777);
+	ft_put_head(player, fd);
+	ft_put_src(player, fd);
+}
+
+/*****************************************************************/
+		//exe.c
+/*****************************************************************/
 void	run(t_charlist *file, char *url_output)
 {
 	t_player player;
@@ -1454,15 +1564,17 @@ void	run(t_charlist *file, char *url_output)
 		ft_error_reading_file(ERROR_EMPTY_FILE);
 	if (ft_get_size_program(player.src) > CHAMP_MAX_SIZE)
 		ft_warning(WARNING_SIZE_CHAMP,
-		ft_get_size_program(player.src), NULL);
-/************************************/
-	//traslate code source
+	ft_get_size_program(player.src), NULL);
 	ft_translate(&player, op_tab);
-	make_out_put(&player, op_tab);
+	ft_make_out_put(&player);
 	ft_dell_list_charlist(&file_clean);
 	ft_free_optab(op_tab);
 	ft_free_player(&player);
 }
+
+//	ft_put_list_symbole(symbole);
+//	ft_put_player(player);
+//	ft_put_list_symbole(symbole);
 
 int	main(int argc, char **argv)
 {
@@ -1487,42 +1599,6 @@ int	main(int argc, char **argv)
 	}
 	return (0);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
