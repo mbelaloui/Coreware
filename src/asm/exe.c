@@ -1261,9 +1261,228 @@ void	ft_get_arg_translat(t_inst *inst, t_symbole *symbole, int *add, int i)
 }
 
 /*****************************************************************/
+		//ft_put_source_bin.c
+/*****************************************************************/
+void	put_bin_delim(int i, BOOL with)
+{
+	int del;
+
+	del = (with) ? 5 : 6;
+	
+	while (i < del)
+	{
+		ft_printf("   \t\t\t    -\t\t\t  |");
+		i++;
+	}
+}
+
+void	put_bin_source_bis1(int i, t_inst *data)
+{
+	int size;
+	unsigned int *ret;
+	t_charlist *arg;
+
+	arg = data->param;
+	while (arg)
+	{
+		size = data->size[i];
+		ret = ft_int_to_byts(data->add[i - 2], size);
+		if (size == REG_SIZE)
+			ft_printf("\t[{green}%8.8b{eoc}]\t    |", ret[0]);
+		else if (size == IND_SIZE)
+			ft_printf("     [{red}%8.8b{eoc}] [{red}%8.8b{eoc}]\t"
+			"    |", ret[0], ret[1]);
+		else if (size == DIR_SIZE)
+			ft_printf(" [{blue}%8.8b{eoc}][{blue}%8.8b{eoc}]"
+			" [{blue}%8.8b{eoc}][{blue}%8.8b{eoc}] |"
+				,ret[0],ret[1],ret[2],ret[3]);
+		free(ret);
+		i++;
+		arg = arg->next;
+	}
+	put_bin_delim(i, F);
+}
+
+void	put_bin_source_bis2(int i, t_inst *data)
+{
+	t_charlist *arg;
+	int size;
+	unsigned int *ret;
+	
+	arg = data->param;
+	while (arg)
+	{
+		size = data->size[i + 1];
+		ret = ft_int_to_byts(data->add[i], size);
+		if (size == REG_SIZE)
+			ft_printf("\t\t\t[{green}%8.8b{eoc}]\t\t  |",ret[0]);
+		else if (size == IND_SIZE)
+			ft_printf("\t\t  [{red}%8.8b{eoc}] [{red}%8.8b{eoc}]\t"
+			"\t  |",ret[0],ret[1]);
+		else if (size == DIR_SIZE)
+			ft_printf(" [{blue}%8.8b{eoc}][{blue}%8.8b{eoc}]"
+			" [{blue}%8.8b{eoc}][{blue}%8.8b{eoc}] |"
+				,ret[0],ret[1],ret[2],ret[3]);
+		free(ret);
+		i++;
+		arg = arg->next;
+	}
+	put_bin_delim(i, T);
+}
+
+void	put_bin_data(t_player *player)
+{
+	t_instlist *pt;
+	int i;
+
+	pt = player->src;
+	while (pt && !(i = 0))
+	{
+		if (pt->data->opcode)
+		{
+			ft_printf("| %8.8b |", pt->data->add[i++]);
+			if (pt->data->size[DESC] == -1)
+			{
+				ft_printf("\t -    |");	
+				put_bin_source_bis1(i + 2, pt->data);
+			}
+			else
+			{
+				ft_printf(" %8.8b |", pt->data->add[i++]);
+				put_bin_source_bis2(i, pt->data);
+			}
+			ft_printf("\n");
+		}
+		pt = pt->next;
+	}
+}
+
+void	ft_put_bin_source(t_player *player)
+{
+	ft_printf("    _____\t___\t\t\t  ____\t\t\t\t\t\t   ____ \t\t\t\t\t"
+	"   ____\n");
+	ft_printf("\n|   code   |    ocp   |\t\t\t  arg1\t\t\t  |\t\t\t   arg2"
+	"\t\t\t  |\t\t\t   arg3\t\t\t  |\n");
+	ft_printf("    ---- \t---\t \t\t  ----\t     \t\t\t\t\t   -----\t\t\t"
+	"\t\t   ----\n");
+	put_bin_data(player);
+	ft_printf("    ---- \t---\t \t\t  ----\t     \t\t\t\t\t   -----\t\t\t"
+	"\t\t   ----\n");
+}
+
+
+/*****************************************************************/
+		//ft_put_source_decimal.c
+/*****************************************************************/
+void	put_decimal_delim(int i, BOOL with)
+{
+	int del;
+
+	del = (with) ? 5 : 6;
+	
+	while (i < del)
+	{
+		ft_printf("\t    -\t\t |");
+		i++;
+	}
+}
+
+void	put_decimal_source_bis1(int i, t_inst *data)
+{
+	int size;
+	unsigned int *ret;
+	t_charlist *arg;
+
+	arg = data->param;
+	while (arg)
+	{
+		size = data->size[i];
+		ret = ft_int_to_byts(data->add[i - 2], size);
+		if (size == REG_SIZE)
+			ft_printf("\t[{green}%.3d{eoc}]\t |", ret[0]);
+		else if (size == IND_SIZE)
+			ft_printf("     [{red}%.3d{eoc}] [{red}%.3d{eoc}]\t"
+			"    |", ret[0], ret[1]);
+		else if (size == DIR_SIZE)
+			ft_printf(" [{blue}%.3d{eoc}][{blue}%.3d{eoc}]"
+			" [{blue}%.3d{eoc}][{blue}%.3d{eoc}] |"
+				,ret[0],ret[1],ret[2],ret[3]);
+		free(ret);
+		i++;
+		arg = arg->next;
+	}
+	put_decimal_delim(i, F);
+}
+
+void	put_decimal_source_bis2(int i, t_inst *data)
+{
+	t_charlist *arg;
+	int size;
+	unsigned int *ret;
+	
+	arg = data->param;
+	while (arg)
+	{
+		size = data->size[i + 1];
+		ret = ft_int_to_byts(data->add[i], size);
+		if (size == REG_SIZE)
+			ft_printf("\t   [{green}%.3d{eoc}]\t |",ret[0]);
+		else if (size == IND_SIZE)
+			ft_printf("     [{red}%.3d{eoc}] [{red}%.3d{eoc}]\t"
+			" |",ret[0],ret[1]);
+		else if (size == DIR_SIZE)
+			ft_printf(" [{blue}%.3d{eoc}][{blue}%.3d{eoc}]"
+			" [{blue}%.3d{eoc}][{blue}%.3d{eoc}] |"
+				,ret[0],ret[1],ret[2],ret[3]);
+		free(ret);
+		i++;
+		arg = arg->next;
+	}
+	put_decimal_delim(i, T);
+}
+
+void	put_data_decimal(t_player *player)
+{
+	t_instlist *pt;
+	int i;
+
+	pt = player->src;
+	while (pt && !(i = 0))
+	{
+		if (pt->data->opcode)
+		{
+			ft_printf("| %.2d\t| ", pt->data->add[i++]);
+			if (pt->data->size[DESC] == -1)
+			{
+				ft_printf("  -    |");	
+				put_decimal_source_bis1(i + 2, pt->data);
+			}
+			else
+			{
+				ft_printf(" %.3d   |", pt->data->add[i++]);
+				put_decimal_source_bis2(i, pt->data);
+			}
+			ft_printf("\n");
+		}
+		pt = pt->next;
+	}
+}
+
+void	ft_put_decimal_source(t_player *player)
+{
+	ft_printf(" _____ \t  ______\t   ____\t\t\t   ____\t\t\t   ____\n");
+	ft_printf("\n| code \t|  ocp \t |\t   arg1\t\t |\t   arg2\t\t |\t   targ3"
+	"\t |\n");
+	ft_printf("  ---- \t   ----\t\t   ----\t     \t\t   ----\t     \t\t   ----\n");
+	put_data_decimal(player);
+	ft_printf("  ---- \t   ----\t\t   ----\t     \t\t   ----\t     \t\t   ----\n");
+}
+
+
+/*****************************************************************/
 		//ft_put_source_hexa.c
 /*****************************************************************/
-void	put_delim(int i, BOOL with)
+void	put_hexa_delim(int i, BOOL with)
 {
 	int del;
 
@@ -1276,7 +1495,7 @@ void	put_delim(int i, BOOL with)
 	}
 }
 
-void	put_source_hexa_bis1(int i, t_inst *data)
+void	put_hexa_source_bis1(int i, t_inst *data)
 {
 	int size;
 	unsigned int *ret;
@@ -1300,10 +1519,10 @@ void	put_source_hexa_bis1(int i, t_inst *data)
 		i++;
 		arg = arg->next;
 	}
-	put_delim(i, F);
+	put_hexa_delim(i, F);
 }
 
-void	put_source_hexa_bis2(int i, t_inst *data)
+void	put_hexa_source_bis2(int i, t_inst *data)
 {
 	t_charlist *arg;
 	int size;
@@ -1327,10 +1546,10 @@ void	put_source_hexa_bis2(int i, t_inst *data)
 		i++;
 		arg = arg->next;
 	}
-	put_delim(i, T);
+	put_hexa_delim(i, T);
 }
 
-void	put_data(t_player *player)
+void	put_hexa_data(t_player *player)
 {
 	t_instlist *pt;
 	int i;
@@ -1344,12 +1563,12 @@ void	put_data(t_player *player)
 			if (pt->data->size[DESC] == -1)
 			{
 				ft_printf("  -   |");	
-				put_source_hexa_bis1(i + 2, pt->data);
+				put_hexa_source_bis1(i + 2, pt->data);
 			}
 			else
 			{
 				ft_printf(" %x   |", pt->data->add[i++]);
-				put_source_hexa_bis2(i, pt->data);
+				put_hexa_source_bis2(i, pt->data);
 			}
 			ft_printf("\n");
 		}
@@ -1357,13 +1576,13 @@ void	put_data(t_player *player)
 	}
 }
 
-void	ft_put_source_hexa(t_player *player)
+void	ft_put_hexa_source(t_player *player)
 {
 	ft_printf(" _____ \t ______\t \t____\t     \t\t____\t     \t\t____\n");
 	ft_printf("\n| code \t|  ocp \t|\targ1\t    |\t\targ2\t    |\t\targ3\t"
 	"    |\n");
 	ft_printf("  ---- \t   ----\t \t----\t     \t\t----\t     \t\t----\n");
-	put_data(player);
+	put_hexa_data(player);
 	ft_printf("  ---- \t   ----\t \t----\t     \t\t----\t     \t\t----\n");
 }
 
@@ -1405,14 +1624,15 @@ void	run_translate(t_instlist *src, t_op *op_tab[NBR_OP], t_symbole *symbole)
 	}
 }
 
-void	ft_translate(t_player *player, t_op *op_tab[NBR_OP])
+void	ft_translate(t_player *player, t_op *op_tab[NBR_OP], t_option *op)
 {
 	t_symbole *symbole;
 
 	symbole = ft_init_symbole_tab(player);
 	ft_check_for_label(symbole, player->src);
 	run_translate(player->src, op_tab, symbole);
-	ft_put_source_hexa(player);
+	if (op->s)
+		ft_put_list_symbole(symbole);
 	ft_dell_list_symbole(&symbole);
 }
 /*****************************************************************/
@@ -1562,47 +1782,69 @@ BOOL	is_option_valide(char *param)
 	return (F);
 }
 
-static BOOL     ft_is_option(const char option)
+/*****************************************************************/
+		//ft_is_option.c
+/*****************************************************************/
+BOOL     ft_is_option(const char option)
 {
-        if (option == 'a' || option == 'b' || option == 'd' || option == 'h'
-		|| option == 'o' || option == 'p' || option == 's'
+        if (option == 'a' || option == 'B' || option == 'D' || option == 'h'
+		|| option == 'd' || option == 'H' || option == 'o' || option == 'p'
+		|| option == 't'  || option == 's' || option == 'S'
 		|| option == 'u')
 		return (T);
 	return (F);
 }
 
-static void     ft_set_options(char c, t_option *options)
+/*****************************************************************/
+		//ft_set_option.c
+/*****************************************************************/
+void     ft_set_options(char c, t_option *options)
 {
 	if (c == 'a')
 		options->a = 1;
-	else if (c == 'b')
-		options->b = 1;
+	else if (c == 'B')
+		options->B = 1;
+	else if (c == 'D')
+		options->D = 1;
 	else if (c == 'd')
 		options->d = 1;
 	else if (c == 'h')
 		options->h = 1;
+	else if (c == 'H')
+		options->H = 1;
 	else if (c == 'o')
 		options->o = 1;
 	else if (c == 'p')
 		options->p = 1;
 	else if (c == 's')
 		options->s = 1;
+	else if (c == 'S')
+		options->S = 1;
 	else if (c == 'u')
 		options->u = 1;
+	else if (c == 't')
+		options->t = 1;
 }
 
+/*****************************************************************/
+		//ft_put_option.c
+/*****************************************************************/
 void	ft_put_option(t_option *option)
 {
-	ft_printf(" a = [%s]  \n", (option->a) ? "ok" : "ko");	
-	ft_printf(" b = [%s]  \n", (option->b) ? "ok" : "ko");	
-	ft_printf(" d = [%s]  \n", (option->d) ? "ok" : "ko");	
-	ft_printf(" h = [%s]  \n", (option->h) ? "ok" : "ko");	
-	ft_printf(" o = [%s]  \n", (option->o) ? "ok" : "ko");	
-	ft_printf(" p = [%s]  \n", (option->p) ? "ok" : "ko");	
-	ft_printf(" s = [%s]  \n", (option->s) ? "ok" : "ko");	
-	ft_printf(" u = [%s]  \n", (option->u) ? "ok" : "ko");	
+	ft_printf(" a = [%s]  \n", (option->a) ? "ok" : "--");
+	ft_printf(" B = [%s]  \n", (option->B) ? "ok" : "--");	
+	ft_printf(" D = [%s]  \n", (option->D) ? "ok" : "--");	
+	ft_printf(" h = [%s]  \n", (option->h) ? "ok" : "--");	
+	ft_printf(" H = [%s]  \n", (option->H) ? "ok" : "--");	
+	ft_printf(" o = [%s]  \n", (option->o) ? "ok" : "--");	
+	ft_printf(" p = [%s]  \n", (option->p) ? "ok" : "--");	
+	ft_printf(" s = [%s]  \n", (option->s) ? "ok" : "--");	
+	ft_printf(" u = [%s]  \n", (option->u) ? "ok" : "--");	
 }
 
+/*****************************************************************/
+		//ft_error_option.c
+/*****************************************************************/
 void	ft_error_option(int error)
 {
 	ft_printf("error arg param unknow param %d", error);
@@ -1610,6 +1852,9 @@ void	ft_error_option(int error)
 }
 
 
+/*****************************************************************/
+		//ft_extract_option.c
+/*****************************************************************/
 BOOL            ft_extract_options(char *param, t_option *options)
 {
 	int index;
@@ -1634,16 +1879,24 @@ BOOL            ft_extract_options(char *param, t_option *options)
 	return (index);
 }
 
+
+/*****************************************************************/
+		//ft_init_option.c
+/*****************************************************************/
 void    ft_init_option(t_option *op)
 {
 	op->a = 0;
-	op->b = 0;
+	op->B = 0;
 	op->d = 0;
+	op->D = 0;
 	op->h = 0;
+	op->H = 0;
 	op->o = 0;
 	op->p = 0;
 	op->s = 0;
+	op->S = 0;
 	op->u = 0;
+	op->t = 0;
 }
 
 /*****************************************************************/
@@ -1665,19 +1918,27 @@ char	*ft_char_to_str(char c)
 
 void	run_option(t_option *op, t_player *player, t_op *op_tab[NBR_OP])
 {
-/*	if (op->a)
-	
-	else if (op->b)
-	else if (op->d)
-	else if (op->h)
-	else if (op->o)
-	else if (op->p)
-	else if (op->s)
-	else if (op->u)
+	if (op->B)
+		ft_put_bin_source(player);
+	if (op->D)
+		ft_put_decimal_source(player);
+	if (op->d)
+		ft_put_desc_param(op_tab);
+	if (op->H)
+		ft_put_hexa_source(player);
+	if (op->p)
+		ft_put_player(player);
+	if (op->o)
+		ft_put_op(op_tab);
+	if (op->t)
+		ft_put_type_param(op_tab);
+	if (op->S)
+		ft_put_size_label(op_tab);
+/*
+	if (op->a)
+	if (op->h)
+	if (op->u)
 */
-		(void) player;
-		(void) op;
-		(void) op_tab;
 }
 
 void	run(t_charlist *file, char *url_output, t_option *op)
@@ -1695,19 +1956,13 @@ void	run(t_charlist *file, char *url_output, t_option *op)
 	if (ft_get_size_program(player.src) > CHAMP_MAX_SIZE)
 		ft_warning(WARNING_SIZE_CHAMP,
 	ft_get_size_program(player.src), NULL);
-	ft_translate(&player, op_tab);
-
+	ft_translate(&player, op_tab, op);
 	run_option(op, &player, op_tab);
 	//ft_make_out_put(&player);
-	
 	ft_dell_list_charlist(&file_clean);
 	ft_free_optab(op_tab);
 	ft_free_player(&player);
 }
-
-//	ft_put_list_symbole(symbole);
-//	ft_put_player(player);
-//	ft_put_list_symbole(symbole);
 
 int	main(int argc, char **argv)
 {
@@ -1735,27 +1990,3 @@ int	main(int argc, char **argv)
 	}
 	return (0);
 }
-
-/*
-		decimal
-	ft_printf(" mnemonique\tdescription\targ1\t\trg2\t\targ3\n\t");
-	while (pt)
-	{
-		int i = 0;
-		ft_printf("%d\t", pt->data->add[i++]);
-	//	i++;
-		if (pt->data->size[DESC] == -1)
-			ft_printf("\t\t");	
-		else
-			ft_printf("%d\t\t", pt->data->add[i++]);
-		t_charlist *t;
-		t = pt->data->param;
-		while (t)
-		{
-			ft_printf("%d\t\t", pt->data->add[i++]);
-			t = t->next;
-		}
-		ft_printf("\n\t");
-		pt = pt->next;
-	}
-*/	
