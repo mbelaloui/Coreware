@@ -1,4 +1,5 @@
 #include "../../inc/asm.h"
+#include "../../libft/inc/option.h"
 
 /*****************************************************************/
 		//ft_put_inst.c
@@ -1548,9 +1549,138 @@ void	ft_make_out_put(t_player *player)
 }
 
 /*****************************************************************/
+		//option
+/*****************************************************************/
+BOOL	is_option_valide(char *param)
+{
+	if (param)
+	{
+		if (param[0] == '-' && ft_isalpha(param[1])
+			&& (!param[2] || ft_isblank(param[2])))
+			return (T);
+	}
+	return (F);
+}
+
+static BOOL     ft_is_option(const char option)
+{
+        if (option == 'a' || option == 'b' || option == 'd' || option == 'h'
+		|| option == 'o' || option == 'p' || option == 's'
+		|| option == 'u')
+		return (T);
+	return (F);
+}
+
+static void     ft_set_options(char c, t_option *options)
+{
+	if (c == 'a')
+		options->a = 1;
+	else if (c == 'b')
+		options->b = 1;
+	else if (c == 'd')
+		options->d = 1;
+	else if (c == 'h')
+		options->h = 1;
+	else if (c == 'o')
+		options->o = 1;
+	else if (c == 'p')
+		options->p = 1;
+	else if (c == 's')
+		options->s = 1;
+	else if (c == 'u')
+		options->u = 1;
+}
+
+void	ft_put_option(t_option *option)
+{
+	ft_printf(" a = [%s]  \n", (option->a) ? "ok" : "ko");	
+	ft_printf(" b = [%s]  \n", (option->b) ? "ok" : "ko");	
+	ft_printf(" d = [%s]  \n", (option->d) ? "ok" : "ko");	
+	ft_printf(" h = [%s]  \n", (option->h) ? "ok" : "ko");	
+	ft_printf(" o = [%s]  \n", (option->o) ? "ok" : "ko");	
+	ft_printf(" p = [%s]  \n", (option->p) ? "ok" : "ko");	
+	ft_printf(" s = [%s]  \n", (option->s) ? "ok" : "ko");	
+	ft_printf(" u = [%s]  \n", (option->u) ? "ok" : "ko");	
+}
+
+void	ft_error_option(int error)
+{
+	ft_printf("error arg param unknow param %d", error);
+	exit(error);
+}
+
+
+BOOL            ft_extract_options(char *param, t_option *options)
+{
+	int index;
+
+	index = 0;
+	while (param[index])
+	{
+		if (param[index] == '-')
+		{
+			index++;
+			if (ft_is_option(param[index]) && (param[index + 1] == ' '
+				|| !ft_isalpha(param[index + 1])))
+				ft_set_options(param[index++], options);
+			else
+				ft_error_option(-1);
+		}
+		else if (ft_isblank(param[index]))
+			index++;
+		else
+			break;
+	}
+	return (index);
+}
+
+void    ft_init_option(t_option *op)
+{
+	op->a = 0;
+	op->b = 0;
+	op->d = 0;
+	op->h = 0;
+	op->o = 0;
+	op->p = 0;
+	op->s = 0;
+	op->u = 0;
+}
+
+/*****************************************************************/
+		//ft_char_to_str.c
+/*****************************************************************/
+char	*ft_char_to_str(char c)
+{
+	char *ret;
+
+	if (!ft_isprint(c) || !(ret = ft_strnew(1)))
+		return (NULL);
+	ret[0] = c;
+	return (ret);
+}
+
+/*****************************************************************/
 		//exe.c
 /*****************************************************************/
-void	run(t_charlist *file, char *url_output)
+
+void	run_option(t_option *op, t_player *player, t_op *op_tab[NBR_OP])
+{
+/*	if (op->a)
+	
+	else if (op->b)
+	else if (op->d)
+	else if (op->h)
+	else if (op->o)
+	else if (op->p)
+	else if (op->s)
+	else if (op->u)
+*/
+		(void) player;
+		(void) op;
+		(void) op_tab;
+}
+
+void	run(t_charlist *file, char *url_output, t_option *op)
 {
 	t_player player;
 	t_charlist *file_clean;
@@ -1566,7 +1696,10 @@ void	run(t_charlist *file, char *url_output)
 		ft_warning(WARNING_SIZE_CHAMP,
 	ft_get_size_program(player.src), NULL);
 	ft_translate(&player, op_tab);
-	ft_make_out_put(&player);
+
+	run_option(op, &player, op_tab);
+	//ft_make_out_put(&player);
+	
 	ft_dell_list_charlist(&file_clean);
 	ft_free_optab(op_tab);
 	ft_free_player(&player);
@@ -1581,32 +1714,30 @@ int	main(int argc, char **argv)
 	t_charlist		*file;
 	char                    *param;
 	char			*url_output;
+	int			pt;
+	t_option		op;
 
 	file = NULL;
+	ft_init_option(&op);
 	param = ft_mat_to_str(argv, 1);
 	if (argc == 1)
 		ft_error_param(ERROR_NO_PARAM, param);
-	else if (argc > 2)
-		ft_error_param(ERROR_MULTIPUL_PARAM, param);
 	else
 	{
-		url_output = ft_manage_url(param);
-		if (!ft_read_url_file(param, &file))
+		pt = ft_extract_options(param, &op);
+		url_output = ft_manage_url(param + pt);
+		if (!ft_read_url_file(param + pt, &file))
 			ft_error_reading_file(ERROR_READING_FILE);
 		ft_strdel(&param);
-		run(file, url_output);
+		run(file, url_output, &op);
 		ft_dell_list_charlist(&file);
+		ft_put_option(&op);
 	}
 	return (0);
 }
 
-
-
-
-
 /*
 		decimal
-		
 	ft_printf(" mnemonique\tdescription\targ1\t\trg2\t\targ3\n\t");
 	while (pt)
 	{

@@ -12,19 +12,19 @@
 
 #include "../../inc/mat.h"
 
-char	*ft_mat_to_str(char **argv, int pt)
+char	*ft_mat_to_str(char **argv, int start)
 {
 	char	*str;
 	char	*temp;
 
 	str = ft_strdup("");
-	while (argv[pt])
+	while (argv[start])
 	{
 		temp = str;
-		str = ft_strjoin(str, argv[pt]);
+		str = ft_strjoin(str, argv[start]);
 		ft_strdel(&temp);
-		pt++;
-		if (argv[pt])
+		start++;
+		if (argv[start])
 		{
 			temp = str;
 			str = ft_strjoin(str, " ");

@@ -13,7 +13,7 @@
 #include "../../inc/str.h"
 
 /*
-** puis tester si valde ou pas la ont recupr just les options
+** puis tester si valide ou pas la ont recupr just les options
 **(faire le test pour le parammettre de -o out_put.cor
 ** ici si jamais je laisse cette option)
 **

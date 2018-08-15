@@ -15,33 +15,6 @@
 
 # include "libft.h"
 
-# define MASK_OP_A       0x1
-# define MASK_OP_B       0x2
-# define MASK_OP_C       0x4
-# define MASK_OP_D       0x8
-# define MASK_OP_E       0x10
-# define MASK_OP_F       0x20
-# define MASK_OP_G       0x40
-# define MASK_OP_H       0x80
-# define MASK_OP_I       0x100
-# define MASK_OP_J       0x200
-# define MASK_OP_K       0x400
-# define MASK_OP_L       0x800
-# define MASK_OP_M       0x1000
-# define MASK_OP_N       0x2000
-# define MASK_OP_O       0x4000
-# define MASK_OP_P       0x8000
-# define MASK_OP_Q       0x10000
-# define MASK_OP_R       0x20000
-# define MASK_OP_S       0x40000
-# define MASK_OP_T       0x80000
-# define MASK_OP_U       0x100000
-# define MASK_OP_V       0x200000
-# define MASK_OP_W       0x400000
-# define MASK_OP_X       0x800000
-# define MASK_OP_Y       0x1000000
-# define MASK_OP_Z       0x2000000
-
 # define FIRST		1
 # define SECOND		2
 # define BOTH		3
@@ -107,7 +80,9 @@ char			*ft_strstr(const char *ha, const char *ne);
 char			*ft_strsub(const char *str, unsigned int start, size_t len);
 char			*ft_strtrim(const char *str);
 char			*ft_strupper(const char *str);
-int				ft_extract_options(char *param, unsigned long *op,
-			BOOL is_option(char), void set_options(char, unsigned long *));
+
+// remove this fonction
+//int		ft_extract_options(char *param, unsigned long *op,
+//		BOOL is_option(char), void set_options(char, unsigned long *));
 
 #endif
