@@ -59,8 +59,23 @@ void	ft_put_instlist(t_instlist *list)
 /*****************************************************************/
 		//ft_warning.c
 /*****************************************************************/
-void	ft_warning(int id_warn, int size, char *data)
+void	ft_warning(int id_warn, int size, char *data, t_option *op)
 {
+	if (op->d || op->o || op->p || op->t || op->S)
+		return;
+	if (op->e)
+	{
+		if (id_warn == WARNING_SIZE_CHAMP)
+			ft_printf("{red}Error{eoc} champion size %d,"
+			" it should be less than %d\n", size, CHAMP_MAX_SIZE);
+		else if (id_warn == WARNING_DOUBLE_DEF_LAB)
+			ft_printf("{red}Error{eoc} double declaration of"
+			" label %s\n", data);
+		else if (id_warn == WARNING_UNUSED_LAB)
+			ft_printf("{red}Error{eoc} label [%s]"
+			" declared but not used\n", data);
+		exit(id_warn);
+	}
 	if (id_warn == WARNING_SIZE_CHAMP)
 		ft_printf("{yellow}Warning{eoc} champion size %d,"
 		" it should be less than %d\n", size, CHAMP_MAX_SIZE);
@@ -71,7 +86,6 @@ void	ft_warning(int id_warn, int size, char *data)
 		ft_printf("{yellow}Warning{eoc} label [%s]"
 			" declared but not used\n", data);
 }
-
 /*****************************************************************/
 		//ft_put_player.c
 /*****************************************************************/
@@ -961,7 +975,7 @@ int	ft_is_in_symbole(char *symbole, t_symbole *list)
 /*****************************************************************/
 		//ft_add_symbole.c
 /*****************************************************************/
-BOOL    ft_add_symbole(char *data, int add, t_symbole **list)
+BOOL    ft_add_symbole(char *data, int add, t_symbole **list, t_option *op)
 {
 	t_symbole      *temp_node;
 	t_symbole      *pt_list;
@@ -969,7 +983,7 @@ BOOL    ft_add_symbole(char *data, int add, t_symbole **list)
 	if (!(temp_node = ft_new_symbole(data, add)))
 		return (F);
 	if ( ft_is_in_symbole(data, *list) > -1)
-		ft_warning(WARNING_DOUBLE_DEF_LAB, 0, data);	
+		ft_warning(WARNING_DOUBLE_DEF_LAB, 0, data, op);
 	if (!(*list))
 		*list = temp_node;
 	else
@@ -1069,17 +1083,17 @@ void	handel_direct_label(char *arg, t_symbole *symbole)
 		ft_error_label(ERROR_LABEL_NOT_DECLARED, arg , 0, NULL);
 }
 
-void	check_symbole_tab(t_symbole *symbole)
+void	check_symbole_tab(t_symbole *symbole, t_option *op)
 {
 	while (symbole)
 	{
 		if (!symbole->used)
-			ft_warning(WARNING_UNUSED_LAB, 0, symbole->data);
+			ft_warning(WARNING_UNUSED_LAB, 0, symbole->data, op);
 		symbole = symbole->next;
 	}
 }
 
-void	ft_check_for_label(t_symbole *symbole, t_instlist *src)
+void	ft_check_for_label(t_symbole *symbole, t_instlist *src, t_option *op)
 {
 	char *arg;
 	t_charlist *args;
@@ -1101,7 +1115,7 @@ void	ft_check_for_label(t_symbole *symbole, t_instlist *src)
 		}
 		pt = pt->next;
 	}
-	check_symbole_tab(symbole);
+	check_symbole_tab(symbole, op);
 }
 
 /*****************************************************************/
@@ -1198,7 +1212,7 @@ unsigned int     *ft_int_to_byts(int val, int size)
 /*****************************************************************/
 		//ft_init_symbole_tab.c
 /*****************************************************************/
-t_symbole	*ft_init_symbole_tab(t_player *player)
+t_symbole	*ft_init_symbole_tab(t_player *player, t_option *op)
 {
 	t_instlist *sc;
 	t_symbole *symbole;
@@ -1210,7 +1224,7 @@ t_symbole	*ft_init_symbole_tab(t_player *player)
 	while (sc)
 	{
 		if (sc->data->label)
-			ft_add_symbole(sc->data->label, add, &symbole);
+			ft_add_symbole(sc->data->label, add, &symbole, op);
 		add += sc->data->size_inst;
 		sc = sc->next;
 	}
@@ -1363,10 +1377,10 @@ void	ft_put_bin_source(t_player *player)
 	"   ____\n");
 	ft_printf("\n|   code   |    ocp   |\t\t\t  arg1\t\t\t  |\t\t\t   arg2"
 	"\t\t\t  |\t\t\t   arg3\t\t\t  |\n");
-	ft_printf("    ---- \t---\t \t\t  ----\t     \t\t\t\t\t   -----\t\t\t"
+	ft_printf("    ---- \t---\t \t\t  ----\t     \t\t\t\t\t   ---- \t\t\t"
 	"\t\t   ----\n");
 	put_bin_data(player);
-	ft_printf("    ---- \t---\t \t\t  ----\t     \t\t\t\t\t   -----\t\t\t"
+	ft_printf("    ---- \t---\t \t\t  ----\t     \t\t\t\t\t   ---- \t\t\t"
 	"\t\t   ----\n");
 }
 
@@ -1628,8 +1642,8 @@ void	ft_translate(t_player *player, t_op *op_tab[NBR_OP], t_option *op)
 {
 	t_symbole *symbole;
 
-	symbole = ft_init_symbole_tab(player);
-	ft_check_for_label(symbole, player->src);
+	symbole = ft_init_symbole_tab(player, op);
+	ft_check_for_label(symbole, player->src, op);
 	run_translate(player->src, op_tab, symbole);
 	if (op->s)
 		ft_put_list_symbole(symbole);
@@ -1763,9 +1777,10 @@ void	ft_make_out_put(t_player *player)
 {
 	int fd;
 	
-	fd = open("123",  O_WRONLY | O_CREAT, 777);
+	fd = open(player->url_output,  O_WRONLY | O_CREAT, 777);
 	ft_put_head(player, fd);
 	ft_put_src(player, fd);
+	ft_printf("%s {green}successfully created{eoc}\n", player->url_output);
 }
 
 /*****************************************************************/
@@ -1787,8 +1802,9 @@ BOOL	is_option_valide(char *param)
 /*****************************************************************/
 BOOL     ft_is_option(const char option)
 {
-        if (option == 'a' || option == 'B' || option == 'D' || option == 'h'
-		|| option == 'd' || option == 'H' || option == 'o' || option == 'p'
+        if (option == 'B' || option == 'D' || option == 'h'
+		|| option == 'd' || option == 'e' || option == 'H' || option == 'o'
+		|| option == 'p'
 		|| option == 't'  || option == 's' || option == 'S'
 		|| option == 'u')
 		return (T);
@@ -1800,14 +1816,14 @@ BOOL     ft_is_option(const char option)
 /*****************************************************************/
 void     ft_set_options(char c, t_option *options)
 {
-	if (c == 'a')
-		options->a = 1;
-	else if (c == 'B')
+	if (c == 'B')
 		options->B = 1;
 	else if (c == 'D')
 		options->D = 1;
 	else if (c == 'd')
 		options->d = 1;
+	else if (c == 'e')
+		options->e = 1;
 	else if (c == 'h')
 		options->h = 1;
 	else if (c == 'H')
@@ -1825,13 +1841,24 @@ void     ft_set_options(char c, t_option *options)
 	else if (c == 't')
 		options->t = 1;
 }
+/*****************************************************************/
+		//ft_put_usage();
+/*****************************************************************/
+void	ft_put_usage(char *name, t_option *op)
+{
+	ft_printf("Usage :%s [-BDdehHopsStu] <source-file.s>.\n", name);
+	if (!op->h)
+		ft_printf("NB : for more informations "
+		"please use <%s -h>.\n", name);
+	exit(0);	
+}
+
 
 /*****************************************************************/
 		//ft_put_option.c
 /*****************************************************************/
 void	ft_put_option(t_option *option)
 {
-	ft_printf(" a = [%s]  \n", (option->a) ? "ok" : "--");
 	ft_printf(" B = [%s]  \n", (option->B) ? "ok" : "--");	
 	ft_printf(" D = [%s]  \n", (option->D) ? "ok" : "--");	
 	ft_printf(" h = [%s]  \n", (option->h) ? "ok" : "--");	
@@ -1845,17 +1872,19 @@ void	ft_put_option(t_option *option)
 /*****************************************************************/
 		//ft_error_option.c
 /*****************************************************************/
-void	ft_error_option(int error)
+void	ft_error_option(int id_error, char *name, t_option *op, char c)
 {
-	ft_printf("error arg param unknow param %d", error);
-	exit(error);
+	ft_printf("{red}Error{eoc} parameters arguments : unknown argument [%c].\n",
+	c);
+	ft_put_usage(name, op);
+	exit(id_error);
 }
 
 
 /*****************************************************************/
 		//ft_extract_option.c
 /*****************************************************************/
-BOOL            ft_extract_options(char *param, t_option *options)
+BOOL            ft_extract_options(char *param, t_option *op, char *name)
 {
 	int index;
 
@@ -1867,9 +1896,10 @@ BOOL            ft_extract_options(char *param, t_option *options)
 			index++;
 			if (ft_is_option(param[index]) && (param[index + 1] == ' '
 				|| !ft_isalpha(param[index + 1])))
-				ft_set_options(param[index++], options);
+				ft_set_options(param[index++], op);
 			else
-				ft_error_option(-1);
+				ft_error_option(ERROR_UNKNOWN_ARG, name,
+				op, param[index]);
 		}
 		else if (ft_isblank(param[index]))
 			index++;
@@ -1885,10 +1915,10 @@ BOOL            ft_extract_options(char *param, t_option *options)
 /*****************************************************************/
 void    ft_init_option(t_option *op)
 {
-	op->a = 0;
 	op->B = 0;
 	op->d = 0;
 	op->D = 0;
+	op->e = 0;
 	op->h = 0;
 	op->H = 0;
 	op->o = 0;
@@ -1913,6 +1943,25 @@ char	*ft_char_to_str(char c)
 }
 
 /*****************************************************************/
+		//ft_put_help.c
+/*****************************************************************/
+void	ft_put_help(char *name, t_option *op)
+{
+	ft_printf("%s helper\n"
+	"\n\t -B : print the binary version of the source code.\n\t -D : print the"
+	" decimal version of the source code.\n\t -e : make the compiler sensible"
+	" for errors.\n\t -h : show this message.\n\t -H : "
+	"print the hexa-decimal version of the source code.\n\t -o : print "
+	"description of op-codes.\n\t -p : Print a detailed description of the source"
+	" file.\n\t -s :"
+	" print symboles table.\n\t -S : print label size of op-code.\n\t -u : print"
+	" usage.\n\t -t : print information about type of each op-code.\n"
+	"", name);
+	ft_put_usage(name, op);
+	exit(0);
+}
+
+/*****************************************************************/
 		//exe.c
 /*****************************************************************/
 
@@ -1922,31 +1971,34 @@ void	run_option(t_option *op, t_player *player, t_op *op_tab[NBR_OP])
 		ft_put_bin_source(player);
 	if (op->D)
 		ft_put_decimal_source(player);
-	if (op->d)
-		ft_put_desc_param(op_tab);
 	if (op->H)
 		ft_put_hexa_source(player);
-	if (op->p)
-		ft_put_player(player);
-	if (op->o)
-		ft_put_op(op_tab);
-	if (op->t)
-		ft_put_type_param(op_tab);
-	if (op->S)
-		ft_put_size_label(op_tab);
-/*
-	if (op->a)
-	if (op->h)
-	if (op->u)
-*/
+	if (op->d || op->o || op->p || op->t || op->S)
+	{
+		if (op->d)
+			ft_put_desc_param(op_tab);
+		if (op->o)
+			ft_put_op(op_tab);
+		if (op->p)
+			ft_put_player(player);
+		if (op->t)
+			ft_put_type_param(op_tab);
+		if (op->S)
+			ft_put_size_label(op_tab);
+		exit(0);
+	}
 }
 
-void	run(t_charlist *file, char *url_output, t_option *op)
+void	run(t_charlist *file, char *url_output, t_option *op, char *name)
 {
 	t_player player;
 	t_charlist *file_clean;
 	t_op *op_tab[NBR_OP];
 
+	if (op->h)
+		ft_put_help(name, op);
+	if (op->u)
+		ft_put_usage(name, op);
 	ft_bzero(&player, sizeof(player));
 	player.url_output = url_output;
 	file_clean = ft_clean_file(file);
@@ -1955,10 +2007,10 @@ void	run(t_charlist *file, char *url_output, t_option *op)
 		ft_error_reading_file(ERROR_EMPTY_FILE);
 	if (ft_get_size_program(player.src) > CHAMP_MAX_SIZE)
 		ft_warning(WARNING_SIZE_CHAMP,
-	ft_get_size_program(player.src), NULL);
+	ft_get_size_program(player.src), NULL, op);
 	ft_translate(&player, op_tab, op);
 	run_option(op, &player, op_tab);
-	//ft_make_out_put(&player);
+	ft_make_out_put(&player);
 	ft_dell_list_charlist(&file_clean);
 	ft_free_optab(op_tab);
 	ft_free_player(&player);
@@ -1979,14 +2031,14 @@ int	main(int argc, char **argv)
 		ft_error_param(ERROR_NO_PARAM, param);
 	else
 	{
-		pt = ft_extract_options(param, &op);
+		pt = ft_extract_options(param, &op, argv[0]);
 		url_output = ft_manage_url(param + pt);
 		if (!ft_read_url_file(param + pt, &file))
 			ft_error_reading_file(ERROR_READING_FILE);
 		ft_strdel(&param);
-		run(file, url_output, &op);
+		run(file, url_output, &op, argv[0]);
 		ft_dell_list_charlist(&file);
-		ft_put_option(&op);
+//		ft_put_option(&op);
 	}
 	return (0);
 }
