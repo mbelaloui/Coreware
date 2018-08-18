@@ -29,5 +29,6 @@ typedef struct			s_list_fd
 
 int						ft_open_r_file(const char *url_file);
 int						get_next_line(const int fd, char **line);
-
+int             ft_open_r_iile(char *url_file);
+//BOOL    ft_read_fd_file(const int fd, t_charlist **file);
 #endif

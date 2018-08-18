@@ -2015,7 +2015,7 @@ void	run(t_charlist *file, char *url_output, t_option *op, char *name)
 	ft_free_optab(op_tab);
 	ft_free_player(&player);
 }
-
+/*
 int	main(int argc, char **argv)
 {
 	t_charlist		*file;
@@ -2040,5 +2040,83 @@ int	main(int argc, char **argv)
 		ft_dell_list_charlist(&file);
 //		ft_put_option(&op);
 	}
+	return (0);
+}*/
+/*****************************************************************/
+/*****************************************************************/
+/*****************************************************************/
+/*****************************************************************/
+/*****************************************************************/
+/*****************************************************************/
+
+/*****************************************************************/
+	//VM
+/*****************************************************************/
+
+BOOL	ft_check_signature(unsigned char r[4])
+{
+	unsigned int *ret;
+	int i;
+	int size;
+
+	size = sizeof(int);
+	ret = ft_int_to_byts(COREWAR_EXEC_MAGIC, size);
+	i = 0;
+	while (i < size)
+	{
+		if (r[i] != ret[i])
+			return (F);
+		i++;
+	}
+	free(ret);
+	return (T);	
+}
+
+void	ft_get_next_oct(int fd, unsigned char (*tab)[4])
+{
+	unsigned char buf[1];
+	int i;
+	int size;
+
+	i = 0;
+	size = sizeof(int);
+	while ( i < size)
+	{
+		read(fd, &buf, 1);
+		(*tab)[i] = buf[0];
+		i++;
+	}
+}
+
+void	ft_put_oct(unsigned char r[4])
+{
+	int i = 0;
+	while (i < 4)
+	{
+//		ft_printf("%d ", r[i]);
+		ft_printf("%c ", r[i]);
+		i++;
+	}
+	ft_printf("\n");
+}
+
+int	main(int argc, char **argv)
+{
+	unsigned char r[4];
+	int fd;
+
+	fd = ft_open_r_file(argv[1]);
+	int t = 0;
+	while(t < 1)
+	{
+		ft_get_next_oct(fd, &r);
+		ft_put_oct(r);
+		t++;
+	}
+	if (ft_check_signature(r))
+		ft_printf("ok");
+
+	(void)argc;
+	(void)argv;
 	return (0);
 }

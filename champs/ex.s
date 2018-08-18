@@ -1,7 +1,5 @@
 .name "sasd"
-.comment "commenti
+.comment "commenti"
 
-liv:	live	%1
-	ld	%:liv,r1 #asdasn dnsa lknaf
-	aff %465
-liv:	live	%1
+and r1,r1,r2
+live %5
