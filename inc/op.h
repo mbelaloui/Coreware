@@ -54,7 +54,7 @@
 # define DESC_IND				0xC0
 
 # define PROG_NAME_LENGTH		(128)
-# define COMMENT_LENGTH			(2048)
+# define PROG_COMMENT_LENGTH			(2048)
 # define COREWAR_EXEC_MAGIC		0xea83f3
 
 #define NBR_OP					17
@@ -78,7 +78,7 @@ typedef struct		s_header
 	unsigned int	magic;
 	char			prog_name[PROG_NAME_LENGTH + 1];
 	unsigned int	prog_size;
-	char			comment[COMMENT_LENGTH + 1];
+	char			comment[PROG_COMMENT_LENGTH + 1];
 }					t_header;
 
 t_op				*ft_new_op(int mnemonique, char *name, int nbr_param,
