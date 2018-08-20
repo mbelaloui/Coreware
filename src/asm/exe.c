@@ -2121,96 +2121,69 @@ char	*ft_u_str_to_str(unsigned char str[4])
 	return (ret);
 }
 
-void	get_magic(int fd)
+void	ft_get_vm_magic(int fd)
 {
-	unsigned char r[4];
+	unsigned char oct[4];
 
-	ft_bzero(&r, sizeof(r));
-	if (!ft_get_next_oct(fd, &r))
+	if (!ft_get_next_oct(fd, &oct))
 	{
 		ft_printf("{red}Error reading file"
 		"<probleme signature> reaching unexpecting eof 1\n{eoc}");
 		exit(0);
 	}
 //	ft_put_oct(r);
-	if (ft_check_signature(r)) // detailes option bonus
-		ft_printf("{green}signature ok\n{eoc}");
-	else
+	if (!ft_check_signature(oct)) // detailes option bonus
 	{
 		ft_printf("{red}signature Ko\n{eoc}");
 		exit(0);
 	}
+	else
+		ft_printf("signature {green}ok\n{eoc}");
 }
 
-int	main(int argc, char **argv)
+char	*ft_get_vm_name(int fd)
 {
-	unsigned char r[4];
-	int fd;
-	int t;
-	
-	t = 0;
-	fd = ft_open_r_file(argv[1]);
-	get_magic(fd);
-/*	while(t < 1)
-	{
-		ft_bzero(&r, sizeof(r));
-		if (!ft_get_next_oct(fd, &r))
-		{
-		ft_printf("{red}Error reading file"
-		"<probleme signature> reaching unexpecting eof 1\n{eoc}");
-		exit(0);
-		}
-		ft_put_oct(r);
-		t++;
-	}
-	if (ft_check_signature(r))
-		ft_printf("{green}signature ok\n{eoc}");
-	else
-	{
-		ft_printf("{red}signature Ko\n{eoc}");
-		exit(0);
-	}
-*/
+	unsigned char oct[4];
 	char *name;
-	char *q;
+	char *temp;
+	int byt;
 	
-	t = 0;
+	byt = 0;
 	name = NULL;
-	while(t < (PROG_NAME_LENGTH / 4) + 1)
+	while(byt < (PROG_NAME_LENGTH / 4))
 	{
-		ft_bzero(&r, sizeof(r));
-		if (!ft_get_next_oct(fd, &r))
+		ft_bzero(&oct, sizeof(oct));
+		if (!ft_get_next_oct(fd, &oct))
 		{
 			ft_printf("{red}Error reading file"
 			"<name part> reaching unexpecting eof 2\n{eoc}");
 			ft_printf("{red}Error while reading name Ko\n{eoc}");
 			exit(0);
 		}
-		if (t % 2)
-			ft_printf("\n");
-		ft_put_oct(r);
-		q = ft_u_str_to_str(r);
-		name = ft_strjoin_clear(&name, &q, BOTH);
-		t++;
+	//	if (byt % 2)
+	//		ft_printf("\n");
+	//	ft_put_oct(oct);
+		temp = ft_u_str_to_str(oct);
+		name = ft_strjoin_clear(&name, &temp, BOTH);
+		byt++;
 	}
-	ft_printf("\n");
-	ft_printf("\n{green}name ok %s\n{eoc}", name);
-	ft_strdel(&name);
-	t = 0;
-	int size = 0;
-	while(t < 1)
+	return (name);
+}
+
+int	ft_get_vm_size(int fd)
+{
+	unsigned char oct[4];
+	int size;
+	
+	size = 0;
+	if (!ft_get_next_oct(fd, &oct))
 	{
-		ft_bzero(&r, sizeof(r));
-		if (!ft_get_next_oct(fd, &r))
-		{
 		ft_printf("{red}Error reading file"
 		"<size programme> reaching unexpecting eof 1\n{eoc}");
 		exit(0);
-		}
-		ft_put_oct(r);
-		t++;
 	}
-	ft_printf("\n{green}size = %d {eoc}\n", size = ft_byts_to_int(r));
+//		ft_put_oct(r);
+	size = ft_byts_to_int(oct);
 	if(size > CHAMP_MAX_SIZE)
 	{
 		ft_printf("{red}Error size programme"
@@ -2218,60 +2191,125 @@ int	main(int argc, char **argv)
 		size, CHAMP_MAX_SIZE);
 		exit(0);
 	}
+	return (size);
+}
 
+BOOL	ft_is_null(int fd)
+{
+	unsigned char oct[4];
+	int	val;
 
-	char *comment;
-	
-	char *a;
-
-	t = 0;
-	comment = NULL;
-	while(t < (PROG_COMMENT_LENGTH / 4))
+	if (!ft_get_next_oct(fd, &oct))
 	{
-		ft_bzero(&r, sizeof(r));
-		if (!ft_get_next_oct(fd, &r))
+		ft_printf("{red}Error reading file"
+		"<null format> reaching unexpecting eof 1\n{eoc}");
+		exit(0);
+	}
+//		ft_put_oct(r);
+	val = ft_byts_to_int(oct);
+	if(val)
+	{
+		ft_printf("{red}Error fomrat programme"
+		"<null programme>\n{eoc}");
+		exit(0);
+
+	}
+	return (T);
+}
+
+char	*ft_get_vm_comment(int fd)
+{
+	unsigned char oct[4];
+	char *comment;
+	char *temp;
+	int byt;
+		
+	byt = 0;
+	comment = NULL;
+	while(byt < (PROG_COMMENT_LENGTH / 4))
+	{
+		ft_bzero(&oct, sizeof(oct));
+		if (!ft_get_next_oct(fd, &oct))
 		{
 			ft_printf("{red}Error reading file"
 			"<comment part> reaching unexpecting eof 3\n{eoc}");
 			ft_printf("{red}Error while reading name Ko\n{eoc}");
 			exit(0);
 		}
-		if (t % 2)
-			ft_printf("\n");
-		ft_put_oct(r);
-		a = ft_u_str_to_str(r);
-		comment = ft_strjoin_clear(&comment, &a, BOTH);
-		t++;
+//		if (t % 2)
+//			ft_printf("\n");
+//		ft_put_oct(r);
+		temp = ft_u_str_to_str(oct);
+		comment = ft_strjoin_clear(&comment, &temp, BOTH);
+		byt++;
 	}
-	ft_printf("\n");
-	ft_printf("\n{green}comment ok %s\n{eoc}", comment);
-	ft_strdel(&comment);
-		ft_bzero(&r, sizeof(r));
-		ft_get_next_oct(fd, &r);
+	return (comment);
+}
 
-	ft_printf("\n");
-	ft_printf("\n{green}src ok %s\n{eoc}", comment);
-	BOOL tr = T;
-	t= 0;
-	while(tr)
+char		*get_vm_src(int fd)
+{
+	unsigned char oct[4];
+	char *src;
+	char *temp;
+	BOOL rd;
+
+	rd = T;
+	src = NULL;
+	while(rd)
 	{
-		ft_bzero(&r, sizeof(r));
-		if (!ft_get_next_oct(fd, &r))
+		ft_bzero(&oct, sizeof(oct));
+		if (!ft_get_next_oct(fd, &oct))
+			rd = F;
+		else
 		{
-			tr = F;
-		}else
-		{
-		ft_put_oct(r);
-		if (t % 2)
-			ft_printf("\n");
-		a = ft_u_str_to_str(r);
-		comment = ft_strjoin_clear(&comment, &a, BOTH);
-		t++;
+			temp = ft_u_str_to_str(oct);
+			src = ft_strjoin_clear(&src, &temp, BOTH);
 		}
 	}
-	ft_put_oct(r);
-	ft_strdel(&comment);
+	return (src);
+}
+
+t_instlist	*ft_get_vm_src(int fd)
+{
+	char *src;
+	src = get_vm_src(fd);
+	ft_printf("\nsrc {green} ok %s\n{eoc}", src);
+	// ft_oct_to_instlist(src);
+	ft_strdel(&src);
+	return (NULL);
+}
+
+int	main(int argc, char **argv)
+{
+	int fd;
 	
+	fd = ft_open_r_file(argv[1]);
+	ft_get_vm_magic(fd);
+	char *name = ft_get_vm_name(fd);
+	ft_printf("\nname {green}ok %s\n{eoc}", name);
+	ft_strdel(&name);
+	if (ft_is_null(fd))
+		ft_printf("{green}ok null{eoc}\n");
+	else
+	{
+		ft_printf("{redko{eoc}\n");
+		exit(0);
+	}
+	int size = 0;
+	ft_printf("\nsize {green} %d {eoc}\n", size = ft_get_vm_size(fd));
+
+	char *comment;
+	ft_printf("\ncomment {green}ok %s\n{eoc}", comment = ft_get_vm_comment(fd));
+	ft_strdel(&comment);
+	if (ft_is_null(fd))
+		ft_printf("{green}ok null{eoc}\n");
+	else
+	{
+		ft_printf("{redko{eoc}\n");
+		exit(0);
+	}
+	ft_get_vm_src(fd);
+
 	(void)argc;
 	(void)argv;
 	return (0);
