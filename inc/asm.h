@@ -126,6 +126,16 @@ typedef struct		s_player
 	t_instlist		*src;
 }			t_player;
 
+typedef struct		s_champ
+{
+	char		*name;
+	char		*description;
+	char		*add;
+	t_instlist		*src;
+}			t_champ;
+
+
+
 void			ft_error_param(int error, char *param);
 
 char 			*ft_manage_url(char *url);
