@@ -2076,7 +2076,12 @@ BOOL	ft_check_signature(unsigned char r[4])
 	return (T);	
 }
 
-//BOOL	ft_check_signature )
+void	ft_put_oct(unsigned char r[4])
+{
+	ft_printf("[%c, %c, %c, %c]", r[0], r[1], r[2], r[3]);
+	ft_printf("[%.3d, %.3d, %.3d, %.3d]", r[0], r[1], r[2], r[3]);
+}
+
 BOOL	ft_get_next_oct(int fd, unsigned char (*tab)[4])
 {
 	unsigned char buf[1];
@@ -2095,26 +2100,9 @@ BOOL	ft_get_next_oct(int fd, unsigned char (*tab)[4])
 	return (T);
 }
 
-void	ft_put_oct(unsigned char r[4])
-{
-	ft_printf("[%c, %c, %c, %c]", r[0], r[1], r[2], r[3]);
-	ft_printf("[%.3d, %.3d, %.3d, %.3d]", r[0], r[1], r[2], r[3]);
-}
-
 int	ft_byts_to_int(unsigned char b[4])
 {
-	//int ret;
-
-//	ret = 0;
 	return ((((((b[0] << 8) | b[1]) << 8) | b[2]) << 8) | b[3]);
-/*	ret = b[0];
-	ret = ret << 8;
-	ret = ret | b[1];
-	ret = ret << 8;
-	ret = ret | b[2];
-	ret = ret << 8;
-	ret = ret | b[3];
-*///	return (ret);
 }
 
 
@@ -2133,7 +2121,26 @@ char	*ft_u_str_to_str(unsigned char str[4])
 	return (ret);
 }
 
+void	get_magic(int fd)
+{
+	unsigned char r[4];
 
+	ft_bzero(&r, sizeof(r));
+	if (!ft_get_next_oct(fd, &r))
+	{
+		ft_printf("{red}Error reading file"
+		"<probleme signature> reaching unexpecting eof 1\n{eoc}");
+		exit(0);
+	}
+//	ft_put_oct(r);
+	if (ft_check_signature(r)) // detailes option bonus
+		ft_printf("{green}signature ok\n{eoc}");
+	else
+	{
+		ft_printf("{red}signature Ko\n{eoc}");
+		exit(0);
+	}
+}
 
 int	main(int argc, char **argv)
 {
@@ -2143,8 +2150,10 @@ int	main(int argc, char **argv)
 	
 	t = 0;
 	fd = ft_open_r_file(argv[1]);
-	while(t < 1)
+	get_magic(fd);
+/*	while(t < 1)
 	{
+		ft_bzero(&r, sizeof(r));
 		if (!ft_get_next_oct(fd, &r))
 		{
 		ft_printf("{red}Error reading file"
@@ -2161,7 +2170,7 @@ int	main(int argc, char **argv)
 		ft_printf("{red}signature Ko\n{eoc}");
 		exit(0);
 	}
-
+*/
 	char *name;
 	char *q;
 	
@@ -2169,6 +2178,7 @@ int	main(int argc, char **argv)
 	name = NULL;
 	while(t < (PROG_NAME_LENGTH / 4) + 1)
 	{
+		ft_bzero(&r, sizeof(r));
 		if (!ft_get_next_oct(fd, &r))
 		{
 			ft_printf("{red}Error reading file"
@@ -2187,8 +2197,10 @@ int	main(int argc, char **argv)
 	ft_printf("\n{green}name ok %s\n{eoc}", name);
 	ft_strdel(&name);
 	t = 0;
+	int size = 0;
 	while(t < 1)
 	{
+		ft_bzero(&r, sizeof(r));
 		if (!ft_get_next_oct(fd, &r))
 		{
 		ft_printf("{red}Error reading file"
@@ -2198,7 +2210,14 @@ int	main(int argc, char **argv)
 		ft_put_oct(r);
 		t++;
 	}
-	ft_printf("\nsize = %d \n", ft_byts_to_int(r));
+	ft_printf("\n{green}size = %d {eoc}\n", size = ft_byts_to_int(r));
+	if(size > CHAMP_MAX_SIZE)
+	{
+		ft_printf("{red}Error size programme"
+		"<size programme = %d> can not be superior to 1\n{eoc}",
+		size, CHAMP_MAX_SIZE);
+		exit(0);
+	}
 
 
 	char *comment;
@@ -2209,6 +2228,7 @@ int	main(int argc, char **argv)
 	comment = NULL;
 	while(t < (PROG_COMMENT_LENGTH / 4))
 	{
+		ft_bzero(&r, sizeof(r));
 		if (!ft_get_next_oct(fd, &r))
 		{
 			ft_printf("{red}Error reading file"
@@ -2226,7 +2246,32 @@ int	main(int argc, char **argv)
 	ft_printf("\n");
 	ft_printf("\n{green}comment ok %s\n{eoc}", comment);
 	ft_strdel(&comment);
+		ft_bzero(&r, sizeof(r));
+		ft_get_next_oct(fd, &r);
 
+	ft_printf("\n");
+	ft_printf("\n{green}src ok %s\n{eoc}", comment);
+	BOOL tr = T;
+	t= 0;
+	while(tr)
+	{
+		ft_bzero(&r, sizeof(r));
+		if (!ft_get_next_oct(fd, &r))
+		{
+			tr = F;
+		}else
+		{
+		ft_put_oct(r);
+		if (t % 2)
+			ft_printf("\n");
+		a = ft_u_str_to_str(r);
+		comment = ft_strjoin_clear(&comment, &a, BOTH);
+		t++;
+		}
+	}
+	ft_put_oct(r);
+	ft_strdel(&comment);
+	
 	(void)argc;
 	(void)argv;
 	return (0);
