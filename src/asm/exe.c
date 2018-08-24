@@ -2076,12 +2076,18 @@ BOOL	ft_check_signature(unsigned char r[4])
 	return (T);	
 }
 
+/*****************************************************************/
+		//ft_put_oct.c
+/*****************************************************************/
 void	ft_put_oct(unsigned char r[4])
 {
 	ft_printf("[%c, %c, %c, %c]", r[0], r[1], r[2], r[3]);
 	ft_printf("[%.3d, %.3d, %.3d, %.3d]", r[0], r[1], r[2], r[3]);
 }
 
+/*****************************************************************/
+		//ft_get_next_oct.c
+/*****************************************************************/
 BOOL	ft_get_next_oct(int fd, unsigned char (*tab)[4])
 {
 	unsigned char buf[1];
@@ -2095,17 +2101,25 @@ BOOL	ft_get_next_oct(int fd, unsigned char (*tab)[4])
 		if (!read(fd, &buf, 1))
 			return (F);
 		(*tab)[i] = buf[0];
+//		ft_printf("i =[%d] = %d\t",i, buf[0]);
 		i++;
 	}
+//	ft_printf("\n");
 	return (T);
 }
 
+/*****************************************************************/
+		//ft_byts_to_int.c
+/*****************************************************************/
 int	ft_byts_to_int(unsigned char b[4])
 {
 	return ((((((b[0] << 8) | b[1]) << 8) | b[2]) << 8) | b[3]);
 }
 
 
+/*****************************************************************/
+		//ft_u_str_to_str.c
+/*****************************************************************/
 char	*ft_u_str_to_str(unsigned char str[4])
 {
 	char *ret;
@@ -2116,11 +2130,16 @@ char	*ft_u_str_to_str(unsigned char str[4])
 	while (i < 4)
 	{
 		ret[i] = str[i];
+		ft_printf("i =[%d] = %d\t",i, ret[i]);
 		i++;
 	}
+	ft_printf("\n");
 	return (ret);
 }
 
+/*****************************************************************/
+		//ft_get_vm_magic.c
+/*****************************************************************/
 void	ft_get_vm_magic(int fd)
 {
 	unsigned char oct[4];
@@ -2141,6 +2160,9 @@ void	ft_get_vm_magic(int fd)
 		ft_printf("signature {green}ok\n{eoc}");
 }
 
+/*****************************************************************/
+		//ft_get_vm_name.c
+/*****************************************************************/
 char	*ft_get_vm_name(int fd)
 {
 	unsigned char oct[4];
@@ -2170,6 +2192,9 @@ char	*ft_get_vm_name(int fd)
 	return (name);
 }
 
+/*****************************************************************/
+		//ft_get_vm_size.c
+/*****************************************************************/
 int	ft_get_vm_size(int fd)
 {
 	unsigned char oct[4];
@@ -2194,6 +2219,9 @@ int	ft_get_vm_size(int fd)
 	return (size);
 }
 
+/*****************************************************************/
+		//ft_is_null.c
+/*****************************************************************/
 BOOL	ft_is_null(int fd)
 {
 	unsigned char oct[4];
@@ -2217,6 +2245,9 @@ BOOL	ft_is_null(int fd)
 	return (T);
 }
 
+/*****************************************************************/
+		//ft_get_vm_comment.c
+/*****************************************************************/
 char	*ft_get_vm_comment(int fd)
 {
 	unsigned char oct[4];
@@ -2246,7 +2277,10 @@ char	*ft_get_vm_comment(int fd)
 	return (comment);
 }
 
-char		*get_vm_src(int fd)
+/*****************************************************************/
+		//ft_get_vm_src.c
+/*****************************************************************/
+/*char		*get_vm_src(int fd)
 {
 	unsigned char oct[4];
 	char *src;
@@ -2260,25 +2294,54 @@ char		*get_vm_src(int fd)
 		ft_bzero(&oct, sizeof(oct));
 		if (!ft_get_next_oct(fd, &oct))
 			rd = F;
-		else
-		{
-			temp = ft_u_str_to_str(oct);
-			src = ft_strjoin_clear(&src, &temp, BOTH);
-		}
+		temp = ft_u_str_to_str(oct);
+		src = ft_strjoin_clear(&src, &temp, BOTH);
 	}
 	return (src);
 }
-
-t_instlist	*ft_get_vm_src(int fd)
+*/
+t_instlist	*ft_get_vm_src(int fd, int size_prog)
 {
 	char *src;
+	unsigned char buf[1];
+	int i;
+
+	i = 0;
+	src = ft_strnew(size_prog);
+	while(i < size_prog)
+	{
+		if(!read(fd, &buf, 1))
+		{
+			ft_printf("eoor\n");
+			exit(0);
+		}
+		src[i] = buf[0];
+		ft_printf("i =[%d] = %d\t",i, (unsigned char) src[i]);
+		if(i % 4 == 0)
+			ft_printf("\n");
+		i++;
+	}
+/*
 	src = get_vm_src(fd);
-	ft_printf("\nsrc {green} ok %s\n{eoc}", src);
-	// ft_oct_to_instlist(src);
+	ft_printf("\nsrc {green} ok %S\n<%d>{eoc}\n", src, ft_strlen(src));
+
+*/	i = 0;
+	ft_printf("/ ******************************* \\ \n ", src[i]);
+	while(i < size_prog) 
+	{
+		ft_printf("%d ", src[i]);
+		i++;
+		if (i % 4 == 0)
+			ft_printf("\n");
+	}
+	//ft_oct_to_instlist(src);
 	ft_strdel(&src);
 	return (NULL);
 }
 
+/*****************************************************************/
+		//main_vm.c
+/*****************************************************************/
 int	main(int argc, char **argv)
 {
 	int fd;
@@ -2305,10 +2368,10 @@ int	main(int argc, char **argv)
 		ft_printf("{green}ok null{eoc}\n");
 	else
 	{
-		ft_printf("{redko{eoc}\n");
+		ft_printf("{red}ko{eoc}\n");
 		exit(0);
 	}
-	ft_get_vm_src(fd);
+	ft_get_vm_src(fd, size);
 
 	(void)argc;
 	(void)argv;
