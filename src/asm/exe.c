@@ -2317,8 +2317,8 @@ t_instlist	*ft_get_vm_src(int fd, int size_prog)
 			exit(0);
 		}
 		src[i] = buf[0];
-		ft_printf("i =[%xd] = %x, [%b]\t",i,
-		src[i], src[i]);
+		ft_printf("i =[%xd] = %x\t",i,
+		src[i]);
 		if(i % 4 == 0)
 			ft_printf("\n");
 		i++;
@@ -2328,13 +2328,15 @@ t_instlist	*ft_get_vm_src(int fd, int size_prog)
 	ft_printf("\nsrc {green} ok %S\n<%d>{eoc}\n", src, ft_strlen(src));
 
 */	i = 0;
-	ft_printf("/ ******************************* \\ \n\n", src[i]);
+	ft_printf("\n\n/ ************************** \\ \n\n", src[i]);
 	while(i < size_prog) 
 	{
-		ft_printf("%.2x ", src[i]);
+		ft_printf("%.2x ", (unsigned char)src[i]);
 		i++;
-//		if (i % 4 == 0)
-//			ft_printf("\n");
+		if (i % 8 == 0)
+			ft_printf("  ");
+		if (i % 16 == 0)
+			ft_printf("\n");
 	}
 	//ft_oct_to_instlist(src);
 	ft_strdel(&src);
