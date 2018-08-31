@@ -2327,7 +2327,8 @@ t_instlist	*ft_get_vm_src(int fd, int size_prog)
 	src = get_vm_src(fd);
 	ft_printf("\nsrc {green} ok %S\n<%d>{eoc}\n", src, ft_strlen(src));
 
-*/	i = 0;
+*/	
+	i = 0;
 	ft_printf("\n\n/ ************************** \\ \n\n", src[i]);
 	while(i < size_prog) 
 	{
@@ -2337,8 +2338,48 @@ t_instlist	*ft_get_vm_src(int fd, int size_prog)
 			ft_printf("  ");
 		if (i % 16 == 0)
 			ft_printf("\n");
-	}
-	//ft_oct_to_instlist(src);
+	}	
+	
+	ft_printf("\n\n/ ************************** \\ \n\n", src[i]);
+	t_op *op_tab[NBR_OP];
+
+	ft_get_op_tab(op_tab);
+
+	ft_put_size_label(op_tab);
+	int opr = 0;
+	i = 0;
+	int j = 0;
+	while(i < size_prog) 
+	{
+		opr = src[i];
+		ft_printf(" i = %d\n", i);
+		if (src[i] < 16 && src[i] > 0)// error
+			ft_printf("{green} op = %x {eoc}", src[i]);
+		ft_printf(" nbr param %d  name {%s} "
+		, op_tab[opr]->nbr_param , op_tab[opr]->name);
+		
+		if(ft_is_need_desc_op( op_tab[opr]->name, op_tab))
+		{
+			ft_printf(" {yellow}desc{eoc} ");
+			i++;
+		}
+		i++;
+		//is need OCP <+1> else faire directement les tailles des arguments
+
+		//size parame      ->error
+		ft_printf("\n");
+//		ft_printf("%.2x ", (unsigned char)src[i]);
+				i = i + op_tab[opr]->nbr_param;
+		if (i == j)
+			i = size_prog;
+		else
+			j = i;
+//		if (i % 8 == 0)
+//			ft_printf("  ");
+	//	if (i % 16 == 0)
+	//		ft_printf("\n");
+	}	//ft_oct_to_instlist(src);
+	ft_free_optab(op_tab);
 	ft_strdel(&src);
 	return (NULL);
 }
