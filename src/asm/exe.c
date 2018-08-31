@@ -2067,6 +2067,7 @@ BOOL	ft_check_signature(unsigned char r[4])
 	{
 		if (r[i] != ret[i])
 		{
+//			ft_printf("ici %d   %d\n", r[i], ret[i]);
 			free(ret);
 			return (F);
 		}
@@ -2130,10 +2131,10 @@ char	*ft_u_str_to_str(unsigned char str[4])
 	while (i < 4)
 	{
 		ret[i] = str[i];
-		ft_printf("i =[%d] = %d\t",i, ret[i]);
+//		ft_printf("i =[%d] = %d\t",i, ret[i]);
 		i++;
 	}
-	ft_printf("\n");
+//	ft_printf("\n");
 	return (ret);
 }
 
@@ -2150,7 +2151,7 @@ void	ft_get_vm_magic(int fd)
 		"<probleme signature> reaching unexpecting eof 1\n{eoc}");
 		exit(0);
 	}
-//	ft_put_oct(r);
+//	ft_put_oct(oct);
 	if (!ft_check_signature(oct)) // detailes option bonus
 	{
 		ft_printf("{red}signature Ko\n{eoc}");
@@ -2316,7 +2317,8 @@ t_instlist	*ft_get_vm_src(int fd, int size_prog)
 			exit(0);
 		}
 		src[i] = buf[0];
-		ft_printf("i =[%d] = %d\t",i, (unsigned char) src[i]);
+		ft_printf("i =[%xd] = %x, [%b]\t",i,
+		src[i], src[i]);
 		if(i % 4 == 0)
 			ft_printf("\n");
 		i++;
@@ -2326,13 +2328,13 @@ t_instlist	*ft_get_vm_src(int fd, int size_prog)
 	ft_printf("\nsrc {green} ok %S\n<%d>{eoc}\n", src, ft_strlen(src));
 
 */	i = 0;
-	ft_printf("/ ******************************* \\ \n ", src[i]);
+	ft_printf("/ ******************************* \\ \n\n", src[i]);
 	while(i < size_prog) 
 	{
-		ft_printf("%d ", src[i]);
+		ft_printf("%.2x ", src[i]);
 		i++;
-		if (i % 4 == 0)
-			ft_printf("\n");
+//		if (i % 4 == 0)
+//			ft_printf("\n");
 	}
 	//ft_oct_to_instlist(src);
 	ft_strdel(&src);
