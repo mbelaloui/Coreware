@@ -2411,48 +2411,77 @@ t_instlist	*ft_get_vm_src(int fd, int size_prog)
 			ft_printf(" {yellow}desc{eoc} [%.2x] ",(unsigned char) src[i]);
 			ft_printf(" {yellow}desc{eoc} [%.8b] \n",(unsigned char) src[i]);
 
-			int desc = src[i];
+			unsigned char desc = src[i];
 			ft_printf(" desc arg  = %.8b \n", (unsigned char)desc);
 
-			desc = desc >> 2;
+			//desc = desc >> 2;
 			
-			int arg_3 = desc & 0x3;
-			ft_printf(" desc arg 3 = %.8b ", (unsigned char)arg_3);
+			unsigned char arg_3;// = desc & 0x3;
+		//	desc = desc >> 2;
+			arg_3 = desc >> 6;
+			ft_printf(" desc arg 1 = %.32b ", (unsigned char)arg_3);
 			if(arg_3 == REG_CODE)
+			{
 				ft_printf("registre ");
+				i++;
+			}	
 			else if(arg_3 == DIR_CODE)
+			{
 				ft_printf("direct ");
-			else if(arg_3 == IND_CODE)
+				int pas = op_tab[opr]->size_label;
+				i+= pas ;
+				
+			}else if(arg_3 == IND_CODE)
+			{
 				ft_printf("indirect ");
-			else
-				ft_printf("no arg 3");
+				i += 2;
+			}else
+				ft_printf("no arg 1");
 
 			ft_printf("\n");
-			desc = desc >> 2;
-			arg_3 = desc & 0x3;
-			ft_printf(" desc arg 2 = %.8b ", (unsigned char)arg_3);
+		//	desc = desc >> 2;
+			unsigned char arg_q = (desc << 2);
+			arg_3 = arg_q >> 6;
+			ft_printf(" desc arg 2 = %.32b ", (unsigned char)arg_3);
 			if(arg_3 == REG_CODE)
+			{
 				ft_printf("registre ");
-			else if(arg_3 == DIR_CODE)
+				i++;
+			}else if(arg_3 == DIR_CODE)
+			{
 				ft_printf("direct ");
+				i++;
+			}
 			else if(arg_3 == IND_CODE)
-				ft_printf("indirect ");
-			else
+			{
+				int pas = op_tab[opr]->size_label;
+				ft_printf("indirect  pas = %d", pas);
+				i +=2;//= pas;
+			}else
 				ft_printf("no arg 2");
 
 			ft_printf("\n");
-			desc = desc >> 2;
-			arg_3 = desc & 0x3;
-			ft_printf(" desc arg 1 = %.8b ", (unsigned char)arg_3);
+
+			arg_q = (desc << 4);
+			arg_3 = arg_q >> 6;
+			ft_printf(" desc arg 3 = %.32b ", (unsigned char)arg_3);
 			if(arg_3 == REG_CODE)
+			{
 				ft_printf("registre ");
+				i++;
+			}
 			else if(arg_3 == DIR_CODE)
+			{
 				ft_printf("direct ");
-			else if(arg_3 == IND_CODE)
+				i++;
+			}else if(arg_3 == IND_CODE)
+			{
 				ft_printf("indirect ");
+				i+= 2;
+			}
 			else
-				ft_printf("no arg 1");
-	
+				ft_printf("no arg 3");
+
 /*
 			int arg_1 = DESC_REG & ;
 			int arg_2 = DESC_DIR & ;
