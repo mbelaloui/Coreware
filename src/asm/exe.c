@@ -2378,7 +2378,6 @@ t_instlist	*ft_get_vm_src(int fd, int size_prog)
 /*
 	src = get_vm_src(fd);
 	ft_printf("\nsrc {green} ok %S\n<%d>{eoc}\n", src, ft_strlen(src));
-
 */
 	i = 0;
 	ft_printf("\n\n/ ************************** \\ \n\n", src[i]);
@@ -2391,16 +2390,12 @@ t_instlist	*ft_get_vm_src(int fd, int size_prog)
 		if (i % 16 == 0)
 			ft_printf("\n");
 	}	
-	
 	ft_printf("\n\n/ ************************** \\ \n\n", src[i]);
 	t_op *op_tab[NBR_OP];
-
 	ft_get_op_tab(op_tab);
-
 	ft_put_size_label(op_tab);
 	int opr = 0;
 	i = 0;
-//	int j = 0;
 	while(i < size_prog) 
 	{
 		opr = src[i];
@@ -2409,24 +2404,67 @@ t_instlist	*ft_get_vm_src(int fd, int size_prog)
 			ft_printf("{green} op = %.2x {eoc}", src[i]);
 		ft_printf(" name {%s} nbr param %d "
 		, op_tab[opr]->name, op_tab[opr]->nbr_param);
-	
 		opr = src[i];
-		
 		if(ft_is_need_desc_op( op_tab[opr]->name, op_tab))
 		{
 			i++;
 			ft_printf(" {yellow}desc{eoc} [%.2x] ",(unsigned char) src[i]);
 			ft_printf(" {yellow}desc{eoc} [%.8b] \n",(unsigned char) src[i]);
 
+			int desc = src[i];
+			ft_printf(" desc arg  = %.8b \n", (unsigned char)desc);
 
-// faire des decalage binaire et extraire just les deux bit tout a fait a gauchepuis les 
-// comparera evec >DESC_REG/DESC_DIR/DESC_IND< pour conaitre le type des l'args
+			desc = desc >> 2;
+			
+			int arg_3 = desc & 0x3;
+			ft_printf(" desc arg 3 = %.8b ", (unsigned char)arg_3);
+			if(arg_3 == REG_CODE)
+				ft_printf("registre ");
+			else if(arg_3 == DIR_CODE)
+				ft_printf("direct ");
+			else if(arg_3 == IND_CODE)
+				ft_printf("indirect ");
+			else
+				ft_printf("no arg 3");
+
+			ft_printf("\n");
+			desc = desc >> 2;
+			arg_3 = desc & 0x3;
+			ft_printf(" desc arg 2 = %.8b ", (unsigned char)arg_3);
+			if(arg_3 == REG_CODE)
+				ft_printf("registre ");
+			else if(arg_3 == DIR_CODE)
+				ft_printf("direct ");
+			else if(arg_3 == IND_CODE)
+				ft_printf("indirect ");
+			else
+				ft_printf("no arg 2");
+
+			ft_printf("\n");
+			desc = desc >> 2;
+			arg_3 = desc & 0x3;
+			ft_printf(" desc arg 1 = %.8b ", (unsigned char)arg_3);
+			if(arg_3 == REG_CODE)
+				ft_printf("registre ");
+			else if(arg_3 == DIR_CODE)
+				ft_printf("direct ");
+			else if(arg_3 == IND_CODE)
+				ft_printf("indirect ");
+			else
+				ft_printf("no arg 1");
+	
+/*
+			int arg_1 = DESC_REG & ;
+			int arg_2 = DESC_DIR & ;
+			int arg_3 = DESC_IND & ;
+*/
+
+// faire des decalage binaire >> 2 et extraire  les deux bit tout a fait a roite puis les 
+// comparer avec >REG_CODE/DIR_CODE/IND_CODE< pour conaitre le type des l'args
 // en conaissant le type des args ont peut deduire
 //	si le type est bien coherent
-//	<si la desc dit qu'il ya un reg et le num est superieur a ce qui est reconnu>
-
+//		<si la desc dit qu'il ya un reg et le num est superieur a ce qui est reconnu>
 //	la taille de representation de chaque arg
-
 
 /*	
 
