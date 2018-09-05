@@ -2400,18 +2400,32 @@ t_instlist	*ft_get_vm_src(int fd, int size_prog)
 	{
 		opr = src[i];
 		ft_printf(" i = %d\n", i);
-		if (src[i] < 16 && src[i] > 0)// error
+		if (src[i] < 17 && src[i] > 0)// error
 			ft_printf("{green} op = %.2x {eoc}", src[i]);
+		else
+		{
+			ft_printf("{red} exit %d   [%d]{eoc}", i, src[i]);
+		
+			break;
+		}
 		ft_printf(" name {%s} nbr param %d "
 		, op_tab[opr]->name, op_tab[opr]->nbr_param);
-		opr = src[i];
-		if(ft_is_need_desc_op( op_tab[opr]->name, op_tab))
+		//opr = src[i];
+		i++;
+		if (opr == 1 || opr == 12 || opr == 9)
 		{
-			i++;
+			if (opr == 12 || opr == 9)
+				i+= 2;
+			else
+				i += 4;	
+		}
+		else if(ft_is_need_desc_op( op_tab[opr]->name, op_tab))
+		{
 			ft_printf(" {yellow}desc{eoc} [%.2x] ",(unsigned char) src[i]);
 			ft_printf(" {yellow}desc{eoc} [%.8b] \n",(unsigned char) src[i]);
 
 			unsigned char desc = src[i];
+			i++;
 			ft_printf(" desc arg  = %.8b \n", (unsigned char)desc);
 
 			//desc = desc >> 2;
@@ -2473,7 +2487,7 @@ t_instlist	*ft_get_vm_src(int fd, int size_prog)
 			else if(arg_3 == DIR_CODE)
 			{
 				ft_printf("direct ");
-				i++;
+				i+= 2;
 			}else if(arg_3 == IND_CODE)
 			{
 				ft_printf("indirect ");
@@ -2508,7 +2522,8 @@ t_instlist	*ft_get_vm_src(int fd, int size_prog)
 				T_REG_P3);
 */
 		}
-		i++;
+		else
+		 i++;
 		//is need OCP <+1> else faire directement les tailles des arguments
 
 		//size parame      ->error
@@ -2523,6 +2538,11 @@ t_instlist	*ft_get_vm_src(int fd, int size_prog)
 //			ft_printf("  ");
 //		if (i % 16 == 0)
 //			ft_printf("\n");
+
+		char *l= NULL;
+		get_next_line(0, &l);
+		ft_strdel(&l);
+//		ft_temporize(5);
 	}
 
 	ft_printf(" end index = %d\n", i);
