@@ -2,25 +2,9 @@
 #include "../../libft/inc/option.h"
 
 /*****************************************************************/
-		//ft_get_size_program.c
-/*****************************************************************/
-/*int	ft_get_size_program(t_instlist *list)
-{
-	int size_program;
-
-	size_program = 0;
-	while (list)
-	{
-		size_program += list->data->size_inst;
-		list = list->next;
-	}
-	return (size_program);
-}
-*/
-/*****************************************************************/
 		//ft_extract_source.c
 /*****************************************************************/
-BOOL	get_label(char *str, char **label)
+/*BOOL	get_label(char *str, char **label)
 {
 	int i;
 
@@ -127,7 +111,7 @@ t_op *op_tab[NBR_OP])
 	}
 	player->src = src;
 }
-
+*/
 /*****************************************************************/
 		//ft_extract_info.c
 /*****************************************************************/
