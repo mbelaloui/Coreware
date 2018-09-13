@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 11:55:39 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/13 13:07:53 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/13 14:59:59 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,8 +141,12 @@ void			ft_error_op(int error, char *str);
 void			ft_error_head(int error, char *str_file);
 void			ft_error_inst(int error);
 void			ft_error_args(int error, char *op, char *args, char *arg);
-
+void			ft_error_option(int id_error, char *name, t_option *op,
+		char c);
 char			*ft_manage_url(char *url);
+void			ft_set_asm_options(char c, t_option *options);
+BOOL			ft_extract_asm_options(char *param, t_option *op, char *name);
+void			ft_init_asm_option(t_option *op);
 /*
 */
 t_inst			*ft_new_inst(char *label, char *op, t_charlist *args);
@@ -153,14 +157,31 @@ BOOL			ft_dell_list_instlist(t_instlist **to_free);
 BOOL			ft_add_end_instlist(t_inst *inst, t_instlist **list);
 void	ft_handle_args_inst(char **tab_args, char *name_op, char *args, t_op *op);
 int				ft_get_size_program(t_instlist *list);
+int				ft_get_desc_args(t_charlist *param);
+int				ft_get_size_bin_inst(int size[SIZE_INST]);
+unsigned int	*ft_int_to_byts(int val, int size);
 /*
 */
 void			ft_warning(int id_warn, int size, char *data, t_option *op);
 void			ft_put_player(t_player *player);
+void			ft_put_bin_source(t_player *player);
+void			ft_put_decimal_source(t_player *player);
+void			ft_put_hexa_source(t_player *player);
+void			ft_get_arg_translat(t_inst *inst, t_symbole *symbole,
+		int *add, int i);
+void	ft_translate_player(t_player *player, t_op *op_tab[NBR_OP],
+		t_option *op);
+void			ft_put_usage(char *name, t_option *op);
+void			ft_put_option(t_option *option);
+void			ft_put_help(char *name, t_option *op);
 /*
 */
 void			ft_free_player(t_player *player);
-
+void			ft_put_head(t_player *player, int fd);
+void			ft_put_bynary(int data, int size, int fd);
+BOOL			ft_extract_info_player(t_charlist *file, t_player *player	, t_op *op_tab[NBR_OP]);
+void			ft_put_src(t_player *player, int fd);
+void			ft_make_out_put(t_player *player);
 char		**ft_prepare_args(char **str, char *name_op, t_op *op, char **args);
 /*
 */
@@ -178,13 +199,29 @@ BOOL			ft_is_register(char *arg);
 int				ft_get_type_args(char *arg, int pos);
 void			ft_extraire_source(t_charlist *sc, t_player *player,
 		t_op *op_tab[NBR_OP]);
+BOOL			ft_is_option(const char option);
+void			ft_set_options(char c, t_option *options);
+
 //BOOL			ft_is_need_desc_op(char *name_op, t_op *op_tab[NBR_OP]);
 //char			**ft_prepare_args(char **str, char *name_op, t_op *op,
 //		char **args);
 /*
 */
 void			ft_get_size_inst(t_inst *inst, t_op *op_tab[NBR_OP]);
-
+/*
+ */
+t_symbole		*ft_new_symbole(char *sym, int add);
+int				ft_is_in_symbole(char *symbole, t_symbole *list);
+BOOL			ft_add_symbole(char *data, int add, t_symbole **list,
+		t_option *op);
+BOOL			ft_dell_symbole(t_symbole **to_free);
+BOOL			ft_dell_list_symbole(t_symbole **to_free);
+void			ft_put_list_symbole(t_symbole *list);
+t_symbole		*ft_init_symbole_tab(t_player *player, t_option *op);
+/*
+*/
+void			ft_set_used_label(char *symbole, t_symbole *list);
+void	ft_check_for_label(t_symbole *symbole, t_instlist *src, t_option *op);
 #endif
 
 

@@ -4,7 +4,7 @@ NAME_ASM			= asm
 FLAGES				= -Wall -Wextra -Werror -c
 
 DIR_ASM				= asm
-SRC_ASM				= exe.c
+SRC_ASM				= asm_exe.c
 SRCS_ASM			= $(addprefix $(DIR_ASM)/, $(SRC_ASM))
 
 DIR_PARSING_ASM			= asm/parsing
@@ -13,13 +13,25 @@ SRC_PARSING_ASM			= ft_manage_url.c ft_extract_simple_comment.c\
 						  ft_skip_spaces.c ft_get_index_end.c ft_get_data.c\
 						  ft_extraire_head_info.c ft_is_label.c ft_is_direct.c\
 						  ft_is_indirect.c ft_is_register.c ft_get_type_args.c\
-						  ft_prepare_args.c ft_extract_source.c
+						  ft_prepare_args.c ft_extract_source.c ft_is_option.c\
+						  ft_set_asm_options.c ft_extract_asm_options.c\
+						  ft_init_asm_option.c
 SRCS_PARSING_ASM		= $(addprefix $(DIR_PARSING_ASM)/, $(SRC_PARSING_ASM))
+
+DIR_SYMBOLE				= asm/parsing/symbole
+SRC_SYMBOLE				= ft_new_symbole.c ft_is_in_symbole.c ft_add_symbole.c\
+						  ft_dell_symbole.c ft_dell_list_symbole.c\
+						  ft_put_list_symbole.c ft_init_symbole_tab.c
+SRCS_SYMBOLE		= $(addprefix $(DIR_SYMBOLE)/, $(SRC_SYMBOLE))
+
+DIR_LABEL				= asm/parsing/label
+SRC_LABEL				= ft_set_used_label.c ft_check_for_label.c
+SRCS_LABEL				= $(addprefix $(DIR_LABEL)/, $(SRC_LABEL))
 
 DIR_ERROR			= error
 SRC_ERROR			= ft_error_param.c ft_error_reading_file.c ft_error_label.c\
 					  ft_error_op.c ft_error_head.c ft_error_inst.c\
-					  ft_error_args.c
+					  ft_error_args.c ft_error_option.c
 SRCS_ERROR			= $(addprefix $(DIR_ERROR)/, $(SRC_ERROR))
 
 DIR_OP				= op
@@ -34,22 +46,23 @@ SRCS_OP				= $(addprefix $(DIR_OP)/, $(SRC_OP))
 
 DIR_PRINTING		= printing
 SRC_PRINTING		= ft_put_inst.c ft_put_instlist.c ft_warning.c\
-					  ft_put_player.c
+					  ft_put_player.c ft_put_source_bin.c\
+					  ft_put_source_decimal.c ft_put_source_hexa.c\
+					  ft_put_usage.c ft_put_option.c  ft_put_help.c
 SRCS_PRINTING		= $(addprefix $(DIR_PRINTING)/, $(SRC_PRINTING))
 
 DIR_INST		= inst
 SRC_INST		= ft_dell_inst.c ft_dell_list_instlist.c ft_add_end_instlist.c\
 				  ft_new_inst.c ft_is_need_desc_op.c ft_get_size_inst.c\
-				  ft_handle_args_inst.c ft_get_size_program.c
+				  ft_handle_args_inst.c ft_get_size_program.c\
+				  ft_get_desc_args.c ft_get_size_bin_inst.c ft_int_to_byts.c
 SRCS_INST		= $(addprefix $(DIR_INST)/, $(SRC_INST))
 
 DIR_PLAYER		= player
-SRC_PLAYER		= ft_free_player.c
+SRC_PLAYER		= ft_free_player.c ft_extract_info_player.c\
+				  ft_translate_player.c ft_get_arg_translat.c ft_put_head.c\
+				  ft_put_bynary.c ft_put_src.c ft_make_out_put.c
 SRCS_PLAYER		= $(addprefix $(DIR_PLAYER)/, $(SRC_PLAYER))
-
-#DIR_		=
-#SRC_		=
-#SRCS_		= $(addprefix $(DIR_)/, $(SRC_))
 
 #DIR_		=
 #SRC_		=
@@ -65,7 +78,8 @@ LIBFT_DIR			= libft
 LIBFT				= libft.a
 
 SRCS				= $(SRCS_ASM) $(SRCS_PARSING_ASM) $(SRCS_ERROR) $(SRCS_OP)\
-					  $(SRCS_PRINTING) $(SRCS_INST) $(SRCS_PLAYER)
+					  $(SRCS_PRINTING) $(SRCS_INST) $(SRCS_PLAYER)\
+					  $(SRCS_SYMBOLE) $(SRCS_LABEL)
 
 RED					= \033[31m
 GREEN				= \033[32m
@@ -103,6 +117,8 @@ $(OBJS_DIR)			:
 	@mkdir -p $(OBJS_DIR)$(DIR_PRINTING);
 	@mkdir -p $(OBJS_DIR)$(DIR_INST);
 	@mkdir -p $(OBJS_DIR)$(DIR_PLAYER);
+	@mkdir -p $(OBJS_DIR)$(DIR_SYMBOLE);
+	@mkdir -p $(OBJS_DIR)$(DIR_LABEL);
 
 
 clean				:

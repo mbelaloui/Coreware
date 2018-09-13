@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 10:06:55 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/06/09 14:14:16 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/13 14:58:34 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft.h"
 
+char	*ft_char_to_str(char c);
 int		ft_chartoint(const char c);
 BOOL	ft_isalnum(const char c);
 BOOL	ft_isalpha(const char c);
