@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 12:05:02 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/07/18 11:35:24 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/13 11:26:31 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ char			*ft_strstr(const char *ha, const char *ne);
 char			*ft_strsub(const char *str, unsigned int start, size_t len);
 char			*ft_strtrim(const char *str);
 char			*ft_strupper(const char *str);
+char			*ft_replace_char_in_str(char *str, char rep, char repwith);
+
 
 // remove this fonction
 //int		ft_extract_options(char *param, unsigned long *op,

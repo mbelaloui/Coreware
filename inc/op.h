@@ -6,7 +6,7 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2018/07/18 19:52:38 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/13 12:57:27 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # define OP_H
 
 # include "../libft/inc/libft.h"
-# include "asm.h"
 
 # define REG_SIZE				1
 # define IND_SIZE				2
@@ -58,6 +57,20 @@
 # define COREWAR_EXEC_MAGIC		0xea83f3
 
 #define NBR_OP					17
+
+
+# define T_REG_P1	0x1
+# define T_DIR_P1	0x2
+# define T_IND_P1	0x4
+
+# define T_REG_P2	0x8
+# define T_DIR_P2	0x10
+# define T_IND_P2	0x20
+
+# define T_REG_P3	0x40
+# define T_DIR_P3	0x80
+# define T_IND_P3	0x100
+
 
 typedef char		t_arg_type;
 
@@ -104,6 +117,13 @@ int					ft_is_name_op(char *str);
 t_op				*ft_get_op(t_op *op_tab[NBR_OP], char *str);
 void				ft_get_op_tab(t_op *op_tab[NBR_OP]);
 void				ft_put_desc_param(t_op *op_tab[NBR_OP]);
+void				ft_free_optab(t_op *op_tab[NBR_OP]);
 
 
+
+//char	**ft_prepare_args(char **str, char *name_op, t_op *op, char **args);
+
+BOOL	ft_is_need_desc_op(char *name_op, t_op *op_tab[NBR_OP]);
+//BOOL	ft_is_need_desc_inst(char *name_op, t_op *op_tab[NBR_OP]);
+//void	ft_get_size_inst(t_inst *inst, t_op *op_tab[NBR_OP]	);
 #endif

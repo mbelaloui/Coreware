@@ -8,11 +8,18 @@ SRC_ASM				= exe.c
 SRCS_ASM			= $(addprefix $(DIR_ASM)/, $(SRC_ASM))
 
 DIR_PARSING_ASM			= asm/parsing
-SRC_PARSING_ASM			= ft_manage_url.c
+SRC_PARSING_ASM			= ft_manage_url.c ft_extract_simple_comment.c\
+						  ft_extract_ml_comment.c ft_clean_file.c\
+						  ft_skip_spaces.c ft_get_index_end.c ft_get_data.c\
+						  ft_extraire_head_info.c ft_is_label.c ft_is_direct.c\
+						  ft_is_indirect.c ft_is_register.c ft_get_type_args.c\
+						  ft_prepare_args.c ft_extract_source.c
 SRCS_PARSING_ASM		= $(addprefix $(DIR_PARSING_ASM)/, $(SRC_PARSING_ASM))
 
 DIR_ERROR			= error
-SRC_ERROR			= ft_error_param.c ft_error_reading_file.c
+SRC_ERROR			= ft_error_param.c ft_error_reading_file.c ft_error_label.c\
+					  ft_error_op.c ft_error_head.c ft_error_inst.c\
+					  ft_error_args.c
 SRCS_ERROR			= $(addprefix $(DIR_ERROR)/, $(SRC_ERROR))
 
 DIR_OP				= op
@@ -22,12 +29,32 @@ SRC_OP				= ft_dell_op.c ft_get_nbr_param.c ft_get_type_param.c\
 					  ft_init_op_tab.c ft_new_op.c ft_put_op_param.c\
 					  ft_set_desc_param.c ft_get_name.c ft_get_op_tab.c\
 					  ft_is_name_op.c ft_put_desc_param.c ft_put_size_label.c\
-					  ft_set_param.c
+					  ft_set_param.c ft_free_optab.c
 SRCS_OP				= $(addprefix $(DIR_OP)/, $(SRC_OP))
+
+DIR_PRINTING		= printing
+SRC_PRINTING		= ft_put_inst.c ft_put_instlist.c ft_warning.c\
+					  ft_put_player.c
+SRCS_PRINTING		= $(addprefix $(DIR_PRINTING)/, $(SRC_PRINTING))
+
+DIR_INST		= inst
+SRC_INST		= ft_dell_inst.c ft_dell_list_instlist.c ft_add_end_instlist.c\
+				  ft_new_inst.c ft_is_need_desc_op.c ft_get_size_inst.c\
+				  ft_handle_args_inst.c ft_get_size_program.c
+SRCS_INST		= $(addprefix $(DIR_INST)/, $(SRC_INST))
+
+DIR_PLAYER		= player
+SRC_PLAYER		= ft_free_player.c
+SRCS_PLAYER		= $(addprefix $(DIR_PLAYER)/, $(SRC_PLAYER))
 
 #DIR_		=
 #SRC_		=
 #SRCS_		= $(addprefix $(DIR_)/, $(SRC_))
+
+#DIR_		=
+#SRC_		=
+#SRCS_		= $(addprefix $(DIR_)/, $(SRC_))
+
 
 INC_DIR				= inc/
 
@@ -37,7 +64,8 @@ LIBFT_DIR			= libft
 
 LIBFT				= libft.a
 
-SRCS				= $(SRCS_ASM) $(SRCS_PARSING_ASM) $(SRCS_ERROR) $(SRCS_OP)
+SRCS				= $(SRCS_ASM) $(SRCS_PARSING_ASM) $(SRCS_ERROR) $(SRCS_OP)\
+					  $(SRCS_PRINTING) $(SRCS_INST) $(SRCS_PLAYER)
 
 RED					= \033[31m
 GREEN				= \033[32m
@@ -61,7 +89,7 @@ $(NAME_ASM)			: $(LIBFT) $(OBJS_DIR) $(OBJS)
 $(OBJS_DIR)%.o		: ./src/%.c $(INC_DIR)
 	@echo "$< $(GREEN) compiled $(WHITE)"
 	@echo "\033[1A \033[2K \033[A"
-	@gcc $(FLAGES) $< -o $@
+	@gcc  $(FLAGES) $< -o $@
 
 $(LIBFT)			:
 	@make -C $(LIBFT_DIR)
@@ -72,6 +100,9 @@ $(OBJS_DIR)			:
 	@mkdir -p $(OBJS_DIR)$(DIR_ERROR);
 	@mkdir -p $(OBJS_DIR)$(DIR_PARSING_ASM);
 	@mkdir -p $(OBJS_DIR)$(DIR_OP);
+	@mkdir -p $(OBJS_DIR)$(DIR_PRINTING);
+	@mkdir -p $(OBJS_DIR)$(DIR_INST);
+	@mkdir -p $(OBJS_DIR)$(DIR_PLAYER);
 
 
 clean				:
