@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 14:03:37 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/14 15:34:19 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/14 16:23:13 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ static void	put_hexa_source_bis1(int i, t_inst *data)
 			ft_printf("     [{red}%.2hx{eoc}] [{red}%.2hx{eoc}]\t"
 					"    | ", ret[0], ret[1]);
 		else if (size == DIR_SIZE)
-			ft_printf(" [{blue}%.2hx{eoc}][{blue}%.2hx{eoc}]"
-					" [{blue}%.2hx{eoc}][{blue}%.2hx{eoc}] | "
+			ft_printf(" [{yellow}%.2hx{eoc}][{yellow}%.2hx{eoc}]"
+					" [{yellow}%.2hx{eoc}][{yellow}%.2hx{eoc}] | "
 					, ret[0], ret[1], ret[2], ret[3]);
 		free(ret);
 		i++;
@@ -68,8 +68,8 @@ static void	put_hexa_source_bis2(int i, t_inst *data)
 			ft_printf("     [{red}%.2hx{eoc}] [{red}%.2hx{eoc}]\t"
 					"    |\t", ret[0], ret[1]);
 		else if (size == DIR_SIZE)
-			ft_printf(" [{blue}%.2hx{eoc}][{blue}%.2hx{eoc}]"
-					" [{blue}%.2hx{eoc}][{blue}%.2hx{eoc}] |\t"
+			ft_printf(" [{yellow}%.2hx{eoc}][{yellow}%.2hx{eoc}]"
+					" [{yellow}%.2hx{eoc}][{yellow}%.2hx{eoc}] |\t"
 					, ret[0], ret[1], ret[2], ret[3]);
 		free(ret);
 		i++;

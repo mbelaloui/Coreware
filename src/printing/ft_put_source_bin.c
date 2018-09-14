@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 13:59:34 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/14 15:30:03 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/14 16:21:19 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ static void	put_bin_source_bis1(int i, t_inst *data)
 			ft_printf("     [{red}%8.8b{eoc}] [{red}%8.8b{eoc}]\t"
 					"    |", ret[0], ret[1]);
 		else if (size == DIR_SIZE)
-			ft_printf(" [{blue}%8.8b{eoc}][{blue}%8.8b{eoc}]"
-					" [{blue}%8.8b{eoc}][{blue}%8.8b{eoc}] |"
+			ft_printf(" [{yellow}%8.8b{eoc}][{yellow}%8.8b{eoc}]"
+					" [{yellow}%8.8b{eoc}][{yellow}%8.8b{eoc}] |"
 					, ret[0], ret[1], ret[2], ret[3]);
 		free(ret);
 		i++;
@@ -68,8 +68,8 @@ static void	put_bin_source_bis2(int i, t_inst *data)
 			ft_printf("\t\t  [{red}%8.8b{eoc}] [{red}%8.8b{eoc}]\t"
 					"\t  |", ret[0], ret[1]);
 		else if (size == DIR_SIZE)
-			ft_printf(" [{blue}%8.8b{eoc}][{blue}%8.8b{eoc}]"
-					" [{blue}%8.8b{eoc}][{blue}%8.8b{eoc}] |"
+			ft_printf(" [{yellow}%8.8b{eoc}][{yellow}%8.8b{eoc}]"
+					" [{yellow}%8.8b{eoc}][{yellow}%8.8b{eoc}] |"
 					, ret[0], ret[1], ret[2], ret[3]);
 		free(ret);
 		i++;

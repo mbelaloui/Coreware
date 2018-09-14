@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 14:01:46 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/14 15:32:29 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/14 16:22:02 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ static void	put_decimal_source_bis1(int i, t_inst *data)
 			ft_printf("     [{red}%.3d{eoc}] [{red}%.3d{eoc}]\t"
 					"    |", ret[0], ret[1]);
 		else if (size == DIR_SIZE)
-			ft_printf(" [{blue}%.3d{eoc}][{blue}%.3d{eoc}]"
-					" [{blue}%.3d{eoc}][{blue}%.3d{eoc}] |"
+			ft_printf(" [{yellow}%.3d{eoc}][{yellow}%.3d{eoc}]"
+					" [{yellow}%.3d{eoc}][{yellow}%.3d{eoc}] |"
 					, ret[0], ret[1], ret[2], ret[3]);
 		free(ret);
 		i++;
@@ -68,8 +68,8 @@ static void	put_decimal_source_bis2(int i, t_inst *data)
 			ft_printf("     [{red}%.3d{eoc}] [{red}%.3d{eoc}]\t"
 					" |", ret[0], ret[1]);
 		else if (size == DIR_SIZE)
-			ft_printf(" [{blue}%.3d{eoc}][{blue}%.3d{eoc}]"
-					" [{blue}%.3d{eoc}][{blue}%.3d{eoc}] |"
+			ft_printf(" [{yellow}%.3d{eoc}][{yellow}%.3d{eoc}]"
+					" [{yellow}%.3d{eoc}][{yellow}%.3d{eoc}] |"
 					, ret[0], ret[1], ret[2], ret[3]);
 		free(ret);
 		i++;
