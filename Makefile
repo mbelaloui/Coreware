@@ -6,7 +6,7 @@
 #    By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/16 12:33:04 by mbelalou          #+#    #+#              #
-#    Updated: 2018/09/16 14:07:34 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/09/16 14:38:15 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,7 @@ SRCS_PRINTING_ASM	= $(addprefix $(DIR_PRINTING_ASM)/, $(SRC_PRINTING_ASM))
 
 DIR_RUN_ASM			= asm/run
 SRC_RUN_ASM			= ft_translate_player.c ft_handle_args_inst.c\
-					  ft_extract_info_player.c
+					  ft_extract_info_player.c ft_get_arg_translat.c 
 SRCS_RUN_ASM	= $(addprefix $(DIR_RUN_ASM)/, $(SRC_RUN_ASM))
 
 DIR_OP				= op
@@ -82,8 +82,8 @@ SRC_INST			= ft_dell_inst.c ft_dell_list_instlist.c\
 SRCS_INST			= $(addprefix $(DIR_INST)/, $(SRC_INST))
 
 DIR_PLAYER			= player
-SRC_PLAYER			= ft_free_player.c ft_get_arg_translat.c ft_put_head.c\
-					  ft_put_bynary.c ft_put_src.c ft_make_out_put.c
+SRC_PLAYER			= ft_free_player.c ft_put_head.c ft_put_bynary.c\
+					  ft_put_src.c ft_make_out_put.c
 SRCS_PLAYER			= $(addprefix $(DIR_PLAYER)/, $(SRC_PLAYER))
 
 DIR_PARSING_VM		= vm/parsing
