@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 11:55:39 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/14 16:06:26 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/16 12:26:49 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "../libft/inc/libft.h"
 # include "../libft/inc/option.h"
 # include "op.h"
+# include "./inst.h"
 
 # define ERROR_NO_PARAM				-1
 # define ERROR_MULTIPUL_PARAM		-2
@@ -70,7 +71,7 @@
 
 # define FORMAT_INPUT				"s"
 # define FORMAT_OUTPUT				".cor"
-# define SIZE_INST					6
+//# define SIZE_INST					6
 
 # define LABL						0
 # define OPPR						1
@@ -78,7 +79,7 @@
 # define ARG1						3
 # define ARG2						4
 # define ARG3						5
-
+/*
 typedef	struct				s_instruction
 {
 	char					*label;
@@ -96,7 +97,7 @@ typedef	struct				s_list_inst
 	t_inst					*data;
 	struct s_list_inst		*next;
 }							t_instlist;
-
+*/
 typedef struct				s_symbole
 {
 	char					*data;
@@ -140,7 +141,7 @@ void			ft_init_asm_option(t_option *op);
 
 /*
 */
-
+/*
 t_inst			*ft_new_inst(char *label, char *op, t_charlist *args);
 void			ft_put_inst(t_inst *inst);
 void			ft_put_instlist(t_instlist *list);
@@ -151,7 +152,7 @@ void			ft_handle_args_inst(char **tab_args, char *name_op, char *args, t_op *op)
 int				ft_get_size_program(t_instlist *list);
 int				ft_get_desc_args(t_charlist *param);
 int				ft_get_size_bin_inst(int size[SIZE_INST]);
-unsigned int	*ft_int_to_byts(int val, int size);
+*///unsigned int	*ft_int_to_byts(int val, int size);
 
 /*
 */

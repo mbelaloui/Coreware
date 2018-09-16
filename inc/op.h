@@ -6,7 +6,7 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2018/09/14 16:08:38 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/16 12:18:30 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,4 +115,8 @@ void				ft_put_desc_param(t_op *op_tab[NBR_OP]);
 void				ft_free_optab(t_op *op_tab[NBR_OP]);
 
 BOOL	ft_is_need_desc_op(char *name_op, t_op *op_tab[NBR_OP]);
+
+
+unsigned int		*ft_int_to_byts(int val, int size);
+
 #endif
