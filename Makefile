@@ -6,7 +6,7 @@
 #    By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/16 12:33:04 by mbelalou          #+#    #+#              #
-#    Updated: 2018/09/16 14:03:31 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/09/16 14:07:34 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ DIR_PARSING_ASM		= asm/parsing
 SRC_PARSING_ASM		= ft_manage_url.c ft_extract_simple_comment.c\
 					  ft_extract_ml_comment.c ft_clean_file.c\
 					  ft_skip_spaces.c ft_get_index_end.c ft_get_data.c\
-					  ft_extraire_head_info.c ft_is_label.c\
+					  ft_extraire_head_info.c ft_get_type_args.c\
 					  ft_prepare_args.c ft_extract_source.c ft_is_option.c\
 					  ft_set_asm_options.c ft_extract_asm_options.c\
 					  ft_init_asm_option.c
@@ -69,7 +69,7 @@ SRC_OP				= ft_dell_op.c ft_get_nbr_param.c ft_get_type_param.c\
 					  ft_set_desc_param.c ft_get_name.c ft_get_op_tab.c\
 					  ft_is_name_op.c ft_put_desc_param.c ft_put_size_label.c\
 					  ft_set_param.c ft_free_optab.c ft_is_direct.c\
-					  ft_is_indirect.c ft_is_register.c ft_get_type_args.c\
+					  ft_is_indirect.c ft_is_register.c  ft_is_label.c
 SRCS_OP				= $(addprefix $(DIR_OP)/, $(SRC_OP))
 
 
