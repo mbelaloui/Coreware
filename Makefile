@@ -6,7 +6,7 @@
 #    By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/16 12:33:04 by mbelalou          #+#    #+#              #
-#    Updated: 2018/09/16 14:03:31 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/09/16 14:42:11 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ DIR_PARSING_ASM		= asm/parsing
 SRC_PARSING_ASM		= ft_manage_url.c ft_extract_simple_comment.c\
 					  ft_extract_ml_comment.c ft_clean_file.c\
 					  ft_skip_spaces.c ft_get_index_end.c ft_get_data.c\
-					  ft_extraire_head_info.c ft_is_label.c\
+					  ft_extraire_head_info.c ft_get_type_args.c\
 					  ft_prepare_args.c ft_extract_source.c ft_is_option.c\
 					  ft_set_asm_options.c ft_extract_asm_options.c\
 					  ft_init_asm_option.c
@@ -58,7 +58,7 @@ SRCS_PRINTING_ASM	= $(addprefix $(DIR_PRINTING_ASM)/, $(SRC_PRINTING_ASM))
 
 DIR_RUN_ASM			= asm/run
 SRC_RUN_ASM			= ft_translate_player.c ft_handle_args_inst.c\
-					  ft_extract_info_player.c
+					  ft_extract_info_player.c ft_get_arg_translat.c 
 SRCS_RUN_ASM	= $(addprefix $(DIR_RUN_ASM)/, $(SRC_RUN_ASM))
 
 DIR_OP				= op
@@ -69,7 +69,7 @@ SRC_OP				= ft_dell_op.c ft_get_nbr_param.c ft_get_type_param.c\
 					  ft_set_desc_param.c ft_get_name.c ft_get_op_tab.c\
 					  ft_is_name_op.c ft_put_desc_param.c ft_put_size_label.c\
 					  ft_set_param.c ft_free_optab.c ft_is_direct.c\
-					  ft_is_indirect.c ft_is_register.c ft_get_type_args.c\
+					  ft_is_indirect.c ft_is_register.c  ft_is_label.c
 SRCS_OP				= $(addprefix $(DIR_OP)/, $(SRC_OP))
 
 
@@ -82,8 +82,8 @@ SRC_INST			= ft_dell_inst.c ft_dell_list_instlist.c\
 SRCS_INST			= $(addprefix $(DIR_INST)/, $(SRC_INST))
 
 DIR_PLAYER			= player
-SRC_PLAYER			= ft_free_player.c ft_get_arg_translat.c ft_put_head.c\
-					  ft_put_bynary.c ft_put_src.c ft_make_out_put.c
+SRC_PLAYER			= ft_free_player.c ft_put_head.c ft_put_bynary.c\
+					  ft_put_src.c ft_make_out_put.c
 SRCS_PLAYER			= $(addprefix $(DIR_PLAYER)/, $(SRC_PLAYER))
 
 DIR_PARSING_VM		= vm/parsing
@@ -189,7 +189,7 @@ fclean				:
 	@#make -C $(LIBFT_DIR) fclean
 	@rm -fr $(OBJS_DIR)
 	@echo "$(RED)cleaned the $(NAME_ASM) file$(WHITE)."
-	@rm -f $(NAME_ASM)
+	@rm -f $(NAME_ASM) $(NAME_VM)
 	@echo "$(GREEN)the $(NAME_ASM) directory is totaly cleaned !!$(WHITE)."
 	@#say "the $(NAME) directory is totaly cleaned !"
 

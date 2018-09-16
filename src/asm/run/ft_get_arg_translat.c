@@ -6,11 +6,11 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 14:13:27 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/14 15:23:22 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/16 14:39:59 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/asm.h"
+#include "../../../inc/asm.h"
 
 static int	get_direct(t_inst *inst, char *dir, t_symbole *symbole)
 {
