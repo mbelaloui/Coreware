@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 12:16:35 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/17 12:21:51 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/17 14:58:50 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int		ft_get_vm_size(int fd)
 {
-	unsigned char oct[4];
-	int size;
+	unsigned char	oct[4];
+	int				size;
 
 	size = 0;
 	if (!ft_get_next_oct(fd, &oct))
@@ -24,9 +24,8 @@ int		ft_get_vm_size(int fd)
 				"<size programme> reaching unexpecting eof 1\n{eoc}");
 		exit(0);
 	}
-	//ft_put_oct(r);
 	size = ft_byts_to_int(oct);
-	if(size > CHAMP_MAX_SIZE)
+	if (size > CHAMP_MAX_SIZE)
 	{
 		ft_printf("{red}Error size programme"
 			"<size programme = %d> can not be superior to 1\n{eoc}",

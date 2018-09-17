@@ -6,12 +6,68 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 12:25:30 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/17 12:35:20 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/17 15:08:05 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/vm.h"
+/*
+			if(arg_3 == REG_CODE)
+			{
+				ft_printf("registre ");
+				i++;
+			}
 
+
+
+			else if(arg_3 == DIR_CODE)
+			{
+				ft_printf("direct ");
+				int pas = op_tab[opr]->size_label;
+				i+= pas ;
+			}
+
+			else if(arg_3 == DIR_CODE)
+			{
+				ft_printf("direct ");
+				i+= 2;
+			}
+
+			else if(arg_3 == DIR_CODE)
+			{
+				ft_printf("direct ");
+				i++;
+			}
+
+
+
+			else if(arg_3 == IND_CODE)
+			{
+				ft_printf("indirect ");
+				i += 2;
+			}else
+				ft_printf("no arg 1");
+
+
+
+			else if(arg_3 == IND_CODE)
+			{
+				ft_printf("indirect ");
+				i+= 2;
+			}
+			else
+				ft_printf("no arg 3");
+
+
+
+			else if(arg_3 == IND_CODE)
+			{
+				ft_printf("indirect ");
+				i +=2;//= pas;
+			}else
+				ft_printf("no arg 2");
+			ft_printf("\n");
+*/
 t_instlist	*ft_get_vm_src(int fd, int size_prog)
 {
 	unsigned char buf[1];
