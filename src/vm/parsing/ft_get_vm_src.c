@@ -207,50 +207,50 @@ t_instlist	*ft_get_vm_src(int fd, int size_prog)
 			}
 			else
 				ft_printf("no arg 3");
-			/*
-			 * int arg_1 = DESC_REG & ;
-			 * int arg_2 = DESC_DIR & ;
-			 * int arg_3 = DESC_IND & ;
-			 * */
+	/*
+	 * int arg_1 = DESC_REG & ;
+	 * int arg_2 = DESC_DIR & ;
+	 * int arg_3 = DESC_IND & ;
+	 * */
 
-			// faire des decalage binaire >> 2 et extraire  les deux bit tout a fait a roite puis les
-			// comparer avec >REG_CODE/DIR_CODE/IND_CODE< pour conaitre le type des l'args
-			// en conaissant le type des args ont peut deduire
-			// si le type est bien coherent
-			// <si la desc dit qu'il ya un reg et le n			um est superieur a ce qui est reconnu>
-			// la taille de representation de chaque arg
+	// faire des decalage binaire >> 2 et extraire  les deux bit tout a fait a roite puis les
+	// comparer avec >REG_CODE/DIR_CODE/IND_CODE< pour conaitre le type des l'args
+	// en conaissant le type des args ont peut deduire
+	// si le type est bien coherent
+	// <si la desc dit qu'il ya un reg et le n			um est superieur a ce qui est reconnu>
+	// la taille de representation de chaque arg
 
-			/*
-			 * //if (src[i] & T_REG_P1)
-			 * ft_printf("1 REG - size = {%d}, [%.8b]\n", op_tab[opr],
-			 * T_REG_P1);
-			 * if (src[i] & T_R	EG_P2)
-			 * ft_printf("2 REG - size = {%d}, [%.8b]\n", op_tab[opr],
-			 * T_REG_P2);
-			 * //if (src[i] & T_REG_P3)
-			 * ft_printf("3 REG - size = {%d}, [	%.8b]\n", op_tab[opr],i
-			 * T_REG_P3);
-			 * */
+	/*
+	 * //if (src[i] & T_REG_P1)
+	 * ft_printf("1 REG - size = {%d}, [%.8b]\n", op_tab[opr],
+	 * T_REG_P1);
+	 * if (src[i] & T_R	EG_P2)
+	 * ft_printf("2 REG - size = {%d}, [%.8b]\n", op_tab[opr],
+	 * T_REG_P2);
+	 * //if (src[i] & T_REG_P3)
+	 * ft_printf("3 REG - size = {%d}, [	%.8b]\n", op_tab[opr],i
+	 * T_REG_P3);
+	 * */
 
 		}
 		else
 			i++;
-		//is need OCP <+1> else faire directement les tailles des arguments
+	//is need OCP <+1> else faire directement les tailles des arguments
 
-		//size parame      ->error
+	//size parame      ->error
 		ft_printf("\n");
-		//ft_printf("%.2x ", (unsigned char)src[i		]);
-		/*i = i + op_tab[opr]->nbr_param;
-		  if (i == j)
-		  i = size_pro				g;
-		  else
-		  j = i;
-		  *///if (i % 8 == 0)
-		//ft_printf("  ");
-		//if							(i % 16 == 0)
-		//ft_printf("\n");
+	//ft_printf("%.2x ", (unsigned char)src[i		]);
+	/*i = i + op_tab[opr]->nbr_param;
+	  if (i == j)
+	  i = size_pro				g;
+	  else
+	  j = i;
+	  *///if (i % 8 == 0)
+	//ft_printf("  ");
+	//if							(i % 16 == 0)
+	//ft_printf("\n");
 
-		char *l= NULL;
+	char *l= NULL;
 		get_next_line(0, &l);
 		ft_strdel(&l);
 		//ft_temporize(5);
