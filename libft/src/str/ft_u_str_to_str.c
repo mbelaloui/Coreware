@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_signature.c                               :+:      :+:    :+:   */
+/*   ft_u_str_to_str.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/16 12:13:15 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/17 14:52:53 by mbelalou         ###   ########.fr       */
+/*   Created: 2018/09/17 12:09:42 by mbelalou          #+#    #+#             */
+/*   Updated: 2018/09/17 12:10:25 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../inc/vm.h"
+#include "../../inc/str.h"
 
-BOOL	ft_check_signature(unsigned char r[4])
+char	*ft_u_str_to_str(unsigned char str[4])
 {
-	unsigned int	*ret;
-	int				i;
-	int				size;
+	char *ret;
+	int i;
 
-	size = sizeof(int);
-	ret = ft_int_to_byts(COREWAR_EXEC_MAGIC, size);
 	i = 0;
-	while (i < size)
+	ret = ft_strnew(4);
+	while (i < 4)
 	{
-		if (r[i] != ret[i])
-		{
-			free(ret);
-			return (F);
-		}
+		ret[i] = str[i];
+		//ft_printf("i =[%d] = %d\t",i, ret[i]);
 		i++;
 	}
-	free(ret);
-	return (T);
+	//ft_printf("\n");
+	return (ret);
 }

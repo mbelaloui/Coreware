@@ -1,35 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_signature.c                               :+:      :+:    :+:   */
+/*   ft_byts_to_int.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/16 12:13:15 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/17 14:52:53 by mbelalou         ###   ########.fr       */
+/*   Created: 2018/09/17 12:04:25 by mbelalou          #+#    #+#             */
+/*   Updated: 2018/09/17 12:08:50 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../inc/vm.h"
+#include "../../inc/nbr.h"
 
-BOOL	ft_check_signature(unsigned char r[4])
+int		ft_byts_to_int(unsigned char b[4])
 {
-	unsigned int	*ret;
-	int				i;
-	int				size;
-
-	size = sizeof(int);
-	ret = ft_int_to_byts(COREWAR_EXEC_MAGIC, size);
-	i = 0;
-	while (i < size)
-	{
-		if (r[i] != ret[i])
-		{
-			free(ret);
-			return (F);
-		}
-		i++;
-	}
-	free(ret);
-	return (T);
+	return ((((((b[0] << 8) | b[1]) << 8) | b[2]) << 8) | b[3]);
 }

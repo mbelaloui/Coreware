@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_signature.c                               :+:      :+:    :+:   */
+/*   ft_get_next_oct.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/16 12:13:15 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/17 14:52:53 by mbelalou         ###   ########.fr       */
+/*   Created: 2018/09/17 12:02:34 by mbelalou          #+#    #+#             */
+/*   Updated: 2018/09/17 14:53:30 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/vm.h"
 
-BOOL	ft_check_signature(unsigned char r[4])
+BOOL	ft_get_next_oct(int fd, unsigned char (*tab)[4])
 {
-	unsigned int	*ret;
-	int				i;
+	unsigned char	buf[1];
 	int				size;
+	int				i;
 
-	size = sizeof(int);
-	ret = ft_int_to_byts(COREWAR_EXEC_MAGIC, size);
 	i = 0;
+	size = sizeof(int);
 	while (i < size)
 	{
-		if (r[i] != ret[i])
-		{
-			free(ret);
+		if (!read(fd, &buf, 1))
 			return (F);
-		}
+		(*tab)[i] = buf[0];
 		i++;
 	}
-	free(ret);
 	return (T);
 }

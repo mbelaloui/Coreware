@@ -6,7 +6,7 @@
 #    By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/16 12:33:04 by mbelalou          #+#    #+#              #
-#    Updated: 2018/09/16 14:42:11 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/09/17 12:37:08 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,7 +87,9 @@ SRC_PLAYER			= ft_free_player.c ft_put_head.c ft_put_bynary.c\
 SRCS_PLAYER			= $(addprefix $(DIR_PLAYER)/, $(SRC_PLAYER))
 
 DIR_PARSING_VM		= vm/parsing
-SRC_PARSING_VM		= ft_check_signature.c
+SRC_PARSING_VM		= ft_check_signature.c ft_get_next_oct.c ft_get_vm_magic.c\
+					  ft_get_vm_name.c ft_get_vm_size.c ft_is_null.c\
+					  ft_get_vm_comment.c ft_get_vm_src.c
 SRCS_PARSING_VM		= $(addprefix $(DIR_PARSING_VM)/, $(SRC_PARSING_VM))
 
 #DIR_		=
@@ -126,14 +128,12 @@ BIP					= \a
 OBJS_ASM			= $(addprefix $(OBJS_DIR), $(SRCS_ASM:.c=.o))
 OBJS_VM				= $(addprefix $(OBJS_DIR), $(SRCS_VM:.c=.o))
 
-all					: $(NAME_ASM)
-#all					: $(NAME_VM)
-
+all					: $(NAME_ASM) $(NAME_VM)
 
 $(NAME_ASM)			: $(LIBFT) $(OBJS_DIR_ASM) $(OBJS_ASM)
 	@#echo $(OBJS_ASM)
 	@gcc $(OBJS_ASM) -L $(LIBFT_DIR) -lft -fsanitize=address -o $(NAME_ASM)
-	@#gcc $(OBJS) -L $(LIBFT_DIR) -lft -o $(NAME_ASM)
+	@#gcc $(OBJS_ASM) -L $(LIBFT_DIR) -lft -o $(NAME_ASM)
 	@echo "$(GREEN)$(NAME_ASM) has been successfully created !$(WHITE)."
 	# -fsanitize=address
 	@#say "$(NAME_ASM) has been successfully created !"
@@ -141,7 +141,7 @@ $(NAME_ASM)			: $(LIBFT) $(OBJS_DIR_ASM) $(OBJS_ASM)
 $(NAME_VM)			: $(LIBFT) $(OBJS_DIR_VM) $(OBJS_VM)
 	@echo $(OBJS_VM)
 	@gcc $(OBJS_VM) -L $(LIBFT_DIR) -lft -fsanitize=address -o $(NAME_VM)
-	@#gcc $(OBJS) -L $(LIBFT_DIR) -lft -o $(NAME_ASM)
+	@#gcc $(OBJS_VM) -L $(LIBFT_DIR) -lft -o $(NAME_VM)
 	@echo "$(GREEN)$(NAME_VM) has been successfully created !$(WHITE)."
 	# -fsanitize=address
 	@#say "$(NAME_ASM) has been successfully created !"
@@ -179,14 +179,14 @@ $(OBJS_DIR_VM)			:
 
 clean				:
 	@clear
-	@#make -C $(LIBFT_DIR) clean
+	@make -C $(LIBFT_DIR) clean
 	@rm -fr $(OBJS_DIR)
 	@echo "$(RED)cleaned the checker binary files$(WHITE)."
 	@#say "cleaned the $(NAME_ASM) binary files."
 
 fclean				:
 	@clear
-	@#make -C $(LIBFT_DIR) fclean
+	@make -C $(LIBFT_DIR) fclean
 	@rm -fr $(OBJS_DIR)
 	@echo "$(RED)cleaned the $(NAME_ASM) file$(WHITE)."
 	@rm -f $(NAME_ASM) $(NAME_VM)

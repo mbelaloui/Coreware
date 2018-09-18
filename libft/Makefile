@@ -6,7 +6,7 @@
 #    By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 21:48:22 by mbelalou          #+#    #+#              #
-#    Updated: 2018/09/13 11:39:44 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/09/17 12:35:48 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,7 @@ SRC_NBR		= ft_abs.c ft_decimal_to_base_stat.c ft_max.c ft_atoi.c\
 			  ft_base_to_decimal_v2.c ft_intochar.c ft_udecimal_to_base_stat.c\
 			  ft_decimal_to_base_dynm.c ft_is_elem_base.c ft_unbrlen.c\
 			  ft_is_overflow_intmax.c ft_atointmax.c ft_swap_int.c\
-			  ft_isnumerique.c
+			  ft_isnumerique.c ft_byts_to_int.c
 SRCS_NBR	= $(addprefix $(DIR_NBR)/, $(SRC_NBR))
 
 DIR_STR		= str
@@ -83,7 +83,7 @@ SRC_STR		= ft_comptword.c ft_putendl_fd.c ft_strequ.c ft_strnequ.c\
 			  ft_strncat.c ft_strupper.c ft_put_buf.c ft_strdup.c ft_strncmp.c\
 			  ft_putendl.c ft_strdup_stat.c ft_strncpy.c ft_format_str.c\
 			  ft_strjoin_clean.c ft_extract_options.c ft_get_c_in_str.c\
-			  ft_strjoin_sep.c ft_replace_char_in_str.c
+			  ft_strjoin_sep.c ft_replace_char_in_str.c ft_u_str_to_str.c
 SRCS_STR	= $(addprefix $(DIR_STR)/, $(SRC_STR))
 
 DIR_SYS		= sys
