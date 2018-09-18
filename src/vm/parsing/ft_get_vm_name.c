@@ -25,12 +25,7 @@ char	*ft_get_vm_name(int fd)
 	{
 		ft_bzero(&oct, sizeof(oct));
 		if (!ft_get_next_oct(fd, &oct))
-		{
-			ft_printf("{red}Error reading file"
-					"<name part> reaching unexpecting eof 2\n{eoc}");
-			ft_printf("{red}Error while reading name Ko\n{eoc}");
-			exit(0);
-		}
+			ft_error_reading_file(ERROR_READING_FILE);
 		temp = ft_u_str_to_str(oct);
 		name = ft_strjoin_clear(&name, &temp, BOTH);
 		byt++;

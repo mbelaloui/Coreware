@@ -21,16 +21,9 @@ void	ft_get_vm_magic(int fd)
 	unsigned char oct[4];
 
 	if (!ft_get_next_oct(fd, &oct))
-	{
-		ft_printf("{red}Error reading file"
-				"<probleme signature> reaching unexpecting eof 1\n{eoc}");
-		exit(0);
-	}
+		ft_error_reading_file(ERROR_READING_FILE);
 	if (!ft_check_signature(oct))
-	{
-		ft_printf("{red}signature Ko\n{eoc}");
-		exit(0);
-	}
-	else
-		ft_printf("signature {green}ok\n{eoc}");
+		ft_error_reading_file(ERROR_MAGIC_NUM);
+//	else
+//		ft_printf("signature {green}ok\n{eoc}"); return (T);
 }

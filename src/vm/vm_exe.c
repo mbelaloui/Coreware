@@ -42,16 +42,10 @@ t_champ	*read_file(int fd)
 			//	ft_get_vm_src(fd, champ);
 		}
 		else
-		{
-			ft_printf("{red}error format head fileko{eoc}\n");
-			exit(0);
-		}
+			ft_error_reading_file(ERROR_FORMAT_HEAD);
 	}
 	else
-	{
-		ft_printf("{red}error format head fileko{eoc}\n");
-		exit(0);
-	}
+		ft_error_reading_file(ERROR_FORMAT_HEAD);
 	return (champ);
 }
 

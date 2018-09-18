@@ -15,6 +15,12 @@
 
 # include "./inst.h"
 
+# define ERROR_FORMAT_HEAD	1
+# define ERROR_READING_FILE	2
+# define ERROR_MAGIC_NUM	42
+# define ERROR_SIZE_FILE	3
+
+
 typedef struct	s_champ
 {
 	char		*name;
@@ -22,6 +28,8 @@ typedef struct	s_champ
 	int			size;
 	//src
 }				t_champ;
+
+int     ft_error_reading_file(int error);
 
 BOOL			ft_check_signature(unsigned char r[4]);
 void			ft_put_oct(unsigned char r[4]);

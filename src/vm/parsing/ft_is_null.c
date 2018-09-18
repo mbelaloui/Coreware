@@ -18,17 +18,9 @@ BOOL	ft_is_null(int fd)
 	int				val;
 
 	if (!ft_get_next_oct(fd, &oct))
-	{
-		ft_printf("{red}Error reading file"
-				"<null format> reaching unexpecting eof 1\n{eoc}");
-		exit(0);
-	}
+		ft_error_reading_file(ERROR_READING_FILE);
 	val = ft_byts_to_int(oct);
 	if (val)
-	{
-		ft_printf("{red}Error fomrat programme"
-				"<null programme>\n{eoc}");
-		exit(0);
-	}
+		ft_error_reading_file(ERROR_FORMAT_HEAD);
 	return (T);
 }

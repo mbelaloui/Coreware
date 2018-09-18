@@ -92,9 +92,9 @@ SRC_PARSING_VM		= ft_check_signature.c ft_get_next_oct.c ft_get_vm_magic.c\
 					  ft_get_vm_comment.c ft_get_vm_src.c
 SRCS_PARSING_VM		= $(addprefix $(DIR_PARSING_VM)/, $(SRC_PARSING_VM))
 
-#DIR_		=
-#SRC_		=
-#SRCS_		= $(addprefix $(DIR_)/, $(SRC_))
+DIR_ERROR_VM		= vm/error
+SRC_ERROR_VM		= ft_error_reading_file.c
+SRCS_ERROR_VM		= $(addprefix $(DIR_ERROR_VM)/, $(SRC_ERROR_VM))
 
 #DIR_		=
 #SRC_		=
@@ -117,7 +117,7 @@ SRCS_ASM			= $(EXE_ASM) $(SRCS_PARSING_ASM) $(SRCS_ERROR_ASM)\
 					  $(SRCS_RUN_ASM)
 
 SRCS_VM				= $(EXE_VM) $(SRCS_OP) $(SRCS_INST)\
-					  $(SRCS_PLAYER) $(SRCS_PARSING_VM)
+					  $(SRCS_PLAYER) $(SRCS_PARSING_VM) $(SRCS_ERROR_VM)
 
 RED					= \033[31m
 GREEN				= \033[32m
@@ -139,7 +139,7 @@ $(NAME_ASM)			: $(LIBFT) $(OBJS_DIR_ASM) $(OBJS_ASM)
 	@#say "$(NAME_ASM) has been successfully created !"
 
 $(NAME_VM)			: $(LIBFT) $(OBJS_DIR_VM) $(OBJS_VM)
-	@echo $(OBJS_VM)
+	@#echo $(OBJS_VM)
 	@gcc $(OBJS_VM) -L $(LIBFT_DIR) -lft -fsanitize=address -o $(NAME_VM)
 	@#gcc $(OBJS_VM) -L $(LIBFT_DIR) -lft -o $(NAME_VM)
 	@echo "$(GREEN)$(NAME_VM) has been successfully created !$(WHITE)."
@@ -176,6 +176,7 @@ $(OBJS_DIR_VM)			:
 	@mkdir -p $(OBJS_DIR)$(DIR_INST);
 	@mkdir -p $(OBJS_DIR)$(DIR_PLAYER);
 	@mkdir -p $(OBJS_DIR)$(DIR_PARSING_VM);
+	@mkdir -p $(OBJS_DIR)$(DIR_ERROR_VM);
 
 clean				:
 	@clear
