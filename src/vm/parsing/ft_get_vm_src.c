@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 12:25:30 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/19 16:17:48 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/19 16:22:23 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,8 @@ int		manage_opr(int opr, t_int_list **inst_src_list)
 
 	return (i);
 }
+
+
 
 t_instlist	*ft_get_vm_src(int fd, t_champ *champ)
 {
