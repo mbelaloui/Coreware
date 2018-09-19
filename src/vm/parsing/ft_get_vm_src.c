@@ -80,7 +80,7 @@ t_instlist	*ft_get_vm_src(int fd, int size_prog)
 	{
 		if(!read(fd, &buf, 1))
 		{
-			ft_printf("eoor\n");
+			ft_printf("eoor   eof\n");
 			exit(0);
 		}
 		src[i] = buf[0];
