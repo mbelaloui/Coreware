@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/16 11:22:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/19 16:19:00 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/19 17:18:21 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,13 @@
 # define ERROR_SIZE_FILE		3
 # define ERROR_NOT_ENOUGH_MEM	4
 
-typedef struct s_vm_inst
+typedef struct			s_vm_inst
 {
-	t_int_list	*src;
-	int			size;
+	t_int_list			*src;
+	int					size;
 	//BOOL		live;
-}				t_vm_inst;
+	struct s_vm_inst	*next;
+}						t_vm_inst;
 
 
 typedef struct	s_champ

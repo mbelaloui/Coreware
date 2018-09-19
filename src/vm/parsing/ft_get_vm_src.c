@@ -6,72 +6,18 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 12:25:30 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/19 16:22:23 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/19 19:53:15 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/vm.h"
 
-			/*if(arg_3 == REG_CODE)*/
-			/*{*/
-				/*ft_printf("registre ");*/
-				/*i++;*/
-			/*}*/
-
-
-
-			/*else if(arg_3 == DIR_CODE)*/
-			/*{*/
-				/*ft_printf("direct ");*/
-				/*int pas = op_tab[opr]->size_label;*/
-				/*i+= pas ;*/
-			/*}*/
-
-			/*else if(arg_3 == DIR_CODE)*/
-			/*{*/
-				/*ft_printf("direct ");*/
-				/*i+= 2;*/
-			/*}*/
-
-			/*else if(arg_3 == DIR_CODE)*/
-			/*{*/
-				/*ft_printf("direct ");*/
-				/*i++;*/
-			/*}*/
-
-
-
-			/*else if(arg_3 == IND_CODE)*/
-			/*{*/
-				/*ft_printf("indirect ");*/
-				/*i += 2;*/
-			/*}else*/
-				/*ft_printf("no arg 1");*/
-
-
-
-			/*else if(arg_3 == IND_CODE)*/
-			/*{*/
-				/*ft_printf("indirect ");*/
-				/*i+= 2;*/
-			/*}*/
-			/*else*/
-				/*ft_printf("no arg 3");*/
-
-
-
-			/*else if(arg_3 == IND_CODE)*/
-			/*{*/
-				/*ft_printf("indirect ");*/
-				/*i +=2;//= pas;*/
-			/*}else*/
-				/*ft_printf("no arg 2");*/
-			/*ft_printf("\n");*/
-
-
 // file corrupt s'il la taill de src est plus grande que celle declaree
 
-static char		*read_src(int fd, t_champ *champ)
+/*******************************************************************************/
+			//ft_read_src.c
+/*******************************************************************************/
+char		*ft_read_src(int fd, t_champ *champ)
 {
 	unsigned char buf[1];
 	char *src;
@@ -84,15 +30,18 @@ static char		*read_src(int fd, t_champ *champ)
 		if (!read(fd, &buf, 1))
 			ft_error_reading_file(ERROR_READING_FILE);
 		src[i] = buf[0];
-//		ft_printf("i =[%xd] = %x\t",i,src[i]);
-//		if(i % 4 == 0)
-//			ft_printf("\n");
+		//		ft_printf("i =[%xd] = %x\t",i,src[i]);
+		//		if(i % 4 == 0)
+		//			ft_printf("\n");
 		i++;
 	}
 	return (src);
 }
 
 
+/*******************************************************************************/
+			//ft_put_raw_src.c
+/*******************************************************************************/
 void	ft_put_raw_src(char *src, t_champ *champ)
 {
 	int i;
@@ -114,14 +63,16 @@ void	ft_put_raw_src(char *src, t_champ *champ)
 }
 
 
+/*******************************************************************************/
+/*******************************************************************************/
 int		voila(t_op *op_tab[NBR_OP], int id_opr, unsigned char arg)
 {
-//	int i;
+	//	int i;
 	//unsigned char arg;// = desc & 0x3;
 	//desc = desc >> 2;
 	//arg = desc;
-//	ft_printf(" desc arg 1 = %.32b ", (unsigned char)arg_3);
-//	i = 0;
+	//	ft_printf(" desc arg 1 = %.32b ", (unsigned char)arg_3);
+	//	i = 0;
 	if (arg == REG_CODE)
 	{
 		ft_printf("{red}registre{eoc} ");
@@ -138,122 +89,246 @@ int		voila(t_op *op_tab[NBR_OP], int id_opr, unsigned char arg)
 		return (IND_SIZE);
 	}
 	else
-			ft_printf("{green}no arg{eoc} ");
+		ft_printf("{green}no arg{eoc} ");
 	return (0);
 }
 
-
-int		manage_opr(int opr, t_int_list **inst_src_list)
+/*******************************************************************************/
+			//ft_manage_opr.c
+/*******************************************************************************/
+int		ft_manage_opr(int opr, t_int_list **inst_src_list)
 {
 	t_op	*op_tab[NBR_OP];
-	int		i;
 
-	i = 0;
 	ft_get_op_tab(op_tab);
 	if (opr < 17 && opr > 0)
 	{
-		ft_printf(" name {%s} nbr param %d " , op_tab[opr]->name, op_tab[opr]->nbr_param);
+		ft_printf(" name {%s} nbr param %d " , op_tab[opr]->name,
+				op_tab[opr]->nbr_param);
 		ft_add_end_intlist( opr, inst_src_list);
-		i++;
 	}
 	else
 		ft_error_reading_file(ERROR_FORMAT_FILE);
-
-
-	return (i);
+	return (1);
 }
 
+/*******************************************************************************/
+			//ft_manage_param.c
+/*******************************************************************************/
 
 
-t_instlist	*ft_get_vm_src(int fd, t_champ *champ)
+int		manage_p3(int desc, int opr,t_op *op_tab[NBR_OP])
 {
-	t_op *op_tab[NBR_OP];
+	unsigned char	param;
+	unsigned char	arg_q;
+	int				size;
+
+	size = 0;
+	arg_q = (desc << 4);
+	param = arg_q >> 6;
+	ft_printf(" i = %.3d ", 3);
+	ft_printf("{yellow}%d {eoc}\n", size = voila(op_tab, opr,  param));
+	return (size);
+}
+
+int		manage_p2(int desc, int opr,t_op *op_tab[NBR_OP])
+{
+	unsigned char	param;
+	unsigned char	arg_q;
+	int				size;
+
+	size = 0;
+	arg_q = (desc << 2);
+	param = arg_q >> 6;
+	ft_printf(" i = %.3d ", 2);
+	ft_printf("{yellow}%d {eoc}\n", size = voila(op_tab, opr,  param));
+	return (size);
+}
+
+int		manage_p1(int desc, int opr,t_op *op_tab[NBR_OP])
+{
+	unsigned char	param;
+	int				size;
+
+	size = 0;
+	param = desc >> 6;
+	ft_printf(" i = %.3d ", 1);
+	ft_printf("{yellow}%d {eoc}\n", size = voila(op_tab, opr,  param));
+	return (size);
+}
+
+int	add_to_inst(char *src, t_int_list **inst_src, int size)
+{
+	int pt;
+
+	pt = 0;
+	while (pt < size)
+		ft_add_end_intlist(src[pt++], inst_src);
+	return (size);
+}
+
+int		ft_manage_param(char *src, int opr, t_int_list **inst_src_list,
+		t_op *op_tab[NBR_OP])
+{
+	int		nbr_oct;
+	int		pt;
+	unsigned char desc;
+
+	pt = 0;
+	if (!ft_is_need_desc_op(op_tab[opr]->name, op_tab))//	if (opr == 1 || opr == 9 || opr == 12 || opr == 15)
+	{
+		nbr_oct = (opr == 1) ? 4 : 2;
+		while (nbr_oct > 0)
+		{
+			ft_add_end_intlist(src[pt++], inst_src_list);
+			nbr_oct--;
+		}
+	}
+	else// if (ft_is_need_desc_op(op_tab[opr]->name, op_tab))
+	{
+		//voir si la description est bien faite
+		desc = src[pt];
+		ft_add_end_intlist(desc, inst_src_list);
+		pt++;
+//		ft_printf("\n");
+		int size;
+		
+		size = manage_p1(desc,opr, op_tab);
+		add_to_inst(src + pt , inst_src_list, size);
+		pt += size;
+
+		size = manage_p2(desc,opr, op_tab);
+		add_to_inst(src + pt , inst_src_list, size);
+		pt += size;
+
+		size = manage_p3(desc,opr, op_tab);
+		add_to_inst(src+pt , inst_src_list, size);
+		pt += size;
+		// en conaissant le type des args ont peut deduire
+		// si le type est bien coherent
+		// <si la desc dit qu'il ya un reg et le num est superieur a ce qui est reconnu>
+		// la taille de representation de chaque arg
+	}
+	//	else
+	//		pt++;
+
+	return (pt);
+}
+
+/*******************************************************************************/
+			//ft_cp_list_intlist.c
+/*******************************************************************************/
+BOOL	ft_cp_list_intlist(t_int_list *src, t_int_list **dest)
+{
+	t_int_list *temp_dest;
+
+	temp_dest = *dest;
+	ft_printf("\n\n--------------------------\n\n");
+	if (!src || !dest)
+		return (F);
+	while (src)
+	{
+		ft_add_end_intlist(src->data, &temp_dest);
+		src = src->next;
+	}
+	*dest = temp_dest;
+	ft_printf("\n\n--------------------------\n\n");
+	return (T);
+}
+
+/*******************************************************************************/
+			//ft_new_vm_inst.c
+/*******************************************************************************/
+t_vm_inst	*ft_new_vm_inst(t_int_list *src)
+{
+	t_vm_inst	*ret;
+
+	if (!(ret = malloc(sizeof(ret))))
+		ft_error_exe(ERROR_NOT_ENOUGH_MEM);
+	ret->src = NULL;
+	ft_cp_list_intlist(src, &(ret->src));
+	ret->size = ft_size_intlist(src);
+	//ft_put_intlist(ret->src);
+	return (ret);
+}
+
+/*******************************************************************************/
+			//ft_add_vm_instlist.c
+/*******************************************************************************/
+BOOL	ft_add_vm_instlist(t_int_list *src, t_vm_inst **list)
+{
+	t_vm_inst		*temp_node;
+	t_vm_inst		*pt_list;
+
+
+	//	ft_printf("A\n");
+	if (!(temp_node = ft_new_vm_inst(src)))
+		ft_error_exe(ERROR_NOT_ENOUGH_MEM);
+	//	ft_printf("B\n");
+	if (!(*list))
+		*list = temp_node;
+	else
+	{
+		//		ft_printf("C\n");
+		pt_list = *list;
+		ft_printf("E\n");
+		while (pt_list->next)
+			pt_list = pt_list->next;
+		ft_printf("F\n");
+		pt_list->next = temp_node;
+		ft_printf("G\n");
+	}
+	return (T);
+}
+
+/*******************************************************************************/
+			//ft_str_to_list_inst.c
+/*******************************************************************************/
+t_vm_inst	*ft_str_to_list_inst(char *src, t_champ *champ,
+		t_op *op_tab[NBR_OP])
+{
 	t_int_list	*inst_src_list;
-	char *src;
-	int i;
-	int opr;
+	t_vm_inst	*vm_src;
+	int			i;
+	int			opr;
 
-	src = read_src(fd, champ);
-	ft_get_op_tab(op_tab);
-	inst_src_list = NULL;
-	opr = 0;
 	i = 0;
-
-	//ft_put_raw_src(src, champ);
+	vm_src = NULL;
 	while (i < champ->size)
 	{
+		inst_src_list = NULL;
 		opr = src[i];
-//		ft_printf(" i = %d\n", i);
-	/******************************************** */
-			// recuperation de l'opr
-	/******************************************** */
-		manage_opr(opr, &inst_src_list);
-	/******************************************** */
-			//gestion de l'ocp
-	/******************************************** */
+		i += ft_manage_opr(opr, &inst_src_list);
+		i += ft_manage_param(src + i, opr, &inst_src_list, op_tab);
+		ft_printf(" {green} i = %d {eoc}\n", i);
 
-		//opr = src[i];
-		int nbr_oct = 0;
-		i++;
-		if (opr == 1 || opr == 12 || opr == 9 || opr == 15)
-		{
-			if (opr == 12 || opr == 9 || opr == 15)
-				nbr_oct = 2;
-			else
-				nbr_oct = 4;
-			while (nbr_oct > 0)
-			{
-				ft_add_end_intlist(src[i], &inst_src_list);
-				i++;
-				nbr_oct--;
-			}
-		}
-		else if(ft_is_need_desc_op( op_tab[opr]->name, op_tab))
-		{
-			//voir si la description est bien faite
-			unsigned char desc = src[i];
-			ft_add_end_intlist(src[i], &inst_src_list);
-			i++;
-			ft_printf("\n");
+		ft_put_intlist(inst_src_list);
+		ft_printf("\n--------------------------\n");
 
-			unsigned char arg_3;// = desc & 0x3;
-			//desc = desc >> 2;
-			arg_3 = desc >> 6;
-			ft_printf(" i = %.3d ", i);
-			ft_printf("{yellow}%d {eoc}\n", i += voila(op_tab, opr,  arg_3));
-
-//			ft_printf("\n");
-			//desc = desc >> 2;
-			unsigned char	arg_q = (desc << 2);
-			arg_3 = arg_q >> 6;
-			ft_printf(" i = %.3d ", i);
-			ft_printf("{yellow}%d {eoc}\n", i += voila(op_tab, opr,  arg_3));
-
-			
-			arg_q = (desc << 4);
-			arg_3 = arg_q >> 6;
-			ft_printf(" i = %.3d ", i);
-			ft_printf("{yellow}%d {eoc}\n", i += voila(op_tab, opr,  arg_3));
-
-	// en conaissant le type des args ont peut deduire
-	// si le type est bien coherent
-	// <si la desc dit qu'il ya un reg et le num est superieur a ce qui est reconnu>
-	// la taille de representation de chaque arg
-		}
-		else
-			i++;
-	//is need OCP <+1> else faire directement les tailles des arguments
-
-	//size parame      ->error
-		ft_printf("\n");
-
-	char *l= NULL;
-		get_next_line(0, &l);
-		ft_strdel(&l);
+		ft_clear_intlist(&inst_src_list);
+		//ft_printf("3\n");
 	}
+	ft_printf(" end index = %d\n", i);
+	// faire une fonction pour lie un oct en plus 
+	// si le eof n'est pas atteint alors error file corrupt
+	// si eof ok le file contien bien ce qu'il dis qu'il contien  XD
+	return (vm_src);
+}
 
-	ft_printf(" end index		 = %d\n", i);
-	//ft_oct_to_instlist(src);
+/*******************************************************************************/
+			//ft_get_vm_src.c
+/*******************************************************************************/
+t_instlist	*ft_get_vm_src(int fd, t_champ *champ)
+{
+	t_op		*op_tab[NBR_OP];// l'envoyer en param
+	char		*src;
+
+	ft_get_op_tab(op_tab);
+	src = ft_read_src(fd, champ);
+	ft_put_raw_src(src, champ);
+
+	ft_str_to_list_inst(src, champ, op_tab);
+
 	ft_free_optab(op_tab);
 	ft_strdel(&src);
 	return (NULL);
