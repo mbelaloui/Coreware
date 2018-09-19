@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_vm_size.c                                   :+:      :+:    :+:   */
+/*   ft_error_exe.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/17 12:16:35 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/19 12:00:24 by mbelalou         ###   ########.fr       */
+/*   Created: 2018/09/19 11:43:10 by mbelalou          #+#    #+#             */
+/*   Updated: 2018/09/19 11:48:16 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../inc/vm.h"
+# include "../../../inc/vm.h"
 
-int		ft_get_vm_size(int fd)
+int		ft_error_exe(int error)
 {
-	unsigned char	oct[4];
-	int				size;
-
-	size = 0;
-	if (!ft_get_next_oct(fd, &oct))
-		ft_error_reading_file(ERROR_READING_FILE);
-	size = ft_byts_to_int(oct);
-	if (size > CHAMP_MAX_SIZE)
-		ft_error_reading_file(ERROR_SIZE_FILE);
-	return (size);
+	ft_printf("{red}Error execution{eoc}");
+	if (error == ERROR_NOT_ENOUGH_MEM)
+		ft_printf("not enough memory for malloc\n");
+/*	else if (error == ERROR_SIZE_FILE)
+	{
+		ft_printf("the size of the champions must be less than "
+				"%d\n",CHAMP_MAX_SIZE);
+	}
+*/
+	exit(error);
 }

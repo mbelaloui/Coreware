@@ -6,7 +6,7 @@
 #    By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/16 12:33:04 by mbelalou          #+#    #+#              #
-#    Updated: 2018/09/17 12:37:08 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/09/19 11:48:36 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,7 +93,7 @@ SRC_PARSING_VM		= ft_check_signature.c ft_get_next_oct.c ft_get_vm_magic.c\
 SRCS_PARSING_VM		= $(addprefix $(DIR_PARSING_VM)/, $(SRC_PARSING_VM))
 
 DIR_ERROR_VM		= vm/error
-SRC_ERROR_VM		= ft_error_reading_file.c
+SRC_ERROR_VM		= ft_error_reading_file.c ft_error_exe.c
 SRCS_ERROR_VM		= $(addprefix $(DIR_ERROR_VM)/, $(SRC_ERROR_VM))
 
 #DIR_		=

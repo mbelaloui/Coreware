@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 14:00:03 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/17 18:22:04 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/19 12:33:44 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,26 +26,26 @@ void	ft_dell_champ(t_champ **champ)
 	free(*champ);
 }
 
+
 t_champ	*read_file(int fd)
 {
 	t_champ	*champ;
 
-	champ = malloc(sizeof(champ));
+	ft_get_vm_magic(fd);
+	if (!(champ = malloc(sizeof(champ))))
+		ft_error_exe(ERROR_NOT_ENOUGH_MEM);
 	champ->name = ft_get_vm_name(fd);
 	if (ft_is_null(fd))
 	{
 		champ->size = ft_get_vm_size(fd);
 		champ->comment = ft_get_vm_comment(fd);
 		if (ft_is_null(fd))
-		{
-			ft_get_vm_src(fd, champ->size);
-			//	ft_get_vm_src(fd, champ);
-		}
+			ft_get_vm_src(fd, champ);
 		else
-			ft_error_reading_file(ERROR_FORMAT_HEAD);
+			ft_error_reading_file(ERROR_FORMAT_FILE);
 	}
 	else
-		ft_error_reading_file(ERROR_FORMAT_HEAD);
+		ft_error_reading_file(ERROR_FORMAT_FILE);
 	return (champ);
 }
 
@@ -55,7 +55,6 @@ int	main(int argc, char **argv)
 	int		fd;
 
 	fd = ft_open_r_file(argv[1]);
-	ft_get_vm_magic(fd);
 	champ = read_file(fd);
 	
 	ft_dell_champ(&champ);

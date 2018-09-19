@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 12:22:01 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/17 14:58:57 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/19 12:34:01 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ BOOL	ft_is_null(int fd)
 		ft_error_reading_file(ERROR_READING_FILE);
 	val = ft_byts_to_int(oct);
 	if (val)
-		ft_error_reading_file(ERROR_FORMAT_HEAD);
+		ft_error_reading_file(ERROR_FORMAT_FILE);
 	return (T);
 }
