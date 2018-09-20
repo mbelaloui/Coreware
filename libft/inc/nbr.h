@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 10:53:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/17 12:10:37 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/20 13:08:21 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,7 @@ void		ft_putnbr_fd(intmax_t n, int fd);
 
 BOOL		ft_isnumerique(char *str);
 int			ft_byts_to_int(unsigned char b[4]);
+
+unsigned int	*ft_int_to_byts(int val, int size);
 
 #endif

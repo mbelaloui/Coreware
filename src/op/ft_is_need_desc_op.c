@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_put_intlist.c                                   :+:      :+:    :+:   */
+/*   ft_is_need_desc_op.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/20 12:42:32 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/20 13:21:39 by mbelalou         ###   ########.fr       */
+/*   Created: 2018/09/13 12:46:51 by mbelalou          #+#    #+#             */
+/*   Updated: 2018/09/20 13:03:53 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/list.h"
+#include "../../inc/asm.h"
 
-void	ft_put_intlist(const t_int_list *list)
+BOOL	ft_is_need_desc_op(char *name_op, t_op *op_tab[NBR_OP])
 {
-	if (ft_is_empty_intlist(list))
-		ft_printf("[∅].\n");
-	else
-	{
-		ft_printf("[");
-		while (list)
-		{
-			ft_printf("%ld", (unsigned char)list->data);
-			list = list->next;
-			if (list)
-				ft_printf(",");
-		}
-		ft_printf("].\n");
-	}
+	t_op *op;
+
+	op = ft_get_op(op_tab, name_op);
+	return (op->desc_param);
 }

@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_put_intlist.c                                   :+:      :+:    :+:   */
+/*   ft_dell_inst.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/20 12:42:32 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/20 13:21:39 by mbelalou         ###   ########.fr       */
+/*   Created: 2018/09/12 16:57:53 by mbelalou          #+#    #+#             */
+/*   Updated: 2018/09/20 12:48:06 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/list.h"
+#include "../../../inc/asm.h"
 
-void	ft_put_intlist(const t_int_list *list)
+void	ft_dell_inst(t_inst **inst)
 {
-	if (ft_is_empty_intlist(list))
-		ft_printf("[∅].\n");
-	else
-	{
-		ft_printf("[");
-		while (list)
-		{
-			ft_printf("%ld", (unsigned char)list->data);
-			list = list->next;
-			if (list)
-				ft_printf(",");
-		}
-		ft_printf("].\n");
-	}
+	ft_strdel(&((*inst)->label));
+	ft_strdel(&((*inst)->opcode));
+	free((*inst)->add);
+	ft_dell_list_charlist(&(*inst)->param);
+	free(*inst);
+	*inst = NULL;
 }

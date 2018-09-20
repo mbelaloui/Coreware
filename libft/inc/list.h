@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/05 17:45:13 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/19 12:32:47 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/20 13:23:19 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,7 @@ intmax_t				*ft_int_list_to_inttab(t_int_list *list);
 
 BOOL					ft_are_cancel_out_action(char *action_a,
 		char *action_b);
+BOOL					ft_cp_list_intlist(t_int_list *src, t_int_list **dest);
+void					ft_put_hex_intlist(const t_int_list *list);
 
 #endif

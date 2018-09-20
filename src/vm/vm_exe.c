@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 14:00:03 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/19 12:33:44 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/20 12:39:28 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_dell_champ(t_champ **champ)
 }
 
 
-t_champ	*read_file(int fd)
+t_champ	*read_file(int fd, t_op*op_tab[NBR_OP])
 {
 	t_champ	*champ;
 
@@ -40,7 +40,7 @@ t_champ	*read_file(int fd)
 		champ->size = ft_get_vm_size(fd);
 		champ->comment = ft_get_vm_comment(fd);
 		if (ft_is_null(fd))
-			ft_get_vm_src(fd, champ);
+			ft_get_vm_src(fd, champ, op_tab);
 		else
 			ft_error_reading_file(ERROR_FORMAT_FILE);
 	}
@@ -51,13 +51,16 @@ t_champ	*read_file(int fd)
 
 int	main(int argc, char **argv)
 {
+	t_op*op_tab[NBR_OP];
 	t_champ	*champ;
 	int		fd;
 
+	ft_get_op_tab(op_tab);
 	fd = ft_open_r_file(argv[1]);
-	champ = read_file(fd);
+	champ = read_file(fd, op_tab);
 	
 	ft_dell_champ(&champ);
+	ft_free_optab(op_tab);
 	(void) argc;
 	return (0);
 

@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_put_intlist.c                                   :+:      :+:    :+:   */
+/*   ft_get_size_bin_inst.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/20 12:42:32 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/20 13:21:39 by mbelalou         ###   ########.fr       */
+/*   Created: 2018/09/13 13:46:09 by mbelalou          #+#    #+#             */
+/*   Updated: 2018/09/20 12:48:30 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/list.h"
+#include "../../../inc/asm.h"
 
-void	ft_put_intlist(const t_int_list *list)
+int		ft_get_size_bin_inst(int size[SIZE_INST])
 {
-	if (ft_is_empty_intlist(list))
-		ft_printf("[∅].\n");
-	else
+	int i;
+	int somme;
+
+	i = 0;
+	somme = 0;
+	while (i < SIZE_INST)
 	{
-		ft_printf("[");
-		while (list)
-		{
-			ft_printf("%ld", (unsigned char)list->data);
-			list = list->next;
-			if (list)
-				ft_printf(",");
-		}
-		ft_printf("].\n");
+		if (size[i] != -1)
+			somme += size[i];
+		i++;
 	}
+	return (somme);
 }

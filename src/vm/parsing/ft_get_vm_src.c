@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 12:25:30 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/19 19:53:15 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/20 13:27:07 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,6 @@ char		*ft_read_src(int fd, t_champ *champ)
 		if (!read(fd, &buf, 1))
 			ft_error_reading_file(ERROR_READING_FILE);
 		src[i] = buf[0];
-		//		ft_printf("i =[%xd] = %x\t",i,src[i]);
-		//		if(i % 4 == 0)
-		//			ft_printf("\n");
 		i++;
 	}
 	return (src);
@@ -162,6 +159,9 @@ int	add_to_inst(char *src, t_int_list **inst_src, int size)
 	int pt;
 
 	pt = 0;
+
+	//fonction byte to int et ajouter le resultat a la list
+
 	while (pt < size)
 		ft_add_end_intlist(src[pt++], inst_src);
 	return (size);
@@ -216,27 +216,6 @@ int		ft_manage_param(char *src, int opr, t_int_list **inst_src_list,
 }
 
 /*******************************************************************************/
-			//ft_cp_list_intlist.c
-/*******************************************************************************/
-BOOL	ft_cp_list_intlist(t_int_list *src, t_int_list **dest)
-{
-	t_int_list *temp_dest;
-
-	temp_dest = *dest;
-	ft_printf("\n\n--------------------------\n\n");
-	if (!src || !dest)
-		return (F);
-	while (src)
-	{
-		ft_add_end_intlist(src->data, &temp_dest);
-		src = src->next;
-	}
-	*dest = temp_dest;
-	ft_printf("\n\n--------------------------\n\n");
-	return (T);
-}
-
-/*******************************************************************************/
 			//ft_new_vm_inst.c
 /*******************************************************************************/
 t_vm_inst	*ft_new_vm_inst(t_int_list *src)
@@ -248,7 +227,7 @@ t_vm_inst	*ft_new_vm_inst(t_int_list *src)
 	ret->src = NULL;
 	ft_cp_list_intlist(src, &(ret->src));
 	ret->size = ft_size_intlist(src);
-	//ft_put_intlist(ret->src);
+	ret->next = NULL;
 	return (ret);
 }
 
@@ -260,27 +239,29 @@ BOOL	ft_add_vm_instlist(t_int_list *src, t_vm_inst **list)
 	t_vm_inst		*temp_node;
 	t_vm_inst		*pt_list;
 
-
-	//	ft_printf("A\n");
 	if (!(temp_node = ft_new_vm_inst(src)))
 		ft_error_exe(ERROR_NOT_ENOUGH_MEM);
-	//	ft_printf("B\n");
 	if (!(*list))
 		*list = temp_node;
 	else
 	{
-		//		ft_printf("C\n");
 		pt_list = *list;
-		ft_printf("E\n");
 		while (pt_list->next)
 			pt_list = pt_list->next;
-		ft_printf("F\n");
 		pt_list->next = temp_node;
-		ft_printf("G\n");
 	}
 	return (T);
 }
 
+void	ft_put_inst(t_vm_inst *vm_src)
+{
+	while (vm_src)
+	{
+		ft_put_hex_intlist(vm_src->src);
+		ft_printf("\n--------------------------\n");
+		vm_src = vm_src->next;
+	}
+}
 /*******************************************************************************/
 			//ft_str_to_list_inst.c
 /*******************************************************************************/
@@ -300,16 +281,10 @@ t_vm_inst	*ft_str_to_list_inst(char *src, t_champ *champ,
 		opr = src[i];
 		i += ft_manage_opr(opr, &inst_src_list);
 		i += ft_manage_param(src + i, opr, &inst_src_list, op_tab);
-		ft_printf(" {green} i = %d {eoc}\n", i);
-
-		ft_put_intlist(inst_src_list);
-		ft_printf("\n--------------------------\n");
-
+		ft_add_vm_instlist(inst_src_list, &vm_src);
 		ft_clear_intlist(&inst_src_list);
-		//ft_printf("3\n");
 	}
-	ft_printf(" end index = %d\n", i);
-	// faire une fonction pour lie un oct en plus 
+// faire une fonction pour lie un oct en plus 
 	// si le eof n'est pas atteint alors error file corrupt
 	// si eof ok le file contien bien ce qu'il dis qu'il contien  XD
 	return (vm_src);
@@ -318,18 +293,16 @@ t_vm_inst	*ft_str_to_list_inst(char *src, t_champ *champ,
 /*******************************************************************************/
 			//ft_get_vm_src.c
 /*******************************************************************************/
-t_instlist	*ft_get_vm_src(int fd, t_champ *champ)
+t_instlist	*ft_get_vm_src(int fd, t_champ *champ, t_op *op_tab[NBR_OP])
 {
-	t_op		*op_tab[NBR_OP];// l'envoyer en param
 	char		*src;
 
-	ft_get_op_tab(op_tab);
 	src = ft_read_src(fd, champ);
+
 	ft_put_raw_src(src, champ);
 
-	ft_str_to_list_inst(src, champ, op_tab);
+	champ->src = ft_str_to_list_inst(src, champ, op_tab);
 
-	ft_free_optab(op_tab);
 	ft_strdel(&src);
 	return (NULL);
 }

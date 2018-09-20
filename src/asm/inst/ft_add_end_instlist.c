@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_put_intlist.c                                   :+:      :+:    :+:   */
+/*   ft_add_end_instlist.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/20 12:42:32 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/20 13:21:39 by mbelalou         ###   ########.fr       */
+/*   Created: 2018/09/12 17:13:27 by mbelalou          #+#    #+#             */
+/*   Updated: 2018/09/20 12:53:48 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/list.h"
+#include "../../../inc/asm.h"
 
-void	ft_put_intlist(const t_int_list *list)
+BOOL	ft_add_end_instlist(t_inst *inst, t_instlist **list)
 {
-	if (ft_is_empty_intlist(list))
-		ft_printf("[∅].\n");
+	t_instlist	*pt_list;
+	t_instlist	*temp;
+
+	if (!inst)
+		return (F);
+	temp = malloc(sizeof(*temp));
+	temp->data = inst;
+	temp->next = NULL;
+	if (!(*list))
+		*list = temp;
 	else
 	{
-		ft_printf("[");
-		while (list)
-		{
-			ft_printf("%ld", (unsigned char)list->data);
-			list = list->next;
-			if (list)
-				ft_printf(",");
-		}
-		ft_printf("].\n");
+		pt_list = *list;
+		while (pt_list->next)
+			pt_list = pt_list->next;
+		pt_list->next = temp;
 	}
+	return (T);
 }

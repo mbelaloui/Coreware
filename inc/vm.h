@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/16 11:22:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/19 17:18:21 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/20 13:06:45 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,12 @@ typedef struct			s_vm_inst
 
 typedef struct	s_champ
 {
+	int			id;			//c'est pour toi david
+	char		*url_file;	//ca aussi c'est pour toi david !!!!
 	char		*name;
 	char		*comment;
 	int			size;
-	//src
+	t_vm_inst	*src;
 }				t_champ;
 
 int		ft_error_reading_file(int error);
@@ -49,7 +51,7 @@ char			*ft_get_vm_name(int fd);
 int				ft_get_vm_size(int fd);
 BOOL			ft_is_null(int fd);
 char			*ft_get_vm_comment(int fd);
-t_instlist		*ft_get_vm_src(int fd, t_champ *champ);
+t_instlist		*ft_get_vm_src(int fd, t_champ *champ, t_op *op_tab[NBR_OP]);
 #endif
 
 

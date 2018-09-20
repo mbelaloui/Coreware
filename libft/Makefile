@@ -6,7 +6,7 @@
 #    By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 21:48:22 by mbelalou          #+#    #+#              #
-#    Updated: 2018/09/17 12:35:48 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/09/20 13:27:02 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,8 @@ SRC_INTLIST	= ft_add_bgn_intlist.c ft_add_end_intlist.c ft_avg_intlist.c\
 			  ft_mergesort_intlist.c ft_med_intlist.c\
 			  ft_get_index_min_intlist.c ft_get_index_max_intlist.c\
 			  ft_get_index_first_elem_bigger_intlist.c\
-			  ft_get_index_last_elem_bigger_intlist.c ft_get_pivot.c
+			  ft_get_index_last_elem_bigger_intlist.c ft_get_pivot.c\
+			  ft_cp_list_intlist.c ft_put_hex_intlist.c
 SRCS_INTLIST= $(addprefix $(DIR_INTLIST)/, $(SRC_INTLIST))
 
 DIR_LST		= lst
@@ -67,7 +68,7 @@ SRC_NBR		= ft_abs.c ft_decimal_to_base_stat.c ft_max.c ft_atoi.c\
 			  ft_base_to_decimal_v2.c ft_intochar.c ft_udecimal_to_base_stat.c\
 			  ft_decimal_to_base_dynm.c ft_is_elem_base.c ft_unbrlen.c\
 			  ft_is_overflow_intmax.c ft_atointmax.c ft_swap_int.c\
-			  ft_isnumerique.c ft_byts_to_int.c
+			  ft_isnumerique.c ft_byts_to_int.c ft_int_to_byts.c
 SRCS_NBR	= $(addprefix $(DIR_NBR)/, $(SRC_NBR))
 
 DIR_STR		= str

@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_put_intlist.c                                   :+:      :+:    :+:   */
+/*   ft_dell_list_instlist.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/20 12:42:32 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/20 13:21:39 by mbelalou         ###   ########.fr       */
+/*   Created: 2018/09/12 17:03:41 by mbelalou          #+#    #+#             */
+/*   Updated: 2018/09/20 12:48:14 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/list.h"
+#include "../../../inc/asm.h"
 
-void	ft_put_intlist(const t_int_list *list)
+BOOL	ft_dell_list_instlist(t_instlist **to_free)
 {
-	if (ft_is_empty_intlist(list))
-		ft_printf("[∅].\n");
-	else
+	t_instlist*pt;
+
+	if (!to_free || !(*to_free))
+		return (F);
+	pt = *to_free;
+	while (*to_free)
 	{
-		ft_printf("[");
-		while (list)
-		{
-			ft_printf("%ld", (unsigned char)list->data);
-			list = list->next;
-			if (list)
-				ft_printf(",");
-		}
-		ft_printf("].\n");
+		pt = *to_free;
+		*to_free = (*to_free)->next;
+		ft_dell_inst(&(pt->data));
+		free(pt);
 	}
+	*to_free = NULL;
+	return (T);
 }

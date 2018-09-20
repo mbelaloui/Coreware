@@ -6,7 +6,7 @@
 #    By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/16 12:33:04 by mbelalou          #+#    #+#              #
-#    Updated: 2018/09/19 11:48:36 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/09/20 13:27:03 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,6 +61,19 @@ SRC_RUN_ASM			= ft_translate_player.c ft_handle_args_inst.c\
 					  ft_extract_info_player.c ft_get_arg_translat.c 
 SRCS_RUN_ASM	= $(addprefix $(DIR_RUN_ASM)/, $(SRC_RUN_ASM))
 
+DIR_INST_ASM		= asm/inst
+SRC_INST_ASM		= ft_dell_inst.c ft_dell_list_instlist.c\
+					  ft_add_end_instlist.c ft_new_inst.c   \
+					  ft_get_size_program.c ft_get_desc_args.c\
+					  ft_get_size_bin_inst.c\
+					  ft_get_size_inst.c 
+SRCS_INST_ASM		= $(addprefix $(DIR_INST_ASM)/, $(SRC_INST_ASM))
+
+DIR_PLAYER_ASM		= asm/player
+SRC_PLAYER_ASM		= ft_free_player.c ft_put_head.c ft_put_bynary.c\
+					  ft_put_src.c ft_make_out_put.c
+SRCS_PLAYER_ASM		= $(addprefix $(DIR_PLAYER_ASM)/, $(SRC_PLAYER_ASM))
+
 DIR_OP				= op
 SRC_OP				= ft_dell_op.c ft_get_nbr_param.c ft_get_type_param.c\
 					  ft_is_type_ok.c ft_put_op.c ft_put_type_param.c\
@@ -69,22 +82,9 @@ SRC_OP				= ft_dell_op.c ft_get_nbr_param.c ft_get_type_param.c\
 					  ft_set_desc_param.c ft_get_name.c ft_get_op_tab.c\
 					  ft_is_name_op.c ft_put_desc_param.c ft_put_size_label.c\
 					  ft_set_param.c ft_free_optab.c ft_is_direct.c\
-					  ft_is_indirect.c ft_is_register.c  ft_is_label.c
+					  ft_is_indirect.c ft_is_register.c  ft_is_label.c\
+					  ft_is_need_desc_op.c
 SRCS_OP				= $(addprefix $(DIR_OP)/, $(SRC_OP))
-
-
-DIR_INST			= inst
-SRC_INST			= ft_dell_inst.c ft_dell_list_instlist.c\
-					  ft_add_end_instlist.c ft_new_inst.c ft_is_need_desc_op.c\
-					  ft_get_size_program.c ft_get_desc_args.c\
-					  ft_get_size_bin_inst.c ft_int_to_byts.c\
-					  ft_get_size_inst.c 
-SRCS_INST			= $(addprefix $(DIR_INST)/, $(SRC_INST))
-
-DIR_PLAYER			= player
-SRC_PLAYER			= ft_free_player.c ft_put_head.c ft_put_bynary.c\
-					  ft_put_src.c ft_make_out_put.c
-SRCS_PLAYER			= $(addprefix $(DIR_PLAYER)/, $(SRC_PLAYER))
 
 DIR_PARSING_VM		= vm/parsing
 SRC_PARSING_VM		= ft_check_signature.c ft_get_next_oct.c ft_get_vm_magic.c\
@@ -112,12 +112,12 @@ LIBFT_DIR			= libft
 LIBFT				= libft.a
 
 SRCS_ASM			= $(EXE_ASM) $(SRCS_PARSING_ASM) $(SRCS_ERROR_ASM)\
-					  $(SRCS_OP) $(SRCS_PRINTING_ASM) $(SRCS_INST)\
-					  $(SRCS_PLAYER) $(SRCS_SYMBOLE_ASM) $(SRCS_LABEL_ASM)\
+					  $(SRCS_OP) $(SRCS_PRINTING_ASM) $(SRCS_INST_ASM)\
+					  $(SRCS_PLAYER_ASM) $(SRCS_SYMBOLE_ASM) $(SRCS_LABEL_ASM)\
 					  $(SRCS_RUN_ASM)
 
-SRCS_VM				= $(EXE_VM) $(SRCS_OP) $(SRCS_INST)\
-					  $(SRCS_PLAYER) $(SRCS_PARSING_VM) $(SRCS_ERROR_VM)
+SRCS_VM				= $(EXE_VM) $(SRCS_OP) \
+					  $(SRCS_PARSING_VM) $(SRCS_ERROR_VM)
 
 RED					= \033[31m
 GREEN				= \033[32m
@@ -165,16 +165,16 @@ $(OBJS_DIR_ASM)		:
 	@mkdir -p $(OBJS_DIR)$(DIR_SYMBOLE_ASM);
 	@mkdir -p $(OBJS_DIR)$(DIR_LABEL_ASM);
 	@mkdir -p $(OBJS_DIR)$(DIR_OP);
-	@mkdir -p $(OBJS_DIR)$(DIR_INST);
-	@mkdir -p $(OBJS_DIR)$(DIR_PLAYER);
+	@mkdir -p $(OBJS_DIR)$(DIR_INST_ASM);
+	@mkdir -p $(OBJS_DIR)$(DIR_PLAYER_ASM);
 
 $(OBJS_DIR_VM)			:
 	@mkdir -p $(OBJS_DIR);
 	@mkdir -p $(OBJS_DIR)$(DIR_VM);
 	@mkdir -p $(OBJS_DIR)$(DIR_OP);
 	@mkdir -p $(OBJS_DIR)$(DIR_PRINTING);
-	@mkdir -p $(OBJS_DIR)$(DIR_INST);
-	@mkdir -p $(OBJS_DIR)$(DIR_PLAYER);
+	@#mkdir -p $(OBJS_DIR)$(DIR_INST);
+	@#mkdir -p $(OBJS_DIR)$(DIR_PLAYER);
 	@mkdir -p $(OBJS_DIR)$(DIR_PARSING_VM);
 	@mkdir -p $(OBJS_DIR)$(DIR_ERROR_VM);
 

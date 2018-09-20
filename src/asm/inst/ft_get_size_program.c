@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_put_intlist.c                                   :+:      :+:    :+:   */
+/*   ft_get_size_program.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/20 12:42:32 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/20 13:21:39 by mbelalou         ###   ########.fr       */
+/*   Created: 2018/09/13 13:04:44 by mbelalou          #+#    #+#             */
+/*   Updated: 2018/09/20 12:48:47 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/list.h"
+#include "../../../inc/asm.h"
 
-void	ft_put_intlist(const t_int_list *list)
+int	ft_get_size_program(t_instlist *list)
 {
-	if (ft_is_empty_intlist(list))
-		ft_printf("[∅].\n");
-	else
+	int size_program;
+
+	size_program = 0;
+	while (list)
 	{
-		ft_printf("[");
-		while (list)
-		{
-			ft_printf("%ld", (unsigned char)list->data);
-			list = list->next;
-			if (list)
-				ft_printf(",");
-		}
-		ft_printf("].\n");
+		size_program += list->data->size_inst;
+		list = list->next;
 	}
+	return (size_program);
 }

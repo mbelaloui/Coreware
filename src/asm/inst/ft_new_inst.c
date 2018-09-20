@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_put_intlist.c                                   :+:      :+:    :+:   */
+/*   ft_new_inst.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/20 12:42:32 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/20 13:21:39 by mbelalou         ###   ########.fr       */
+/*   Created: 2018/09/13 10:56:11 by mbelalou          #+#    #+#             */
+/*   Updated: 2018/09/20 12:49:13 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/list.h"
+#include "../../../inc/asm.h"
 
-void	ft_put_intlist(const t_int_list *list)
+t_inst	*ft_new_inst(char *label, char *op, t_charlist *args)
 {
-	if (ft_is_empty_intlist(list))
-		ft_printf("[∅].\n");
-	else
+	t_inst	*ret;
+	int		i;
+
+	if (!(ret = malloc(sizeof(*ret))))
+		exit(0);
+	ret->label = label;
+	ret->opcode = op;
+	ret->param = args;
+	i = 0;
+	while (i < 6)
 	{
-		ft_printf("[");
-		while (list)
-		{
-			ft_printf("%ld", (unsigned char)list->data);
-			list = list->next;
-			if (list)
-				ft_printf(",");
-		}
-		ft_printf("].\n");
+		ret->size[i] = -1;
+		i++;
 	}
+	ret->add = NULL;
+	ret->position = 0;
+	return (ret);
 }
