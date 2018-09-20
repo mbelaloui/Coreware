@@ -1,18 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_byts_to_int.c                                   :+:      :+:    :+:   */
+/*   ft_handle_args_inst.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/17 12:04:25 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/20 17:04:45 by mbelalou         ###   ########.fr       */
+/*   Created: 2018/09/13 13:00:47 by mbelalou          #+#    #+#             */
+/*   Updated: 2018/09/20 18:22:52 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/nbr.h"
+#include "../../../inc/asm.h"
 
-int		ft_byts_to_int(unsigned char b[4])
+void	ft_handle_args_inst(char **tab_args, char *name_op, char *args,
+		t_op *op)
 {
-	return ((((((b[0] << 8) | b[1]) << 8) | b[2]) << 8) | b[3]);
+	int pos;
+	int param;
+
+	pos = 0;
+	while (tab_args[pos])
+	{
+		if (!(param = ft_get_type_args(tab_args[pos], pos)))
+			ft_error_args(ERROR_TYPE_ARG,
+					name_op, args, tab_args[pos]);
+		if (!(param & op->param))
+			ft_error_args(ERROR_TYPE_ARG,
+					name_op, args, tab_args[pos]);
+		pos++;
+	}
 }

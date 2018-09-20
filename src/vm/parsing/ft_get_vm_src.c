@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 12:25:30 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/20 14:39:41 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/20 18:53:26 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@
 /*******************************************************************************/
 			//ft_read_src.c
 /*******************************************************************************/
+
+/*
+** faire une fonction pour lie un oct en plus 
+** si le eof n'est pas atteint alors error file corrupt
+** si eof ok le file contien bien ce qu'il dis qu'il contien  XD
+*/
+
 char		*ft_read_src(int fd, t_champ *champ)
 {
 	unsigned char buf[1];
@@ -32,9 +39,10 @@ char		*ft_read_src(int fd, t_champ *champ)
 		src[i] = buf[0];
 		i++;
 	}
+	if (read(fd, &buf, 1))
+		ft_error_reading_file(ERROR_MAGIC_NUM);
 	return (src);
 }
-
 
 /*******************************************************************************/
 			//ft_put_raw_src.c
@@ -56,38 +64,20 @@ void	ft_put_raw_src(char *src, t_champ *champ)
 			ft_printf("\n");
 	}
 	ft_printf("\n\n\t/ ***************************** \\ \n\n", src[i]);
-
 }
 
-
 /*******************************************************************************/
 /*******************************************************************************/
-int		voila(t_op *op_tab[NBR_OP], int id_opr, unsigned char arg)
+int		get_size_param(t_op *op_tab[NBR_OP], int id_opr, unsigned char arg)
 {
-	//	int i;
-	//unsigned char arg;// = desc & 0x3;
-	//desc = desc >> 2;
-	//arg = desc;
-	//	ft_printf(" desc arg 1 = %.32b ", (unsigned char)arg_3);
-	//	i = 0;
 	if (arg == REG_CODE)
-	{
-		ft_printf("{red}registre{eoc} ");
 		return (REG_SIZE);
-	}
 	else if (arg == DIR_CODE)
-	{
-		ft_printf("{red}direct{eoc} ");
 		return (op_tab[id_opr]->size_label);
-	}
 	else if (arg == IND_CODE)
-	{
-		ft_printf("{red}indirect{eoc} ");
 		return (IND_SIZE);
-	}
 	else
-		ft_printf("{green}no arg{eoc} ");
-	return (0);
+		return (0);
 }
 
 /*******************************************************************************/
@@ -100,7 +90,7 @@ int		ft_manage_opr(int opr, t_int_list **inst_src_list)
 	ft_get_op_tab(op_tab);
 	if (opr < 17 && opr > 0)
 	{
-		ft_printf(" name {%s} nbr param %d " , op_tab[opr]->name,
+		ft_printf(" name {%s} nbr param %d\n" , op_tab[opr]->name,
 				op_tab[opr]->nbr_param);
 		ft_add_end_intlist( opr, inst_src_list);
 	}
@@ -123,8 +113,8 @@ int		manage_p3(int desc, int opr,t_op *op_tab[NBR_OP])
 	size = 0;
 	arg_q = (desc << 4);
 	param = arg_q >> 6;
-	ft_printf(" i = %.3d ", 3);
-	ft_printf("{yellow}%d {eoc}\n", size = voila(op_tab, opr,  param));
+	ft_printf(" i = %.3d   param = %d ", 3, param);
+	ft_printf("{yellow}%d {eoc}\n", size = get_size_param(op_tab, opr,  param));
 	return (size);
 }
 
@@ -137,8 +127,8 @@ int		manage_p2(int desc, int opr,t_op *op_tab[NBR_OP])
 	size = 0;
 	arg_q = (desc << 2);
 	param = arg_q >> 6;
-	ft_printf(" i = %.3d ", 2);
-	ft_printf("{yellow}%d {eoc}\n", size = voila(op_tab, opr,  param));
+	ft_printf(" i = %.3d   param = %d ", 2, param);
+	ft_printf("{yellow}%d {eoc}\n", size = get_size_param(op_tab, opr,  param));
 	return (size);
 }
 
@@ -147,10 +137,13 @@ int		manage_p1(int desc, int opr,t_op *op_tab[NBR_OP])
 	unsigned char	param;
 	int				size;
 
+	t_op *op = ft_get_op(op_tab, op_tab[opr]->name);
+	ft_printf(" praram [%.9b]", ft_get_type_param(op));
+
 	size = 0;
 	param = desc >> 6;
-	ft_printf(" i = %.3d ", 1);
-	ft_printf("{yellow}%d {eoc}\n", size = voila(op_tab, opr,  param));
+	ft_printf(" i = %.3d   param = %d ", 1, param);
+	ft_printf("{yellow}%d {eoc}\n", size = get_size_param(op_tab, opr,  param));
 	return (size);
 }
 
@@ -175,16 +168,13 @@ int		ft_manage_param(char *src, int opr, t_int_list **inst_src_list,
 	unsigned char desc;
 
 	pt = 0;
-	if (!ft_is_need_desc_op(op_tab[opr]->name, op_tab))//	if (opr == 1 || opr == 9 || opr == 12 || opr == 15)
+	if (!ft_is_need_desc_op(op_tab[opr]->name, op_tab))
 	{
 		nbr_oct = (opr == 1) ? 4 : 2;
-		while (nbr_oct > 0)
-		{
+		while (nbr_oct-- > 0)// byte_to_int
 			ft_add_end_intlist(src[pt++], inst_src_list);
-			nbr_oct--;
-		}
 	}
-	else// if (ft_is_need_desc_op(op_tab[opr]->name, op_tab))
+	else
 	{
 		//voir si la description est bien faite
 		desc = src[pt];
@@ -193,16 +183,13 @@ int		ft_manage_param(char *src, int opr, t_int_list **inst_src_list,
 //		ft_printf("\n");
 		int size;
 		
-		size = manage_p1(desc,opr, op_tab);
-		add_to_inst(src + pt , inst_src_list, size);
+		add_to_inst(src + pt, inst_src_list, size = manage_p1(desc, opr, op_tab));
 		pt += size;
 
-		size = manage_p2(desc,opr, op_tab);
-		add_to_inst(src + pt , inst_src_list, size);
+		add_to_inst(src + pt, inst_src_list, size = manage_p2(desc, opr, op_tab));
 		pt += size;
 
-		size = manage_p3(desc,opr, op_tab);
-		add_to_inst(src+pt , inst_src_list, size);
+		add_to_inst(src + pt, inst_src_list, size = manage_p3(desc, opr, op_tab));
 		pt += size;
 		// en conaissant le type des args ont peut deduire
 		// si le type est bien coherent
@@ -253,12 +240,21 @@ BOOL	ft_add_vm_instlist(t_int_list *src, t_vm_inst **list)
 	return (T);
 }
 
+/*******************************************************************************/
+		//ft_put_inst_src_vm.c
+/*******************************************************************************/
 void	ft_put_inst_src_vm(t_vm_inst *vm_src)
 {
+	int		num;
+
+	num = 0;
+	ft_printf("\n\nPrinting src\n");
+	ft_printf("--------------------------------\n");
 	while (vm_src)
 	{
+		ft_printf("[%.3d]\t : \t", num++);
 		ft_put_hex_intlist(vm_src->src);
-		ft_printf("\n--------------------------\n");
+		ft_printf("---------------------------------------\n");
 		vm_src = vm_src->next;
 	}
 }
@@ -284,9 +280,6 @@ t_vm_inst	*ft_str_to_list_inst(char *src, t_champ *champ,
 		ft_add_vm_instlist(inst_src_list, &vm_src);
 		ft_clear_intlist(&inst_src_list);
 	}
-// faire une fonction pour lie un oct en plus 
-	// si le eof n'est pas atteint alors error file corrupt
-	// si eof ok le file contien bien ce qu'il dis qu'il contien  XD
 	return (vm_src);
 }
 
@@ -302,6 +295,9 @@ t_instlist	*ft_get_vm_src(int fd, t_champ *champ, t_op *op_tab[NBR_OP])
 	ft_put_raw_src(src, champ);
 
 	champ->src = ft_str_to_list_inst(src, champ, op_tab);
+
+	ft_put_inst_src_vm(champ->src);
+
 
 	ft_strdel(&src);
 	return (NULL);

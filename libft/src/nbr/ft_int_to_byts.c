@@ -6,15 +6,15 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 13:47:47 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/20 13:07:49 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/20 17:05:19 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/nbr.h"
 
-unsigned int	*ft_int_to_byts(int val, int size)
+unsigned char	*ft_int_to_byts(int val, int size)
 {
-	unsigned int *ret;
+	unsigned char *ret;
 
 	if (!(ret = malloc(sizeof(int) * size)))
 		return (NULL);

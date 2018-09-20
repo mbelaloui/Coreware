@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 14:22:15 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/20 12:58:33 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/20 17:21:04 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_put_bynary(int data, int size, int fd)
 {
-	unsigned int *ret;
+	unsigned char *ret;
 
 	ret = ft_int_to_byts(data, size);
 	if (size == REG_SIZE)
