@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 12:25:30 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/20 13:27:07 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/20 14:39:41 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,7 +253,7 @@ BOOL	ft_add_vm_instlist(t_int_list *src, t_vm_inst **list)
 	return (T);
 }
 
-void	ft_put_inst(t_vm_inst *vm_src)
+void	ft_put_inst_src_vm(t_vm_inst *vm_src)
 {
 	while (vm_src)
 	{

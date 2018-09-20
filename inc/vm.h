@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/16 11:22:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/20 13:06:45 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/20 14:38:45 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define ERROR_MAGIC_NUM		42
 # define ERROR_SIZE_FILE		3
 # define ERROR_NOT_ENOUGH_MEM	4
+# define ERROR_NOT_ENOUGH_PARAM	5
 
 typedef struct			s_vm_inst
 {
@@ -29,6 +30,19 @@ typedef struct			s_vm_inst
 	struct s_vm_inst	*next;
 }						t_vm_inst;
 
+/*************************************/
+/*          struct -h "aide"         */
+/*************************************/
+/* je me base sur ce aue tu as fait dans l'asm */
+
+typedef struct	s_vm_option
+{
+	char		h; /*help*/
+	char		n; /*nb_champ*/
+	char		D; /*dump*/
+	char		v; /*visu*/
+	char		a; /*pas compris ahah*/
+}				t_vm_option;
 
 typedef struct	s_champ
 {
@@ -39,6 +53,11 @@ typedef struct	s_champ
 	int			size;
 	t_vm_inst	*src;
 }				t_champ;
+
+
+/*option vm*/
+void		ft_init_vm_option(t_vm_option *op);
+/***********/
 
 int		ft_error_reading_file(int error);
 int		ft_error_exe(int error);

@@ -6,7 +6,7 @@
 #    By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/16 12:33:04 by mbelalou          #+#    #+#              #
-#    Updated: 2018/09/20 13:27:03 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/09/20 14:38:44 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,7 +89,7 @@ SRCS_OP				= $(addprefix $(DIR_OP)/, $(SRC_OP))
 DIR_PARSING_VM		= vm/parsing
 SRC_PARSING_VM		= ft_check_signature.c ft_get_next_oct.c ft_get_vm_magic.c\
 					  ft_get_vm_name.c ft_get_vm_size.c ft_is_null.c\
-					  ft_get_vm_comment.c ft_get_vm_src.c
+					  ft_get_vm_comment.c ft_get_vm_src.c ft_init_option_vm.c
 SRCS_PARSING_VM		= $(addprefix $(DIR_PARSING_VM)/, $(SRC_PARSING_VM))
 
 DIR_ERROR_VM		= vm/error
