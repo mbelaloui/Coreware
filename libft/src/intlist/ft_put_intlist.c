@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 12:42:32 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/06/20 12:42:42 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/20 11:39:43 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_put_intlist(const t_int_list *list)
 		ft_printf("[");
 		while (list)
 		{
-			ft_printf("%ld", list->data);
+			ft_printf("%.2x", (unsigned char)list->data);
 			list = list->next;
 			if (list)
 				ft_printf(",");
