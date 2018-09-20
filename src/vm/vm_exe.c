@@ -55,9 +55,9 @@ int	main(int argc, char **argv)
 	t_op*op_tab[NBR_OP];
 	t_champ	*champ;
 	int		fd;
-	int		i;
+//	int		i;
 
-	i = 1;
+//	i = 1;
 	if (argc == 1)
 		ft_error_exe(ERROR_NOT_ENOUGH_PARAM); /*erreur 1 seul argu*/
 	ft_init_vm_option(&op_vm);
