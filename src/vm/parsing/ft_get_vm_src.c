@@ -15,6 +15,24 @@
 // file corrupt s'il la taill de src est plus grande que celle declaree
 
 /*******************************************************************************/
+		//ft_put_inst_src_vm.c
+/*******************************************************************************/
+void	ft_put_inst_src_vm(t_vm_inst *vm_src)
+{
+	int		num;
+
+	num = 0;
+	ft_printf("\n\nPrinting src\n");
+	ft_printf("--------------------------------\n");
+	while (vm_src)
+	{
+		ft_printf("[%.3d]\t : \t", num++);
+		ft_put_hex_intlist(vm_src->src);
+		ft_printf("---------------------------------------\n");
+		vm_src = vm_src->next;
+	}
+}
+/*******************************************************************************/
 			//ft_read_src.c
 /*******************************************************************************/
 
@@ -83,11 +101,9 @@ int		get_size_param(t_op *op_tab[NBR_OP], int id_opr, unsigned char arg)
 /*******************************************************************************/
 			//ft_manage_opr.c
 /*******************************************************************************/
-int		ft_manage_opr(int opr, t_int_list **inst_src_list)
+int		ft_manage_opr(int opr, t_int_list **inst_src_list,
+t_op	*op_tab[NBR_OP])
 {
-	t_op	*op_tab[NBR_OP];
-
-	ft_get_op_tab(op_tab);
 	if (opr < 17 && opr > 0)
 	{
 		ft_printf(" name {%s} nbr param %d\n" , op_tab[opr]->name,
@@ -95,7 +111,10 @@ int		ft_manage_opr(int opr, t_int_list **inst_src_list)
 		ft_add_end_intlist( opr, inst_src_list);
 	}
 	else
+	{
+		ft_printf("{blue} ici 1{eoc}\n");
 		ft_error_reading_file(ERROR_FORMAT_FILE);
+	}
 	return (1);
 }
 
@@ -131,19 +150,34 @@ int		manage_p2(int desc, int opr,t_op *op_tab[NBR_OP])
 	ft_printf("{yellow}%d {eoc}\n", size = get_size_param(op_tab, opr,  param));
 	return (size);
 }
-
-int		manage_p1(int desc, int opr,t_op *op_tab[NBR_OP])
+/*
+int	get_type_param(int param, int desc_op)
+{
+	ft_printf();
+}
+*/
+int		manage_p1(int desc, t_op *op, t_op *op_tab[NBR_OP])
 {
 	unsigned char	param;
 	int				size;
 
-	t_op *op = ft_get_op(op_tab, op_tab[opr]->name);
-	ft_printf(" praram [%.9b]", ft_get_type_param(op));
-
 	size = 0;
 	param = desc >> 6;
+/*
+	if (op->param & T_DIR_P1)
+		ft_printf("{GREEN}direct{eoc}");
+	if (op->param & T_REG_P1)
+		ft_printf(" {RED}registre{eoc}");
+	if (op->param & T_IND_P1)
+		ft_printf(" {YELLOW}indirect{eoc}");
+i*/
+
+//	get_type_param(param, ft_get_type_param(op));
+
+	ft_printf(" praram [%.9b]\n", ft_get_type_param(op));
 	ft_printf(" i = %.3d   param = %d ", 1, param);
-	ft_printf("{yellow}%d {eoc}\n", size = get_size_param(op_tab, opr,  param));
+	ft_printf("  {blue}%d {eoc}\n", size = get_size_param(op_tab, op->mnemonique,  param));
+
 	return (size);
 }
 
@@ -160,6 +194,11 @@ int	add_to_inst(char *src, t_int_list **inst_src, int size)
 	return (size);
 }
 
+BOOL		is_dex_ok(desc, op, op_tab)
+{
+	
+}
+
 int		ft_manage_param(char *src, int opr, t_int_list **inst_src_list,
 		t_op *op_tab[NBR_OP])
 {
@@ -171,7 +210,7 @@ int		ft_manage_param(char *src, int opr, t_int_list **inst_src_list,
 	if (!ft_is_need_desc_op(op_tab[opr]->name, op_tab))
 	{
 		nbr_oct = (opr == 1) ? 4 : 2;
-		while (nbr_oct-- > 0)// byte_to_int
+		while (nbr_oct-- > 0)
 			ft_add_end_intlist(src[pt++], inst_src_list);
 	}
 	else
@@ -183,13 +222,18 @@ int		ft_manage_param(char *src, int opr, t_int_list **inst_src_list,
 //		ft_printf("\n");
 		int size;
 		
-		add_to_inst(src + pt, inst_src_list, size = manage_p1(desc, opr, op_tab));
+	t_op *op = ft_get_op(op_tab, op_tab[opr]->name);
+		is_dex_ok(desc, op, op_tab);
+//		size = manage_p1(desc, opr, op_tab);
+add_to_inst(src + pt, inst_src_list, size = manage_p1(desc, op, op_tab));
 		pt += size;
 
-		add_to_inst(src + pt, inst_src_list, size = manage_p2(desc, opr, op_tab));
+//		size = manage_p2(desc, opr, op_tab);
+add_to_inst(src + pt, inst_src_list, size = manage_p2(desc, opr, op_tab));
 		pt += size;
 
-		add_to_inst(src + pt, inst_src_list, size = manage_p3(desc, opr, op_tab));
+//		size = manage_p3(desc, opr, op_tab);
+add_to_inst(src + pt, inst_src_list, size = manage_p3(desc, opr, op_tab));
 		pt += size;
 		// en conaissant le type des args ont peut deduire
 		// si le type est bien coherent
@@ -199,6 +243,7 @@ int		ft_manage_param(char *src, int opr, t_int_list **inst_src_list,
 	//	else
 	//		pt++;
 
+	(void) inst_src_list;
 	return (pt);
 }
 
@@ -209,7 +254,7 @@ t_vm_inst	*ft_new_vm_inst(t_int_list *src)
 {
 	t_vm_inst	*ret;
 
-	if (!(ret = malloc(sizeof(ret))))
+	if (!(ret = malloc(sizeof(*ret))))
 		ft_error_exe(ERROR_NOT_ENOUGH_MEM);
 	ret->src = NULL;
 	ft_cp_list_intlist(src, &(ret->src));
@@ -239,25 +284,50 @@ BOOL	ft_add_vm_instlist(t_int_list *src, t_vm_inst **list)
 	}
 	return (T);
 }
+/*
+	ft_printf("****************\n");
+		ft_put_hex_intlist(temp_node->src);
+	ft_printf("****************\n");
+*/	
 
 /*******************************************************************************/
-		//ft_put_inst_src_vm.c
+		//champ.c
 /*******************************************************************************/
-void	ft_put_inst_src_vm(t_vm_inst *vm_src)
+
+BOOL    ft_dell_inst_sr(t_vm_inst **to_free)
 {
-	int		num;
+	t_vm_inst *pt;
+	t_int_list	*temp;
 
-	num = 0;
-	ft_printf("\n\nPrinting src\n");
-	ft_printf("--------------------------------\n");
-	while (vm_src)
+	if (!to_free || !(*to_free))
+		return (F);
+	pt = *to_free;
+	while (*to_free)
 	{
-		ft_printf("[%.3d]\t : \t", num++);
-		ft_put_hex_intlist(vm_src->src);
-		ft_printf("---------------------------------------\n");
-		vm_src = vm_src->next;
+		pt = *to_free;
+		temp = pt->src;
+		ft_clear_intlist(&temp);
+
+/*		
+		ft_printf("----------------\n");
+		ft_put_hex_intlist(temp);
+		ft_printf("----------------\n");
+*/
+
+		*to_free = (*to_free)->next;
+		free(pt);
 	}
+	*to_free = NULL;
+	return (T);
 }
+/*
+void    ft_dell_cham(t_champ **champ)
+{
+       ft_strdel(&(*champ)->name);
+       ft_strdel(&(*champ)->comment);
+	//      ft_dell_inst_src(&(*champ)->src);
+        free(*champ);
+}*/
 /*******************************************************************************/
 			//ft_str_to_list_inst.c
 /*******************************************************************************/
@@ -269,17 +339,28 @@ t_vm_inst	*ft_str_to_list_inst(char *src, t_champ *champ,
 	int			i;
 	int			opr;
 
+//ft_printf("\n");
 	i = 0;
 	vm_src = NULL;
 	while (i < champ->size)
 	{
 		inst_src_list = NULL;
 		opr = src[i];
-		i += ft_manage_opr(opr, &inst_src_list);
+		i += ft_manage_opr(opr, &inst_src_list, op_tab);
+		ft_printf("----------------\n");
+		ft_put_hex_intlist(inst_src_list);
+		ft_printf("----------------\n");
+		ft_printf(" i = %d\n", i);
 		i += ft_manage_param(src + i, opr, &inst_src_list, op_tab);
+	
 		ft_add_vm_instlist(inst_src_list, &vm_src);
 		ft_clear_intlist(&inst_src_list);
+		ft_printf("\n");
 	}
+
+	ft_put_inst_src_vm(vm_src);
+	ft_dell_inst_sr(&vm_src);
+
 	return (vm_src);
 }
 
@@ -294,11 +375,16 @@ t_instlist	*ft_get_vm_src(int fd, t_champ *champ, t_op *op_tab[NBR_OP])
 
 	ft_put_raw_src(src, champ);
 
-	champ->src = ft_str_to_list_inst(src, champ, op_tab);
+	/*champ->src = */ft_str_to_list_inst(src, champ, op_tab);
 
-	ft_put_inst_src_vm(champ->src);
+	//ft_put_inst_src_vm(champ->src);
 
+	(void)op_tab;
 
 	ft_strdel(&src);
+	
+//	ft_dell_cham();
+
+	
 	return (NULL);
 }

@@ -140,8 +140,8 @@ $(NAME_ASM)			: $(LIBFT) $(OBJS_DIR_ASM) $(OBJS_ASM)
 
 $(NAME_VM)			: $(LIBFT) $(OBJS_DIR_VM) $(OBJS_VM)
 	@#echo $(OBJS_VM)
-	@gcc $(OBJS_VM) -L $(LIBFT_DIR) -lft -fsanitize=address -o $(NAME_VM)
-	@#gcc $(OBJS_VM) -L $(LIBFT_DIR) -lft -o $(NAME_VM)
+	@gcc $(OBJS_VM) -L $(LIBFT_DIR) -lft -o $(NAME_VM)
+	@#gcc $(OBJS_VM) -L $(LIBFT_DIR) -lft -fsanitize=address -o $(NAME_VM)
 	@echo "$(GREEN)$(NAME_VM) has been successfully created !$(WHITE)."
 	# -fsanitize=address
 	@#say "$(NAME_ASM) has been successfully created !"

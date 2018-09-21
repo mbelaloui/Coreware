@@ -26,7 +26,6 @@ typedef struct			s_vm_inst
 {
 	t_int_list			*src;
 	int					size;
-	//BOOL		live;
 	struct s_vm_inst	*next;
 }						t_vm_inst;
 
