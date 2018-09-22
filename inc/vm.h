@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/16 11:22:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/22 12:45:24 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/22 15:11:30 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,21 @@ int				ft_get_vm_size(int fd);
 BOOL			ft_is_null(int fd);
 char			*ft_get_vm_comment(int fd);
 t_vm_inst*ft_get_vm_src(int fd, t_champ *champ, t_op *op_tab[NBR_OP]);
-
-
+/*
+*/
 t_champ			*ft_read_champ_file(int fd, t_op*op_tab[NBR_OP]);
 
 void			ft_dell_champ(t_champ **champ);
 void			ft_put_champ(t_champ *champ);
 void			ft_put_raw_src_champ(char *src, int size);
+void			ft_put_inst_src_vm(t_vm_inst *vm_src);
+int				ft_manage_opr(int opr, t_int_list **inst_src_list);
+char			*ft_read_src(int fd, int size);
+/*
+*/
+
+t_vm_inst		*ft_new_vm_inst(t_int_list *src);
+BOOL			ft_add_vm_instlist(t_int_list *src, t_vm_inst **list);
 #endif
 
 

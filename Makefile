@@ -6,7 +6,7 @@
 #    By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/16 12:33:04 by mbelalou          #+#    #+#              #
-#    Updated: 2018/09/22 12:47:48 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/09/22 15:32:02 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,10 +96,15 @@ DIR_ERROR_VM		= vm/error
 SRC_ERROR_VM		= ft_error_reading_file.c ft_error_exe.c
 SRCS_ERROR_VM		= $(addprefix $(DIR_ERROR_VM)/, $(SRC_ERROR_VM))
 
-DIR_CHAMP		= vm/champ
-SRC_CHAMP		= ft_dell_champ.c ft_put_raw_src_champ.c ft_put_champ.c\
-				  ft_read_champ_file.c
-SRCS_CHAMP		= $(addprefix $(DIR_CHAMP)/, $(SRC_CHAMP))
+DIR_CHAMP_VM		= vm/champ
+SRC_CHAMP_VM		= ft_dell_champ.c ft_put_raw_src_champ.c ft_put_champ.c\
+					  ft_read_champ_file.c ft_put_inst_src_vm.c ft_manage_opr.c\
+					  ft_read_src.c
+SRCS_CHAMP_VM		= $(addprefix $(DIR_CHAMP_VM)/, $(SRC_CHAMP_VM))
+
+DIR_INST_VM			= vm/inst
+SRC_INST_VM			= ft_new_vm_inst.c ft_add_vm_instlist.c
+SRCS_INST_VM		= $(addprefix $(DIR_INST_VM)/, $(SRC_INST_VM))
 
 #DIR_		=
 #SRC_		=
@@ -121,8 +126,8 @@ SRCS_ASM			= $(EXE_ASM) $(SRCS_PARSING_ASM) $(SRCS_ERROR_ASM)\
 					  $(SRCS_PLAYER_ASM) $(SRCS_SYMBOLE_ASM) $(SRCS_LABEL_ASM)\
 					  $(SRCS_RUN_ASM)
 
-SRCS_VM				= $(EXE_VM) $(SRCS_OP) $(SRCS_CHAMP)\
-					  $(SRCS_PARSING_VM) $(SRCS_ERROR_VM)
+SRCS_VM				= $(EXE_VM) $(SRCS_OP) $(SRCS_CHAMP_VM)\
+					  $(SRCS_PARSING_VM) $(SRCS_ERROR_VM) $(SRCS_INST_VM)
 
 RED					= \033[31m
 GREEN				= \033[32m
@@ -177,7 +182,8 @@ $(OBJS_DIR_VM)			:
 	@mkdir -p $(OBJS_DIR);
 	@mkdir -p $(OBJS_DIR)$(DIR_VM);
 	@mkdir -p $(OBJS_DIR)$(DIR_OP);
-	@mkdir -p $(OBJS_DIR)$(DIR_CHAMP);
+	@mkdir -p $(OBJS_DIR)$(DIR_INST_VM);
+	@mkdir -p $(OBJS_DIR)$(DIR_CHAMP_VM);
 	@mkdir -p $(OBJS_DIR)$(DIR_PRINTING);
 	@#mkdir -p $(OBJS_DIR)$(DIR_INST);
 	@#mkdir -p $(OBJS_DIR)$(DIR_PLAYER);
