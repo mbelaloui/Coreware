@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 14:17:02 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/20 12:58:41 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/20 17:20:42 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	put_name(t_player *player, int fd)
 
 static void	put_size(t_player *player, int fd)
 {
-	unsigned int		*ret;
+	unsigned char		*ret;
 	int					i;
 
 	ret = ft_int_to_byts(ft_get_size_program(player->src), 4);

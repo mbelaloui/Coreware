@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/16 11:22:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/20 14:38:45 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/20 18:53:30 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef struct			s_vm_inst
 {
 	t_int_list			*src;
 	int					size;
-	//BOOL		live;
 	struct s_vm_inst	*next;
 }						t_vm_inst;
 

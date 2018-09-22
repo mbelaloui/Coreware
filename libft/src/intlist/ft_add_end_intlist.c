@@ -17,7 +17,7 @@ BOOL	ft_add_end_intlist(intmax_t nbr, t_int_list **list)
 	t_int_list	*temp_node;
 	t_int_list	*pt_list;
 
-	if (!(temp_node = ft_new_intlist(nbr)))
+	if (!(temp_node = ft_new_intlist(nbr)) || !list)
 		return (F);
 	if (!(*list))
 		*list = temp_node;

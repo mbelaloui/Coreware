@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/16 12:13:15 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/17 14:52:53 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/20 17:24:25 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 BOOL	ft_check_signature(unsigned char r[4])
 {
-	unsigned int	*ret;
+	unsigned char	*ret;
 	int				i;
 	int				size;
 

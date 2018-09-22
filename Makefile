@@ -6,7 +6,7 @@
 #    By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/16 12:33:04 by mbelalou          #+#    #+#              #
-#    Updated: 2018/09/20 14:38:44 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/09/20 18:53:31 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,8 +57,8 @@ SRC_PRINTING_ASM	= ft_put_inst.c ft_put_instlist.c ft_warning.c\
 SRCS_PRINTING_ASM	= $(addprefix $(DIR_PRINTING_ASM)/, $(SRC_PRINTING_ASM))
 
 DIR_RUN_ASM			= asm/run
-SRC_RUN_ASM			= ft_translate_player.c ft_handle_args_inst.c\
-					  ft_extract_info_player.c ft_get_arg_translat.c 
+SRC_RUN_ASM			= ft_translate_player.c ft_extract_info_player.c\
+					  ft_get_arg_translat.c 
 SRCS_RUN_ASM	= $(addprefix $(DIR_RUN_ASM)/, $(SRC_RUN_ASM))
 
 DIR_INST_ASM		= asm/inst
@@ -66,7 +66,7 @@ SRC_INST_ASM		= ft_dell_inst.c ft_dell_list_instlist.c\
 					  ft_add_end_instlist.c ft_new_inst.c   \
 					  ft_get_size_program.c ft_get_desc_args.c\
 					  ft_get_size_bin_inst.c\
-					  ft_get_size_inst.c 
+					  ft_get_size_inst.c ft_handle_args_inst.c
 SRCS_INST_ASM		= $(addprefix $(DIR_INST_ASM)/, $(SRC_INST_ASM))
 
 DIR_PLAYER_ASM		= asm/player
@@ -140,8 +140,8 @@ $(NAME_ASM)			: $(LIBFT) $(OBJS_DIR_ASM) $(OBJS_ASM)
 
 $(NAME_VM)			: $(LIBFT) $(OBJS_DIR_VM) $(OBJS_VM)
 	@#echo $(OBJS_VM)
-	@gcc $(OBJS_VM) -L $(LIBFT_DIR) -lft -fsanitize=address -o $(NAME_VM)
-	@#gcc $(OBJS_VM) -L $(LIBFT_DIR) -lft -o $(NAME_VM)
+	@gcc $(OBJS_VM) -L $(LIBFT_DIR) -lft -o $(NAME_VM)
+	@#gcc $(OBJS_VM) -L $(LIBFT_DIR) -lft -fsanitize=address -o $(NAME_VM)
 	@echo "$(GREEN)$(NAME_VM) has been successfully created !$(WHITE)."
 	# -fsanitize=address
 	@#say "$(NAME_ASM) has been successfully created !"

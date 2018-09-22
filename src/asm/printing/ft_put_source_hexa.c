@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 14:03:37 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/16 11:19:22 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/20 17:20:17 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	put_hexa_delim(int i, BOOL with)
 
 static void	put_hexa_source_bis1(int i, t_inst *data)
 {
-	unsigned int	*ret;
+	unsigned char	*ret;
 	t_charlist		*arg;
 	int				size;
 
@@ -53,7 +53,7 @@ static void	put_hexa_source_bis1(int i, t_inst *data)
 
 static void	put_hexa_source_bis2(int i, t_inst *data)
 {
-	unsigned int	*ret;
+	unsigned char	*ret;
 	t_charlist		*arg;
 	int				size;
 
