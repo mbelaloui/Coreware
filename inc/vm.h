@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/16 11:22:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/22 12:45:24 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/22 16:34:26 by dalauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,12 @@ typedef struct			s_vm_inst
 
 typedef struct	s_vm_option
 {
-	char		h; /*help*/
-	char		n; /*nb_champ*/
-	char		D; /*dump*/
-	char		v; /*visu*/
-	char		a; /*pas compris ahah*/
+	int			h; /*help*/
+	int			n; /*nb_champ*/
+	int			D; /*dump*/
+	int			v; /*visu*/
+	int			a; /*pas compris ahah*/
+	int			dump_value; /*dump value*/
 }				t_vm_option;
 
 typedef struct	s_champ
