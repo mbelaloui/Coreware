@@ -6,7 +6,7 @@
 #    By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 21:48:22 by mbelalou          #+#    #+#              #
-#    Updated: 2018/09/20 13:27:02 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/09/22 12:28:38 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,8 @@ SRC_NBR		= ft_abs.c ft_decimal_to_base_stat.c ft_max.c ft_atoi.c\
 			  ft_base_to_decimal_v2.c ft_intochar.c ft_udecimal_to_base_stat.c\
 			  ft_decimal_to_base_dynm.c ft_is_elem_base.c ft_unbrlen.c\
 			  ft_is_overflow_intmax.c ft_atointmax.c ft_swap_int.c\
-			  ft_isnumerique.c ft_byts_to_int.c ft_int_to_byts.c
+			  ft_isnumerique.c ft_byts_to_int.c ft_int_to_byts.c\
+			  ft_atoi_v3.c ft_base_to_decimal_v3.c
 SRCS_NBR	= $(addprefix $(DIR_NBR)/, $(SRC_NBR))
 
 DIR_STR		= str

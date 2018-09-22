@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 10:53:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/20 17:05:17 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/22 12:29:05 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ int			ft_atoi(const char *str);
 intmax_t	ft_atointmax(const char *str);
 long		ft_atoi_v1(const char *str);
 long		ft_atoi_v2(const char *str);
+long		ft_atoi_v3(const char *str);
 intmax_t	ft_base_to_decimal(const char *str, const int str_base);
 intmax_t	ft_base_to_decimal_v2(const char *str, const int str_base);
+intmax_t	ft_base_to_decimal_v3(const char *str, const int str_base);
 
 char		*ft_decimal_to_base_dynm(const intmax_t nbr_in, int base, int form);
 void		ft_decimal_to_base_stat(char *tab_ret, const intmax_t nbr,
