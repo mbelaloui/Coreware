@@ -6,7 +6,7 @@
 #    By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/16 12:33:04 by mbelalou          #+#    #+#              #
-#    Updated: 2018/09/22 12:17:32 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/09/22 12:47:48 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,7 +97,8 @@ SRC_ERROR_VM		= ft_error_reading_file.c ft_error_exe.c
 SRCS_ERROR_VM		= $(addprefix $(DIR_ERROR_VM)/, $(SRC_ERROR_VM))
 
 DIR_CHAMP		= vm/champ
-SRC_CHAMP		= ft_read_file.c ft_dell_champ.c ft_put_champ.c
+SRC_CHAMP		= ft_dell_champ.c ft_put_raw_src_champ.c ft_put_champ.c\
+				  ft_read_champ_file.c
 SRCS_CHAMP		= $(addprefix $(DIR_CHAMP)/, $(SRC_CHAMP))
 
 #DIR_		=
@@ -185,14 +186,14 @@ $(OBJS_DIR_VM)			:
 
 clean				:
 	@clear
-	@make -C $(LIBFT_DIR) clean
+	@#make -C $(LIBFT_DIR) clean
 	@rm -fr $(OBJS_DIR)
 	@echo "$(RED)cleaned the checker binary files$(WHITE)."
 	@#say "cleaned the $(NAME_ASM) binary files."
 
 fclean				:
 	@clear
-	@make -C $(LIBFT_DIR) fclean
+	@#make -C $(LIBFT_DIR) fclean
 	@rm -fr $(OBJS_DIR)
 	@echo "$(RED)cleaned the $(NAME_ASM) file$(WHITE)."
 	@rm -f $(NAME_ASM) $(NAME_VM)

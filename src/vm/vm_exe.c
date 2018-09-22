@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 14:00:03 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/22 12:16:51 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/22 12:31:40 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 
 	ft_get_op_tab(op_tab);
 	fd = ft_open_r_file(argv[1]); /*a modifier a cause des bonus -h etc.. */
-	/*champ = */ft_read_file(fd, op_tab);
+	/*champ = */ft_read_champ_file(fd, op_tab);
 /*
 	ft_strdel(&(champ)->name);
 */
