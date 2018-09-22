@@ -192,14 +192,14 @@ $(OBJS_DIR_VM)			:
 
 clean				:
 	@clear
-	@#make -C $(LIBFT_DIR) clean
+	@make -C $(LIBFT_DIR) clean
 	@rm -fr $(OBJS_DIR)
 	@echo "$(RED)cleaned the checker binary files$(WHITE)."
 	@#say "cleaned the $(NAME_ASM) binary files."
 
 fclean				:
 	@clear
-	@#make -C $(LIBFT_DIR) fclean
+	@make -C $(LIBFT_DIR) fclean
 	@rm -fr $(OBJS_DIR)
 	@echo "$(RED)cleaned the $(NAME_ASM) file$(WHITE)."
 	@rm -f $(NAME_ASM) $(NAME_VM)
