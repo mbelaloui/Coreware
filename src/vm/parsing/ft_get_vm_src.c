@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 12:25:30 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/20 18:53:26 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/22 12:54:08 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,27 +62,6 @@ char		*ft_read_src(int fd, t_champ *champ)
 	return (src);
 }
 
-/*******************************************************************************/
-			//ft_put_raw_src.c
-/*******************************************************************************/
-void	ft_put_raw_src(char *src, t_champ *champ)
-{
-	int i;
-
-	i = 0;
-	ft_printf("\n\t\t printing raw src", src[i]);
-	ft_printf("\n\t/ ***************************** \\ \n\n", src[i]);
-	while(i < champ->size)
-	{
-		ft_printf("%.2x ", (unsigned char)src[i]);
-		i++;
-		if (i % 8 == 0)
-			ft_printf("  ");
-		if (i % 16 == 0)
-			ft_printf("\n");
-	}
-	ft_printf("\n\n\t/ ***************************** \\ \n\n", src[i]);
-}
 
 /*******************************************************************************/
 /*******************************************************************************/
@@ -193,12 +172,12 @@ int	add_to_inst(char *src, t_int_list **inst_src, int size)
 		ft_add_end_intlist(src[pt++], inst_src);
 	return (size);
 }
-
+/*
 BOOL		is_dex_ok(desc, op, op_tab)
 {
 	
 }
-
+*/
 int		ft_manage_param(char *src, int opr, t_int_list **inst_src_list,
 		t_op *op_tab[NBR_OP])
 {
@@ -223,7 +202,7 @@ int		ft_manage_param(char *src, int opr, t_int_list **inst_src_list,
 		int size;
 		
 	t_op *op = ft_get_op(op_tab, op_tab[opr]->name);
-		is_dex_ok(desc, op, op_tab);
+//		is_dex_ok(desc, op, op_tab);
 //		size = manage_p1(desc, opr, op_tab);
 add_to_inst(src + pt, inst_src_list, size = manage_p1(desc, op, op_tab));
 		pt += size;
@@ -293,7 +272,7 @@ BOOL	ft_add_vm_instlist(t_int_list *src, t_vm_inst **list)
 /*******************************************************************************/
 		//champ.c
 /*******************************************************************************/
-
+/*
 BOOL    ft_dell_inst_sr(t_vm_inst **to_free)
 {
 	t_vm_inst *pt;
@@ -308,18 +287,18 @@ BOOL    ft_dell_inst_sr(t_vm_inst **to_free)
 		temp = pt->src;
 		ft_clear_intlist(&temp);
 
-/*		
+		
 		ft_printf("----------------\n");
 		ft_put_hex_intlist(temp);
 		ft_printf("----------------\n");
-*/
+
 
 		*to_free = (*to_free)->next;
 		free(pt);
 	}
 	*to_free = NULL;
 	return (T);
-}
+}*/
 /*
 void    ft_dell_cham(t_champ **champ)
 {
@@ -352,14 +331,14 @@ t_vm_inst	*ft_str_to_list_inst(char *src, t_champ *champ,
 		ft_printf("----------------\n");
 		ft_printf(" i = %d\n", i);
 		i += ft_manage_param(src + i, opr, &inst_src_list, op_tab);
-	
+
 		ft_add_vm_instlist(inst_src_list, &vm_src);
 		ft_clear_intlist(&inst_src_list);
 		ft_printf("\n");
 	}
 
 	ft_put_inst_src_vm(vm_src);
-	ft_dell_inst_sr(&vm_src);
+//	ft_dell_inst_sr(&vm_src);
 
 	return (vm_src);
 }
@@ -367,15 +346,16 @@ t_vm_inst	*ft_str_to_list_inst(char *src, t_champ *champ,
 /*******************************************************************************/
 			//ft_get_vm_src.c
 /*******************************************************************************/
-t_instlist	*ft_get_vm_src(int fd, t_champ *champ, t_op *op_tab[NBR_OP])
+t_vm_inst	*ft_get_vm_src(int fd, t_champ *champ, t_op *op_tab[NBR_OP])
 {
 	char		*src;
-
+	t_vm_inst	*src_list;
 	src = ft_read_src(fd, champ);
 
-	ft_put_raw_src(src, champ);
+	ft_put_raw_src_champ(src, champ->size);
 
-	/*champ->src = */ft_str_to_list_inst(src, champ, op_tab);
+	/*champ->src = */
+	src_list = ft_str_to_list_inst(src, champ, op_tab);
 
 	//ft_put_inst_src_vm(champ->src);
 
@@ -386,5 +366,5 @@ t_instlist	*ft_get_vm_src(int fd, t_champ *champ, t_op *op_tab[NBR_OP])
 //	ft_dell_cham();
 
 	
-	return (NULL);
+	return (src_list);
 }

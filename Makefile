@@ -6,7 +6,7 @@
 #    By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/16 12:33:04 by mbelalou          #+#    #+#              #
-#    Updated: 2018/09/20 18:53:31 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/09/22 12:47:48 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,6 +96,11 @@ DIR_ERROR_VM		= vm/error
 SRC_ERROR_VM		= ft_error_reading_file.c ft_error_exe.c
 SRCS_ERROR_VM		= $(addprefix $(DIR_ERROR_VM)/, $(SRC_ERROR_VM))
 
+DIR_CHAMP		= vm/champ
+SRC_CHAMP		= ft_dell_champ.c ft_put_raw_src_champ.c ft_put_champ.c\
+				  ft_read_champ_file.c
+SRCS_CHAMP		= $(addprefix $(DIR_CHAMP)/, $(SRC_CHAMP))
+
 #DIR_		=
 #SRC_		=
 #SRCS_		= $(addprefix $(DIR_)/, $(SRC_))
@@ -116,7 +121,7 @@ SRCS_ASM			= $(EXE_ASM) $(SRCS_PARSING_ASM) $(SRCS_ERROR_ASM)\
 					  $(SRCS_PLAYER_ASM) $(SRCS_SYMBOLE_ASM) $(SRCS_LABEL_ASM)\
 					  $(SRCS_RUN_ASM)
 
-SRCS_VM				= $(EXE_VM) $(SRCS_OP) \
+SRCS_VM				= $(EXE_VM) $(SRCS_OP) $(SRCS_CHAMP)\
 					  $(SRCS_PARSING_VM) $(SRCS_ERROR_VM)
 
 RED					= \033[31m
@@ -172,6 +177,7 @@ $(OBJS_DIR_VM)			:
 	@mkdir -p $(OBJS_DIR);
 	@mkdir -p $(OBJS_DIR)$(DIR_VM);
 	@mkdir -p $(OBJS_DIR)$(DIR_OP);
+	@mkdir -p $(OBJS_DIR)$(DIR_CHAMP);
 	@mkdir -p $(OBJS_DIR)$(DIR_PRINTING);
 	@#mkdir -p $(OBJS_DIR)$(DIR_INST);
 	@#mkdir -p $(OBJS_DIR)$(DIR_PLAYER);
@@ -180,14 +186,14 @@ $(OBJS_DIR_VM)			:
 
 clean				:
 	@clear
-	@make -C $(LIBFT_DIR) clean
+	@#make -C $(LIBFT_DIR) clean
 	@rm -fr $(OBJS_DIR)
 	@echo "$(RED)cleaned the checker binary files$(WHITE)."
 	@#say "cleaned the $(NAME_ASM) binary files."
 
 fclean				:
 	@clear
-	@make -C $(LIBFT_DIR) fclean
+	@#make -C $(LIBFT_DIR) fclean
 	@rm -fr $(OBJS_DIR)
 	@echo "$(RED)cleaned the $(NAME_ASM) file$(WHITE)."
 	@rm -f $(NAME_ASM) $(NAME_VM)
