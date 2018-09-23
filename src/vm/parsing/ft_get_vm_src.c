@@ -16,40 +16,6 @@
 
 //	utiliser cette fonction pour afficher les params dans le tqb de l'asm
 /*******************************************************************************/
-		//ft_put_param.c
-/*******************************************************************************/
-void		ft_put_type_param_v2(int param)
-{
-	int i = 1;
-	int m = 512;
-	while (i < 10)
-	{
-		m = m / 2;
-		if (param & m)
-			ft_printf("1");
-		else
-			ft_printf("0");
-		if (i % 3 == 0 && i != 9)
-			ft_printf(" ");
-		i++;
-	}
-}
-/*******************************************************************************/
-		//ft_get_size_param.c
-/*******************************************************************************/
-int		ft_get_size_param(t_op *op_tab[NBR_OP], int id_opr, unsigned char arg)
-{
-	if (arg == REG_CODE)
-		return (REG_SIZE);
-	else if (arg == DIR_CODE)
-		return (op_tab[id_opr]->size_label);
-	else if (arg == IND_CODE)
-		return (IND_SIZE);
-	else
-		return (0);
-}
-
-/*******************************************************************************/
 			//ft_manage_p3.c
 /*******************************************************************************/
 BOOL	is_good_arg3_type(int arg, int desc)
@@ -203,14 +169,13 @@ int		ft_manage_param(char *src, t_op *op, t_int_list **inst_src_list,
 		nbr_oct = (op->mnemonique == 1) ? 4 : 2;
 		add_to_inst(src + pt, inst_src_list, nbr_oct);
 		pt += nbr_oct;
-	//	while (nbr_oct-- > 0)
-	//		ft_add_end_intlist(src[pt++], inst_src_list);
 	}
 	else
 	{
+		int size;
+		//  dans une sous fonction
 		desc = src[pt++];
 		ft_add_end_intlist(desc, inst_src_list);
-		int size;
 		add_to_inst(src + pt, inst_src_list, size = ft_manage_p1(desc, op, op_tab));
 		pt += size;
 		if (op->nbr_param > 1)
@@ -245,16 +210,11 @@ t_vm_inst	*ft_str_to_list_inst(char *src, t_champ *champ,
 	{
 		inst_src_list = NULL;
 		opr = src[i];
-/*
-		ft_printf(" name {%s} nbr param %d\n" , op_tab[opr]->name,
-				op_tab[opr]->nbr_param);
-*/
 		i += ft_manage_opr(opr, &inst_src_list);
 		op = ft_get_op(op_tab, op_tab[opr]->name);
 		i += ft_manage_param(src + i, op, &inst_src_list, op_tab);
 		ft_add_vm_instlist(inst_src_list, &vm_src);
 		ft_clear_intlist(&inst_src_list);
-//		ft_printf("\n");
 	}
 	return (vm_src);
 }

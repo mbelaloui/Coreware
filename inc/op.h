@@ -116,6 +116,6 @@ void				ft_free_optab(t_op *op_tab[NBR_OP]);
 
 BOOL	ft_is_need_desc_op(char *name_op, t_op *op_tab[NBR_OP]);
 
-
+void            ft_put_type_arg(int param);
 
 #endif
