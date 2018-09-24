@@ -6,24 +6,24 @@
 /*   By: dalauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/22 11:53:46 by dalauren          #+#    #+#             */
-/*   Updated: 2018/09/24 15:07:42 by dalauren         ###   ########.fr       */
+/*   Updated: 2018/09/24 20:45:54 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/inc/libft.h"
 #include "./inc/vm.h"
 #include <stdlib.h>
-
+/*
 void	init_op(t_vm_option *op)
 {
 	op->h = 0;
 	op->n = 0;
-	op->D = 0;
+	op->d = 0;
 	op->v = 0;
 	op->a = 0;
-	op->dump_value = 0;
-}
-
+	//op->dump_value = 0;
+}*/
+/*
 void	ft_display_help(void)
 {
 	ft_printf("%s helper :\n"
@@ -45,7 +45,7 @@ void	ft_put_usage_vm(void)
 	ft_printf("\t usage : ./corewar {-a champ.s} {[-v] [-dump [int]] [[-n number_champ] champion_N.cor]} n ∈ \n");
 	exit(1);
 }
-
+*/
 void	ft_set_options_vm(t_vm_option *op, char c)
 {
 	if (c == 'h')
@@ -96,8 +96,8 @@ void	handle_op_dump(char **tab, int i, int ac, t_vm_option *op)
 		ft_printf("error options\n");
 		exit(1);
 	}
-	op->D = 1;
-	op->dump_value = get_value_op(tab[i + 1]);
+	op->d = 1;
+//	op->dump_value = get_value_op(tab[i + 1]);
 }
 
 void	handle_op_n(char **tab, int i, int ac, t_vm_option *op)
@@ -155,13 +155,11 @@ int		main(int argc, char **argv)
 	char	*str;
 	char	**tab;
 
-
-
 	i = 0;
-	init_op(&op);
+	//init_op(&op);
 	if (argc == 1)
 		ft_display_help();
-	ft_printf("{yellow}%s{eoc}\n");
+//	ft_printf("{yellow}%s{eoc}\n");
 	if (!(str = ft_mat_to_str(argv, 1)))
 		return (-1);
 	if (!(tab = ft_strsplit(str, ' ')))

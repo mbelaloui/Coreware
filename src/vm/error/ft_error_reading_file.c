@@ -6,13 +6,13 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/19 12:03:30 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/20 17:00:36 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/24 16:46:47 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/vm.h"
 
-int	ft_error_reading_file(int error)
+void	ft_error_reading_file(int error)
 {
 	ft_printf("{red}Error reading file {eoc}");
 	if (error == ERROR_FORMAT_FILE)

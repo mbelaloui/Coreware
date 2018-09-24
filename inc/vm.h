@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/16 11:22:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/22 15:11:30 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/24 20:45:52 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,14 @@
 # define ERROR_SIZE_FILE		3
 # define ERROR_NOT_ENOUGH_MEM	4
 # define ERROR_NOT_ENOUGH_PARAM	5
+# define ERROR_WRONG_OPTION		6
+# define ERROR_BAD_PARAM		7
+# define ERROR_NO_PARAM			8
+# define ERROR_NO_PARAM_DUMP	9
+# define ERROR_NO_PARAM_ARG		10
+# define ERROR_NO_PARAM_ID		11
 
-typedef struct			s_vm_inst
-{
-	t_int_list			*src;
-	int					size;
-	struct s_vm_inst	*next;
-}						t_vm_inst;
+# define FORMAT_INPUT_VM			"cor"
 
 /*************************************/
 /*          struct -h "aide"         */
@@ -36,12 +37,19 @@ typedef struct			s_vm_inst
 
 typedef struct	s_vm_option
 {
+	int			d; /*dump*/
+	char		a; /*pas compris ahah*/
 	char		h; /*help*/
 	char		n; /*nb_champ*/
-	char		D; /*dump*/
 	char		v; /*visu*/
-	char		a; /*pas compris ahah*/
 }				t_vm_option;
+
+typedef struct			s_vm_inst
+{
+	t_int_list			*src;
+	int					size;
+	struct s_vm_inst	*next;
+}						t_vm_inst;
 
 typedef struct	s_champ
 {
@@ -54,12 +62,29 @@ typedef struct	s_champ
 }				t_champ;
 
 
+typedef struct		s_listchamp
+{
+	t_champ				*champ;
+	struct s_listchamp *next;
+}					t_listchamp;
+
+typedef struct		s_vm
+{
+	t_listchamp		*champs;
+	int				nbr_champ;
+	int				dump;
+	char			*mem;
+}					t_vm;
+
 /*option vm*/
 void		ft_init_vm_option(t_vm_option *op);
+void		ft_put_usage_vm(void);
+void		ft_display_help(void);
 /***********/
 
-int		ft_error_reading_file(int error);
-int		ft_error_exe(int error);
+void		ft_error_reading_file(int error);
+void		ft_error_exe(int error);
+void		ft_error_param_vm(int error, char *param);
 
 BOOL			ft_check_signature(unsigned char r[4]);
 void			ft_put_oct(unsigned char r[4]);

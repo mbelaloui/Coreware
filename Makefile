@@ -6,7 +6,7 @@
 #    By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/16 12:33:04 by mbelalou          #+#    #+#              #
-#    Updated: 2018/09/22 15:32:02 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/09/24 17:00:14 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,7 +94,7 @@ SRC_PARSING_VM		= ft_check_signature.c ft_get_next_oct.c ft_get_vm_magic.c\
 SRCS_PARSING_VM		= $(addprefix $(DIR_PARSING_VM)/, $(SRC_PARSING_VM))
 
 DIR_ERROR_VM		= vm/error
-SRC_ERROR_VM		= ft_error_reading_file.c ft_error_exe.c
+SRC_ERROR_VM		= ft_error_reading_file.c ft_error_exe.c ft_error_param_vm.c
 SRCS_ERROR_VM		= $(addprefix $(DIR_ERROR_VM)/, $(SRC_ERROR_VM))
 
 DIR_CHAMP_VM		= vm/champ
@@ -106,6 +106,10 @@ SRCS_CHAMP_VM		= $(addprefix $(DIR_CHAMP_VM)/, $(SRC_CHAMP_VM))
 DIR_INST_VM			= vm/inst
 SRC_INST_VM			= ft_new_vm_inst.c ft_add_vm_instlist.c
 SRCS_INST_VM		= $(addprefix $(DIR_INST_VM)/, $(SRC_INST_VM))
+
+DIR_PRINTING_VM		= vm/printing
+SRC_PRINTING_VM		= ft_put_usage_vm.c ft_display_help.c
+SRCS_PRINTING_VM		= $(addprefix $(DIR_PRINTING_VM)/, $(SRC_PRINTING_VM))
 
 #DIR_		=
 #SRC_		=
@@ -143,16 +147,16 @@ all					: $(NAME_ASM) $(NAME_VM)
 
 $(NAME_ASM)			: $(LIBFT) $(OBJS_DIR_ASM) $(OBJS_ASM)
 	@#echo $(OBJS_ASM)
-	@gcc $(OBJS_ASM) -L $(LIBFT_DIR) -lft -fsanitize=address -o $(NAME_ASM)
-	@#gcc $(OBJS_ASM) -L $(LIBFT_DIR) -lft -o $(NAME_ASM)
+	@#gcc $(OBJS_ASM) -L $(LIBFT_DIR) -lft -fsanitize=address -o $(NAME_ASM)
+	@gcc $(OBJS_ASM) -L $(LIBFT_DIR) -lft -o $(NAME_ASM)
 	@echo "$(GREEN)$(NAME_ASM) has been successfully created !$(WHITE)."
 	# -fsanitize=address
 	@#say "$(NAME_ASM) has been successfully created !"
 
 $(NAME_VM)			: $(LIBFT) $(OBJS_DIR_VM) $(OBJS_VM)
 	@#echo $(OBJS_VM)
-	@#gcc $(OBJS_VM) -L $(LIBFT_DIR) -lft -o $(NAME_VM)
-	@gcc $(OBJS_VM) -L $(LIBFT_DIR) -lft -fsanitize=address -o $(NAME_VM)
+	@gcc $(OBJS_VM) -L $(LIBFT_DIR) -lft -o $(NAME_VM)
+	@#gcc $(OBJS_VM) -L $(LIBFT_DIR) -lft -fsanitize=address -o $(NAME_VM)
 	@echo "$(GREEN)$(NAME_VM) has been successfully created !$(WHITE)."
 	# -fsanitize=address
 	@#say "$(NAME_ASM) has been successfully created !"
@@ -185,7 +189,7 @@ $(OBJS_DIR_VM)			:
 	@mkdir -p $(OBJS_DIR)$(DIR_OP);
 	@mkdir -p $(OBJS_DIR)$(DIR_INST_VM);
 	@mkdir -p $(OBJS_DIR)$(DIR_CHAMP_VM);
-	@mkdir -p $(OBJS_DIR)$(DIR_PRINTING);
+	@mkdir -p $(OBJS_DIR)$(DIR_PRINTING_VM);
 	@#mkdir -p $(OBJS_DIR)$(DIR_INST);
 	@#mkdir -p $(OBJS_DIR)$(DIR_PLAYER);
 	@mkdir -p $(OBJS_DIR)$(DIR_PARSING_VM);

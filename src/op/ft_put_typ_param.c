@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mat.h                                              :+:      :+:    :+:   */
+/*   ft_put_typ_param.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/03 10:30:23 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/24 15:53:39 by mbelalou         ###   ########.fr       */
+/*   Created: 2018/07/04 17:19:32 by mbelalou          #+#    #+#             */
+/*   Updated: 2018/07/07 11:21:14 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAT_H
-# define MAT_H
+#include "../../inc/op.h"
 
-# include "libft.h"
+void	ft_put_typ_param(t_op *op_tab[17])
+{
+	int i;
 
-BOOL	ft_free_mat(char ***mat);
-size_t	ft_matlen(char **mat);
-void	ft_putmat(char **mat);
-char	*ft_mat_to_str(char **mat, int pt);
-
-#endif
+	i = 0;
+	ft_printf("Parameters type :\n\n");
+	while (i < 17)
+	{
+		ft_printf("[%s]\n\tparam 1 [", ft_get_name(op_tab[i]));
+		ft_put_op_param_1(op_tab[i]);
+		ft_printf("]\n\tparam 2 [");
+		ft_put_op_param_2(op_tab[i]);
+		ft_printf("]\n\tparam 3 [");
+		ft_put_op_param_3(op_tab[i]);
+		ft_printf("]\n");
+		i++;
+	}
+}

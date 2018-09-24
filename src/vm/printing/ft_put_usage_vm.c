@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init_option_vm.c                                :+:      :+:    :+:   */
+/*   ft_put_usage_vm.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dalauren <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/20 11:36:43 by dalauren          #+#    #+#             */
-/*   Updated: 2018/09/24 17:13:39 by mbelalou         ###   ########.fr       */
+/*   Created: 2018/09/24 16:56:35 by mbelalou          #+#    #+#             */
+/*   Updated: 2018/09/24 16:57:13 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../inc/vm.h"
+#include "../../inc/vm.h"
 
-void	ft_init_vm_option(t_vm_option *op_vm)
+void	ft_put_usage_vm(void)
 {
-	op_vm->a = 0;
-	op_vm->d = -1;
-	op_vm->h = 0;
-	op_vm->n = 0;
-	op_vm->v = 0;
+	ft_printf("Usage :\n ./corewar {-a champ.s} {[-v] [-dump [int]]"
+			" [[-n number_champ] champion_N.cor]} n ∈ [1,2,3,4].\n");
+	exit(1);
 }

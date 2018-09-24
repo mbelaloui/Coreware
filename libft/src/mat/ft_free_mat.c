@@ -6,16 +6,18 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 10:34:44 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/05/11 21:02:29 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/24 15:53:27 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/mat.h"
 
-void	ft_free_mat(char ***mat)
+BOOL	ft_free_mat(char ***mat)
 {
 	int i;
 
+	if (!mat)
+		return (F);
 	i = 0;
 	while ((*mat)[i])
 	{
@@ -23,4 +25,5 @@ void	ft_free_mat(char ***mat)
 		i++;
 	}
 	free(*mat);
+	return (T);
 }
