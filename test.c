@@ -6,7 +6,7 @@
 /*   By: dalauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/22 11:53:46 by dalauren          #+#    #+#             */
-/*   Updated: 2018/09/22 17:18:19 by dalauren         ###   ########.fr       */
+/*   Updated: 2018/09/24 15:07:42 by dalauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,13 @@ void	ft_display_help(void)
 	"\t -n : allow to give a number to the next player\n"
 	"\t\t usage : ./corewar [[-n number_champ] champion1.cor]\n"
 		"", "vm" + 2);
+	exit(1);
+}
+
+void	ft_put_usage_vm(void)
+{
+	ft_printf("\t usage : ./corewar {-a champ.s} {[-v] [-dump [int]] [[-n number_champ] champion_N.cor]} n ∈ \n");
+	exit(1);
 }
 
 void	ft_set_options_vm(t_vm_option *op, char c)
@@ -148,8 +155,13 @@ int		main(int argc, char **argv)
 	char	*str;
 	char	**tab;
 
+
+
 	i = 0;
 	init_op(&op);
+	if (argc == 1)
+		ft_display_help();
+	ft_printf("{yellow}%s{eoc}\n");
 	if (!(str = ft_mat_to_str(argv, 1)))
 		return (-1);
 	if (!(tab = ft_strsplit(str, ' ')))
