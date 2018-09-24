@@ -31,6 +31,6 @@ t_champ		*ft_read_file(int fd, t_op*op_tab[NBR_OP])
 	}
 	else
 		ft_error_reading_file(ERROR_FORMAT_FILE);
-	ft_dell_champ(&champ);
+//	ft_dell_champ(&champ);
 	return (champ);
 }

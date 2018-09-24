@@ -107,7 +107,7 @@ static void	put_bin_data(t_player *player)
 
 void		ft_put_bin_source(t_player *player)
 {
-	ft_printf("    _____\t___\t	\t\t  ____\t\t\t\t\t\t   ____ \t\t\t\t\t"
+	ft_printf("    _____\t___\t	\t  ____\t\t\t\t\t\t   ____ \t\t\t\t\t"
 			"   ____\n");
 	ft_printf("\n|   code   |    ocp   |\t\t\t  arg1\t\t\t  |\t\t\t   arg2"
 			"\t\t\t  |\t\t\t   arg3\t\t\t  |\n");

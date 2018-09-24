@@ -1,21 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi_v3.c                                       :+:      :+:    :+:   */
+/*   ft_add_vm_instlist.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/22 12:26:31 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/22 12:58:13 by mbelalou         ###   ########.fr       */
+/*   Created: 2018/09/22 13:36:22 by mbelalou          #+#    #+#             */
+/*   Updated: 2018/09/22 13:39:41 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/nbr.h"
+#include "../../../inc/vm.h"
 
-long				ft_atoi_v3(const char *str)
+BOOL	ft_add_vm_instlist(t_int_list *src, t_vm_inst **list)
 {
-	int		signe;
+	t_vm_inst*temp_node;
+	t_vm_inst*pt_list;
 
-	signe = (*str == '-') ? -1 : 1;
-	return (signe * ft_base_to_decimal_v3(str, 10));
+	if (!(temp_node = ft_new_vm_inst(src)))
+		ft_error_exe(ERROR_NOT_ENOUGH_MEM);
+	if (!(*list))
+		*list = temp_node;
+	else
+	{
+		pt_list = *list;
+		while (pt_list->next)
+			pt_list = pt_list->next;
+		pt_list->next = temp_node;
+	}
+	return (T);
 }

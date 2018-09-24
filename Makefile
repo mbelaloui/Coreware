@@ -6,7 +6,7 @@
 #    By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/16 12:33:04 by mbelalou          #+#    #+#              #
-#    Updated: 2018/09/22 12:47:48 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/09/22 15:32:02 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,23 +83,29 @@ SRC_OP				= ft_dell_op.c ft_get_nbr_param.c ft_get_type_param.c\
 					  ft_is_name_op.c ft_put_desc_param.c ft_put_size_label.c\
 					  ft_set_param.c ft_free_optab.c ft_is_direct.c\
 					  ft_is_indirect.c ft_is_register.c  ft_is_label.c\
-					  ft_is_need_desc_op.c
+					  ft_is_need_desc_op.c ft_put_type_arg.c
 SRCS_OP				= $(addprefix $(DIR_OP)/, $(SRC_OP))
 
 DIR_PARSING_VM		= vm/parsing
 SRC_PARSING_VM		= ft_check_signature.c ft_get_next_oct.c ft_get_vm_magic.c\
 					  ft_get_vm_name.c ft_get_vm_size.c ft_is_null.c\
-					  ft_get_vm_comment.c ft_get_vm_src.c ft_init_option_vm.c
+					  ft_get_vm_comment.c ft_get_vm_src.c ft_init_option_vm.c\
+					  ft_get_size_param.c
 SRCS_PARSING_VM		= $(addprefix $(DIR_PARSING_VM)/, $(SRC_PARSING_VM))
 
 DIR_ERROR_VM		= vm/error
 SRC_ERROR_VM		= ft_error_reading_file.c ft_error_exe.c
 SRCS_ERROR_VM		= $(addprefix $(DIR_ERROR_VM)/, $(SRC_ERROR_VM))
 
-DIR_CHAMP		= vm/champ
-SRC_CHAMP		= ft_dell_champ.c ft_put_raw_src_champ.c ft_put_champ.c\
-				  ft_read_champ_file.c
-SRCS_CHAMP		= $(addprefix $(DIR_CHAMP)/, $(SRC_CHAMP))
+DIR_CHAMP_VM		= vm/champ
+SRC_CHAMP_VM		= ft_dell_champ.c ft_put_raw_src_champ.c ft_put_champ.c\
+					  ft_read_champ_file.c ft_put_inst_src_vm.c ft_manage_opr.c\
+					  ft_read_src.c
+SRCS_CHAMP_VM		= $(addprefix $(DIR_CHAMP_VM)/, $(SRC_CHAMP_VM))
+
+DIR_INST_VM			= vm/inst
+SRC_INST_VM			= ft_new_vm_inst.c ft_add_vm_instlist.c
+SRCS_INST_VM		= $(addprefix $(DIR_INST_VM)/, $(SRC_INST_VM))
 
 #DIR_		=
 #SRC_		=
@@ -121,8 +127,8 @@ SRCS_ASM			= $(EXE_ASM) $(SRCS_PARSING_ASM) $(SRCS_ERROR_ASM)\
 					  $(SRCS_PLAYER_ASM) $(SRCS_SYMBOLE_ASM) $(SRCS_LABEL_ASM)\
 					  $(SRCS_RUN_ASM)
 
-SRCS_VM				= $(EXE_VM) $(SRCS_OP) $(SRCS_CHAMP)\
-					  $(SRCS_PARSING_VM) $(SRCS_ERROR_VM)
+SRCS_VM				= $(EXE_VM) $(SRCS_OP) $(SRCS_CHAMP_VM)\
+					  $(SRCS_PARSING_VM) $(SRCS_ERROR_VM) $(SRCS_INST_VM)
 
 RED					= \033[31m
 GREEN				= \033[32m
@@ -145,8 +151,8 @@ $(NAME_ASM)			: $(LIBFT) $(OBJS_DIR_ASM) $(OBJS_ASM)
 
 $(NAME_VM)			: $(LIBFT) $(OBJS_DIR_VM) $(OBJS_VM)
 	@#echo $(OBJS_VM)
-	@gcc $(OBJS_VM) -L $(LIBFT_DIR) -lft -o $(NAME_VM)
-	@#gcc $(OBJS_VM) -L $(LIBFT_DIR) -lft -fsanitize=address -o $(NAME_VM)
+	@#gcc $(OBJS_VM) -L $(LIBFT_DIR) -lft -o $(NAME_VM)
+	@gcc $(OBJS_VM) -L $(LIBFT_DIR) -lft -fsanitize=address -o $(NAME_VM)
 	@echo "$(GREEN)$(NAME_VM) has been successfully created !$(WHITE)."
 	# -fsanitize=address
 	@#say "$(NAME_ASM) has been successfully created !"
@@ -177,7 +183,8 @@ $(OBJS_DIR_VM)			:
 	@mkdir -p $(OBJS_DIR);
 	@mkdir -p $(OBJS_DIR)$(DIR_VM);
 	@mkdir -p $(OBJS_DIR)$(DIR_OP);
-	@mkdir -p $(OBJS_DIR)$(DIR_CHAMP);
+	@mkdir -p $(OBJS_DIR)$(DIR_INST_VM);
+	@mkdir -p $(OBJS_DIR)$(DIR_CHAMP_VM);
 	@mkdir -p $(OBJS_DIR)$(DIR_PRINTING);
 	@#mkdir -p $(OBJS_DIR)$(DIR_INST);
 	@#mkdir -p $(OBJS_DIR)$(DIR_PLAYER);
@@ -186,14 +193,14 @@ $(OBJS_DIR_VM)			:
 
 clean				:
 	@clear
-	@#make -C $(LIBFT_DIR) clean
+	@make -C $(LIBFT_DIR) clean
 	@rm -fr $(OBJS_DIR)
 	@echo "$(RED)cleaned the checker binary files$(WHITE)."
 	@#say "cleaned the $(NAME_ASM) binary files."
 
 fclean				:
 	@clear
-	@#make -C $(LIBFT_DIR) fclean
+	@make -C $(LIBFT_DIR) fclean
 	@rm -fr $(OBJS_DIR)
 	@echo "$(RED)cleaned the $(NAME_ASM) file$(WHITE)."
 	@rm -f $(NAME_ASM) $(NAME_VM)

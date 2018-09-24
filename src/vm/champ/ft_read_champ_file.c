@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/22 12:31:08 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/22 12:49:06 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/22 13:22:41 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,5 @@ t_champ		*ft_read_champ_file(int fd, t_op*op_tab[NBR_OP])
 	}
 	else
 		ft_error_reading_file(ERROR_FORMAT_FILE);
-	ft_dell_champ(&champ);
 	return (champ);
 }

@@ -16,7 +16,7 @@ int	main(int argc, char **argv)
 {
 	t_vm_option	op_vm;
 	t_op*op_tab[NBR_OP];
-//	t_champ	*champ;
+	t_champ	*champ;
 	int		fd;
 	//	int		i;
 
@@ -27,11 +27,11 @@ int	main(int argc, char **argv)
 
 	ft_get_op_tab(op_tab);
 	fd = ft_open_r_file(argv[1]); /*a modifier a cause des bonus -h etc.. */
-	/*champ = */ft_read_file(fd, op_tab);
+	champ = ft_read_champ_file(fd, op_tab);
 /*
 	ft_strdel(&(champ)->name);
 */
-//	ft_dell_champ(&champ);
+	ft_dell_champ(&champ);
 	ft_free_optab(op_tab);
 //	(void) champ;
 	(void) argc;
