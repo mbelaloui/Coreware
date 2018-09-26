@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/16 11:22:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/25 20:22:39 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/26 11:37:58 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,12 @@ typedef struct			s_vm_inst
 typedef struct	s_champ
 {
 	int			id;			//c'est pour toi david
-	char		*url_file;	//ca aussi c'est pour toi david !!!!
+//	char		*url_file;	//ca aussi c'est pour toi david !!!!
 	char		*name;
 	char		*comment;
 	int			size;
 	t_vm_inst	*src;
+	struct	s_champ *next;
 }				t_champ;
 
 typedef struct		s_url_file
@@ -70,19 +71,19 @@ typedef struct		s_url_file
 	char			*url;
 	struct s_url_file	*next;
 }					t_url_file;
-
+/*
 typedef struct			s_listchamp
 {
 	t_champ				*champ;
 	struct s_listchamp	*next;
 }						t_listchamp;
-
+*/
 typedef struct		s_vm
 {
-	t_listchamp		*champs;
 	int				nbr_champ;
 	int				dump;
 	char			*mem;
+	t_champ			*champs;
 }					t_vm;
 
 /*option vm*/
@@ -123,13 +124,15 @@ t_url_file		*ft_get_id_champ(char **tab);
 /*
 */
 t_champ			*ft_read_champ_file(int fd, int id,t_op*op_tab[NBR_OP]);
-
+t_champ			*ft_new_champ(void);
 void			ft_dell_champ(t_champ **champ);
 void			ft_put_champ(t_champ *champ);
 void			ft_put_raw_src_champ(char *src, int size);
 void			ft_put_inst_src_vm(t_vm_inst *vm_src);
 int				ft_manage_opr(int opr, t_int_list **inst_src_list);
 char			*ft_read_src(int fd, int size);
+BOOL			ft_add_champ(t_champ *champ, t_champ **list);
+void			ft_put_listchamp(t_champ *list);
 /*
 */
 
@@ -155,10 +158,10 @@ BOOL			ft_existe_id(int id, t_url_file *list);
 int				ft_size_url_champ(t_url_file *list);
 /*
 */
-BOOL			ft_add_champ_champlist(t_champ *champ, t_listchamp **list);
+/*BOOL			ft_add_champ_champlist(t_champ *champ, t_listchamp **list);
 t_listchamp		*ft_new_listchamp(t_champ *champ);
 void			ft_put_champlist(t_listchamp *list);
-
+*/
 #endif
 
 

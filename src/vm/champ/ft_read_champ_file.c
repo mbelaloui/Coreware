@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/22 12:31:08 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/25 18:15:40 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/26 11:02:33 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ t_champ		*ft_read_champ_file(int fd,int id, t_op*op_tab[NBR_OP])
 {
 	t_champ	*champ;
 
+	//ft_printf("voila");
 	ft_get_vm_magic(fd);  // ajouter le teste pour fichier vide
-	if (!(champ = malloc(sizeof(*champ))))
+	if (!(champ = ft_new_champ()))
 		ft_error_exe(ERROR_NOT_ENOUGH_MEM);
 	champ->id = id;
 	champ->name = ft_get_vm_name(fd);

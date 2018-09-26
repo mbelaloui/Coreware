@@ -6,7 +6,7 @@
 #    By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/16 12:33:04 by mbelalou          #+#    #+#              #
-#    Updated: 2018/09/25 20:22:47 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/09/26 11:37:42 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,7 +104,8 @@ SRCS_ERROR_VM		= $(addprefix $(DIR_ERROR_VM)/, $(SRC_ERROR_VM))
 DIR_CHAMP_VM		= vm/champ
 SRC_CHAMP_VM		= ft_dell_champ.c ft_put_raw_src_champ.c ft_manage_opr.c\
 					  ft_read_champ_file.c ft_put_champ.c\
-					  ft_put_inst_src_vm.c ft_read_src.c
+					  ft_put_inst_src_vm.c ft_read_src.c ft_new_champ.c\
+					  ft_add_champ.c ft_put_listchamp.c
 SRCS_CHAMP_VM		= $(addprefix $(DIR_CHAMP_VM)/, $(SRC_CHAMP_VM))
 
 DIR_INST_VM			= vm/inst
@@ -123,10 +124,10 @@ SRC_URL_FILE		= ft_new_url_file.c ft_add_urlfilelist.c ft_dell_urlfile.c\
 					  ft_size_url_champ.c
 SRCS_URL_FILE		= $(addprefix $(DIR_URL_FILE)/, $(SRC_URL_FILE))
 
-DIR_LIST_CHAMP		= vm/list_champ
-SRC_LIST_CHAMP		= ft_new_listchamp.c ft_add_champ_champlist.c\
+#DIR_LIST_CHAMP		= vm/list_champ
+#SRC_LIST_CHAMP		= ft_new_listchamp.c ft_add_champ_champlist.c\
 					  ft_put_champlist.c
-SRCS_LIST_CHAMP		= $(addprefix $(DIR_LIST_CHAMP)/, $(SRC_LIST_CHAMP))
+#SRCS_LIST_CHAMP		= $(addprefix $(DIR_LIST_CHAMP)/, $(SRC_LIST_CHAMP))
 
 #DIR_		=
 #SRC_		=
@@ -150,7 +151,7 @@ SRCS_ASM			= $(EXE_ASM) $(SRCS_PARSING_ASM) $(SRCS_ERROR_ASM)\
 
 SRCS_VM				= $(EXE_VM) $(SRCS_OP) $(SRCS_CHAMP_VM)\
 					  $(SRCS_PARSING_VM) $(SRCS_ERROR_VM) $(SRCS_INST_VM)\
-					  $(SRCS_PRINTING_VM) $(SRCS_URL_FILE) $(SRCS_LIST_CHAMP)
+					  $(SRCS_PRINTING_VM) $(SRCS_URL_FILE)# $(SRCS_LIST_CHAMP)
 
 RED					= \033[31m
 GREEN				= \033[32m
@@ -209,7 +210,7 @@ $(OBJS_DIR_VM)			:
 	@mkdir -p $(OBJS_DIR)$(DIR_CHAMP_VM);
 	@mkdir -p $(OBJS_DIR)$(DIR_PRINTING_VM);
 	@mkdir -p $(OBJS_DIR)$(DIR_URL_FILE);
-	@mkdir -p $(OBJS_DIR)$(DIR_LIST_CHAMP);
+	@#mkdir -p $(OBJS_DIR)$(DIR_LIST_CHAMP);
 	@#mkdir -p $(OBJS_DIR)$(DIR_INST);
 	@#mkdir -p $(OBJS_DIR)$(DIR_PLAYER);
 	@mkdir -p $(OBJS_DIR)$(DIR_PARSING_VM);

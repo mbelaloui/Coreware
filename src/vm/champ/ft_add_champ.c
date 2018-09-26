@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_vm_src.c                                    :+:      :+:    :+:   */
+/*   ft_add_champ.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/17 12:25:30 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/26 11:33:02 by mbelalou         ###   ########.fr       */
+/*   Created: 2018/09/26 11:22:33 by mbelalou          #+#    #+#             */
+/*   Updated: 2018/09/26 11:33:13 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/vm.h"
 
-t_vm_inst	*ft_get_vm_src(int fd, t_champ *champ, t_op *op_tab[NBR_OP])
+BOOL		ft_add_champ(t_champ *champ, t_champ **list)
 {
-	char		*src;
-	t_vm_inst	*src_list;
+	t_champ	*pt_list;
 
-//	ft_printf("\n id %d - name [%s]\n",champ->id, champ->name);
+//	ft_printf("{yellow}%s{eoc}", champ->name);
+	if (!(*list))
+		*list = champ;
+	else
+	{
+		pt_list = *list;
+		while (pt_list->next)
+			pt_list = pt_list->next;
+		pt_list->next = champ;
+	}
+	return (T);
 
-
-	src = ft_read_src(fd, champ->size);
-
-//	ft_put_raw_src_champ(src, champ->size);
-
-	src_list = ft_str_to_list_inst(src, champ, op_tab);
-
-	ft_strdel(&src);
-	
-	return (src_list);
 }
