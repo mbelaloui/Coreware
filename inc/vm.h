@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/16 11:22:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/26 11:37:58 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/26 12:10:06 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ typedef struct		s_vm
 {
 	int				nbr_champ;
 	int				dump;
-	char			*mem;
+	char			mem[MEM_SIZE];
 	t_champ			*champs;
 }					t_vm;
 
@@ -90,6 +90,10 @@ typedef struct		s_vm
 void		ft_init_vm_option(t_vm_option *op);
 void		ft_put_usage_vm(void);
 void		ft_display_help(void);
+
+void		ft_init_vm(t_url_file *url_champ, t_vm_option op_vm);
+void		ft_put_vm(t_vm *vm);
+BOOL		ft_dell_vm(t_vm *vm);
 /***********/
 
 void		ft_error_reading_file(int error);

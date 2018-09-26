@@ -6,7 +6,7 @@
 #    By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/16 12:33:04 by mbelalou          #+#    #+#              #
-#    Updated: 2018/09/26 11:37:42 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/09/26 11:59:37 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRC_ASM				= asm_exe.c
 EXE_ASM				= $(addprefix $(DIR_ASM)/, $(SRC_ASM))
 
 DIR_VM				= vm
-SRC_VM				= vm_exe.c
+SRC_VM				= ft_dell_vm.c ft_init_vm.c ft_put_vm.c vm_exe.c
 EXE_VM				= $(addprefix $(DIR_VM)/, $(SRC_VM))
 
 DIR_PARSING_ASM		= asm/parsing

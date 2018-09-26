@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_add_champ.c                                     :+:      :+:    :+:   */
+/*   ft_dell_vm.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/26 11:22:33 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/26 12:00:58 by mbelalou         ###   ########.fr       */
+/*   Created: 2018/09/26 11:56:32 by mbelalou          #+#    #+#             */
+/*   Updated: 2018/09/26 11:57:13 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../inc/vm.h"
+#include "../../inc/vm.h"
 
-BOOL		ft_add_champ(t_champ *champ, t_champ **list)
+BOOL	ft_dell_vm(t_vm *vm)
 {
-	t_champ	*pt_list;
+	t_champ *temp_dell;
+	t_champ *to_dell;
+	int pt;
 
-	if (!(*list))
-		*list = champ;
-	else
+	pt = 0;
+
+	if (!vm->champs)
+		return (F);
+
+	temp_dell = vm->champs;
+	while (temp_dell)
 	{
-		pt_list = *list;
-		while (pt_list->next)
-			pt_list = pt_list->next;
-		pt_list->next = champ;
+		to_dell = temp_dell;
+		temp_dell = temp_dell->next;
+
+		//ft_put_champ(to_dell);
+		ft_dell_champ(&(to_dell));
+		pt++;
 	}
 	return (T);
-
 }
