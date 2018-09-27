@@ -6,13 +6,12 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 17:52:06 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/26 20:12:39 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/27 13:39:30 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-
 
 # define UPPER			 1
 # define LOWER			 0
@@ -63,7 +62,6 @@
 # include <wchar.h>
 # include <inttypes.h>
 # include "bool.h"
-
 
 # include "char.h"
 # include "charlist.h"

@@ -3,6 +3,7 @@
 
 #oubjk
 
+live	%4
 lab: aff r1
 ld 3,r5
 ld %43,r5

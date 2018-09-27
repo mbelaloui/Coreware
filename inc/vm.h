@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/16 11:22:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/26 19:07:23 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/27 13:39:15 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define ERROR_BAD_NBR_FILE		14
 # define ERROR_NO_FILE			15
 
-# define FORMAT_INPUT_VM			"cor"
+# define FORMAT_INPUT_VM		"cor"
 
 /*
 **          struct -h "aide"
@@ -85,7 +85,6 @@ void					ft_put_vm(t_vm *vm);
 BOOL					ft_dell_vm(t_vm *vm);
 
 void					ft_error_reading_file(int error);
-//void					ft_error_exe_vm(int error);
 void					ft_error_param_vm(int error, char *param);
 
 int						ft_handle_op_dump(char **tab, t_vm_option *op_vm);
@@ -144,4 +143,5 @@ t_url_file				*ft_new_url_file(int id, char *url);
 int						ft_get_prev_id_urlfile(t_url_file *list);
 BOOL					ft_existe_id(int id, t_url_file *list);
 int						ft_size_url_champ(t_url_file *list);
+
 #endif
