@@ -6,12 +6,12 @@
 #    By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/16 12:33:04 by mbelalou          #+#    #+#              #
-#    Updated: 2018/09/22 12:47:48 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/09/26 20:15:26 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME_ASM			= asm
-NAME_VM				= vm
+NAME_VM				= corewar
 
 FLAGES				= -Wall -Wextra -Werror -c
 
@@ -20,8 +20,20 @@ SRC_ASM				= asm_exe.c
 EXE_ASM				= $(addprefix $(DIR_ASM)/, $(SRC_ASM))
 
 DIR_VM				= vm
-SRC_VM				= vm_exe.c
+SRC_VM				= ft_dell_vm.c ft_init_vm.c ft_put_vm.c vm_exe.c
 EXE_VM				= $(addprefix $(DIR_VM)/, $(SRC_VM))
+
+DIR_OP				= op
+SRC_OP				= ft_dell_op.c ft_get_nbr_param.c ft_get_type_param.c\
+					  ft_is_type_ok.c ft_put_op.c ft_put_type_param.c\
+					  ft_set_size_label.c ft_get_cycle.c ft_get_op.c\
+					  ft_init_op_tab.c ft_new_op.c ft_put_op_param.c\
+					  ft_set_desc_param.c ft_get_name.c ft_get_op_tab.c\
+					  ft_is_name_op.c ft_put_desc_param.c ft_put_size_label.c\
+					  ft_set_param.c ft_free_optab.c ft_is_direct.c\
+					  ft_is_indirect.c ft_is_register.c  ft_is_label.c\
+					  ft_is_need_desc_op.c ft_put_type_arg.c
+SRCS_OP				= $(addprefix $(DIR_OP)/, $(SRC_OP))
 
 DIR_PARSING_ASM		= asm/parsing
 SRC_PARSING_ASM		= ft_manage_url.c ft_extract_simple_comment.c\
@@ -74,32 +86,48 @@ SRC_PLAYER_ASM		= ft_free_player.c ft_put_head.c ft_put_bynary.c\
 					  ft_put_src.c ft_make_out_put.c
 SRCS_PLAYER_ASM		= $(addprefix $(DIR_PLAYER_ASM)/, $(SRC_PLAYER_ASM))
 
-DIR_OP				= op
-SRC_OP				= ft_dell_op.c ft_get_nbr_param.c ft_get_type_param.c\
-					  ft_is_type_ok.c ft_put_op.c ft_put_type_param.c\
-					  ft_set_size_label.c ft_get_cycle.c ft_get_op.c\
-					  ft_init_op_tab.c ft_new_op.c ft_put_op_param.c\
-					  ft_set_desc_param.c ft_get_name.c ft_get_op_tab.c\
-					  ft_is_name_op.c ft_put_desc_param.c ft_put_size_label.c\
-					  ft_set_param.c ft_free_optab.c ft_is_direct.c\
-					  ft_is_indirect.c ft_is_register.c  ft_is_label.c\
-					  ft_is_need_desc_op.c
-SRCS_OP				= $(addprefix $(DIR_OP)/, $(SRC_OP))
-
 DIR_PARSING_VM		= vm/parsing
 SRC_PARSING_VM		= ft_check_signature.c ft_get_next_oct.c ft_get_vm_magic.c\
 					  ft_get_vm_name.c ft_get_vm_size.c ft_is_null.c\
-					  ft_get_vm_comment.c ft_get_vm_src.c ft_init_option_vm.c
+					  ft_get_vm_comment.c ft_get_vm_src.c ft_init_option_vm.c\
+					  ft_get_size_param.c ft_manage_p3.c ft_manage_p2.c\
+					  ft_manage_p1.c ft_manage_param.c ft_get_value_op.c\
+					  ft_handle_op_dump.c ft_extract_vm_op.c ft_search_for_op.c\
+					  ft_manage_vm_url.c ft_get_url.c ft_handle_op_n.c\
+					  ft_get_id_champ.c
 SRCS_PARSING_VM		= $(addprefix $(DIR_PARSING_VM)/, $(SRC_PARSING_VM))
 
 DIR_ERROR_VM		= vm/error
-SRC_ERROR_VM		= ft_error_reading_file.c ft_error_exe.c
+SRC_ERROR_VM		= ft_error_reading_file.c ft_error_param_vm.c
 SRCS_ERROR_VM		= $(addprefix $(DIR_ERROR_VM)/, $(SRC_ERROR_VM))
 
-DIR_CHAMP		= vm/champ
-SRC_CHAMP		= ft_dell_champ.c ft_put_raw_src_champ.c ft_put_champ.c\
-				  ft_read_champ_file.c
-SRCS_CHAMP		= $(addprefix $(DIR_CHAMP)/, $(SRC_CHAMP))
+DIR_CHAMP_VM		= vm/champ
+SRC_CHAMP_VM		= ft_dell_champ.c ft_put_raw_src_champ.c ft_manage_opr.c\
+					  ft_read_champ_file.c ft_put_champ.c\
+					  ft_put_inst_src_vm.c ft_read_src.c ft_new_champ.c\
+					  ft_add_champ.c ft_put_listchamp.c
+SRCS_CHAMP_VM		= $(addprefix $(DIR_CHAMP_VM)/, $(SRC_CHAMP_VM))
+
+DIR_INST_VM			= vm/inst
+SRC_INST_VM			= ft_new_vm_inst.c ft_add_vm_instlist.c\
+					  ft_str_to_list_inst.c
+SRCS_INST_VM		= $(addprefix $(DIR_INST_VM)/, $(SRC_INST_VM))
+
+DIR_PRINTING_VM		= vm/printing
+SRC_PRINTING_VM		= ft_put_usage_vm.c ft_display_help.c
+SRCS_PRINTING_VM	= $(addprefix $(DIR_PRINTING_VM)/, $(SRC_PRINTING_VM))
+
+DIR_URL_FILE		= vm/url_file
+SRC_URL_FILE		= ft_new_url_file.c ft_add_urlfilelist.c ft_dell_urlfile.c\
+					  ft_dell_bgn_urlfile.c ft_dell_list_urllist.c\
+					  ft_put_url_file.c ft_get_prev_id_urlfile.c ft_existe_id.c\
+					  ft_size_url_champ.c
+SRCS_URL_FILE		= $(addprefix $(DIR_URL_FILE)/, $(SRC_URL_FILE))
+
+#DIR_LIST_CHAMP		= vm/list_champ
+#SRC_LIST_CHAMP		= ft_new_listchamp.c ft_add_champ_champlist.c\
+					  ft_put_champlist.c
+#SRCS_LIST_CHAMP		= $(addprefix $(DIR_LIST_CHAMP)/, $(SRC_LIST_CHAMP))
 
 #DIR_		=
 #SRC_		=
@@ -121,8 +149,9 @@ SRCS_ASM			= $(EXE_ASM) $(SRCS_PARSING_ASM) $(SRCS_ERROR_ASM)\
 					  $(SRCS_PLAYER_ASM) $(SRCS_SYMBOLE_ASM) $(SRCS_LABEL_ASM)\
 					  $(SRCS_RUN_ASM)
 
-SRCS_VM				= $(EXE_VM) $(SRCS_OP) $(SRCS_CHAMP)\
-					  $(SRCS_PARSING_VM) $(SRCS_ERROR_VM)
+SRCS_VM				= $(EXE_VM) $(SRCS_OP) $(SRCS_CHAMP_VM)\
+					  $(SRCS_PARSING_VM) $(SRCS_ERROR_VM) $(SRCS_INST_VM)\
+					  $(SRCS_PRINTING_VM) $(SRCS_URL_FILE)# $(SRCS_LIST_CHAMP)
 
 RED					= \033[31m
 GREEN				= \033[32m
@@ -137,8 +166,8 @@ all					: $(NAME_ASM) $(NAME_VM)
 
 $(NAME_ASM)			: $(LIBFT) $(OBJS_DIR_ASM) $(OBJS_ASM)
 	@#echo $(OBJS_ASM)
-	@gcc $(OBJS_ASM) -L $(LIBFT_DIR) -lft -fsanitize=address -o $(NAME_ASM)
-	@#gcc $(OBJS_ASM) -L $(LIBFT_DIR) -lft -o $(NAME_ASM)
+	@#gcc $(OBJS_ASM) -L $(LIBFT_DIR) -lft -fsanitize=address -o $(NAME_ASM)
+	@gcc $(OBJS_ASM) -L $(LIBFT_DIR) -lft -o $(NAME_ASM)
 	@echo "$(GREEN)$(NAME_ASM) has been successfully created !$(WHITE)."
 	# -fsanitize=address
 	@#say "$(NAME_ASM) has been successfully created !"
@@ -177,8 +206,11 @@ $(OBJS_DIR_VM)			:
 	@mkdir -p $(OBJS_DIR);
 	@mkdir -p $(OBJS_DIR)$(DIR_VM);
 	@mkdir -p $(OBJS_DIR)$(DIR_OP);
-	@mkdir -p $(OBJS_DIR)$(DIR_CHAMP);
-	@mkdir -p $(OBJS_DIR)$(DIR_PRINTING);
+	@mkdir -p $(OBJS_DIR)$(DIR_INST_VM);
+	@mkdir -p $(OBJS_DIR)$(DIR_CHAMP_VM);
+	@mkdir -p $(OBJS_DIR)$(DIR_PRINTING_VM);
+	@mkdir -p $(OBJS_DIR)$(DIR_URL_FILE);
+	@#mkdir -p $(OBJS_DIR)$(DIR_LIST_CHAMP);
 	@#mkdir -p $(OBJS_DIR)$(DIR_INST);
 	@#mkdir -p $(OBJS_DIR)$(DIR_PLAYER);
 	@mkdir -p $(OBJS_DIR)$(DIR_PARSING_VM);
@@ -186,14 +218,14 @@ $(OBJS_DIR_VM)			:
 
 clean				:
 	@clear
-	@#make -C $(LIBFT_DIR) clean
+	@make -C $(LIBFT_DIR) clean
 	@rm -fr $(OBJS_DIR)
 	@echo "$(RED)cleaned the checker binary files$(WHITE)."
 	@#say "cleaned the $(NAME_ASM) binary files."
 
 fclean				:
 	@clear
-	@#make -C $(LIBFT_DIR) fclean
+	@make -C $(LIBFT_DIR) fclean
 	@rm -fr $(OBJS_DIR)
 	@echo "$(RED)cleaned the $(NAME_ASM) file$(WHITE)."
 	@rm -f $(NAME_ASM) $(NAME_VM)

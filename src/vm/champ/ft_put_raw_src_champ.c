@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/22 12:44:42 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/22 12:45:22 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/26 14:17:46 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_put_raw_src_champ(char *src, int size)
 	i = 0;
 	ft_printf("\n\t\t printing raw src", src[i]);
 	ft_printf("\n\t/ ***************************** \\ \n\n", src[i]);
-	while(i < size)
+	while (i < size)
 	{
 		ft_printf("%.2x ", (unsigned char)src[i]);
 		i++;

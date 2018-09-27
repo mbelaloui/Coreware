@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 17:52:06 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/12 16:40:26 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/27 13:39:30 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@
 # include "char.h"
 # include "charlist.h"
 # include "color.h"
+# include "error.h"
 # include "file.h"
 # include "list.h"
 # include "lst.h"

@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 14:55:55 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/14 15:42:18 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/26 16:54:11 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 void	ft_init_asm_option(t_option *op)
 {
-	op->B = 0;
-	op->D = 0;
+	op->q = 0;
+	op->w = 0;
+	op->d = 0;
 	op->e = 0;
 	op->h = 0;
-	op->H = 0;
+	op->r = 0;
 	op->o = 0;
-	op->m = 0;
 	op->p = 0;
 	op->s = 0;
-	op->S = 0;
+	op->y = 0;
 	op->u = 0;
 	op->t = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 18:13:26 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/06/19 15:32:33 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/27 12:17:18 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_node		*ft_new_node(int id, char *name, intmax_t x, intmax_t y)
 	t_node *ret;
 
 	if (!(ret = malloc(sizeof(*ret))))
-		return (NULL);
+		ft_error_exe(ERROR_NOT_ENOUGH_MEM);
 	ret->id = id;
 	ret->name = name;
 	ret->x = x;

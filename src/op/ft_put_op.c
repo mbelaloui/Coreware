@@ -25,7 +25,7 @@ void			ft_put_op(t_op *op_tab[17])
 {
 	int i;
 
-	i = 0;
+	i = 1;
 	ft_printf("operation table / Type arguments :\n");
 	ft_printf("| --------------------\t|\t----\t|\t---------\t|\t-----\t|\t----"
 			"--\t\t|\n");
@@ -35,9 +35,11 @@ void			ft_put_op(t_op *op_tab[17])
 			"--\t\t|\n");
 	while (i < 17 && *op_tab)
 	{
-		ft_printf("|\t%#.2X\t\t|\t%s\t|\t    %d\t\t|\t  %d\t|\t%.9b\t|\n"
-			, op_tab[i]->mnemonique, op_tab[i]->name, op_tab[i]->nbr_param,
-			op_tab[i]->cycle, op_tab[i]->param, op_tab[i]->desc_param);
+		ft_printf("|\t%#.2X\t\t|\t%s\t|\t    %d\t\t|\t  %d\t|\t"
+				, op_tab[i]->mnemonique, op_tab[i]->name, op_tab[i]->nbr_param,
+				op_tab[i]->cycle);
+		ft_put_type_arg(op_tab[i]->param);
+		ft_printf("\t|\n");
 		i++;
 	}
 	if (!i)

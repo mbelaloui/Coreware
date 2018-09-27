@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 12:05:02 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/17 12:35:49 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/26 14:47:47 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,9 @@ char			*ft_replace_char_in_str(char *str, char rep, char repwith);
 
 char			*ft_u_str_to_str(unsigned char str[4]);
 
-/* remove this fonction
-//int		ft_extract_options(char *param, unsigned long *op,
-//		BOOL is_option(char), void set_options(char, unsigned long *));
+/*
+** remove this fonction
+**int		ft_extract_options(char *param, unsigned long *op,
+**		BOOL is_option(char), void set_options(char, unsigned long *));
 */
 #endif

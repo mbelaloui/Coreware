@@ -6,7 +6,7 @@
 /*   By: dalauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 11:36:43 by dalauren          #+#    #+#             */
-/*   Updated: 2018/09/20 11:40:44 by dalauren         ###   ########.fr       */
+/*   Updated: 2018/09/26 15:02:18 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 void	ft_init_vm_option(t_vm_option *op_vm)
 {
+	op_vm->d = -1;
 	op_vm->h = 0;
 	op_vm->n = 0;
-	op_vm->D = 0;
 	op_vm->v = 0;
-	op_vm->a = 0;
 }

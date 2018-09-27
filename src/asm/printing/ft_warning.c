@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 16:28:34 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/16 11:20:37 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/26 16:52:03 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_warning(int id_warn, int size, char *data, t_option *op)
 {
-	if (op->d || op->o || op->p || op->t || op->S)
+	if (op->d || op->o || op->p || op->t || op->y)
 		return ;
 	if (op->e)
 	{

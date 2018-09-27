@@ -6,33 +6,46 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/11 21:03:44 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/06/13 19:13:33 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/27 13:39:55 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/mat.h"
 
-char	*ft_mat_to_str(char **argv, int start)
+static char	*mat_to_str(char **argv, int start)
 {
 	char	*str;
 	char	*temp;
 
-	str = ft_strdup("");
+	if (!(str = ft_strdup("")))
+		return (NULL);
 	while (argv[start])
 	{
 		temp = str;
-		str = ft_strjoin(str, argv[start]);
+		if (!(str = ft_strjoin(str, argv[start])))
+			return (0);
 		ft_strdel(&temp);
 		start++;
 		if (argv[start])
 		{
 			temp = str;
-			str = ft_strjoin(str, " ");
+			if (!(str = ft_strjoin(str, " ")))
+				return (0);
 			ft_strdel(&temp);
 		}
 	}
+	return (str);
+}
+
+char		*ft_mat_to_str(char **argv, int start)
+{
+	char	*str;
+	char	*temp;
+
+	str = mat_to_str(argv, start);
 	temp = str;
-	str = ft_format_str(str);
+	if (!(str = ft_format_str(str)))
+		return (NULL);
 	ft_strdel(&temp);
 	return (str);
 }

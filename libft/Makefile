@@ -6,7 +6,7 @@
 #    By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 21:48:22 by mbelalou          #+#    #+#              #
-#    Updated: 2018/09/22 12:28:38 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/09/26 20:12:43 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -119,6 +119,10 @@ SRC_NODELST	= ft_add_end_list_nodelist.c ft_dell_bgn_nodelist.c\
 			  ft_is_next_step_free.c ft_set_taken_room.c ft_set_room_free.c
 SRCS_NODELST= $(addprefix $(DIR_NODELST)/, $(SRC_NODELST))
 
+DIR_ERROR	= error
+SRC_ERROR	= ft_error_exe.c
+SRCS_ERROR	= $(addprefix $(DIR_ERROR)/, $(SRC_ERROR))
+
 DIR_CHARLST	= charlist
 SRC_CHARLST	= ft_add_charlist.c ft_dell_charlist.c ft_dell_list_charlist.c\
 			  ft_new_charlist.c ft_put_charlist.c ft_isempty_charlist.c\
@@ -136,10 +140,10 @@ PRINTF_DIR	= src/printf
 
 PRINTF		= libftprintf.a
 
-SRC			= $(SRCS_CHAR) $(SRCS_FILE) $(SRCS_INTLIST) $(SRCS_LST) $(SRCS_MAT)\
-			  $(SRCS_MEM) $(SRCS_NBR) $(SRCS_STR) $(SRCS_SYS) $(SRCS_WCHAR)\
-			  $(SRCS_TAB) $(SRCS_CHARLST) $(SRCS_NODE) $(SRCS_NODELST)
-
+SRC			= $(SRCS_CHAR) $(SRCS_FILE) $(SRCS_ERROR) $(SRCS_INTLIST)\
+			  $(SRCS_LST) $(SRCS_MAT) $(SRCS_MEM) $(SRCS_NBR) $(SRCS_STR)\
+			  $(SRCS_SYS) $(SRCS_WCHAR) $(SRCS_TAB) $(SRCS_CHARLST)\
+			  $(SRCS_NODE) $(SRCS_NODELST)
 OBJ			= $(addprefix $(OBJS_DIR), $(SRC:.c=.o))
 
 RED			= \033[31m
@@ -169,6 +173,7 @@ $(OBJS_DIR)		:
 		@mkdir -p $(OBJS_DIR);
 		@mkdir -p $(OBJS_DIR)/$(DIR_CHARLST);
 		@mkdir -p $(OBJS_DIR)/$(DIR_CHAR);
+		@mkdir -p $(OBJS_DIR)/$(DIR_ERROR);
 		@mkdir -p $(OBJS_DIR)/$(DIR_FILE);
 		@mkdir -p $(OBJS_DIR)/$(DIR_INTLIST);
 		@mkdir -p $(OBJS_DIR)/$(DIR_LST);

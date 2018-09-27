@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 12:35:26 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/05/28 18:36:07 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/27 12:14:37 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ t_charlist		*ft_new_charlist(const char *data)
 {
 	t_charlist	*ret;
 
-	if (!data || !(ret = malloc(sizeof(*ret))))
+	if (!data)
 		return (NULL);
+	if (!(ret = malloc(sizeof(*ret))))
+		ft_error_exe(ERROR_NOT_ENOUGH_MEM);
 	ret->data = ft_strdup(data);
 	ret->next = NULL;
 	return (ret);

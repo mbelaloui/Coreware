@@ -1,4 +1,4 @@
-.name   "5sdfsdf  44"
+.name   "ex 06"
 .comment "ss"
 
 #oubjk

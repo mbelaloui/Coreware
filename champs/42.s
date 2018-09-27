@@ -115,15 +115,15 @@ top:	live	%42
 
 infi:	sti	r1,%:l0,%1
 	sti	r1,%:l1,%1
-	sti	r1,%:l2,%1
-	sti	r1,%:l3,%1
-	sti	r1,%:l4,%1
-	sti	r1,%:l5,%1
-	sti	r1,%:l6,%1
-	sti	r1,%:l7,%1
-	sti	r1,%:l8,%1
-	sti	r1,%:l9,%1
-	sti	r1,%:l10,%1
+l4:	sti	r1,%:l2,%1
+l3:	sti	r1,%:l3,%1
+l2:	sti	r1,%:l4,%1
+l1:	sti	r1,%:l5,%1
+l0:	sti	r1,%:l6,%1
+topd:	sti	r1,%:l7,%1
+tart:	sti	r1,%:l8,%1
+copie:	sti	r1,%:l9,%1
+tirvd2:	sti	r1,%:l10,%1
 
 l0:	live	%1
 l1:	live	%1
@@ -136,7 +136,7 @@ l7:	live	%1
 l8:	live	%1
 l9:	live	%1
 l10:	live	%1
-	zjmp	%:l0
+/*	zjmp	%:l0
 
 
 p1:	zjmp	%:infi
@@ -200,7 +200,7 @@ p64li:	live	%1
 tirdow:	ld	%425,r2
 	ld	%0,r3
 	ld	%4,r4
-
+*/
 tird:	live	%42
 	sti	r10,%:fin,r2
 	sti	r10,%:fin,r3

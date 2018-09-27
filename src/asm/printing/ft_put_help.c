@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 14:58:48 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/16 11:18:22 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/26 16:41:21 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	ft_put_help(char *name, t_option *op)
 	"\t -e : make the compiler sensible for errors.\n"
 	"\t -h : show this message.\n"
 	"\t -H : print the hexa-decimal version of the source code.\n"
-	"\t -m : to compile multiple sources file.\n"
 	"\t -o : show description of op-codes.\n"
 	"\t -p : Print a detailed description of the source file.\n"
 	"\t -s : print symboles table.\n"

@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/22 12:07:11 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/22 12:52:07 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/26 14:17:32 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	ft_dell_inst_src(t_vm_inst **to_free)
 {
-	t_vm_inst *pt;
-	t_int_list*temp;
+	t_int_list	*temp;
+	t_vm_inst	*pt;
 
 	if (!to_free || !(*to_free))
 		return ;
@@ -25,21 +25,13 @@ static void	ft_dell_inst_src(t_vm_inst **to_free)
 		pt = *to_free;
 		temp = pt->src;
 		ft_clear_intlist(&temp);
-
-		/*
-		**	ft_printf("----------------\n");
-		**	ft_put_hex_intlist(temp);
-		**	ft_printf("----------------\n");
-		*/
-
 		*to_free = (*to_free)->next;
 		free(pt);
 	}
 	*to_free = NULL;
 }
 
-
-void	ft_dell_champ(t_champ **champ)
+void		ft_dell_champ(t_champ **champ)
 {
 	char	*name;
 	char	*com;

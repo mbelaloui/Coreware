@@ -6,7 +6,7 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2018/09/20 13:07:38 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/27 13:38:52 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # define OP_H
 
 # include "../libft/inc/libft.h"
-
 # define REG_SIZE				1
 # define IND_SIZE				2
 # define DIR_SIZE				4
@@ -50,7 +49,7 @@
 # define DESC_IND				0xC0
 
 # define PROG_NAME_LENGTH		(128)
-# define PROG_COMMENT_LENGTH		(2048)
+# define PROG_COMMENT_LENGTH	(2048)
 # define COREWAR_EXEC_MAGIC		0xea83f3
 
 # define NBR_OP					17
@@ -114,8 +113,8 @@ void				ft_get_op_tab(t_op *op_tab[NBR_OP]);
 void				ft_put_desc_param(t_op *op_tab[NBR_OP]);
 void				ft_free_optab(t_op *op_tab[NBR_OP]);
 
-BOOL	ft_is_need_desc_op(char *name_op, t_op *op_tab[NBR_OP]);
+BOOL				ft_is_need_desc_op(char *name_op, t_op *op_tab[NBR_OP]);
 
-
+void				ft_put_type_arg(int param);
 
 #endif

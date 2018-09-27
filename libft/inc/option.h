@@ -6,15 +6,13 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 16:39:51 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/14 16:11:34 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/26 18:14:21 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
 ** structurer les fonction pour recupere les options
 */
-
-// chamger les majuscule dans le code
 
 #ifndef OPTION_H
 # define OPTION_H
@@ -23,17 +21,16 @@
 
 typedef struct	s_option
 {
-	int			B : 1;
-	int			D : 1;
+	int			q : 1;
+	int			w : 1;
 	int			d : 1;
 	int			e : 1;
-	int			H : 1;
+	int			r : 1;
 	int			h : 1;
 	int			o : 1;
-	int			m : 1;
 	int			p : 1;
 	int			s : 1;
-	int			S : 1;
+	int			y : 1;
 	int			t : 1;
 	int			u : 1;
 }				t_option;

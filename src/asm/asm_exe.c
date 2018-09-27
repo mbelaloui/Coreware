@@ -6,7 +6,7 @@
 /*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 15:01:25 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/14 16:17:10 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/09/27 12:27:47 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 static void	run_option(t_option *op, t_player *player)
 {
-	if (op->B)
+	if (op->q)
 		ft_put_bin_source(player);
-	if (op->D)
+	if (op->w)
 		ft_put_decimal_source(player);
-	if (op->H)
+	if (op->r)
 		ft_put_hexa_source(player);
 	if (op->p)
 	{
@@ -65,29 +65,23 @@ static void	message(char *name, t_option *op)
 		ft_put_usage(name, op);
 	if (op->t)
 		ft_put_type_param(op_tab);
-	if (op->S)
+	if (op->y)
 		ft_put_size_label(op_tab);
 	ft_free_optab(op_tab);
 	exit(0);
 }
 
-static void		process(char *param, t_option *op)
+static void	process(char *param, t_option *op)
 {
 	char		*url_output;
 	t_charlist	*file;
 
-	if (op->m)
-		ft_printf("advanced \n");
-	else
-	{
-		ft_printf("simple param\n");
-		file = NULL;
-		url_output = ft_manage_url(param);
-		if (!ft_read_url_file(param, &file))
-			ft_error_reading_file(ERROR_READING_FILE);
-		run(file, url_output, op);
-		ft_dell_list_charlist(&file);
-	}
+	file = NULL;
+	url_output = ft_manage_url(param);
+	if (!ft_read_url_file(param, &file))
+		ft_error_reading_file(ERROR_READING_FILE);
+	run(file, url_output, op);
+	ft_dell_list_charlist(&file);
 }
 
 int			main(int argc, char **argv)
@@ -97,14 +91,14 @@ int			main(int argc, char **argv)
 	t_option	op;
 
 	ft_init_asm_option(&op);
-	param = ft_mat_to_str(argv, 1);
+	if (!(param = ft_mat_to_str(argv, 1)))
+		ft_error_exe(ERROR_NOT_ENOUGH_MEM);
 	if (argc == 1)
 		ft_error_param(ERROR_NO_PARAM, param);
 	else
 	{
 		pt = ft_extract_asm_options(param, &op, argv[0]);
-//		ft_put_option(&op);
-		if (op.d || op.h || op.o || op.u || op.t || op.S)
+		if (op.d || op.h || op.o || op.u || op.t || op.y)
 			message(argv[0], &op);
 		process(param + pt, &op);
 		ft_strdel(&param);
