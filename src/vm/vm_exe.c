@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 14:00:03 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/06 13:11:15 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/06 13:17:55 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,43 +43,17 @@ int 	get_add_start_process(int nbr_champ, int pos)
 {
 	if (pos == 0)
 		return (0);
-//	ft_printf(" size mem %d     \n", MEM_SIZE);
 	if (nbr_champ == 2)
-	{
-	//	ft_printf(" 2 size mem %d   \n", MEM_SIZE / 2);
 		return (MEM_SIZE / 2);
-	}
 	if (nbr_champ == 3)
-	{
-	//	ft_printf(" 3 size mem %d   \n", MEM_SIZE / 3);
 		return (MEM_SIZE / 3);
-	}	
 	if (nbr_champ ==4)
-	{
-	//		ft_printf(" 4 size mem %d   \n", MEM_SIZE / 4);
 		return (MEM_SIZE / 4);
-	}
-//	(void) nbr_champ;
-	return (5);
+	return (0);
 }
 
 BOOL		ft_add_process(t_process *proces, t_process **list)
 {
-/*	t_process *pt_list;
-
-	if (!(*list))
-		*list = proces;
-	else
-	{
-		pt_list = *list;
-		while (pt_list->next)
-			pt_list = pt_list->next;
-		pt_list->next = proces;
-	}
-	return (T);
-}
-*/
-
 	if (!proces || !list)
 		return (F);
 	if (!(*list))
@@ -115,10 +89,9 @@ t_process	*ft_init_process(t_vm vm)
 
 	champ = vm.champs;
 	list_ret = NULL;
-	while (champ)//id_champ < vm.nbr_champ)
+	while (champ)
 	{
 		ft_add_process(ft_new_process(champ->id, 0), &list_ret);
-	//	ft_printf("{red}id_champ  %d, name %s\n", champ->id, champ->name);
 		champ = champ->next;
 	}
 	set_sart_add(list_ret, vm.nbr_champ);
