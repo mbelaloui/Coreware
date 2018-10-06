@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/16 11:22:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/27 13:39:15 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/06 12:57:17 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,21 @@
 # define FORMAT_INPUT_VM		"cor"
 
 /*
+**
+**	printing define
+**
+*/
+
+# define MEM_SEC				0
+# define MEM_DESC				1
+# define MEM_LINE				64
+
+#define PLAYER_1				1
+#define PLAYER_2				2
+#define PLAYER_3				3
+#define PLAYER_4				4
+
+/*
 **          struct -h "aide"
 ** * je me base sur ce aue tu as fait dans l'asm
 */
@@ -54,6 +69,7 @@ typedef struct			s_vm_inst
 typedef struct			s_champ
 {
 	int					id;
+	int					pos;
 	char				*name;
 	char				*comment;
 	int					size;
@@ -72,15 +88,24 @@ typedef struct			s_vm
 {
 	int					nbr_champ;
 	int					dump;
-	char				mem[MEM_SIZE];
+	int					mem[MEM_SIZE][2];
 	t_champ				*champs;
 }						t_vm;
+
+typedef struct			s_process
+{
+	int					id_parent;
+	int					pc;
+	BOOL				carry;
+	int					reg[REG_NUMBER];
+	struct s_process	*next;
+}						t_process;
 
 void					ft_init_vm_option(t_vm_option *op);
 void					ft_put_usage_vm(void);
 void					ft_display_help(void);
 
-void					ft_init_vm(t_url_file *url_champ, t_vm_option op_vm);
+void					ft_init_vm(t_vm *vm, t_url_file *url_champ, t_vm_option op_vm);
 void					ft_put_vm(t_vm *vm);
 BOOL					ft_dell_vm(t_vm *vm);
 
@@ -115,8 +140,8 @@ int						ft_handle_op_n(char **tab, t_url_file **champ);
 t_url_file				*ft_get_id_champ(char **tab);
 
 t_champ					*ft_read_champ_file(int fd, int id,
-		t_op*op_tab[NBR_OP]);
-t_champ					*ft_new_champ(void);
+		t_op*op_tab[NBR_OP], int pos);
+t_champ					*ft_new_champ(int pos);
 void					ft_dell_champ(t_champ **champ);
 void					ft_put_champ(t_champ *champ);
 void					ft_put_raw_src_champ(char *src, int size);

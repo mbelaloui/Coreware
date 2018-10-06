@@ -6,7 +6,7 @@
 #    By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/16 12:33:04 by mbelalou          #+#    #+#              #
-#    Updated: 2018/10/03 15:32:02 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/10/05 15:18:20 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,45 @@ FLAGES				= -Wall -Wextra -Werror -c
 DIR_VM				= vm
 SRC_VM				= ft_dell_vm.c ft_init_vm.c ft_put_vm.c vm_exe.c
 EXE_VM				= $(addprefix $(DIR_VM)/, $(SRC_VM))
+
+DIR_PARSING_VM		= vm/parsing
+SRC_PARSING_VM		= ft_check_signature.c ft_get_next_oct.c ft_get_vm_magic.c\
+					  ft_get_vm_name.c ft_get_vm_size.c ft_is_null.c\
+					  ft_get_vm_comment.c ft_get_vm_src.c ft_init_option_vm.c\
+					  ft_get_size_param.c ft_manage_p3.c ft_manage_p2.c\
+					  ft_manage_p1.c ft_manage_param.c ft_get_value_op.c\
+					  ft_handle_op_dump.c ft_extract_vm_op.c ft_search_for_op.c\
+					  ft_manage_vm_url.c ft_get_url.c ft_handle_op_n.c\
+					  ft_get_id_champ.c
+SRCS_PARSING_VM		= $(addprefix $(DIR_PARSING_VM)/, $(SRC_PARSING_VM))
+
+DIR_ERROR_VM		= vm/error
+SRC_ERROR_VM		= ft_error_reading_file.c ft_error_param_vm.c
+SRCS_ERROR_VM		= $(addprefix $(DIR_ERROR_VM)/, $(SRC_ERROR_VM))
+
+DIR_CHAMP_VM		= vm/champ
+SRC_CHAMP_VM		= ft_dell_champ.c ft_put_raw_src_champ.c ft_manage_opr.c\
+					  ft_read_champ_file.c ft_put_champ.c\
+					  ft_put_inst_src_vm.c ft_read_src.c ft_new_champ.c\
+					  ft_add_champ.c ft_put_listchamp.c
+SRCS_CHAMP_VM		= $(addprefix $(DIR_CHAMP_VM)/, $(SRC_CHAMP_VM))
+
+DIR_INST_VM			= vm/inst
+SRC_INST_VM			= ft_new_vm_inst.c ft_add_vm_instlist.c\
+					  ft_str_to_list_inst.c
+SRCS_INST_VM		= $(addprefix $(DIR_INST_VM)/, $(SRC_INST_VM))
+
+DIR_PRINTING_VM		= vm/printing
+SRC_PRINTING_VM		= ft_put_usage_vm.c ft_display_help.c
+SRCS_PRINTING_VM	= $(addprefix $(DIR_PRINTING_VM)/, $(SRC_PRINTING_VM))
+
+DIR_URL_FILE		= vm/url_file
+SRC_URL_FILE		= ft_new_url_file.c ft_add_urlfilelist.c ft_dell_urlfile.c\
+					  ft_dell_bgn_urlfile.c ft_dell_list_urllist.c\
+					  ft_put_url_file.c ft_get_prev_id_urlfile.c ft_existe_id.c\
+					  ft_size_url_champ.c
+SRCS_URL_FILE		= $(addprefix $(DIR_URL_FILE)/, $(SRC_URL_FILE))
+
 
 DIR_OP				= op
 SRC_OP				= ft_dell_op.c ft_get_nbr_param.c ft_get_type_param.c\
@@ -88,43 +127,6 @@ SRC_PLAYER_ASM		= ft_free_player.c ft_put_head.c ft_put_bynary.c\
 					  ft_get_arg_translat.c
 SRCS_PLAYER_ASM		= $(addprefix $(DIR_PLAYER_ASM)/, $(SRC_PLAYER_ASM))
 
-DIR_PARSING_VM		= vm/parsing
-SRC_PARSING_VM		= ft_check_signature.c ft_get_next_oct.c ft_get_vm_magic.c\
-					  ft_get_vm_name.c ft_get_vm_size.c ft_is_null.c\
-					  ft_get_vm_comment.c ft_get_vm_src.c ft_init_option_vm.c\
-					  ft_get_size_param.c ft_manage_p3.c ft_manage_p2.c\
-					  ft_manage_p1.c ft_manage_param.c ft_get_value_op.c\
-					  ft_handle_op_dump.c ft_extract_vm_op.c ft_search_for_op.c\
-					  ft_manage_vm_url.c ft_get_url.c ft_handle_op_n.c\
-					  ft_get_id_champ.c
-SRCS_PARSING_VM		= $(addprefix $(DIR_PARSING_VM)/, $(SRC_PARSING_VM))
-
-DIR_ERROR_VM		= vm/error
-SRC_ERROR_VM		= ft_error_reading_file.c ft_error_param_vm.c
-SRCS_ERROR_VM		= $(addprefix $(DIR_ERROR_VM)/, $(SRC_ERROR_VM))
-
-DIR_CHAMP_VM		= vm/champ
-SRC_CHAMP_VM		= ft_dell_champ.c ft_put_raw_src_champ.c ft_manage_opr.c\
-					  ft_read_champ_file.c ft_put_champ.c\
-					  ft_put_inst_src_vm.c ft_read_src.c ft_new_champ.c\
-					  ft_add_champ.c ft_put_listchamp.c
-SRCS_CHAMP_VM		= $(addprefix $(DIR_CHAMP_VM)/, $(SRC_CHAMP_VM))
-
-DIR_INST_VM			= vm/inst
-SRC_INST_VM			= ft_new_vm_inst.c ft_add_vm_instlist.c\
-					  ft_str_to_list_inst.c
-SRCS_INST_VM		= $(addprefix $(DIR_INST_VM)/, $(SRC_INST_VM))
-
-DIR_PRINTING_VM		= vm/printing
-SRC_PRINTING_VM		= ft_put_usage_vm.c ft_display_help.c
-SRCS_PRINTING_VM	= $(addprefix $(DIR_PRINTING_VM)/, $(SRC_PRINTING_VM))
-
-DIR_URL_FILE		= vm/url_file
-SRC_URL_FILE		= ft_new_url_file.c ft_add_urlfilelist.c ft_dell_urlfile.c\
-					  ft_dell_bgn_urlfile.c ft_dell_list_urllist.c\
-					  ft_put_url_file.c ft_get_prev_id_urlfile.c ft_existe_id.c\
-					  ft_size_url_champ.c
-SRCS_URL_FILE		= $(addprefix $(DIR_URL_FILE)/, $(SRC_URL_FILE))
 
 #DIR_LIST_CHAMP		= vm/list_champ
 #SRC_LIST_CHAMP		= ft_new_listchamp.c ft_add_champ_champlist.c\
