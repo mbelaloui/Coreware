@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 14:00:03 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/06 13:07:28 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/06 13:11:15 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,7 +203,7 @@ void	run_vm(t_url_file *url_champ, t_vm_option op_vm)
 	ft_init_vm(&vm, url_champ, op_vm);
 
 	list_process = ft_init_process(vm);
-	ft_put_process(list_process);
+	//ft_put_process(list_process);
 		
 //	ft_put_mem(vm.mem);
 	init_mem(&vm, list_process);
