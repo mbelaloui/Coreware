@@ -151,7 +151,7 @@ void	put_src_mem(int mem[MEM_SIZE][2], t_vm_inst *list_src, int start, int pos)
 
 void	init_mem(t_vm *vm,t_process *list_process)
 {
-	int start;
+//	int start;
 	t_champ *champ;
 	int pos;
 
@@ -159,8 +159,9 @@ void	init_mem(t_vm *vm,t_process *list_process)
 	champ = vm->champs;
 	while (list_process && champ)
 	{
-		start = list_process->pc;
-		put_src_mem(vm->mem, champ->src, list_process->pc, pos++);
+		//start = list_process->pc;
+		put_src_mem(vm->mem, champ->src, list_process->pc, pos);
+		pos++;
 		list_process = list_process->next;
 		champ = champ->next;
 	}
