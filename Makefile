@@ -6,7 +6,7 @@
 #    By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/16 12:33:04 by mbelalou          #+#    #+#              #
-#    Updated: 2018/10/08 10:31:03 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/10/08 10:46:35 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,14 @@ SRC_URL_FILE		= ft_new_url_file.c ft_add_urlfilelist.c ft_dell_urlfile.c\
 					  ft_size_url_champ.c
 SRCS_URL_FILE		= $(addprefix $(DIR_URL_FILE)/, $(SRC_URL_FILE))
 
+DIR_PROCESS_VM		= vm/process
+SRC_PROCESS_VM		= ft_add_process.c ft_dell_list_process.c ft_init_process.c\
+					ft_new_process.c ft_put_process.c
+SRCS_PROCESS_VM		= $(addprefix $(DIR_PROCESS_VM)/, $(SRC_PROCESS_VM))
+
+DIR_RUN_VM			= vm/run
+SRC_RUN_VM			= ft_dell_vm.c ft_init_vm.c  vm_exe.c ft_init_mem.c
+SRCS_RUN_VM			= $(addprefix $(DIR_RUN_VM)/, $(SRC_RUN_VM))
 
 DIR_OP				= op
 SRC_OP				= ft_dell_op.c ft_get_nbr_param.c ft_get_type_param.c\
@@ -133,15 +141,6 @@ SRCS_PLAYER_ASM		= $(addprefix $(DIR_PLAYER_ASM)/, $(SRC_PLAYER_ASM))
 #DIR_		=
 #SRC_		=
 #SRCS_		= $(addprefix $(DIR_)/, $(SRC_))
-
-DIR_PROCESS_VM		= vm/process
-SRC_PROCESS_VM		= ft_add_process.c ft_dell_list_process.c ft_init_process.c\
-					ft_new_process.c ft_put_process.c
-SRCS_PROCESS_VM		= $(addprefix $(DIR_PROCESS_VM)/, $(SRC_PROCESS_VM))
-
-DIR_RUN_VM			= vm/run
-SRC_RUN_VM			= ft_dell_vm.c ft_init_vm.c  vm_exe.c ft_init_mem.c
-SRCS_RUN_VM			= $(addprefix $(DIR_RUN_VM)/, $(SRC_RUN_VM))
 
 INC_DIR				= inc/
 

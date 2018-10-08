@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 21:48:22 by mbelalou          #+#    #+#              #
-#    Updated: 2018/06/05 12:45:31 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/10/08 10:41:19 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ YELLO			= \033[33m
 WHITE			= \033[37m
 BIP				= \a
 
-all				: $(NAME)
+all				:$(NAME)
 
 $(NAME)			: $(SRC) $(OBJS_DIR) $(OBJ)
 		@ar rc $(NAME) $(OBJ)
