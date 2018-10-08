@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_dell_vm.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 11:56:32 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/26 14:28:30 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/08 10:04:03 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/vm.h"
+#include "../../../inc/vm.h"
 
 BOOL	ft_dell_vm(t_vm *vm)
 {

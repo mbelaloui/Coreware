@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 11:55:39 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/03 18:24:52 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/08 08:59:41 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@
 # define WARNING_UNUSED_LAB			-25
 # define ERROR_UNKNOWN_ARG			-26
 # define ERROR_BAD_PARAM			-27
+# define ERROR_LABEL_EXPECTED_BUT_OPR_FOUND -28
 
 # define IND_REF					255255
 # define DIR_REF					255255255255

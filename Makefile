@@ -6,7 +6,7 @@
 #    By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/16 12:33:04 by mbelalou          #+#    #+#              #
-#    Updated: 2018/10/05 15:18:20 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/10/08 10:31:03 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,6 @@ CORE_WAR			= core war
 
 FLAGES				= -Wall -Wextra -Werror -c
 
-DIR_VM				= vm
-SRC_VM				= ft_dell_vm.c ft_init_vm.c ft_put_vm.c vm_exe.c
-EXE_VM				= $(addprefix $(DIR_VM)/, $(SRC_VM))
 
 DIR_PARSING_VM		= vm/parsing
 SRC_PARSING_VM		= ft_check_signature.c ft_get_next_oct.c ft_get_vm_magic.c\
@@ -52,7 +49,7 @@ SRC_INST_VM			= ft_new_vm_inst.c ft_add_vm_instlist.c\
 SRCS_INST_VM		= $(addprefix $(DIR_INST_VM)/, $(SRC_INST_VM))
 
 DIR_PRINTING_VM		= vm/printing
-SRC_PRINTING_VM		= ft_put_usage_vm.c ft_display_help.c
+SRC_PRINTING_VM		= ft_put_usage_vm.c ft_display_help.c ft_put_vm.c ft_put_mem.c
 SRCS_PRINTING_VM	= $(addprefix $(DIR_PRINTING_VM)/, $(SRC_PRINTING_VM))
 
 DIR_URL_FILE		= vm/url_file
@@ -137,6 +134,14 @@ SRCS_PLAYER_ASM		= $(addprefix $(DIR_PLAYER_ASM)/, $(SRC_PLAYER_ASM))
 #SRC_		=
 #SRCS_		= $(addprefix $(DIR_)/, $(SRC_))
 
+DIR_PROCESS_VM		= vm/process
+SRC_PROCESS_VM		= ft_add_process.c ft_dell_list_process.c ft_init_process.c\
+					ft_new_process.c ft_put_process.c
+SRCS_PROCESS_VM		= $(addprefix $(DIR_PROCESS_VM)/, $(SRC_PROCESS_VM))
+
+DIR_RUN_VM			= vm/run
+SRC_RUN_VM			= ft_dell_vm.c ft_init_vm.c  vm_exe.c ft_init_mem.c
+SRCS_RUN_VM			= $(addprefix $(DIR_RUN_VM)/, $(SRC_RUN_VM))
 
 INC_DIR				= inc/
 
@@ -153,9 +158,10 @@ SRCS_ASM			= $(SRCS_PARSING_ASM) $(SRCS_ERROR_ASM)\
 					  $(SRCS_PLAYER_ASM) $(SRCS_SYMBOLE_ASM) $(SRCS_LABEL_ASM)\
 					  $(SRCS_RUN_ASM)
 
-SRCS_VM				= $(EXE_VM) $(SRCS_OP) $(SRCS_CHAMP_VM)\
+SRCS_VM				= $(SRCS_RUN_VM) $(SRCS_OP) $(SRCS_CHAMP_VM)\
 					  $(SRCS_PARSING_VM) $(SRCS_ERROR_VM) $(SRCS_INST_VM)\
-					  $(SRCS_PRINTING_VM) $(SRCS_URL_FILE)# $(SRCS_LIST_CHAMP)
+					  $(SRCS_PRINTING_VM) $(SRCS_URL_FILE) $(SRCS_PROCESS_VM)# $(SRCS_PLAYER_ASM)
+					  # $(SRCS_LIST_CHAMP)
 
 RED					= \033[31m
 GREEN				= \033[32m
@@ -208,7 +214,9 @@ $(OBJS_DIR_ASM)		:
 
 $(OBJS_DIR_VM)			:
 	@mkdir -p $(OBJS_DIR);
-	@mkdir -p $(OBJS_DIR)$(DIR_VM);
+	@#mkdir -p $(OBJS_DIR)$(DIR_VM);
+	@mkdir -p $(OBJS_DIR)$(DIR_RUN_VM);
+	@mkdir -p $(OBJS_DIR)$(DIR_PROCESS_VM);
 	@mkdir -p $(OBJS_DIR)$(DIR_OP);
 	@mkdir -p $(OBJS_DIR)$(DIR_INST_VM);
 	@mkdir -p $(OBJS_DIR)$(DIR_CHAMP_VM);

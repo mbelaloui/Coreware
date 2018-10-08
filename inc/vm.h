@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/16 11:22:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/06 12:57:17 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/08 10:30:38 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,4 +169,16 @@ int						ft_get_prev_id_urlfile(t_url_file *list);
 BOOL					ft_existe_id(int id, t_url_file *list);
 int						ft_size_url_champ(t_url_file *list);
 
+/*
+*/
+
+t_process				*ft_new_process(int id_parent, int add_start);
+BOOL					ft_add_process(t_process *proces, t_process **list);
+t_process				*ft_init_process(t_vm vm);
+void					ft_put_process(t_process *process);
+void					ft_dell_list_process(t_process *list_process);
+/*
+*/
+void					ft_put_mem(int mem[MEM_SIZE][2]);
+void					ft_init_mem(t_vm *vm,t_process *list_process);
 #endif

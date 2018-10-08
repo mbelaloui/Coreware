@@ -6,11 +6,11 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 11:55:39 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/06 11:08:27 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/08 10:00:11 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/vm.h"
+#include "../../../inc/vm.h"
 
 void	ft_put_vm(t_vm *vm)
 {
