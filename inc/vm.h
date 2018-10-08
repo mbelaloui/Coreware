@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/16 11:22:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/08 10:30:38 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/08 17:16:56 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 **
 */
 
-# define MEM_SEC				0
+# define MEM_SRC				0
 # define MEM_DESC				1
 # define MEM_LINE				64
 
@@ -68,8 +68,8 @@ typedef struct			s_vm_inst
 
 typedef struct			s_champ
 {
-	int					id;
-	int					pos;
+	int					num;
+	int					id;	// pour la couleur 
 	char				*name;
 	char				*comment;
 	int					size;
@@ -79,7 +79,7 @@ typedef struct			s_champ
 
 typedef struct			s_url_file
 {
-	int					id;
+	int					num;
 	char				*url;
 	struct s_url_file	*next;
 }						t_url_file;
@@ -139,7 +139,7 @@ int						ft_manage_param(char *src, t_op *op,
 int						ft_handle_op_n(char **tab, t_url_file **champ);
 t_url_file				*ft_get_id_champ(char **tab);
 
-t_champ					*ft_read_champ_file(int fd, int id,
+t_champ					*ft_read_champ_file(int fd, int num,
 		t_op*op_tab[NBR_OP], int pos);
 t_champ					*ft_new_champ(int pos);
 void					ft_dell_champ(t_champ **champ);
@@ -148,7 +148,8 @@ void					ft_put_raw_src_champ(char *src, int size);
 void					ft_put_inst_src_vm(t_vm_inst *vm_src);
 int						ft_manage_opr(int opr, t_int_list **inst_src_list);
 char					*ft_read_src(int fd, int size);
-BOOL					ft_add_champ(t_champ *champ, t_champ **list);
+BOOL					ft_add_bgn_champ(t_champ *champ, t_champ **list);
+BOOL					ft_add_end_champ(t_champ *champ, t_champ **list);
 void					ft_put_listchamp(t_champ *list);
 
 t_vm_inst				*ft_new_vm_inst(t_int_list *src);
@@ -162,11 +163,11 @@ void					ft_put_url_file(t_url_file *list);
 BOOL					ft_dell_urlfile(t_url_file **to_dell);
 BOOL					ft_dell_bgn_urlfile(t_url_file **list);
 BOOL					ft_dell_list_urllist(t_url_file **to_free);
-BOOL					ft_add_urlfilelist(int id, char *url,
+BOOL					ft_add_urlfilelist(int num, char *url,
 		t_url_file **list);
-t_url_file				*ft_new_url_file(int id, char *url);
-int						ft_get_prev_id_urlfile(t_url_file *list);
-BOOL					ft_existe_id(int id, t_url_file *list);
+t_url_file				*ft_new_url_file(int num, char *url);
+int						ft_get_prev_num_urlfile(t_url_file *list);
+BOOL					ft_existe_num(int num, t_url_file *list);
 int						ft_size_url_champ(t_url_file *list);
 
 /*

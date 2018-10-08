@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/25 20:01:58 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/06 11:17:19 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/08 14:19:55 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ BOOL	ft_add_urlfilelist(int id, char *url, t_url_file **list)
 	if (!(temp = ft_new_url_file(id, url)))
 		return (F);
 	if (!(*list))
+	{
 		*list = temp;
+	}
 	else
 	{
 		pt_list = *list;

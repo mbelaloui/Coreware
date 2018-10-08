@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/22 12:10:46 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/06 12:34:38 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/08 14:22:25 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	ft_put_champ(t_champ *champ)
 {
 	ft_printf("\n\t/ *********************** \\ \n\n");
-	ft_printf("\tid champ       : [{green}%.3d{eoc}] \n", champ->id);
-	ft_printf("\tposition champ : [{green}%.3d{eoc}] \n", champ->pos);
+	ft_printf("\tnum champ      : [{green}%.3d{eoc}] \n", champ->num);
+	ft_printf("\tid	champ		: [{green}%.3d{eoc}] \n", champ->id);
 	ft_printf("\tname           : [{green}%s{eoc}]\n", champ->name);
 	ft_printf("\tcomment        : [{green}%s{eoc}]\n", champ->comment);
 	ft_printf("\tsize           : [{green}%d{eoc}]\n", champ->size);

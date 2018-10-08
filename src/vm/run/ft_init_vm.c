@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 11:53:33 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/08 10:04:12 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/08 14:40:45 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	ft_init_vm(t_vm *vm, t_url_file *url_champ, t_vm_option op_vm)
 	{
 		if ((fd = ft_open_r_file(url_champ->url)) < 0)
 			ft_error_param_vm(ERROR_NO_FILE, url_champ->url);
-		champ = ft_read_champ_file(fd, url_champ->id, op_tab, pos);
-		ft_add_champ(champ, &(vm->champs));
+		champ = ft_read_champ_file(fd, url_champ->num, op_tab, pos++);
+		ft_add_bgn_champ(champ, &(vm->champs));
 		url_champ = url_champ->next;
 	}
 	ft_free_optab(op_tab);

@@ -1,0 +1,1 @@
+make &&  ./corewar -dump 200 champs/Car.cor champs/Explosive_Kitty.cor champs/Machine-gun.cor text1.cor

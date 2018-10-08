@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_existe_id.c                                     :+:      :+:    :+:   */
+/*   ft_add_bgn_champ.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/25 20:10:41 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/06 11:48:59 by mbelalou         ###   ########.fr       */
+/*   Created: 2018/10/08 14:39:29 by mbelalou          #+#    #+#             */
+/*   Updated: 2018/10/08 14:42:14 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/vm.h"
 
-BOOL	ft_existe_id(int id, t_url_file *list)
+BOOL	ft_add_bgn_champ(t_champ *champ, t_champ **list)
 {
-	while (list)
+	t_champ		*pt_list;
+
+	if (!list || !champ)
+		return (F);
+	if (!(*list))
+		*list = champ;
+	else
 	{
-		if (id == list->id)
-			return (T);
-		list = list->next;
+		pt_list = *list;
+		while (pt_list->next)
+			pt_list = pt_list->next;
+		pt_list->next = champ;
 	}
-	return (F);
+	return (T);
 }

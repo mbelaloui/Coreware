@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_prev_id_urlfile.c                           :+:      :+:    :+:   */
+/*   ft_add_end_champ.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/25 20:09:30 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/06 11:46:50 by mbelalou         ###   ########.fr       */
+/*   Created: 2018/10/08 14:41:17 by mbelalou          #+#    #+#             */
+/*   Updated: 2018/10/08 14:44:12 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/vm.h"
 
-int		ft_get_prev_id_urlfile(t_url_file *list)
+BOOL	ft_add_end_champ(t_champ *champ, t_champ **list)
 {
-	int id;
+//	t_int_list *temp_node;
 
-	id = 0;
-	while (list)
+	if (!champ || !list)
+		return (F);
+	if (!(*list))
+		*list = champ;
+	else
 	{
-		id = list->id + 1;
-		list = list->next;
+		champ->next = *list;
+		*list = champ;
 	}
-	return (id);
+	return (T);
 }

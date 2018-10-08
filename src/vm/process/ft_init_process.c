@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/08 10:18:15 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/08 10:23:55 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/08 15:57:01 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,33 +25,23 @@ static int	get_add_start_process(int nbr_champ, int pos)
 	return (0);
 }
 
-static void	set_sart_add(t_process *list, int nbr_champ)
-{
-	int add_start;
-	int id_champ;
-
-	id_champ = 0;
-	add_start = 0;
-	while (list)
-	{
-		add_start += get_add_start_process(nbr_champ, id_champ++);
-		list->pc = add_start;
-		list = list->next;
-	}
-}
-
 t_process	*ft_init_process(t_vm vm)
 {
 	t_process	*list_ret;
 	t_champ		*champ;
+	int add_start;
+	int id_champ;
 
+	id_champ = 0;
 	champ = vm.champs;
 	list_ret = NULL;
+	add_start = 0;
 	while (champ)
 	{
-		ft_add_process(ft_new_process(champ->id, 0), &list_ret);
+//		ft_printf(" champ num = %d   position %d \n", champ->num, champ->id);
+		add_start += get_add_start_process(vm.nbr_champ, id_champ++);
+		ft_add_process(ft_new_process(champ->id, add_start), &list_ret);
 		champ = champ->next;
 	}
-	set_sart_add(list_ret, vm.nbr_champ);
 	return (list_ret);
 }

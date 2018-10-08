@@ -1,46 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_add_champ.c                                     :+:      :+:    :+:   */
+/*   ft_existe_num.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/26 11:22:33 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/06 12:26:59 by mbelalou         ###   ########.fr       */
+/*   Created: 2018/10/08 14:15:15 by mbelalou          #+#    #+#             */
+/*   Updated: 2018/10/08 14:15:20 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/vm.h"
 
-BOOL	ft_add_champ(t_champ *champ, t_champ **list)
+BOOL	ft_existe_num(int num, t_url_file *list)
 {
-	t_champ		*pt_list;
-
-	if (!list || !champ)
-		return (F);
-	if (!(*list))
-		*list = champ;
-	else
+	while (list)
 	{
-		pt_list = *list;
-		while (pt_list->next)
-			pt_list = pt_list->next;
-		pt_list->next = champ;
+		if (num == list->num)
+			return (T);
+		list = list->next;
 	}
-	return (T);
+	return (F);
 }
-
-/*
-//	t_int_list *temp_node;
-
-	if (!champ || !list)
-		return (F);
-	if (!(*list))
-		*list = champ;
-	else
-	{
-		champ->next = *list;
-		*list = champ;
-	}
-	return (T);
-}*/

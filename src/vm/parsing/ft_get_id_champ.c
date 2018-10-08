@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/25 20:13:20 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/06 11:47:06 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/08 14:18:52 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_url_file	*ft_get_id_champ(char **tab)
 	t_url_file	*champ;
 	char		*url;
 	int			pt;
-	int			id;
+	int			num;
 
 	pt = 0;
 	champ = NULL;
@@ -27,11 +27,11 @@ t_url_file	*ft_get_id_champ(char **tab)
 			pt += ft_handle_op_n(tab + pt + 1, &champ);
 		else
 		{
-			id = ft_get_prev_id_urlfile(champ);
-			if (ft_existe_id(id, champ))
+			num = ft_get_prev_num_urlfile(champ);
+			if (ft_existe_num(num, champ))
 				ft_error_param_vm(ERROR_ID_CHAMP, " ");
 			url = ft_get_url(tab + pt);
-			ft_add_urlfilelist(id, url, &champ);
+			ft_add_urlfilelist(num, url, &champ);
 		}
 		pt++;
 	}

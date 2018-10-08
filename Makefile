@@ -6,7 +6,7 @@
 #    By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/16 12:33:04 by mbelalou          #+#    #+#              #
-#    Updated: 2018/10/08 10:46:35 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/10/08 15:56:13 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ DIR_CHAMP_VM		= vm/champ
 SRC_CHAMP_VM		= ft_dell_champ.c ft_put_raw_src_champ.c ft_manage_opr.c\
 					  ft_read_champ_file.c ft_put_champ.c\
 					  ft_put_inst_src_vm.c ft_read_src.c ft_new_champ.c\
-					  ft_add_champ.c ft_put_listchamp.c
+					  ft_add_bgn_champ.c ft_put_listchamp.c ft_add_end_champ.c
 SRCS_CHAMP_VM		= $(addprefix $(DIR_CHAMP_VM)/, $(SRC_CHAMP_VM))
 
 DIR_INST_VM			= vm/inst
@@ -55,7 +55,7 @@ SRCS_PRINTING_VM	= $(addprefix $(DIR_PRINTING_VM)/, $(SRC_PRINTING_VM))
 DIR_URL_FILE		= vm/url_file
 SRC_URL_FILE		= ft_new_url_file.c ft_add_urlfilelist.c ft_dell_urlfile.c\
 					  ft_dell_bgn_urlfile.c ft_dell_list_urllist.c\
-					  ft_put_url_file.c ft_get_prev_id_urlfile.c ft_existe_id.c\
+					  ft_put_url_file.c ft_get_prev_num_urlfile.c ft_existe_num.c\
 					  ft_size_url_champ.c
 SRCS_URL_FILE		= $(addprefix $(DIR_URL_FILE)/, $(SRC_URL_FILE))
 
@@ -229,14 +229,14 @@ $(OBJS_DIR_VM)			:
 
 clean				:
 	@clear
-	@make -C $(LIBFT_DIR) clean
+	@#make -C $(LIBFT_DIR) clean
 	@rm -fr $(OBJS_DIR)
 	@echo "$(RED)cleaned the $(CORE_WAR) binary files$(WHITE)."
 	@#say "cleaned the $(CORE_WAR) binary files."
 
 fclean				:
 	@clear
-	@make -C $(LIBFT_DIR) fclean
+	@#make -C $(LIBFT_DIR) fclean
 	@rm -fr $(OBJS_DIR)
 	@echo "$(RED)cleaned the $(NAME_ASM) file$(WHITE)."
 	@rm -f $(NAME_ASM) $(NAME_VM)

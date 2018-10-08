@@ -6,13 +6,13 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/22 12:31:08 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/06 13:18:04 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/08 14:11:08 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/vm.h"
 
-t_champ		*ft_read_champ_file(int fd, int id, t_op *op_tab[NBR_OP], int pos)
+t_champ		*ft_read_champ_file(int fd, int num, t_op *op_tab[NBR_OP], int pos)
 {
 	t_champ	*champ;
 
@@ -20,7 +20,7 @@ t_champ		*ft_read_champ_file(int fd, int id, t_op *op_tab[NBR_OP], int pos)
 	champ = NULL;
 	if (!(champ = ft_new_champ(pos)))
 		ft_error_exe(ERROR_NOT_ENOUGH_MEM);
-	champ->id = id;
+	champ->num = num;
 	champ->name = ft_get_vm_name(fd);
 	if (ft_is_null(fd))
 	{
