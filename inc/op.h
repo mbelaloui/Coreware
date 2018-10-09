@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2018/10/08 10:09:35 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/09 10:59:18 by mint             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@
 # define T_REG_P3				0x40
 # define T_IND_P3				0x80
 # define T_DIR_P3				0x100
+
+# define MASK_PARAM				0xc0
 
 typedef char		t_arg_type;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/16 11:22:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/08 17:16:56 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/09 17:48:02 by mint             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@
 #define PLAYER_3				3
 #define PLAYER_4				4
 
+# define color_invers			4
+# define actuel_action			8
+# define pt_color				17
+# define pt__invers_color		18
+ 
 /*
 **          struct -h "aide"
 ** * je me base sur ce aue tu as fait dans l'asm
@@ -100,6 +105,15 @@ typedef struct			s_process
 	int					reg[REG_NUMBER];
 	struct s_process	*next;
 }						t_process;
+
+typedef struct			s_opr_exe
+{
+	int					id_opr;
+	int					nbr_param;
+	int					type_arg[3];
+	int					size_arg[3];
+	int					vale_arg[3];
+}						t_opr_exe;
 
 void					ft_init_vm_option(t_vm_option *op);
 void					ft_put_usage_vm(void);

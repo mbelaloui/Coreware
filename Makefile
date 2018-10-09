@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+         #
+#    By: mint <mint@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/16 12:33:04 by mbelalou          #+#    #+#              #
-#    Updated: 2018/10/08 15:56:13 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/10/09 09:32:18 by mint             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -229,14 +229,14 @@ $(OBJS_DIR_VM)			:
 
 clean				:
 	@clear
-	@#make -C $(LIBFT_DIR) clean
+	@make -C $(LIBFT_DIR) clean
 	@rm -fr $(OBJS_DIR)
 	@echo "$(RED)cleaned the $(CORE_WAR) binary files$(WHITE)."
 	@#say "cleaned the $(CORE_WAR) binary files."
 
 fclean				:
 	@clear
-	@#make -C $(LIBFT_DIR) fclean
+	@make -C $(LIBFT_DIR) fclean
 	@rm -fr $(OBJS_DIR)
 	@echo "$(RED)cleaned the $(NAME_ASM) file$(WHITE)."
 	@rm -f $(NAME_ASM) $(NAME_VM)
