@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_put_opr_exe.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 10:18:58 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/10 11:02:11 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/10 22:07:43 by mint             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,6 @@ static void	put_value_info(t_opr_exe *opr, t_op *op_tab[NBR_OP])
 
 void		ft_put_opr_exe(t_opr_exe *opr, t_op *op_tab[NBR_OP])
 {
-	int		pt;
-
-	pt = 0;
 	put_general_info(opr, op_tab);
 	ft_printf("] size [");
 	put_size_info(opr, op_tab);
