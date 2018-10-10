@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 13:06:16 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/05 13:08:55 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/10 10:43:58 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ static t_charlist	*get_args(char **str, char *name_op, t_op *op_tab[NBR_OP])
 	t_op		*op;
 
 	args = NULL;
-
 	op = ft_get_op(op_tab, name_op);
 	tab_args = ft_prepare_args(str, name_op, op, &args);
 	ft_check_arg_asm(tab_args, name_op, args, op);

@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_add_end_champ.c                                 :+:      :+:    :+:   */
+/*   ft_get_size_type.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/08 14:41:17 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/10 10:45:22 by mbelalou         ###   ########.fr       */
+/*   Created: 2018/10/10 10:13:19 by mbelalou          #+#    #+#             */
+/*   Updated: 2018/10/10 10:14:47 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/vm.h"
 
-BOOL	ft_add_end_champ(t_champ *champ, t_champ **list)
+int		ft_get_size_type(int id_opr, int arg, t_op *op_tab[NBR_OP])
 {
-	if (!champ || !list)
-		return (F);
-	if (!(*list))
-		*list = champ;
-	else
-	{
-		champ->next = *list;
-		*list = champ;
-	}
-	return (T);
+	if (arg == REG_CODE)
+		return (REG_SIZE);
+	else if (arg == IND_CODE)
+		return (IND_SIZE);
+	else if (arg == DIR_CODE)
+		return (op_tab[id_opr]->size_label);
+	return (0);
 }

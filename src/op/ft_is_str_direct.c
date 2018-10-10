@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 11:36:52 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/05 13:07:24 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/10 10:44:41 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 BOOL	ft_is_str_direct(char *arg)
 {
-//	ft_printf("{yellow}is direct{eoc}\n");
-
 	if (arg[0] == DIRECT_CHAR)
 		return (ft_is_str_indirect(arg + 1));
 	return (F);

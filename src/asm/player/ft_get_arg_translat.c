@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 14:13:27 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/05 11:55:36 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/10 10:44:20 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ void		ft_get_arg_translat(t_inst *inst, t_symbole *symbole,
 		{
 			ft_printf("je uis la \n");
 			ft_error_args(ERROR_BAD_PARAM, " ", " ", pt->data);
-		
-		}add[index_param++] = add_out;
+		}
+		add[index_param++] = add_out;
 		pt = pt->next;
 	}
 }

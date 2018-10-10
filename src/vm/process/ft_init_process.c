@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/08 10:18:15 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/08 15:57:01 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/10 11:03:26 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,16 @@ static int	get_add_start_process(int nbr_champ, int pos)
 	return (0);
 }
 
+/*
+**	ft_printf(" champ num = %d   position %d \n", champ->num, champ->id);
+*/
+
 t_process	*ft_init_process(t_vm vm)
 {
 	t_process	*list_ret;
 	t_champ		*champ;
-	int add_start;
-	int id_champ;
+	int			add_start;
+	int			id_champ;
 
 	id_champ = 0;
 	champ = vm.champs;
@@ -38,7 +42,6 @@ t_process	*ft_init_process(t_vm vm)
 	add_start = 0;
 	while (champ)
 	{
-//		ft_printf(" champ num = %d   position %d \n", champ->num, champ->id);
 		add_start += get_add_start_process(vm.nbr_champ, id_champ++);
 		ft_add_process(ft_new_process(champ->id, add_start), &list_ret);
 		champ = champ->next;

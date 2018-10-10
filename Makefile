@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mint <mint@student.42.fr>                  +#+  +:+       +#+         #
+#    By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/16 12:33:04 by mbelalou          #+#    #+#              #
-#    Updated: 2018/10/09 09:32:18 by mint             ###   ########.fr        #
+#    Updated: 2018/10/10 10:46:08 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,12 +61,29 @@ SRCS_URL_FILE		= $(addprefix $(DIR_URL_FILE)/, $(SRC_URL_FILE))
 
 DIR_PROCESS_VM		= vm/process
 SRC_PROCESS_VM		= ft_add_process.c ft_dell_list_process.c ft_init_process.c\
-					ft_new_process.c ft_put_process.c
+					ft_new_process.c ft_put_process.c ft_run_process.c\
+					ft_process_desc_ok.c ft_process_desc_ko.c
 SRCS_PROCESS_VM		= $(addprefix $(DIR_PROCESS_VM)/, $(SRC_PROCESS_VM))
 
+DIR_OPR_VM			= vm/opr
+SRC_OPR_VM			= ft_get_size_type.c ft_put_opr_exe.c ft_set_size_arg.c\
+						ft_set_desc_arg.c ft_set_vale_arg.c 
+SRCS_OPR_VM			= $(addprefix $(DIR_OPR_VM)/, $(SRC_OPR_VM))
+
 DIR_RUN_VM			= vm/run
-SRC_RUN_VM			= ft_dell_vm.c ft_init_vm.c  vm_exe.c ft_init_mem.c
+SRC_RUN_VM			= ft_dell_vm.c ft_init_vm.c  vm_exe.c ft_init_mem.c\
+						ft_fight.c
 SRCS_RUN_VM			= $(addprefix $(DIR_RUN_VM)/, $(SRC_RUN_VM))
+
+
+
+
+
+
+
+
+
+
 
 DIR_OP				= op
 SRC_OP				= ft_dell_op.c ft_get_nbr_param.c ft_get_type_param.c\
@@ -159,7 +176,8 @@ SRCS_ASM			= $(SRCS_PARSING_ASM) $(SRCS_ERROR_ASM)\
 
 SRCS_VM				= $(SRCS_RUN_VM) $(SRCS_OP) $(SRCS_CHAMP_VM)\
 					  $(SRCS_PARSING_VM) $(SRCS_ERROR_VM) $(SRCS_INST_VM)\
-					  $(SRCS_PRINTING_VM) $(SRCS_URL_FILE) $(SRCS_PROCESS_VM)# $(SRCS_PLAYER_ASM)
+					  $(SRCS_PRINTING_VM) $(SRCS_URL_FILE) $(SRCS_PROCESS_VM)\
+					  $(SRCS_OPR_VM)# $(SRCS_PLAYER_ASM)
 					  # $(SRCS_LIST_CHAMP)
 
 RED					= \033[31m
@@ -221,7 +239,7 @@ $(OBJS_DIR_VM)			:
 	@mkdir -p $(OBJS_DIR)$(DIR_CHAMP_VM);
 	@mkdir -p $(OBJS_DIR)$(DIR_PRINTING_VM);
 	@mkdir -p $(OBJS_DIR)$(DIR_URL_FILE);
-	@#mkdir -p $(OBJS_DIR)$(DIR_LIST_CHAMP);
+	@mkdir -p $(OBJS_DIR)$(DIR_OPR_VM);
 	@#mkdir -p $(OBJS_DIR)$(DIR_INST);
 	@#mkdir -p $(OBJS_DIR)$(DIR_PLAYER);
 	@mkdir -p $(OBJS_DIR)$(DIR_PARSING_VM);

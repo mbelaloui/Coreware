@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/16 11:22:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/09 17:48:02 by mint             ###   ########.fr       */
+/*   Updated: 2018/10/10 11:19:17 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,28 +32,26 @@
 # define FORMAT_INPUT_VM		"cor"
 
 /*
-**
 **	printing define
-**
 */
 
 # define MEM_SRC				0
 # define MEM_DESC				1
 # define MEM_LINE				64
 
-#define PLAYER_1				1
-#define PLAYER_2				2
-#define PLAYER_3				3
-#define PLAYER_4				4
+# define PLAYER_1				1
+# define PLAYER_2				2
+# define PLAYER_3				3
+# define PLAYER_4				4
 
-# define color_invers			4
-# define actuel_action			8
-# define pt_color				17
-# define pt__invers_color		18
- 
+# define COLOR_INVERS			4
+# define ACTUAL_ACTION			8
+# define PT_COLOR				17
+# define PT_COLOR_INCERS		18
+
 /*
 **          struct -h "aide"
-** * je me base sur ce aue tu as fait dans l'asm
+** je me base sur ce aue tu as fait dans l'asm
 */
 
 typedef struct			s_vm_option
@@ -71,10 +69,14 @@ typedef struct			s_vm_inst
 	struct s_vm_inst	*next;
 }						t_vm_inst;
 
+/*
+** id 	 pour identifier le process pour la couleur
+*/
+
 typedef struct			s_champ
 {
 	int					num;
-	int					id;	// pour la couleur 
+	int					id;
 	char				*name;
 	char				*comment;
 	int					size;
@@ -119,9 +121,11 @@ void					ft_init_vm_option(t_vm_option *op);
 void					ft_put_usage_vm(void);
 void					ft_display_help(void);
 
-void					ft_init_vm(t_vm *vm, t_url_file *url_champ, t_vm_option op_vm);
+void					ft_init_vm(t_vm *vm, t_url_file *url_champ,
+	t_vm_option op_vm);
 void					ft_put_vm(t_vm *vm);
 BOOL					ft_dell_vm(t_vm *vm);
+void					ft_fight(t_vm *vm, t_process *list_process);
 
 void					ft_error_reading_file(int error);
 void					ft_error_param_vm(int error, char *param);
@@ -185,6 +189,7 @@ BOOL					ft_existe_num(int num, t_url_file *list);
 int						ft_size_url_champ(t_url_file *list);
 
 /*
+** a
 */
 
 t_process				*ft_new_process(int id_parent, int add_start);
@@ -192,8 +197,31 @@ BOOL					ft_add_process(t_process *proces, t_process **list);
 t_process				*ft_init_process(t_vm vm);
 void					ft_put_process(t_process *process);
 void					ft_dell_list_process(t_process *list_process);
+void					ft_run_process(t_vm *vm, t_process *process,
+	t_op *op_tab[NBR_OP]);
+
 /*
+** a
 */
+
+void					ft_put_opr_exe(t_opr_exe *opr, t_op *op_tab[NBR_OP]);
+int						ft_get_size_type(int id_opr, int arg,
+	t_op *op_tab[NBR_OP]);
+void					ft_set_size_arg(t_opr_exe *opr_exe,
+	t_op *op_tab[NBR_OP]);
+void					ft_set_desc_arg(int ocp, int nbr_param,
+	t_opr_exe *opr_exe);
+int						ft_set_vale_arg(t_vm *vm, int pc, t_opr_exe *opr);
+void					ft_process_desc_ok(t_opr_exe *opr_exe,
+	t_op *op_tab[NBR_OP],
+	t_vm *vm, t_process *process);
+void					ft_process_desc_ko(t_opr_exe *opr_exe,
+	t_op *op_tab[NBR_OP], t_vm *vm, t_process *process);
+
+/*
+** a
+*/
+
 void					ft_put_mem(int mem[MEM_SIZE][2]);
-void					ft_init_mem(t_vm *vm,t_process *list_process);
+void					ft_init_mem(t_vm *vm, t_process *list_process);
 #endif
