@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/16 11:22:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/10 11:19:17 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/10 19:27:20 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,11 @@
 # define PLAYER_3				3
 # define PLAYER_4				4
 
-# define COLOR_INVERS			4
-# define ACTUAL_ACTION			8
+# define COLOR_INVERS			MAX_PLAYERS * 2
+# define ACTUAL_ACTION			MAX_PLAYERS * 3
 # define PT_COLOR				17
 # define PT_COLOR_INCERS		18
+# define NULL_COLOR				19
 
 /*
 **          struct -h "aide"
@@ -99,15 +100,6 @@ typedef struct			s_vm
 	t_champ				*champs;
 }						t_vm;
 
-typedef struct			s_process
-{
-	int					id_parent;
-	int					pc;
-	BOOL				carry;
-	int					reg[REG_NUMBER];
-	struct s_process	*next;
-}						t_process;
-
 typedef struct			s_opr_exe
 {
 	int					id_opr;
@@ -116,6 +108,17 @@ typedef struct			s_opr_exe
 	int					size_arg[3];
 	int					vale_arg[3];
 }						t_opr_exe;
+
+typedef struct			s_process
+{
+	int					id_parent;
+	int					pc;
+	BOOL				carry;
+	int					reg[REG_NUMBER];
+	int					time_to_exe;
+	t_opr_exe			curent_instruction;
+	struct s_process	*next;
+}						t_process;
 
 void					ft_init_vm_option(t_vm_option *op);
 void					ft_put_usage_vm(void);
@@ -197,7 +200,7 @@ BOOL					ft_add_process(t_process *proces, t_process **list);
 t_process				*ft_init_process(t_vm vm);
 void					ft_put_process(t_process *process);
 void					ft_dell_list_process(t_process *list_process);
-void					ft_run_process(t_vm *vm, t_process *process,
+void					ft_run_process(t_opr_exe *opr_exe, t_vm *vm, t_process *process,
 	t_op *op_tab[NBR_OP]);
 
 /*
@@ -207,17 +210,17 @@ void					ft_run_process(t_vm *vm, t_process *process,
 void					ft_put_opr_exe(t_opr_exe *opr, t_op *op_tab[NBR_OP]);
 int						ft_get_size_type(int id_opr, int arg,
 	t_op *op_tab[NBR_OP]);
-void					ft_set_size_arg(t_opr_exe *opr_exe,
+int					ft_set_size_arg(t_opr_exe *opr_exe,
 	t_op *op_tab[NBR_OP]);
 void					ft_set_desc_arg(int ocp, int nbr_param,
 	t_opr_exe *opr_exe);
 int						ft_set_vale_arg(t_vm *vm, int pc, t_opr_exe *opr);
-void					ft_process_desc_ok(t_opr_exe *opr_exe,
+int					ft_process_desc_ok(t_opr_exe *opr_exe,
 	t_op *op_tab[NBR_OP],
 	t_vm *vm, t_process *process);
-void					ft_process_desc_ko(t_opr_exe *opr_exe,
+int					ft_process_desc_ko(t_opr_exe *opr_exe,
 	t_op *op_tab[NBR_OP], t_vm *vm, t_process *process);
-
+void	ft_set_color_inst(t_vm *vm, int start, int len, int id_process);
 /*
 ** a
 */

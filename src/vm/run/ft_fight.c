@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 10:30:18 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/10 11:12:20 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/10 19:33:41 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,23 @@
 
 static void run_cycle(t_vm *vm, t_process *list_process, t_op *op_tab[NBR_OP])
 {
+//	t_opr_exe	opr_exe;
+
 	while (list_process)
 	{
-		ft_run_process(vm, list_process, op_tab);
+		if (list_process->time_to_exe == 0)
+		{
+			//faut just a la creation des process initialiser
+			//<curent_instruction> et <time_to_exe>;
+			//on a toute les donner pour l'executer
+			//executer(list_process); curent_instruction;
+			ft_bzero((&list_process->curent_instruction),
+			sizeof(list_process->curent_instruction));
+			ft_run_process(&list_process->curent_instruction, vm, list_process, op_tab);
+			ft_put_opr_exe(&list_process->curent_instruction, op_tab);
+		}
+		else
+			list_process->time_to_exe--;
 		list_process = list_process->next;
 	}
 }
@@ -37,11 +51,14 @@ void		ft_fight(t_vm *vm, t_process *list_process)
 	check = 1;
 	cycle_to_die = CYCLE_TO_DIE;
 	time_total = 0;
+//	exit(0);
 	while (cycle_to_die > 0)
 	{
+
 		time = 0;
 		while (time < cycle_to_die)
 		{
+
 			if (time_total == vm->dump)
 				break;//ft_dump(vm);
 			run_cycle(vm, list_process, op_tab);
@@ -51,8 +68,9 @@ void		ft_fight(t_vm *vm, t_process *list_process)
 				ft_printf("\n");
 			ft_printf("time = {green}[%d]{eoc}\t", time);
 */			
-	//ft_temporize(3);
-//	ft_clear_scr();
+	ft_put_mem(vm->mem);
+	ft_temporize(1);
+	ft_clear_scr();
 			time ++;
 			time_total++;
 			//ft_visu(vm, list_process);

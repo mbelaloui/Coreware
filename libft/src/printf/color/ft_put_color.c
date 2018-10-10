@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_put_color.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 17:56:32 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/05/07 14:02:14 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/10 15:05:31 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int		is_there_color(const char *s1, const char *s2, size_t n)
 
 int		ft_put_color(char *str, int pt)
 {
-	void	(*put_colors[8])();
-	char	*colors[8];
+	void	(*put_colors[15])();
+	char	*colors[15];
 	int		index;
 
 	ft_gettabcolor(put_colors);
@@ -38,7 +38,7 @@ int		ft_put_color(char *str, int pt)
 	str++;
 	pt--;
 	index = 0;
-	while (index < 8)
+	while (index < 15)
 	{
 		if (is_there_color(str, colors[index], pt))
 		{

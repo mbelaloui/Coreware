@@ -6,11 +6,14 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 10:23:34 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/10 10:52:24 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/10 11:27:47 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/vm.h"
+
+// verifier que la description des argument par apport a l'operation 
+// est bien coherente
 
 void	ft_set_desc_arg(int ocp, int nbr_param, t_opr_exe *opr_exe)
 {

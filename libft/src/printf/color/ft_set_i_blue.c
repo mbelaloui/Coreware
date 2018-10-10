@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_set_size_arg.c                                  :+:      :+:    :+:   */
+/*   ft_set_i_blue.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/10 10:19:45 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/10 15:26:03 by mbelalou         ###   ########.fr       */
+/*   Created: 2018/10/10 14:08:59 by mbelalou          #+#    #+#             */
+/*   Updated: 2018/10/10 15:10:08 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../inc/vm.h"
+#include "../../../inc/color.h"
 
-int	ft_set_size_arg(t_opr_exe *opr_exe, t_op *op_tab[NBR_OP])
+void	ft_set_i_blue(void)
 {
-	int pt;
-	int size;
+	char	*str;
+	int		pt;
 
-	size = 0;
-	pt = 0;
-	while (pt < opr_exe->nbr_param)
-	{
-		opr_exe->size_arg[pt] = ft_get_size_type(opr_exe->id_opr,
-			opr_exe->type_arg[pt], op_tab);
-		size += opr_exe->size_arg[pt];
-		pt++;
-	}
-	return (size);
+	pt = -1;
+	str = "\033[30;44m";
+	while (str[++pt])
+		ft_put_buf(str[pt], ING);
 }

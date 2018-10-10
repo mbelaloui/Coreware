@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 10:25:55 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/10 11:12:43 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/10 19:49:53 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,47 @@ int		get_nbr_param(int desc)
 **}
 */
 
-void	ft_process_desc_ok(t_opr_exe *opr_exe, t_op *op_tab[NBR_OP],
+void	ft_set_color_inst(t_vm *vm, int start, int len, int id_process)
+{
+	while (len)
+	{
+		vm->mem[start][MEM_DESC] = id_process + ACTUAL_ACTION;
+	//	ft_printf("id preocess %d color id = %d  \n\n", id_process,id_process + ACTUAL_ACTION);
+		len--;
+		start++;
+	}
+}
+
+int	ft_process_desc_ok(t_opr_exe *opr_exe, t_op *op_tab[NBR_OP],
 	t_vm *vm, t_process *process)
 {
-	opr_exe->nbr_param = get_nbr_param(vm->mem[process->pc][MEM_SRC]);
-	ft_set_desc_arg(vm->mem[process->pc][MEM_SRC], opr_exe->nbr_param,
+	int temp_pc;
+	int size_inst;
+	int start;
+
+	start = process->pc;
+	temp_pc = (process->pc + 1) % MEM_SIZE;
+
+	opr_exe->nbr_param = get_nbr_param(vm->mem[temp_pc][MEM_SRC]);
+
+	ft_set_desc_arg(vm->mem[temp_pc][MEM_SRC], opr_exe->nbr_param,
 	opr_exe);
-	ft_set_size_arg(opr_exe, op_tab);
-	process->pc = (process->pc + 1) % MEM_SIZE;
-	process->pc = ft_set_vale_arg(vm, process->pc, opr_exe);
+	temp_pc = (temp_pc + 1) % MEM_SIZE;
+	
+	size_inst = ft_set_size_arg(opr_exe, op_tab) + 2; // +2 pour les oct de opr + ocp
+
+	ft_set_color_inst(vm, start, size_inst, process->id_parent);
+
+//	ft_printf("color len = %d  \n\n", size_inst);
+
+	ft_put_mem(vm->mem);
+	ft_temporize(1);
+		ft_clear_scr();
+
+	
+	process->pc = ft_set_vale_arg(vm, temp_pc, opr_exe);
+
+	//
+
+	return (start);
 }

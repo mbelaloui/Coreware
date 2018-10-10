@@ -6,7 +6,7 @@
 #    By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 21:48:22 by mbelalou          #+#    #+#              #
-#    Updated: 2018/10/08 10:41:19 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/10/10 15:05:53 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,9 @@ FLAGES			= -Wall -Wextra -Werror -c
 DIR_COLOR		= color
 SRC_COLOR		= ft_inittabcolor.c ft_setcyan.c ft_setred.c ft_get_color.c\
 				  ft_put_color.c ft_setgreen.c ft_setwhite.c ft_gettabcolor.c\
-				  ft_setblue.c ft_setmagenta.c ft_setyellow.c
+				  ft_setblue.c ft_setmagenta.c ft_setyellow.c ft_set_i_blue.c\
+				  ft_set_i_cyan.c ft_set_i_green.c ft_set_i_magenta.c\
+				  ft_set_i_red.c ft_set_i_white.c ft_set_i_yellow.c 
 SRCS_COLOR		= $(addprefix $(DIR_COLOR)/, $(SRC_COLOR))
 
 DIR_FORMAT		= format

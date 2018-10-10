@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/08 10:26:43 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/10 11:20:15 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/10 15:17:09 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,20 @@ static void			put_src_mem(int mem[MEM_SIZE][2], t_vm_inst *list_src,
 	while (list_src)
 	{
 		src = list_src->src;
+
 		while (src)
 		{
 			mem[pt][MEM_SRC] = (unsigned char)src->data;
-			mem[pt++][MEM_DESC] = pos;
+			if (pt == start)
+				mem[pt++][MEM_DESC] = pos + ACTUAL_ACTION;
+			else
+				mem[pt++][MEM_DESC] = pos;
 			src = src->next;
 		}
 		list_src = list_src->next;
 	}
 }
+
 /*
 static t_champ		*ft_invers_list(t_champ *list)
 {
@@ -48,6 +53,7 @@ static t_champ		*ft_invers_list(t_champ *list)
 	return (ret);
 }
 */
+
 static t_int_list	*set_pt_start(t_process *list)
 {
 	t_int_list *ret;
