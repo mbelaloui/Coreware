@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_put_buf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/02 17:29:12 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/05/03 12:56:15 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/11 10:29:17 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int				ft_put_buf(const char c, const int option)
 	{
 		if (show.pt == SIZE_BUF_SHOW)
 		{
-			write(1, show.buf, show.pt);
+			write(STD_OUT, show.buf, show.pt);
 			show.pt = 0;
 		}
 		show.buf[show.pt] = c;

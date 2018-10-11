@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/08 10:20:30 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/10 19:49:44 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/11 16:52:15 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@ t_process	*ft_new_process(int id_parent, int add_start)
 	ret->time_to_exe = 0;
 	ft_bzero(ret->reg, sizeof(ret->reg));
 	ft_bzero((&ret->curent_instruction), sizeof(ret->curent_instruction));
+	ret->curent_instruction.id_opr = -1;
 	ret->reg[0] = id_parent;
+	ret->color_start = 0;
+	ret->nbr_live = 0;
+	ret->a_live = T;
 	ret->next = NULL;
 	return (ret);
 }

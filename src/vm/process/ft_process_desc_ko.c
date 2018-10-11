@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 10:27:04 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/10 17:44:32 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/11 16:59:37 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,13 @@ int	ft_process_desc_ko(t_opr_exe *opr_exe, t_op *op_tab[NBR_OP],
 	t_vm *vm, t_process *process)
 {
 	int temp_pc;
-//	int size_inst;
 	int start;
 
 	start = process->pc;
 	temp_pc = (process->pc + 1) % MEM_SIZE;
-
 	opr_exe->nbr_param = 1;
-
 	opr_exe->size_arg[0] = op_tab[opr_exe->id_opr]->size_label;
-//	size_inst = opr_exe->size_arg[0] + 1;
-
 	ft_set_color_inst(vm, start, opr_exe->size_arg[0] + 1, process->id_parent);
-
-	ft_put_mem(vm->mem);
-	ft_temporize(1);
-		ft_clear_scr();
-
 	process->pc = ft_set_vale_arg(vm, temp_pc, opr_exe);
-
-	//execution();
 	return (start);
 }

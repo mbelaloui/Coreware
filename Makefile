@@ -6,7 +6,7 @@
 #    By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/16 12:33:04 by mbelalou          #+#    #+#              #
-#    Updated: 2018/10/10 10:46:08 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/10/11 13:41:33 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ SRCS_URL_FILE		= $(addprefix $(DIR_URL_FILE)/, $(SRC_URL_FILE))
 
 DIR_PROCESS_VM		= vm/process
 SRC_PROCESS_VM		= ft_add_process.c ft_dell_list_process.c ft_init_process.c\
-					ft_new_process.c ft_put_process.c ft_run_process.c\
+					ft_new_process.c ft_put_process.c ft_get_next_instuction.c\
 					ft_process_desc_ok.c ft_process_desc_ko.c
 SRCS_PROCESS_VM		= $(addprefix $(DIR_PROCESS_VM)/, $(SRC_PROCESS_VM))
 

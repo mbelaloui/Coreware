@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/16 11:22:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/10 19:27:20 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/11 16:48:54 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@
 # define ACTUAL_ACTION			MAX_PLAYERS * 3
 # define PT_COLOR				17
 # define PT_COLOR_INCERS		18
-# define NULL_COLOR				19
+# define NULL_COLOR				0
 
 /*
 **          struct -h "aide"
@@ -98,6 +98,8 @@ typedef struct			s_vm
 	int					dump;
 	int					mem[MEM_SIZE][2];
 	t_champ				*champs;
+	int					live[MAX_PLAYERS];	//
+	int					id_last_a_live;		///
 }						t_vm;
 
 typedef struct			s_opr_exe
@@ -117,6 +119,9 @@ typedef struct			s_process
 	int					reg[REG_NUMBER];
 	int					time_to_exe;
 	t_opr_exe			curent_instruction;
+	int					nbr_live;
+	int					color_start;
+	BOOL				a_live; //tempt enlever plus tard apres avoir fait en sort de free les process mort
 	struct s_process	*next;
 }						t_process;
 
@@ -200,8 +205,8 @@ BOOL					ft_add_process(t_process *proces, t_process **list);
 t_process				*ft_init_process(t_vm vm);
 void					ft_put_process(t_process *process);
 void					ft_dell_list_process(t_process *list_process);
-void					ft_run_process(t_opr_exe *opr_exe, t_vm *vm, t_process *process,
-	t_op *op_tab[NBR_OP]);
+void					ft_get_next_instuction(t_opr_exe *opr_exe, t_vm *vm,
+	t_process *process, t_op *op_tab[NBR_OP]);
 
 /*
 ** a
@@ -210,21 +215,23 @@ void					ft_run_process(t_opr_exe *opr_exe, t_vm *vm, t_process *process,
 void					ft_put_opr_exe(t_opr_exe *opr, t_op *op_tab[NBR_OP]);
 int						ft_get_size_type(int id_opr, int arg,
 	t_op *op_tab[NBR_OP]);
-int					ft_set_size_arg(t_opr_exe *opr_exe,
+int						ft_set_size_arg(t_opr_exe *opr_exe,
 	t_op *op_tab[NBR_OP]);
 void					ft_set_desc_arg(int ocp, int nbr_param,
 	t_opr_exe *opr_exe);
 int						ft_set_vale_arg(t_vm *vm, int pc, t_opr_exe *opr);
-int					ft_process_desc_ok(t_opr_exe *opr_exe,
+int						ft_process_desc_ok(t_opr_exe *opr_exe,
 	t_op *op_tab[NBR_OP],
 	t_vm *vm, t_process *process);
-int					ft_process_desc_ko(t_opr_exe *opr_exe,
+int						ft_process_desc_ko(t_opr_exe *opr_exe,
 	t_op *op_tab[NBR_OP], t_vm *vm, t_process *process);
-void	ft_set_color_inst(t_vm *vm, int start, int len, int id_process);
+void					ft_set_color_inst(t_vm *vm, int start, int len, int id_process);
+
 /*
 ** a
 */
 
+void					ft_dump(t_vm *vm);
 void					ft_put_mem(int mem[MEM_SIZE][2]);
 void					ft_init_mem(t_vm *vm, t_process *list_process);
 #endif

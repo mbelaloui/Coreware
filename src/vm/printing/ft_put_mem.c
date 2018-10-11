@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/08 10:25:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/10 19:49:54 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/11 16:53:51 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	put_desc_process(int desc_mem)
 		ft_printf("{ired}");
 	else if (desc_mem == PLAYER_3 + ACTUAL_ACTION)
 		ft_printf("{icyan}");
-	else// if (desc_mem == PLAYER_4 + ACTUAL_ACTION)
+	else if (desc_mem == PLAYER_4 + ACTUAL_ACTION)
 		ft_printf("{Iyellow}");
 }
 
@@ -50,6 +50,8 @@ void	put_desc_player(int desc_mem)
 void	ft_put_mem(int mem[MEM_SIZE][2])
 {
 	int pt;
+
+	ft_clear_scr();
 
 	pt = 0;
 	while (pt < MEM_SIZE)
@@ -80,6 +82,7 @@ void	ft_put_mem(int mem[MEM_SIZE][2])
 		pt++;
 	}
 	ft_printf("\n");
+//	ft_temporize(1);
 //	ft_temporize(2);
 //	ft_clear_scr();
 }
