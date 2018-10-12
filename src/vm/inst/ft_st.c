@@ -6,7 +6,7 @@
 /*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:47:43 by mint              #+#    #+#             */
-/*   Updated: 2018/10/12 17:31:39 by mint             ###   ########.fr       */
+/*   Updated: 2018/10/13 01:40:00 by mint             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ else
 	ft_printf("\n-------------------------------------\n");
 	ft_printf("\n-----------val = %hhd------------\n", val);
 
+	 val = -val;
 	unsigned char * tab = ft_int_to_byts((unsigned)val, DIR_SIZE);
 	int pt = -1;
 	while (++pt < DIR_SIZE)
