@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm_exe.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 14:00:03 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/11 17:01:01 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/12 11:58:59 by mint             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,6 @@
 **	ft_printf(" d = [%d]  \n", (op_vm->d));
 **}
 */
-
-void		ft_dump(t_vm *vm)
-{
-		ft_put_mem(vm->mem);
-		exit(0);	// sortie normale du programe
-}
 
 BOOL	start()  //a revoir cette fonction
 {

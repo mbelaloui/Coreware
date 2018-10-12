@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/16 11:22:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/11 16:48:54 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/12 11:42:35 by mint             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,6 +207,8 @@ void					ft_put_process(t_process *process);
 void					ft_dell_list_process(t_process *list_process);
 void					ft_get_next_instuction(t_opr_exe *opr_exe, t_vm *vm,
 	t_process *process, t_op *op_tab[NBR_OP]);
+int		ft_get_total_live(t_process *list_process);
+BOOL	ft_check_survivor(t_process *list_process, t_vm *vm);
 
 /*
 ** a
@@ -227,6 +229,26 @@ int						ft_process_desc_ko(t_opr_exe *opr_exe,
 	t_op *op_tab[NBR_OP], t_vm *vm, t_process *process);
 void					ft_set_color_inst(t_vm *vm, int start, int len, int id_process);
 
+void	ft_rest_color(t_vm *vm, t_process *list_process);
+
+void	ft_init_tab_instruction(BOOL (*action_instructions[NBR_OP])(t_vm *vm, t_process *process));
+BOOL	ft_null(t_vm *vm, t_process *process);
+BOOL	ft_aff(t_vm *vm, t_process *process);
+BOOL	ft_lfork(t_vm *vm, t_process *process);
+BOOL	ft_lldi(t_vm *vm, t_process *process);
+BOOL	ft_lld(t_vm *vm, t_process *process);
+BOOL	ft_fork(t_vm *vm, t_process *process);
+BOOL	ft_sti(t_vm *vm, t_process *process);
+BOOL	ft_ldi(t_vm *vm, t_process *process);
+BOOL	ft_zjmp(t_vm *vm, t_process *process);
+BOOL	ft_xor(t_vm *vm, t_process *process);
+BOOL	ft_or(t_vm *vm, t_process *process);
+BOOL	ft_and(t_vm *vm, t_process *process);
+BOOL	ft_sub(t_vm *vm, t_process *process);
+BOOL	ft_add(t_vm *vm, t_process *process);
+BOOL	ft_st(t_vm *vm, t_process *process);
+BOOL	ft_ld(t_vm *vm, t_process *process);
+BOOL	ft_live(t_vm *vm, t_process *process);
 /*
 ** a
 */

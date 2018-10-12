@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+         #
+#    By: mint <mint@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/16 12:33:04 by mbelalou          #+#    #+#              #
-#    Updated: 2018/10/11 13:41:33 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/10/12 13:20:40 by mint             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,12 +44,16 @@ SRC_CHAMP_VM		= ft_dell_champ.c ft_put_raw_src_champ.c ft_manage_opr.c\
 SRCS_CHAMP_VM		= $(addprefix $(DIR_CHAMP_VM)/, $(SRC_CHAMP_VM))
 
 DIR_INST_VM			= vm/inst
-SRC_INST_VM			= ft_new_vm_inst.c ft_add_vm_instlist.c\
-					  ft_str_to_list_inst.c
+SRC_INST_VM			= ft_add.c ft_and.c ft_ld.c ft_ldi.c ft_lld.c ft_null.c\
+					  ft_sti.c ft_xor.c ft_add_vm_instlist.c ft_fork.c\
+					  ft_lfork.c ft_lldi.c ft_or.c ft_str_to_list_inst.c\
+					  ft_zjmp.c ft_aff.c ft_init_tab_instruction.c ft_live.c\
+					  ft_new_vm_inst.c ft_st.c ft_sub.c
 SRCS_INST_VM		= $(addprefix $(DIR_INST_VM)/, $(SRC_INST_VM))
 
 DIR_PRINTING_VM		= vm/printing
-SRC_PRINTING_VM		= ft_put_usage_vm.c ft_display_help.c ft_put_vm.c ft_put_mem.c
+SRC_PRINTING_VM		= ft_put_usage_vm.c ft_display_help.c ft_put_vm.c ft_put_mem.c\
+					  ft_dump.c					  
 SRCS_PRINTING_VM	= $(addprefix $(DIR_PRINTING_VM)/, $(SRC_PRINTING_VM))
 
 DIR_URL_FILE		= vm/url_file
@@ -62,7 +66,8 @@ SRCS_URL_FILE		= $(addprefix $(DIR_URL_FILE)/, $(SRC_URL_FILE))
 DIR_PROCESS_VM		= vm/process
 SRC_PROCESS_VM		= ft_add_process.c ft_dell_list_process.c ft_init_process.c\
 					ft_new_process.c ft_put_process.c ft_get_next_instuction.c\
-					ft_process_desc_ok.c ft_process_desc_ko.c
+					ft_process_desc_ok.c ft_process_desc_ko.c\
+					ft_get_total_live.c ft_check_survivor.c
 SRCS_PROCESS_VM		= $(addprefix $(DIR_PROCESS_VM)/, $(SRC_PROCESS_VM))
 
 DIR_OPR_VM			= vm/opr
@@ -72,7 +77,7 @@ SRCS_OPR_VM			= $(addprefix $(DIR_OPR_VM)/, $(SRC_OPR_VM))
 
 DIR_RUN_VM			= vm/run
 SRC_RUN_VM			= ft_dell_vm.c ft_init_vm.c  vm_exe.c ft_init_mem.c\
-						ft_fight.c
+						ft_fight.c ft_rest_color.c
 SRCS_RUN_VM			= $(addprefix $(DIR_RUN_VM)/, $(SRC_RUN_VM))
 
 

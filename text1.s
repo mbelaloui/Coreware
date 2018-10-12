@@ -1,7 +1,6 @@
 .name "1"
 .comment "1"
 
-st r1,6
-live %1
-fork %-10
-ld -1,r2
+ld	3,r2
+st	r2,r1
+st	r2,64
