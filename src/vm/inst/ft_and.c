@@ -6,7 +6,7 @@
 /*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:47:16 by mint              #+#    #+#             */
-/*   Updated: 2018/10/12 13:40:45 by mint             ###   ########.fr       */
+/*   Updated: 2018/10/13 21:59:20 by mint             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ BOOL	ft_and(t_vm *vm, t_process *process)
 		process->carry = 0;
 	else
 		process->carry = 1;
+
+	process->reg[process->curent_instruction.vale_arg[2] - 1] = result;
+
 
 //	t_op	*op_tab[NBR_OP];
 

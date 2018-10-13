@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_next_instuction.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 10:28:36 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/13 17:40:31 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/13 20:37:14 by mint             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ void	ft_get_next_instuction(t_opr_exe *opr_exe, t_vm *vm, t_process *process,
 			process->color_start = ft_process_desc_ko(opr_exe, op_tab,
 				vm, process);
 	}
-	else if (opr_exe->id_opr == 0)
+	else// if (opr_exe->id_opr == 0)
 	{
+		opr_exe->id_opr = 0;
 //		if (vm->mem[process->pc][MEM_DESC] == NULL_COLOR)
 //		{
 			vm->mem[process->pc][MEM_DESC] = PT_COLOR;
@@ -35,8 +36,8 @@ void	ft_get_next_instuction(t_opr_exe *opr_exe, t_vm *vm, t_process *process,
 //		}
 		process->pc = (process->pc + 1) % MEM_SIZE;
 	}
-	else
-	{
+//	else
+//	{
 /*
 	else
 	{
@@ -46,9 +47,9 @@ void	ft_get_next_instuction(t_opr_exe *opr_exe, t_vm *vm, t_process *process,
 		free the process
 	}
 */
-		ft_printf("Process reated by [%d] is in [%d]  cas [%.2x]",
-		process->id_parent, process->pc, opr_exe->id_opr);
-		ft_printf("error bad operations  []\n");
-		exit(-4465);// ou juste tuer le process a voir le sujet
-	}
+//		ft_printf("Process reated by [%d] is in [%d]  cas [%.2x]",
+//		process->id_parent, process->pc, opr_exe->id_opr);
+//		ft_printf("error bad operations  []\n");
+//		exit(-4465);// ou juste tuer le process a voir le sujet
+//	}
 }
