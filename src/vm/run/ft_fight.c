@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fight.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 10:30:18 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/12 13:07:17 by mint             ###   ########.fr       */
+/*   Updated: 2018/10/13 17:38:35 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,11 @@ static void run_cycle(t_vm *vm, t_process *list_process, t_op *op_tab[NBR_OP])
 {
 	BOOL	live;
 	
+
 	live = F;
 	while (list_process)
 	{
+//		ft_printf("pc = %d         ", list_process->pc);
 		if (list_process->a_live)
 		{
 			live = T;
@@ -89,6 +91,7 @@ static void run_cycle(t_vm *vm, t_process *list_process, t_op *op_tab[NBR_OP])
 	}
 	if (!live)
 		ft_put_winer(vm);
+	
 	ft_put_mem(vm->mem);
 }
 

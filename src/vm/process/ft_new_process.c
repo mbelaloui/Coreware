@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/08 10:20:30 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/11 16:52:15 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/13 18:30:44 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_process	*ft_new_process(int id_parent, int add_start)
 		ft_error_exe(ERROR_NOT_ENOUGH_MEM);
 	ret->id_parent = id_parent;
 	ret->pc = add_start;
+	ret->curent_pc = ret->pc;
 	ret->carry = 0;
 	ret->time_to_exe = 0;
 	ft_bzero(ret->reg, sizeof(ret->reg));

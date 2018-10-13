@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 10:28:36 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/11 16:51:46 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/13 17:40:31 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_get_next_instuction(t_opr_exe *opr_exe, t_vm *vm, t_process *process,
 	t_op *op_tab[NBR_OP])
 {
+	process->curent_pc = process->pc; 
 	opr_exe->id_opr = vm->mem[process->pc][MEM_SRC];
 	if (opr_exe->id_opr > 0 && opr_exe->id_opr < 17)
 	{
@@ -27,8 +28,11 @@ void	ft_get_next_instuction(t_opr_exe *opr_exe, t_vm *vm, t_process *process,
 	}
 	else if (opr_exe->id_opr == 0)
 	{
-		vm->mem[process->pc][MEM_DESC] = PT_COLOR;
-		process->color_start = process->pc;
+//		if (vm->mem[process->pc][MEM_DESC] == NULL_COLOR)
+//		{
+			vm->mem[process->pc][MEM_DESC] = PT_COLOR;
+			process->color_start = process->pc;
+//		}
 		process->pc = (process->pc + 1) % MEM_SIZE;
 	}
 	else

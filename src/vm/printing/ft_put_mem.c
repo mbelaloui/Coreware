@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/08 10:25:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/11 16:53:51 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/13 14:22:21 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ void	ft_put_mem(int mem[MEM_SIZE][2])
 	{
 		if ((pt % MEM_LINE == 0))
 			ft_printf("\n");
-		if (mem[pt][MEM_DESC] < 0)
+		if (mem[pt][MEM_DESC] < NULL_COLOR)
 			exit(-1);
-		else if (mem[pt][MEM_DESC] == 0)
+		else if (mem[pt][MEM_DESC] == NULL_COLOR)
 			ft_printf("{white}");
 		else if (mem[pt][MEM_DESC] <= MAX_PLAYERS) //is player description
 			put_desc_player(mem[pt][MEM_DESC]);

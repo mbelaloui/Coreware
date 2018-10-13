@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm_exe.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 14:00:03 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/12 11:58:59 by mint             ###   ########.fr       */
+/*   Updated: 2018/10/13 18:16:58 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,5 @@ int	main(int argc, char **argv)
 		ft_error_param_vm(ERROR_NO_SRC_FILE, " ");
 	ft_dell_list_urllist(&info_champ);
 	return (ft_strdel(&str) && ft_free_mat(&tab) && 0);
+
 }
