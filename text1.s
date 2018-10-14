@@ -1,7 +1,7 @@
 .name "1"
 .comment "1"
 
-#st, ld, lld, add
+#st, ld, lld, add, and, xor, or, 
 
 #st	r2,r1
 #st	r1,-64
@@ -39,9 +39,13 @@
 
 ld	1,r2
 ld	2,r3
-ld	3,r4
+#ld	3,r4
 
-add r2,r3,r4
+#add r2,r3,r4
+#and r2,r3,r4
+#or r2,r3,r4
+#xor r2,r3,r4
+sub r2,r3,r4
 
 st	r2,64
 st	r3,64
