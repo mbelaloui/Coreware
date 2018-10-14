@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm_exe.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 14:00:03 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/13 18:16:58 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/14 13:38:29 by mint             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,16 @@ void	run_vm(t_url_file *url_champ, t_vm_option op_vm)
 	list_process = ft_init_process(vm);
 	ft_init_mem(&vm, list_process);
 	//condition pour si ont veu voir le visu clasique if (op->blabla)  ou mettere cette action dasn ft_fight
+
+
 	ft_put_mem(vm.mem);
 	if (start())
 		ft_fight(&vm, list_process);
 	ft_dell_list_process(list_process);
-	//	ft_put_winner();
+//	ft_put_winner(vm);
 	ft_dell_vm(&vm);
 }
+
 
 int	main(int argc, char **argv)
 {
@@ -76,5 +79,4 @@ int	main(int argc, char **argv)
 		ft_error_param_vm(ERROR_NO_SRC_FILE, " ");
 	ft_dell_list_urllist(&info_champ);
 	return (ft_strdel(&str) && ft_free_mat(&tab) && 0);
-
 }

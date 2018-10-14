@@ -6,7 +6,7 @@
 /*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 10:30:18 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/14 01:41:41 by mint             ###   ########.fr       */
+/*   Updated: 2018/10/14 13:38:53 by mint             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,22 @@
 void	ft_put_winer(t_vm *vm)
 {
 	t_champ *pt_champ;
+	t_champ *winer;
 
 	pt_champ = vm->champs;
 	while (pt_champ)
 	{
 		if (pt_champ->id == vm->id_last_a_live)
-			ft_put_champ(pt_champ);
+			winer = pt_champ;
 		pt_champ = pt_champ->next;
 	}
+	ft_printf("{green}/ ****************************************** \\\n{eoc}");
+	ft_printf("/ %-42s \\\n", ft_strlen(winer->name), winer->name );
+	ft_printf("{green}/ ****************************************** \\\n{eoc}");
+	ft_printf("/ %-42s \\\n", winer->comment );
+	ft_printf("{green}/ ****************************************** \\\n{eoc}");	
 	exit(0);
 }
-
 
 /*
 ** ************************************************************************* **
@@ -77,6 +82,7 @@ static void run_cycle(t_vm *vm, t_process *list_process, t_op *op_tab[NBR_OP])
 			{
 				if(list_process->curent_instruction.id_opr != -1) 
 				{
+					ft_printf("{green}\n\n icicic \n\n {eoc}");
 					ft_rest_color(vm, list_process);
 					execution(vm, list_process);//can be used to kill the process if i get process id_opr == 0 ==> kill
 				}
@@ -118,10 +124,7 @@ void		ft_fight(t_vm *vm, t_process *list_process)
 		}
 		time_total += time;
 		if (!ft_check_survivor(list_process, vm))
-		{
-			ft_printf("put wine ... plus de process vivant\n");
-			exit(0);
-		}
+			ft_put_winer(vm);
 		if (ft_get_total_live(list_process) >= NBR_LIVE)
 			cycle_to_die =- CYCLE_DELTA;
 		if (check == MAX_CHECKS)

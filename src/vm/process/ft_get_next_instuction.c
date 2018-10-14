@@ -6,7 +6,7 @@
 /*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 10:28:36 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/13 20:37:14 by mint             ###   ########.fr       */
+/*   Updated: 2018/10/14 13:04:00 by mint             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,13 @@ void	ft_get_next_instuction(t_opr_exe *opr_exe, t_vm *vm, t_process *process,
 	else// if (opr_exe->id_opr == 0)
 	{
 		opr_exe->id_opr = 0;
-//		if (vm->mem[process->pc][MEM_DESC] == NULL_COLOR)
-//		{
+		if (vm->mem[process->pc][MEM_DESC] == NULL_COLOR)
+		{
 			vm->mem[process->pc][MEM_DESC] = PT_COLOR;
 			process->color_start = process->pc;
-//		}
+		}
+		else
+			process->color_start = (process->pc + 1) % MEM_SIZE;
 		process->pc = (process->pc + 1) % MEM_SIZE;
 	}
 //	else
