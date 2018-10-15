@@ -1,7 +1,7 @@
-.name "1"
-.comment "1"
+.name "itest_name"
+.comment "itest_comment"
 
-#st, ld, lld, add, and, xor, or, 
+#st, ld, lld, add, and, xor, or, ldi
 
 #st	r2,r1
 #st	r1,-64
@@ -12,26 +12,21 @@
 #st	r2,0
 #st	r2,64
 
-lld	%2123456789,r2
-st	r2,64
+#lld	%2123456789,r2
+#st	r1,6
 
-
-lld	0,r2
-st	r2,64
-
+#live %55
+#lld	0,r2
+#st	r2,64
 
 #lld	-5,r2
 #st	r2,64
 
-
-    
 #lld	%1,r2
 #st	r2,64
 
-
 #ld	%0,r2
 #st	r2,64
-
 
 #ld	%-5,r2
 #st	r2,64
@@ -50,18 +45,52 @@ st	r2,64
 #st	r3,64
 #st	r4,64
 
-
-
-
 #zjmp %-64
-
 
 #ld	1,r2
 #zjmp %-4
 #ld	2,r3
 #zjmp %4
 
-
-
-
+#st	r1,64
 #sub r2,r3,r4
+#st	r1,64
+
+#ldi	0,%0,r2
+#st	r2,64
+
+#ldi	0,%1,r2
+#st	r2,64
+
+
+
+
+ldi	3,%4,r2
+st	r2,64
+
+add r2,r3,r4
+
+zjmp %12
+
+ldi	9,%50,r2
+st	r2,64
+
+zjmp %32
+
+
+
+
+
+
+#ldi	0,%3,r2
+#ldi 4,%8,r2
+#ldi	6,%1,r2
+#ldi	6,%2,r2
+#ldi	,%15,r2
+#ldi	,%1,r2
+#ldi	,%2,r2
+#ldi	,%3,r2
+
+
+and r2,r3,r4
+

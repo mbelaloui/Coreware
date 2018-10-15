@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 11:53:33 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/13 14:21:46 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/15 14:01:12 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 **	if all the champion <the reading/parsing step> are ok
 **			w'll pass to the next step
 **	else
-**			w'll exit the programclear with an error message
+**			w'll exit the program clear with an error message
 **	NB : this function do the syntaxique/semantique checking
 **	output
 **	{
@@ -35,7 +35,7 @@
 
 void	ft_init_vm(t_vm *vm, t_url_file *url_champ, t_vm_option op_vm)
 {
-	t_op	*op_tab[NBR_OP];
+	t_op	*op_tab[NBR_OP];///////////// l'envoyer en parame
 	t_champ	*champ;
 	int		fd;
 	int		pos;

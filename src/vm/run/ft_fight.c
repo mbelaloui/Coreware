@@ -3,20 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fight.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 10:30:18 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/14 13:38:53 by mint             ###   ########.fr       */
+/*   Updated: 2018/10/15 14:00:45 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/vm.h"
+
+void	put_winer(t_champ *winer)
+{
+	ft_printf("{green}/ ****************************************** \\\n{eoc}");
+	ft_printf("/ %-42s \\\n", winer->name);
+	ft_printf("{green}/ ****************************************** \\\n{eoc}");
+	ft_printf("/ %-42s \\\n", winer->comment);
+	ft_printf("{green}/ ****************************************** \\\n{eoc}");
+}
+
+void	put_message(void)
+{
+	ft_printf("{green}/ ****************************************** \\\n{eoc}");
+	ft_printf("/ %-42s \\\n", "no champion has made live !!!!");
+	ft_printf("{green}/ ****************************************** \\\n{eoc}");
+}
 
 void	ft_put_winer(t_vm *vm)
 {
 	t_champ *pt_champ;
 	t_champ *winer;
 
+	winer = NULL;
 	pt_champ = vm->champs;
 	while (pt_champ)
 	{
@@ -24,11 +41,10 @@ void	ft_put_winer(t_vm *vm)
 			winer = pt_champ;
 		pt_champ = pt_champ->next;
 	}
-	ft_printf("{green}/ ****************************************** \\\n{eoc}");
-	ft_printf("/ %-42s \\\n", ft_strlen(winer->name), winer->name );
-	ft_printf("{green}/ ****************************************** \\\n{eoc}");
-	ft_printf("/ %-42s \\\n", winer->comment );
-	ft_printf("{green}/ ****************************************** \\\n{eoc}");	
+	if (winer)
+		put_winer(winer);
+	else
+		put_message();
 	exit(0);
 }
 
@@ -82,7 +98,7 @@ static void run_cycle(t_vm *vm, t_process *list_process, t_op *op_tab[NBR_OP])
 			{
 				if(list_process->curent_instruction.id_opr != -1) 
 				{
-					ft_printf("{green}\n\n icicic \n\n {eoc}");
+			//		ft_printf("{green}\n\n icicic \n\n {eoc}");
 					ft_rest_color(vm, list_process);
 					execution(vm, list_process);//can be used to kill the process if i get process id_opr == 0 ==> kill
 				}
@@ -118,9 +134,14 @@ void		ft_fight(t_vm *vm, t_process *list_process)
 		time = 0;
 		while (time < cycle_to_die)
 		{
-			if (time_total + time++ == vm->dump)
+
+		if (time_total + time++ == vm->dump)
 				ft_dump(vm);
+
+	ft_printf("\n\nn\n\n{green}dump = %d     time = %d{eoc}\n\n\n", vm->dump ,time_total + time  );
+
 			run_cycle(vm, list_process, op_tab);
+
 		}
 		time_total += time;
 		if (!ft_check_survivor(list_process, vm))

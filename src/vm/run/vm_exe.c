@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm_exe.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 14:00:03 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/14 13:38:29 by mint             ###   ########.fr       */
+/*   Updated: 2018/10/15 18:44:59 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	run_vm(t_url_file *url_champ, t_vm_option op_vm)
 	ft_init_vm(&vm, url_champ, op_vm);
 	list_process = ft_init_process(vm);
 	ft_init_mem(&vm, list_process);
-	//condition pour si ont veu voir le visu clasique if (op->blabla)  ou mettere cette action dasn ft_fight
 
+	//condition pour si ont veu voir le visu clasique if (op->blabla)  ou mettere cette action dasn ft_fight
 
 	ft_put_mem(vm.mem);
 	if (start())

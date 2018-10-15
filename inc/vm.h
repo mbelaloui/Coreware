@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/16 11:22:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/13 17:40:18 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/15 11:34:57 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ typedef struct			s_vm
 	int					dump;
 	int					mem[MEM_SIZE][2];
 	t_champ				*champs;
-	int					live[MAX_PLAYERS];	//
+	int					live[MAX_PLAYERS];	// pour l'affichage
 	int					id_last_a_live;		///
 }						t_vm;
 

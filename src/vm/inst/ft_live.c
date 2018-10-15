@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_live.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:47:48 by mint              #+#    #+#             */
-/*   Updated: 2018/10/12 13:15:09 by mint             ###   ########.fr       */
+/*   Updated: 2018/10/15 11:13:31 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,9 @@ BOOL	ft_live(t_vm *vm, t_process *process)
 			vm->id_last_a_live = live_for;
 		pt_champ = pt_champ->next;
 	}
+
+//	ft_printf(" love fore %d,  id %d \n", live_for, vm->champs->id);
+
+//	exit(0);
 	return (T);
 }

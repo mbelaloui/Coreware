@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 10:25:55 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/11 16:53:27 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/15 13:01:39 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,14 @@ int		get_nbr_param(int desc)
 
 void	ft_set_color_inst(t_vm *vm, int start, int len, int id_process)
 {
-	while (len)
+//	if (vm->mem[start][MEM_DESC] == id_process)
 	{
-		vm->mem[start][MEM_DESC] = id_process + ACTUAL_ACTION;
-		len--;
-		start++;
+		while (len)
+		{
+			vm->mem[start][MEM_DESC] = id_process + ACTUAL_ACTION;
+			len--;
+			start++;
+		}
 	}
 }
 
