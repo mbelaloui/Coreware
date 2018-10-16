@@ -119,11 +119,7 @@ static void run_cycle(t_vm *vm, t_process *list_process, t_op *op_tab[NBR_OP])
 void		ft_fight(t_vm *vm, t_process *list_process)
 {
 	t_op	*op_tab[NBR_OP];
-/*	int 	cycle_to_die;
-	int		time_total;
-	int 	check;
-	int 	time;
-*/
+
 	ft_get_op_tab(op_tab);
 	vm->cycle_to_die = CYCLE_TO_DIE;// mettre dans la structure vm 
 	vm->time_total = 0;				// aussi 								cycle 

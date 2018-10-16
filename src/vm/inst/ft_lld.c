@@ -6,7 +6,7 @@
 /*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:46:42 by mint              #+#    #+#             */
-/*   Updated: 2018/10/13 21:49:02 by mint             ###   ########.fr       */
+/*   Updated: 2018/10/16 17:50:07 by mint             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ BOOL	ft_lld(t_vm *vm, t_process *process)
 	int				add_val;
 	int				val;
 
-	if (process->curent_instruction.vale_arg[0])
+	if (process->curent_instruction.vale_arg[0] == 0)
 		process->carry = 1;
 	else
 		process->carry = 0;
@@ -34,28 +34,22 @@ BOOL	ft_lld(t_vm *vm, t_process *process)
 */
 	if (process->curent_instruction.type_arg[0] == IND_CODE)
 	{
-		add_val = (process->curent_instruction.vale_arg[0] + process->curent_pc);
-		tab[0] = 0;
-		tab[1] = 0;
-		tab[2] = vm->mem[(add_val + 0) % MEM_SIZE][MEM_SRC];
-		tab[3] = vm->mem[(add_val + 1) % MEM_SIZE][MEM_SRC];
-		val = ft_byts_to_int(tab);
-	}
-	else if (process->curent_instruction.type_arg[0] == DIR_CODE)
-	{
-		add_val = (process->curent_instruction.vale_arg[0]);
-		tab[3] = add_val & 0xff;
-		add_val = add_val >> 8;
-		tab[2] = add_val & 0xff;
-		add_val = add_val >> 8;
-		tab[1] = add_val & 0xff;
-		add_val = add_val >> 8;
-		tab[0] = add_val & 0xff;
+		add_val = process->curent_pc + (process->curent_instruction.vale_arg[0]);
+		tab[0] = vm->mem[(add_val + 0) % MEM_SIZE][MEM_SRC];
+		tab[1] = vm->mem[(add_val + 1) % MEM_SIZE][MEM_SRC];
+		tab[2] = vm->mem[(add_val + 2) % MEM_SIZE][MEM_SRC];
+		tab[3] = vm->mem[(add_val + 3) % MEM_SIZE][MEM_SRC];
+/*
+		ft_printf("tab = %.2x      ", tab[0]);
+		ft_printf("tab = %.2x      ", tab[1]);
+		ft_printf("tab = %.2x      ", tab[2]);
+		ft_printf("tab = %.2x    \n", tab[3]);
+*/
 		val = ft_byts_to_int(tab);
 	}
 	else
 	{
-		add_val = process->curent_instruction.vale_arg[0] % MEM_SIZE;
+		add_val = process->curent_instruction.vale_arg[0] % IDX_MOD;
 		val = add_val;
 	}
 /*

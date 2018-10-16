@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ld.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:47:46 by mint              #+#    #+#             */
-/*   Updated: 2018/10/13 18:35:37 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/16 17:48:42 by mint             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ BOOL	ft_ld(t_vm *vm, t_process *process)
 	int				add_val;
 	int				val;
 
-	if (process->curent_instruction.vale_arg[0])
+	if (process->curent_instruction.vale_arg[0] == 0)
 		process->carry = 1;
 	else
 		process->carry = 0;
@@ -34,7 +34,7 @@ BOOL	ft_ld(t_vm *vm, t_process *process)
 */
 	if (process->curent_instruction.type_arg[0] == IND_CODE)
 	{
-		add_val = (process->curent_instruction.vale_arg[0] + process->curent_pc);
+		add_val = process->curent_pc + (process->curent_instruction.vale_arg[0] % IDX_MOD);
 		tab[0] = vm->mem[(add_val + 0) % MEM_SIZE][MEM_SRC];
 		tab[1] = vm->mem[(add_val + 1) % MEM_SIZE][MEM_SRC];
 		tab[2] = vm->mem[(add_val + 2) % MEM_SIZE][MEM_SRC];
@@ -49,7 +49,7 @@ BOOL	ft_ld(t_vm *vm, t_process *process)
 	}
 	else
 	{
-		add_val = process->curent_instruction.vale_arg[0] % MEM_SIZE;
+		add_val = process->curent_instruction.vale_arg[0] % IDX_MOD;
 		val = add_val;
 	}
 /*

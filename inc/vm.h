@@ -107,7 +107,7 @@ typedef struct			s_vm
 	int 				check;						// pou check
 	int 				time;                      // va1-1 cycle to die
 /**/
-	int					id_last_a_live;		///
+	int					id_last_a_live;		/// pour recuperer l\id de champion gagnant
 }						t_vm;
 
 typedef struct			s_opr_exe

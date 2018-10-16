@@ -65,17 +65,17 @@
 
 
 
-ldi	3,%4,r2
-st	r2,64
+#ldi	3,%4,r2
+#st	r2,64
 
-add r2,r3,r4
+#add r2,r3,r4
 
-zjmp %12
+#zjmp %12
 
-ldi	9,%50,r2
-st	r1,64
+#ldi	9,%50,r2
+#st	r1,64
 
-zjmp %32
+#zjmp %32
 
 
 
@@ -88,6 +88,58 @@ zjmp %32
 #ldi	,%2,r2
 #ldi	,%3,r2
 
+#st	r1,64
 
-and r2,r3,r4
+#add r2,r3,r4
+
+
+#zjmp %-32
+#ld	8,r2
+#zjmp %-64
+#ld  9,r3
+#zjmp %-64
+
+
+#st	r3,64
+#st	r2,64
+
+
+#zjmp %-32
+#ldi	r2,r3,r2
+zjmp %-64
+#ldi  1,r3
+zjmp %-64
+
+ld  9,r2
+ld  5,r3
+
+#add r2,r3,r4
+#and r2,r3,r4
+or r2,r3,r4
+
+st	r4,64
+
+
+#ld	10,r2
+#st	r2,64
+#ld	1,r3
+#st	r3,64
+
+
+#ldi	r2,%0,r7
+#ldi	r2,%1,r7
+#ldi	r2,%2,r7
+#ldi	r2,%3,r7ldi	r2,%4,r7
+#ldi	r2,%4,r7
+#ldi	r2,%5,r7
+#ldi	r2,%0,r7
+
+#st	r7,64
+#zjmp %-64
+#zjmp %-64
+#zjmp %-64
+#zjmp %-64
+#zjmp %-64
+#zjmp %-64
+#zjmp %-64
 

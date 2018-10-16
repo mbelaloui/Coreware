@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_manage_url.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 13:39:32 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/03 15:32:47 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/16 16:32:01 by mint             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,15 @@ char	*ft_manage_url(char *url)
 	if (ft_matlen(temp) != 2 || ft_strcmp(temp[1], FORMAT_INPUT))
 		ft_error_param(ERROR_WRONG_FORMAT_FILE, url);
 
-/*	ft_free_mat(&temp);
+	ft_free_mat(&temp);
 	temp = ft_strsplit(url, '.');
 	url_output = ft_strjoin(temp[0], FORMAT_OUTPUT);
 	ft_strdel(&file_name);
 	ft_free_mat(&temp);
 	return (url_output);
-*/
-	temp = ft_strsplit(file_name, '.');
+
+/*	temp = ft_strsplit(file_name, '.');
 	url_output = ft_strjoin(temp[0], FORMAT_OUTPUT);
 	return (url_output);
-
+*/
 }
