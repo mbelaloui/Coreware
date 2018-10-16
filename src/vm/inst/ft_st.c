@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_st.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:47:46 by mint              #+#    #+#             */
-/*   Updated: 2018/10/13 14:43:26 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/16 01:01:19 by mint             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ BOOL	ft_st(t_vm *vm, t_process *process)
 			pt++;
 		}
 	}
+	free(tab);
+		(void) vm;
 	return (T);
 }
 

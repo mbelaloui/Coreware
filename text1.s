@@ -73,12 +73,9 @@ add r2,r3,r4
 zjmp %12
 
 ldi	9,%50,r2
-st	r2,64
+st	r1,64
 
 zjmp %32
-
-
-
 
 
 

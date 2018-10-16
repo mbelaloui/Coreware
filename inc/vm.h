@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/16 11:22:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/15 11:34:57 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/16 10:40:23 by mint             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,15 @@ typedef struct			s_vm
 	int					dump;
 	int					mem[MEM_SIZE][2];
 	t_champ				*champs;
-	int					live[MAX_PLAYERS];	// pour l'affichage
+	int					live[MAX_PLAYERS];	// pour l'affichage de nbr_live / process 
+	int					time_last_live[MAX_PLAYERS];	// pour l'affichage de last_live pour chaque champ
+/**/
+	int					nbr_processus[MAX_PLAYERS];	// calcule du process  / nbr_process <nbr processus pour chaque joueur>
+	int 				cycle_to_die;				// va1-2 cycle to die
+	int					time_total;					//pour cycle
+	int 				check;						// pou check
+	int 				time;                      // va1-1 cycle to die
+/**/
 	int					id_last_a_live;		///
 }						t_vm;
 

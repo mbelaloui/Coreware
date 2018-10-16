@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fight.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 10:30:18 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/15 14:00:45 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/16 10:25:27 by mint             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,7 @@ BOOL		execution(t_vm *vm, t_process *process)
 		&& process->curent_instruction.id_opr <= NBR_OP)
 		{
 			ft_init_tab_instruction(action_instructions);//mettre en dehors de cette fonction un peut plus en avant
-			action_instructions[process->curent_instruction.id_opr]
-(vm, process);
+			action_instructions[process->curent_instruction.id_opr](vm, process);
 		}
 /*
 		else
@@ -120,41 +119,41 @@ static void run_cycle(t_vm *vm, t_process *list_process, t_op *op_tab[NBR_OP])
 void		ft_fight(t_vm *vm, t_process *list_process)
 {
 	t_op	*op_tab[NBR_OP];
-	int 	cycle_to_die;
+/*	int 	cycle_to_die;
 	int		time_total;
 	int 	check;
 	int 	time;
-
+*/
 	ft_get_op_tab(op_tab);
-	cycle_to_die = CYCLE_TO_DIE;
-	time_total = 0;
-	check = 1;
-	while (cycle_to_die > 0)
+	vm->cycle_to_die = CYCLE_TO_DIE;// mettre dans la structure vm 
+	vm->time_total = 0;				// aussi 								cycle 
+	vm->check = 1;
+	while (vm->cycle_to_die > 0)
 	{
-		time = 0;
-		while (time < cycle_to_die)
+		vm->time = 0;
+		while (vm->time < vm->cycle_to_die)
 		{
 
-		if (time_total + time++ == vm->dump)
+		if (vm->time_total + vm->time++ == vm->dump)
 				ft_dump(vm);
 
-	ft_printf("\n\nn\n\n{green}dump = %d     time = %d{eoc}\n\n\n", vm->dump ,time_total + time  );
+//	ft_printf("\n\nn\n\n{green}dump = %d     time = %d{eoc}\n\n\n", vm->dump ,time_total + time  );
 
 			run_cycle(vm, list_process, op_tab);
 
 		}
-		time_total += time;
+		vm->time_total += vm->time;
 		if (!ft_check_survivor(list_process, vm))
 			ft_put_winer(vm);
 		if (ft_get_total_live(list_process) >= NBR_LIVE)
-			cycle_to_die =- CYCLE_DELTA;
-		if (check == MAX_CHECKS)
+			vm->cycle_to_die =- CYCLE_DELTA;
+		if (vm->check == MAX_CHECKS)
 		{
-			cycle_to_die -= CYCLE_DELTA;
-			check = 1;
+			vm->cycle_to_die -= CYCLE_DELTA;
+			vm->check = 1;
 		}
 		else
-			check++;
+			vm->check++;
 	}
 	ft_free_optab(op_tab);
 }

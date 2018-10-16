@@ -6,7 +6,7 @@
 #    By: mint <mint@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/16 12:33:04 by mbelalou          #+#    #+#              #
-#    Updated: 2018/10/12 13:20:40 by mint             ###   ########.fr        #
+#    Updated: 2018/10/16 00:59:11 by mint             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -198,16 +198,16 @@ all					: $(NAME_ASM) $(NAME_VM)
 
 $(NAME_ASM)			: $(LIBFT) $(OBJS_DIR_ASM) $(OBJS_ASM)
 	@#echo $(OBJS_ASM)
-	@#gcc $(OBJS_ASM) -L $(LIBFT_DIR) -lft -fsanitize=address -o $(NAME_ASM)
-	@gcc $(OBJS_ASM) -L $(LIBFT_DIR) -lft -o $(NAME_ASM)
+	@gcc $(OBJS_ASM) -L $(LIBFT_DIR) -lft -fsanitize=address -o $(NAME_ASM)
+	@#gcc $(OBJS_ASM) -L $(LIBFT_DIR) -lft -o $(NAME_ASM)
 	@echo "$(GREEN)$(ASM) has been successfully created !$(WHITE)."
 	# -fsanitize=address
 	@#say "$(ASM) has been successfully created !"
 
 $(NAME_VM)			: $(LIBFT) $(OBJS_DIR_VM) $(OBJS_VM)
 	@#echo $(OBJS_VM)
-	@gcc $(OBJS_VM) -L $(LIBFT_DIR) -lft -o $(NAME_VM)
-	@#gcc $(OBJS_VM) -L $(LIBFT_DIR) -lft -fsanitize=address -o $(NAME_VM)
+	@#gcc $(OBJS_VM) -L $(LIBFT_DIR) -lft -o $(NAME_VM)
+	@gcc $(OBJS_VM) -L $(LIBFT_DIR) -lft -fsanitize=address -o $(NAME_VM)
 	@echo "$(GREEN)$(NAME_VM_CORE) has been successfully created !$(WHITE)."
 	# -fsanitize=address
 	@#say "$(NAME_VM_CORE) has been successfully created !"
