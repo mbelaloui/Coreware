@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fork.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:46:46 by mint              #+#    #+#             */
-/*   Updated: 2018/10/17 08:47:48 by mint             ###   ########.fr       */
+/*   Updated: 2018/10/17 11:58:43 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,19 +59,20 @@ t_process	*ft_copie_process(int add_start, t_process *process)
 
 BOOL	ft_fork(t_vm *vm, t_process *process)
 {
-
+/*
 	t_process	*new_process;
 
 	int new_pc = process->curent_instruction.vale_arg[0] + process->curent_pc % MEM_SIZE;  // % IDX_MOD 
 
 	ft_copie_process(new_pc, process);
-
+*/
 //	ft_add_process(new_pc, vm->list_process);
 /*	t_op	*op_tab[NBR_OP];
 
 	ft_get_op_tab(op_tab);
 	ft_put_opr_exe(&(process->curent_instruction), op_tab);
 */	(void) vm;
+	(void) process;
 //	ft_free_optab(op_tab);
 	return (T);
 }
