@@ -129,8 +129,8 @@
 #ldi	r2,%5,r7
 #ldi	r2,%0,r7
 
-ld  %0,r3
-ld  %0,r2
+#ld  %0,r3
+#ld  %0,r2
 
 #add r2,r3,r4
 #and r2,r3,r4
@@ -138,10 +138,32 @@ ld  %0,r2
 #sub r2,r3,r4
 #xor r2,r3,r4
 
-st	r3,64
-st	r2,64
-st	r4,64
-zjmp %512
+
+ldi %6,%1,r1
+zjmp %64
+st	r1,-64
+
+fork	%512
+
+#ldi 9,%1,r1
+#zjmp %64
+#st	r1,-64
+
+#ldi %64,%0,r1
+#st	r1,64
+#zjmp %64
+
+#lld -2,r1
+#st	r1,64
+#zjmp %64
+
+#lld %12,r1
+#st	r1,64
+#zjmp %64
+
+#st	r2,64
+#st	r3,64
+#st	r4,64
 #zjmp %-64
 #zjmp %-64
 #zjmp %-64

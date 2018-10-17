@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mint <mint@student.42.fr>                  +#+  +:+       +#+         #
+#    By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/16 12:33:04 by mbelalou          #+#    #+#              #
-#    Updated: 2018/10/16 00:59:11 by mint             ###   ########.fr        #
+#    Updated: 2018/10/17 19:58:14 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ SRC_INST_VM			= ft_add.c ft_and.c ft_ld.c ft_ldi.c ft_lld.c ft_null.c\
 					  ft_sti.c ft_xor.c ft_add_vm_instlist.c ft_fork.c\
 					  ft_lfork.c ft_lldi.c ft_or.c ft_str_to_list_inst.c\
 					  ft_zjmp.c ft_aff.c ft_init_tab_instruction.c ft_live.c\
-					  ft_new_vm_inst.c ft_st.c ft_sub.c
+					  ft_new_vm_inst.c ft_st.c ft_sub.c ft_read_indirect.c
 SRCS_INST_VM		= $(addprefix $(DIR_INST_VM)/, $(SRC_INST_VM))
 
 DIR_PRINTING_VM		= vm/printing
@@ -67,7 +67,7 @@ DIR_PROCESS_VM		= vm/process
 SRC_PROCESS_VM		= ft_add_process.c ft_dell_list_process.c ft_init_process.c\
 					ft_new_process.c ft_put_process.c ft_get_next_instuction.c\
 					ft_process_desc_ok.c ft_process_desc_ko.c\
-					ft_get_total_live.c ft_check_survivor.c
+					ft_get_total_live.c ft_check_survivor.c ft_copie_process.c
 SRCS_PROCESS_VM		= $(addprefix $(DIR_PROCESS_VM)/, $(SRC_PROCESS_VM))
 
 DIR_OPR_VM			= vm/opr

@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:47:46 by mint              #+#    #+#             */
-/*   Updated: 2018/10/17 13:24:23 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/17 20:36:33 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*
 ** ************************************************************************* **
-**
+** voir leaks
 ** ************************************************************************* **
 */
 
@@ -31,10 +31,10 @@ BOOL	ft_st(t_vm *vm, t_process *process)
 	reg_src = process->reg[id_reg_src];
 	if (process->curent_instruction.type_arg[1] == REG_CODE)
 		process->reg[process->curent_instruction.vale_arg[1]] = reg_src;
-	else
+	else if (process->curent_instruction.type_arg[1] == IND_CODE)
 	{
 		tab = ft_int_to_byts((unsigned)reg_src, DIR_SIZE);
-		pt = (process->pc + (process->curent_instruction.vale_arg[1] % IDX_MOD)
+		pt = (process->pc + (process->curent_instruction.vale_arg[1])
 		- (DIR_SIZE) - 1) % MEM_SIZE;
 		max_print = pt + DIR_SIZE;
 		while (pt < max_print)

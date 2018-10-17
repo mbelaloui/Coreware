@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sti.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:46:50 by mint              #+#    #+#             */
-/*   Updated: 2018/10/17 08:49:12 by mint             ###   ########.fr       */
+/*   Updated: 2018/10/17 20:53:30 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,50 @@
 
 /*
 ** ************************************************************************* **
-**
+**  a tester
 ** ************************************************************************* **
 */
 
+static int	get_val_arg2(t_vm *vm, t_process *process, int param2)
+{
+	int ret;
+
+	ret = param2;
+	if (process->curent_instruction.type_arg[0] == REG_CODE)
+		ret = process->reg[param2 - 1];
+	else if (process->curent_instruction.type_arg[0] == IND_CODE)
+		ret = ft_read_indirect(vm, param2 % IDX_MOD);
+	else if (process->curent_instruction.type_arg[0] == DIR_CODE)
+		ret = process->curent_instruction.vale_arg[0];
+	return (ret);
+}
+
+static int	get_val_arg3(t_process *process, int param3)
+{
+	int ret;
+
+	ret = param3;
+	if (process->curent_instruction.type_arg[1] == REG_CODE)
+		ret = process->reg[param3 - 1];
+	else if (process->curent_instruction.type_arg[1] == DIR_CODE)
+		ret = process->curent_instruction.vale_arg[1];
+	return (ret);
+}
+
 BOOL	ft_sti(t_vm *vm, t_process *process)
 {
-	int val_reg;
-	int val_add;
+	int param1;
+	int param2;
+	int param3;
+	int add;
 
-	val_reg = process->curent_instruction.vale_arg[0];
-	val_add = process->curent_instruction.vale_arg[1] + process->curent_instruction.vale_arg[2];
-
-	vm->mem[val_add % MEM_SIZE][MEM_SRC] = val_reg;	
-	if (val_add)
-		process->carry = 0;
-	else
-		process->carry = 1;
-
-//	ft_get_op_tab(op_tab);
-//	ft_put_opr_exe(&(process->curent_instruction), op_tab);
-//	(void) vm;
-//	ft_free_optab(op_tab);
+	param1 = process->curent_instruction.vale_arg[0];
+	param2 = get_val_arg2(vm, process, process->curent_instruction.vale_arg[1])
+	% IDX_MOD;
+	param3 = get_val_arg3(process, process->curent_instruction.vale_arg[2])
+	% IDX_MOD;
+	add = param2 + param3 % IDX_MOD;
+	vm->mem[add % MEM_SIZE][MEM_SRC] = param1;
+//	process->carry = (add) ? F : T;
 	return (T);
 }

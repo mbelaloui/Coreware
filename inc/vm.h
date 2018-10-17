@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/16 11:22:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/17 08:49:02 by mint             ###   ########.fr       */
+/*   Updated: 2018/10/17 20:48:21 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,8 @@ typedef struct			s_vm
 	int 				time;                      // va1-1 cycle to die
 /**/
 	int					id_last_a_live;		/// pour recuperer l\id de champion gagnant
-//	t_process			*head_list_process;  a terminer
+	t_process			*head_list_process; // a terminer
+	t_op				*op_tab[NBR_OP];
 
 }						t_vm;
 
@@ -147,7 +148,7 @@ void					ft_init_vm(t_vm *vm, t_url_file *url_champ,
 	t_vm_option op_vm);
 void					ft_put_vm(t_vm *vm);
 BOOL					ft_dell_vm(t_vm *vm);
-void					ft_fight(t_vm *vm, t_process *list_process);
+void					ft_fight(t_vm *vm);
 
 void					ft_error_reading_file(int error);
 void					ft_error_param_vm(int error, char *param);
@@ -209,11 +210,11 @@ t_url_file				*ft_new_url_file(int num, char *url);
 int						ft_get_prev_num_urlfile(t_url_file *list);
 BOOL					ft_existe_num(int num, t_url_file *list);
 int						ft_size_url_champ(t_url_file *list);
-
+int						ft_read_indirect(t_vm *vm, int add_val);
 /*
 ** a
 */
-
+t_process				*ft_copie_process(int add_start, t_process *process);
 t_process				*ft_new_process(int id_parent, int add_start);
 BOOL					ft_add_process(t_process *proces, t_process **list);
 t_process				*ft_init_process(t_vm vm);

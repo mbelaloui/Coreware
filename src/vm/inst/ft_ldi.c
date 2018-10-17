@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ldi.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:46:53 by mint              #+#    #+#             */
-/*   Updated: 2018/10/17 08:39:59 by mint             ###   ########.fr       */
+/*   Updated: 2018/10/17 20:53:03 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,52 +14,50 @@
 
 /*
 ** ************************************************************************* **
-**
+** a tester
 ** ************************************************************************* **
 */
 
-BOOL	ft_ldi(t_vm *vm, t_process *process)
+static int	get_val_arg1(t_vm *vm, t_process *process, int param1)
 {
-	int val_arg_1;
+	int ret;
 
+	ret = param1;
 	if (process->curent_instruction.type_arg[0] == REG_CODE)
-		val_arg_1 = process->reg[process->curent_instruction.vale_arg[0] - 1];
-	else
-		val_arg_1 = process->curent_instruction.vale_arg[0];
-	int val_arg_2 = process->curent_instruction.vale_arg[1];
-	int id_reg = process->curent_instruction.vale_arg[2] - 1;
-	int pt;
-	unsigned char	tab[DIR_SIZE];
-	int				max_read;
-	
-	pt = (((process->curent_pc + (val_arg_1 % IDX_MOD))) + val_arg_2) % IDX_MOD;
+		ret = process->reg[param1 - 1];
+	else if (process->curent_instruction.type_arg[0] == IND_CODE)
+		ret = ft_read_indirect(vm, param1 % IDX_MOD);
+	else if (process->curent_instruction.type_arg[0] == DIR_CODE)
+		ret = process->curent_instruction.vale_arg[0];
+	return (ret);
+}
 
+static int	get_val_arg2(t_process *process, int param2)
+{
+	int ret;
 
-	ft_printf(" pt = %d arg 1 = %d   arg 2 = %d  \n",pt, val_arg_1, val_arg_2);
-/*	exit(0);
-*/
-	if (((val_arg_1 % IDX_MOD) + val_arg_2) >= REG_NUMBER)
-	{
-		process->reg[id_reg] = 0;	
-	}
-	else
-	{
-	if (val_arg_1 % IDX_MOD)
-		pt = (pt - 1) % IDX_MOD;
-	pt = (pt - 1) % IDX_MOD;
-	max_read = (pt + DIR_SIZE);
-	while (pt < max_read)
-	{
-		tab[DIR_SIZE - (max_read - pt)] = vm->mem[pt % MEM_SIZE][MEM_SRC];
-		vm->mem[pt % MEM_SIZE][MEM_DESC] = process->id_parent;
-		pt = (pt + 1);
-	}
-		process->reg[id_reg] = ft_byts_to_int(tab);
-	}
-	
-	if (process->reg[id_reg])
-		process->carry = 0;
-	else
-		process->carry = 1;
+	ret = param2;
+	if (process->curent_instruction.type_arg[1] == REG_CODE)
+		ret = process->reg[param2 - 1];
+	else if (process->curent_instruction.type_arg[1] == DIR_CODE)
+		ret = process->curent_instruction.vale_arg[1];
+	return (ret);
+}
+
+BOOL		ft_ldi(t_vm *vm, t_process *process)
+{
+	int param1;
+	int param2;
+	int id_reg_dest;
+	int add;
+
+	param1 = get_val_arg1(vm, process,
+	process->curent_instruction.vale_arg[0]) % IDX_MOD;
+	param2 = get_val_arg2(process,
+	process->curent_instruction.vale_arg[1]) % IDX_MOD;
+	id_reg_dest = process->curent_instruction.vale_arg[2] - 1;
+	add = (process->curent_pc + (param1 + param2) % IDX_MOD) % MEM_SIZE;
+	process->reg[id_reg_dest] = ft_read_indirect(vm, add);
+	//process->carry = (process->reg[id_reg_dest]) ? F : T;
 	return (T);
 }

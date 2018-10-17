@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_survivor.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:34:46 by mint              #+#    #+#             */
-/*   Updated: 2018/10/12 11:56:02 by mint             ###   ########.fr       */
+/*   Updated: 2018/10/17 21:38:21 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ BOOL	ft_check_survivor(t_process *list_process, t_vm *vm)
 		{
 			ft_rest_color(vm, list_process);
 			list_process->a_live = F;
-			ft_temporize(15);
+		//	ft_temporize(15);
 			ft_put_mem(vm->mem);
 			id_process--;
 		}
@@ -44,6 +44,8 @@ BOOL	ft_check_survivor(t_process *list_process, t_vm *vm)
 			id_process++;
 		}
 		list_process = list_process->next;
+//		ft_printf("   life   [%d]", list_process->nbr_live);
+//		exit(0);
 	}
 	return (T);
 	//	id_process a la fin doit etre == a la taill de la list_process

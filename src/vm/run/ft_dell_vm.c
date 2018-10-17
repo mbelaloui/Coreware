@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 11:56:32 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/08 10:04:03 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/17 20:49:02 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ BOOL	ft_dell_vm(t_vm *vm)
 		ft_dell_champ(&(to_dell));
 		pt++;
 	}
+	ft_free_optab(vm->op_tab);
 	return (T);
 }

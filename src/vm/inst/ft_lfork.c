@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lfork.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:46:20 by mint              #+#    #+#             */
-/*   Updated: 2018/10/12 11:51:45 by mint             ###   ########.fr       */
+/*   Updated: 2018/10/17 20:16:41 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,19 @@
 
 /*
 ** ************************************************************************* **
-**
+** fonction a tester 
 ** ************************************************************************* **
 */
 
 BOOL	ft_lfork(t_vm *vm, t_process *process)
 {
-	t_op	*op_tab[NBR_OP];
+	t_process	*new_process;
+	int			new_pc;
+	int			arg;
 
-	ft_get_op_tab(op_tab);
-	ft_put_opr_exe(&(process->curent_instruction), op_tab);
-	(void) vm;
-	ft_free_optab(op_tab);
+	arg = process->curent_instruction.vale_arg[0];
+	new_pc = arg + process->curent_pc % MEM_SIZE;
+	new_process = ft_copie_process(new_pc, process);
+	ft_add_process(new_process, &(vm->head_list_process));
 	return (T);
 }

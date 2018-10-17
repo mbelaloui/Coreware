@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:47:05 by mint              #+#    #+#             */
-/*   Updated: 2018/10/17 13:47:29 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/17 20:45:37 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 BOOL	ft_zjmp(t_vm *vm, t_process *process)
 {
-	int				val;
+	int		val;
 
 	val = process->curent_instruction.vale_arg[0] % IDX_MOD;
 	if (process->carry)

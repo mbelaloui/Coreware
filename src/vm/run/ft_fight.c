@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fight.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 10:30:18 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/16 10:25:27 by mint             ###   ########.fr       */
+/*   Updated: 2018/10/17 20:50:17 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,10 @@ BOOL		execution(t_vm *vm, t_process *process)
 static void run_cycle(t_vm *vm, t_process *list_process, t_op *op_tab[NBR_OP])
 {
 	BOOL	live;
-	
 
 	live = F;
 	while (list_process)
 	{
-//		ft_printf("pc = %d         ", list_process->pc);
 		if (list_process->a_live)
 		{
 			live = T;
@@ -95,9 +93,8 @@ static void run_cycle(t_vm *vm, t_process *list_process, t_op *op_tab[NBR_OP])
 				list_process->time_to_exe--;
 			else
 			{
-				if(list_process->curent_instruction.id_opr != -1) 
+				if (list_process->curent_instruction.id_opr != -1)
 				{
-			//		ft_printf("{green}\n\n icicic \n\n {eoc}");
 					ft_rest_color(vm, list_process);
 					execution(vm, list_process);//can be used to kill the process if i get process id_opr == 0 ==> kill
 				}
@@ -112,37 +109,25 @@ static void run_cycle(t_vm *vm, t_process *list_process, t_op *op_tab[NBR_OP])
 	}
 	if (!live)
 		ft_put_winer(vm);
-	
 	ft_put_mem(vm->mem);
 }
 
-void		ft_fight(t_vm *vm, t_process *list_process)
+void		ft_fight(t_vm *vm)
 {
-	t_op	*op_tab[NBR_OP];
-
-	ft_get_op_tab(op_tab);
-	vm->cycle_to_die = CYCLE_TO_DIE;// mettre dans la structure vm 
-	vm->time_total = 0;				// aussi 								cycle 
-	vm->check = 1;
 	while (vm->cycle_to_die > 0)
 	{
 		vm->time = 0;
 		while (vm->time < vm->cycle_to_die)
 		{
-
-		if (vm->time_total + vm->time++ == vm->dump)
+			if (vm->time_total + vm->time++ == vm->dump)
 				ft_dump(vm);
-
-//	ft_printf("\n\nn\n\n{green}dump = %d     time = %d{eoc}\n\n\n", vm->dump ,time_total + time  );
-
-			run_cycle(vm, list_process, op_tab);
-
+			run_cycle(vm, vm->head_list_process, vm->op_tab);
 		}
 		vm->time_total += vm->time;
-		if (!ft_check_survivor(list_process, vm))
+		if (!ft_check_survivor(vm->head_list_process, vm))
 			ft_put_winer(vm);
-		if (ft_get_total_live(list_process) >= NBR_LIVE)
-			vm->cycle_to_die =- CYCLE_DELTA;
+		if (ft_get_total_live(vm->head_list_process) >= NBR_LIVE)
+			vm->cycle_to_die -= CYCLE_DELTA;
 		if (vm->check == MAX_CHECKS)
 		{
 			vm->cycle_to_die -= CYCLE_DELTA;
@@ -151,5 +136,4 @@ void		ft_fight(t_vm *vm, t_process *list_process)
 		else
 			vm->check++;
 	}
-	ft_free_optab(op_tab);
 }
