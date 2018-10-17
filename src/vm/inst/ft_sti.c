@@ -6,7 +6,7 @@
 /*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:46:50 by mint              #+#    #+#             */
-/*   Updated: 2018/10/12 14:03:59 by mint             ###   ########.fr       */
+/*   Updated: 2018/10/17 08:49:12 by mint             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ BOOL	ft_sti(t_vm *vm, t_process *process)
 	int val_add;
 
 	val_reg = process->curent_instruction.vale_arg[0];
-	val_add = process->curent_instruction.vale_arg[1] +process->curent_instruction.vale_arg[2] % MEM_SIZE;
+	val_add = process->curent_instruction.vale_arg[1] + process->curent_instruction.vale_arg[2];
 
-	vm->mem[val_add][MEM_SRC] = val_reg;	
+	vm->mem[val_add % MEM_SIZE][MEM_SRC] = val_reg;	
 	if (val_add)
 		process->carry = 0;
 	else

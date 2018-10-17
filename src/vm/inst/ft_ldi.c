@@ -6,7 +6,7 @@
 /*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:46:53 by mint              #+#    #+#             */
-/*   Updated: 2018/10/16 17:44:51 by mint             ###   ########.fr       */
+/*   Updated: 2018/10/17 08:39:59 by mint             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,13 @@ BOOL	ft_ldi(t_vm *vm, t_process *process)
 	max_read = (pt + DIR_SIZE);
 	while (pt < max_read)
 	{
-		tab[DIR_SIZE - (max_read - pt)] = vm->mem[pt][MEM_SRC];
-		vm->mem[pt][MEM_DESC] = process->id_parent;
+		tab[DIR_SIZE - (max_read - pt)] = vm->mem[pt % MEM_SIZE][MEM_SRC];
+		vm->mem[pt % MEM_SIZE][MEM_DESC] = process->id_parent;
 		pt = (pt + 1);
 	}
-	process->reg[id_reg] = ft_byts_to_int(tab);
+		process->reg[id_reg] = ft_byts_to_int(tab);
 	}
+	
 	if (process->reg[id_reg])
 		process->carry = 0;
 	else

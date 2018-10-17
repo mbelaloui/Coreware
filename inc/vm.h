@@ -6,7 +6,7 @@
 /*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/16 11:22:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/16 10:40:23 by mint             ###   ########.fr       */
+/*   Updated: 2018/10/17 08:49:02 by mint             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,24 +92,6 @@ typedef struct			s_url_file
 	struct s_url_file	*next;
 }						t_url_file;
 
-typedef struct			s_vm
-{
-	int					nbr_champ;
-	int					dump;
-	int					mem[MEM_SIZE][2];
-	t_champ				*champs;
-	int					live[MAX_PLAYERS];	// pour l'affichage de nbr_live / process 
-	int					time_last_live[MAX_PLAYERS];	// pour l'affichage de last_live pour chaque champ
-/**/
-	int					nbr_processus[MAX_PLAYERS];	// calcule du process  / nbr_process <nbr processus pour chaque joueur>
-	int 				cycle_to_die;				// va1-2 cycle to die
-	int					time_total;					//pour cycle
-	int 				check;						// pou check
-	int 				time;                      // va1-1 cycle to die
-/**/
-	int					id_last_a_live;		/// pour recuperer l\id de champion gagnant
-}						t_vm;
-
 typedef struct			s_opr_exe
 {
 	int					id_opr;
@@ -133,6 +115,29 @@ typedef struct			s_process
 	BOOL				a_live; //tempt enlever plus tard apres avoir fait en sort de free les process mort
 	struct s_process	*next;
 }						t_process;
+
+
+
+typedef struct			s_vm
+{
+	int					nbr_champ;
+	int					dump;
+	int					mem[MEM_SIZE][2];
+	t_champ				*champs;
+	int					live[MAX_PLAYERS];	// pour l'affichage de nbr_live / process 
+	int					time_last_live[MAX_PLAYERS];	// pour l'affichage de last_live pour chaque champ
+/**/
+	int					nbr_processus[MAX_PLAYERS];	// calcule du process  / nbr_process <nbr processus pour chaque joueur>
+	int 				cycle_to_die;				// va1-2 cycle to die
+	int					time_total;					//pour cycle
+	int 				check;						// pou check
+	int 				time;                      // va1-1 cycle to die
+/**/
+	int					id_last_a_live;		/// pour recuperer l\id de champion gagnant
+//	t_process			*head_list_process;  a terminer
+
+}						t_vm;
+
 
 void					ft_init_vm_option(t_vm_option *op);
 void					ft_put_usage_vm(void);

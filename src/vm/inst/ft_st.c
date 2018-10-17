@@ -6,7 +6,7 @@
 /*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:47:46 by mint              #+#    #+#             */
-/*   Updated: 2018/10/16 01:01:19 by mint             ###   ########.fr       */
+/*   Updated: 2018/10/17 08:41:58 by mint             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ BOOL	ft_st(t_vm *vm, t_process *process)
 		max_print = pt + DIR_SIZE;
 		while (pt < max_print)
 		{
-			vm->mem[pt][MEM_SRC] = tab[DIR_SIZE - (max_print - pt)];
-			vm->mem[pt][MEM_DESC] = process->id_parent;
+			vm->mem[pt % MEM_SIZE][MEM_SRC] = tab[DIR_SIZE - (max_print - pt)];
+			vm->mem[pt % MEM_SIZE][MEM_DESC] = process->id_parent;
 			pt++;
 		}
 	}

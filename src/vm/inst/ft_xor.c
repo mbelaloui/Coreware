@@ -6,7 +6,7 @@
 /*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:47:10 by mint              #+#    #+#             */
-/*   Updated: 2018/10/14 01:29:38 by mint             ###   ########.fr       */
+/*   Updated: 2018/10/17 08:32:31 by mint             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,32 +23,34 @@ BOOL	ft_xor(t_vm *vm, t_process *process)
 	int id_reg_1 = process->curent_instruction.vale_arg[0] - 1;
 	int id_reg_2 = process->curent_instruction.vale_arg[1] - 1;
 	int id_reg_3 = process->curent_instruction.vale_arg[2] - 1;
-	int val_reg1 = process->reg[id_reg_1] ;
-	int val_reg2 = process->reg[id_reg_2] ;
-
+	
+	// is_reg_ok() ??
+	int reg1 = process->reg[id_reg_1] ;
+	int reg2 = process->reg[id_reg_2] ;
+/*
 	int temp_val_res;
 
 
-	temp_val_res = ((val_reg1 & 0xff000000) >> 24) ^ ((val_reg2 & 0xff000000) >> 24);
+	temp_val_res = ((reg1 & 0xff000000) >> 24) ^ ((reg2 & 0xff000000) >> 24);
 
 temp_val_res = temp_val_res << 8;
 
-	temp_val_res = temp_val_res | (((val_reg1 & 0x00ff0000) >> 16) ^ ((val_reg2 & 0x00ff0000) >> 16));
+	temp_val_res = temp_val_res | (((reg1 & 0x00ff0000) >> 16) ^ ((reg2 & 0x00ff0000) >> 16));
 
 temp_val_res = temp_val_res << 8;
 
-	temp_val_res = temp_val_res | (((val_reg1 & 0x0000ff00) >> 8) ^ ((val_reg2 & 0x0000ff00) >> 8));
+	temp_val_res = temp_val_res | (((reg1 & 0x0000ff00) >> 8) ^ ((reg2 & 0x0000ff00) >> 8));
 
 temp_val_res = temp_val_res << 8;
 
-	temp_val_res = temp_val_res | (((val_reg1 & 0x000000ff)) ^ ((val_reg2 & 0x000000ff)));
+	temp_val_res = temp_val_res | (((reg1 & 0x000000ff)) ^ ((reg2 & 0x000000ff)));
 
 	process->reg[id_reg_3] = temp_val_res ;
 
+*/
+	process->reg[id_reg_3] = reg1 ^ reg2;
 
-
-
-	if (temp_val_res)
+	if (process->reg[id_reg_3])
 		process->carry = 0;
 	else
 		process->carry = 1;

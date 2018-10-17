@@ -96,26 +96,30 @@
 #zjmp %-32
 #ld	8,r2
 #zjmp %-64
-#ld  9,r3
+ld  9,r3
 #zjmp %-64
 
 
 #st	r3,64
 #st	r2,64
 
+ld  9,r3
+ld  9,r2
 
-#zjmp %-32
-#ldi	r2,r3,r2
-zjmp %-64
-#ldi  1,r3
-zjmp %-64
+zjmp %64
+ldi	r2,r3,r2
+zjmp %64
+ldi  r2,r3,r2
+zjmp %64
 
 ld  9,r2
 ld  5,r3
 
 #add r2,r3,r4
 #and r2,r3,r4
-or r2,r3,r4
+#or r2,r3,r4
+#sub r2,r3,r4
+xor r2,r3,r4
 
 st	r4,64
 
