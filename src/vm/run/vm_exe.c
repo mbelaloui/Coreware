@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm_exe.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 14:00:03 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/18 15:15:37 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/18 20:20:39 by mint             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ void	ft_put_list_champ(t_champ *list_champ)
 void	run_vm(t_url_file *url_champ, t_vm_option op_vm)
 {
 	t_vm	vm;
-	t_process *list_process;
+//	t_process *list_process;
 
-	list_process = NULL;
+//	list_process = NULL;
 	ft_bzero(&vm, sizeof(vm));
 	ft_init_vm(&vm, url_champ, op_vm);
 	vm.head_list_process = ft_init_process(vm);
-	list_process = vm.head_list_process;
+//	list_process = vm.head_list_process;
 	ft_init_mem(&vm, vm.head_list_process);
 	//condition pour si ont veu voir le visu clasique if (op->blabla)  ou mettere cette action dasn ft_fight
 

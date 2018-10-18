@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fight.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 10:30:18 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/18 19:40:26 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/18 20:22:57 by mint             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ BOOL		execution(t_vm *vm, t_process *process)
 		{
 		//	ft_put_opr_exe(&(process->curent_instruction), vm->op_tab);
 			ft_init_tab_instruction(action_instructions);//mettre en dehors de cette fonction un peut plus en avant
-			action_instructions[process->curent_instruction.id_opr](vm, vm->head_list_process);
+			action_instructions[process->curent_instruction.id_opr](vm, process);
 //			ft_put_opr_exe(&(process->curent_instruction), vm->op_tab);
 
 

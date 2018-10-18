@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_process_desc_ok.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 10:25:55 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/18 18:39:46 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/18 20:22:24 by mint             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	ft_process_desc_ok(t_opr_exe *opr_exe, t_op *op_tab[NBR_OP],
 	t_vm *vm, t_process *process)
 {
 	int temp_pc;
-	int size_inst;
+//	int size_inst;
 	int start;
 
 	start = process->pc;
@@ -115,13 +115,14 @@ int	ft_process_desc_ok(t_opr_exe *opr_exe, t_op *op_tab[NBR_OP],
 	if (!is_valide_desc_arg(vm, opr_exe))
 		return (start);
 	temp_pc = (temp_pc + 1) % MEM_SIZE;
-	size_inst = ft_set_size_arg(opr_exe, op_tab) + 2;
+//	size_inst = ft_set_size_arg(opr_exe, op_tab) + 2;
+	ft_set_size_arg(opr_exe, op_tab);
 
 	//ft_set_color_inst(vm, start, size_inst, process->id_parent);
 	process->pc = ft_set_vale_arg(vm, temp_pc, opr_exe);
 
 	//ft_printf("pc<start> [%d] temp_pc[%d]   \n", start, temp_pc);
 	//ft_put_opr_exe(opr_exe, vm->op_tab);
-
+	(void)op_tab;
 	return (0);
 }
