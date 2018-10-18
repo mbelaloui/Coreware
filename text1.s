@@ -139,11 +139,11 @@
 #xor r2,r3,r4
 
 
-ldi %6,%1,r1
-zjmp %64
-st	r1,-64
+#ldi %6,%1,r1
+#zjmp %64
+#st	r1,-64
 
-fork	%512
+#fork	%512
 
 #ldi 9,%1,r1
 #zjmp %64
@@ -171,4 +171,12 @@ fork	%512
 #zjmp %-64
 #zjmp %-64
 #zjmp %-64
+
+
+st		r1,6
+live	%0
+live	%1
+live	%2
+live	%3
+
 

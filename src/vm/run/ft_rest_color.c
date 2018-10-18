@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:36:11 by mint              #+#    #+#             */
-/*   Updated: 2018/10/13 14:15:31 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/18 19:05:18 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,37 +18,19 @@
 ** ************************************************************************* **
 */
 
-void	ft_rest_color(t_vm *vm, t_process *list_process)
+void	ft_rest_color(t_vm *vm, t_process *process)
 {
-	int			start;
 
-	if (list_process->a_live)
-	{
-		start = list_process->color_start;
-		if (start > list_process->pc)
-			vm->mem[((start - 2) % MEM_SIZE)][MEM_DESC] = NULL_COLOR;
-		else
-		{
-			while (start < list_process->pc)
-			{
-				if (list_process->curent_instruction.id_opr == NULL_COLOR)
-				{
-					if (vm->mem[((start) % MEM_SIZE)][MEM_DESC] == PT_COLOR)
-						vm->mem[((start) % MEM_SIZE)][MEM_DESC] = NULL_COLOR;
-					else
-						vm->mem[start][MEM_DESC] = PT_COLOR;
-				}
-				else
-				{
-					if (vm->mem[((start - 1) % MEM_SIZE)][MEM_DESC] == PT_COLOR)
-						vm->mem[((start - 1) % MEM_SIZE)]
-						[MEM_DESC] = NULL_COLOR;
-					else if (((start - 1) % MEM_SIZE) == -1)
-						vm->mem[(MEM_SIZE - 1)][MEM_DESC] = NULL_COLOR;
-					vm->mem[start][MEM_DESC] = list_process->id_parent;
-				}
-				start++;
-			}
-		}
-	}
+//	ft_printf("process id_parent [%d]   pc [%d]   curent pc [%d]\n", process->id_parent, process->pc, process->curent_pc);
+	if (process->curent_instruction.id_opr != 0)
+		vm->mem[((process->curent_pc) % MEM_SIZE)][MEM_DESC] -= NULL_COLOR;
+	else
+		vm->mem[((process->curent_pc) % MEM_SIZE)][MEM_DESC] -= REVERS_COLOR;
+//		vm->mem[((process->curent_pc) % MEM_SIZE)][MEM_DESC] -= REVERS_COLOR;
+//	else 
+//		
+	
+//	ft_put_mem(vm->mem);
+//	exit(0);
+	(void)vm;
 }

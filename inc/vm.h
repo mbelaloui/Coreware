@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/16 11:22:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/17 20:48:21 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/18 18:39:27 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,28 @@
 **	printing define
 */
 
+# define type_1					0
+# define type_2					1
+
 # define MEM_SRC				0
 # define MEM_DESC				1
 # define MEM_LINE				64
+
 
 # define PLAYER_1				1
 # define PLAYER_2				2
 # define PLAYER_3				3
 # define PLAYER_4				4
 
-# define COLOR_INVERS			MAX_PLAYERS * 2
-# define ACTUAL_ACTION			MAX_PLAYERS * 3
-# define PT_COLOR				17
-# define PT_COLOR_INCERS		18
-# define NULL_COLOR				0
+# define NULL_COLOR				10
+# define REVERS_COLOR			20
+# define PT_COLOR				100				//
+
+
+
+# define COLOR_INVERS			MAX_PLAYERS * 2 //
+# define ACTUAL_ACTION			MAX_PLAYERS * 3 //
+//# define PT_COLOR_INCERS		1				//
 
 /*
 **          struct -h "aide"
@@ -76,8 +84,8 @@ typedef struct			s_vm_inst
 
 typedef struct			s_champ
 {
-	int					num;
-	int					id;
+	int					num;	// for the live stuff
+	int					pos;		// for the printing stuff
 	char				*name;
 	char				*comment;
 	int					size;
@@ -96,22 +104,22 @@ typedef struct			s_opr_exe
 {
 	int					id_opr;
 	int					nbr_param;
-	int					type_arg[3];
+	int					type_arg[3][2];
 	int					size_arg[3];
 	int					vale_arg[3];
 }						t_opr_exe;
 
 typedef struct			s_process
 {
-	int					id_parent;
+	int					id_parent;// pos
 	int					curent_pc;
 	int					pc;
 	BOOL				carry;
-	int					reg[REG_NUMBER];
+	int					reg[REG_NUMBER]; //live_for
 	int					time_to_exe;
 	t_opr_exe			curent_instruction;
 	int					nbr_live;
-	int					color_start;
+//	int					color_start;
 	BOOL				a_live; //tempt enlever plus tard apres avoir fait en sort de free les process mort
 	struct s_process	*next;
 }						t_process;
@@ -182,7 +190,7 @@ t_url_file				*ft_get_id_champ(char **tab);
 
 t_champ					*ft_read_champ_file(int fd, int num,
 		t_op*op_tab[NBR_OP], int pos);
-t_champ					*ft_new_champ(int pos);
+t_champ					*ft_new_champ(int num, int pos);
 void					ft_dell_champ(t_champ **champ);
 void					ft_put_champ(t_champ *champ);
 void					ft_put_raw_src_champ(char *src, int size);
@@ -215,16 +223,16 @@ int						ft_read_indirect(t_vm *vm, int add_val);
 ** a
 */
 t_process				*ft_copie_process(int add_start, t_process *process);
-t_process				*ft_new_process(int id_parent, int add_start);
+t_process				*ft_new_process(int num, int add_start, int pos);
 BOOL					ft_add_process(t_process *proces, t_process **list);
 t_process				*ft_init_process(t_vm vm);
 void					ft_put_process(t_process *process);
 void					ft_dell_list_process(t_process *list_process);
 void					ft_get_next_instuction(t_opr_exe *opr_exe, t_vm *vm,
 	t_process *process, t_op *op_tab[NBR_OP]);
-int		ft_get_total_live(t_process *list_process);
-BOOL	ft_check_survivor(t_process *list_process, t_vm *vm);
-
+//int		ft_get_total_live(t_process *list_process);
+int	ft_check_survivor(t_process *list_process, t_vm *vm);
+t_process				*ft_kill_process(t_process *list_process);
 /*
 ** a
 */

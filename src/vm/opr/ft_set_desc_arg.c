@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 10:23:34 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/11 16:50:07 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/18 17:39:22 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,48 @@
 
 // verifier que la description des arguments par apport a l'operation
 // est bien coherente
+
+static int	get_id_pos_direct(int pos)
+{
+	if (pos == 1)
+		return (T_DIR_P1);
+	else if (pos == 2)
+		return (T_DIR_P2);
+	else
+		return (T_DIR_P3);
+}
+
+static int	get_id_pos_indirect(int pos)
+{
+	if (pos == 1)
+		return (T_IND_P1);
+	else if (pos == 2)
+		return (T_IND_P2);
+	else
+		return (T_IND_P3);
+}
+
+static int	get_id_pos_register(int pos)
+{
+	if (pos == 1)
+		return (T_REG_P1);
+	else if (pos == 2)
+		return (T_REG_P2);
+	else
+		return (T_REG_P3);
+}
+
+int			get_desc_args(int code, int pos)
+{
+	pos++;
+	if (code == REG_CODE)
+		return (get_id_pos_register(pos));
+	else if (code == IND_CODE)
+		return (get_id_pos_indirect(pos));
+	else if (code == DIR_CODE)
+		return (get_id_pos_direct(pos));
+	return (0);
+}
 
 void	ft_set_desc_arg(int ocp, int nbr_param, t_opr_exe *opr_exe)
 {
@@ -25,11 +67,20 @@ void	ft_set_desc_arg(int ocp, int nbr_param, t_opr_exe *opr_exe)
 	{
 		desc = (ocp & MASK_PARAM) >> 6;
 		if (desc == REG_CODE)
-			opr_exe->type_arg[param] = REG_CODE;
+		{
+			opr_exe->type_arg[param][type_1] = get_desc_args(REG_CODE, param);
+			opr_exe->type_arg[param][type_2] = REG_CODE;
+		}
 		else if (desc == IND_CODE)
-			opr_exe->type_arg[param] = IND_CODE;
+		{
+			opr_exe->type_arg[param][type_1] = get_desc_args(IND_CODE, param);
+			opr_exe->type_arg[param][type_2] = IND_CODE;
+		}
 		else if (desc == DIR_CODE)
-			opr_exe->type_arg[param] = DIR_CODE;
+		{
+			opr_exe->type_arg[param][type_1] = get_desc_args(DIR_CODE, param);
+			opr_exe->type_arg[param][type_2] = DIR_CODE;
+		}
 		ocp = ocp << 2;
 		param++;
 	}

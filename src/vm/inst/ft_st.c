@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:47:46 by mint              #+#    #+#             */
-/*   Updated: 2018/10/17 20:36:33 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/18 19:40:24 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,12 @@ BOOL	ft_st(t_vm *vm, t_process *process)
 	int				pt;
 
 	tab = NULL;
+//	ft_printf("pc [%d]    id process [%d]\n", process->pc, process->id_parent);
 	id_reg_src = process->curent_instruction.vale_arg[0] - 1;
 	reg_src = process->reg[id_reg_src];
-	if (process->curent_instruction.type_arg[1] == REG_CODE)
+	if (process->curent_instruction.type_arg[1][type_2] == REG_CODE)
 		process->reg[process->curent_instruction.vale_arg[1]] = reg_src;
-	else if (process->curent_instruction.type_arg[1] == IND_CODE)
+	else if (process->curent_instruction.type_arg[1][type_2] == IND_CODE)
 	{
 		tab = ft_int_to_byts((unsigned)reg_src, DIR_SIZE);
 		pt = (process->pc + (process->curent_instruction.vale_arg[1])
@@ -40,7 +41,7 @@ BOOL	ft_st(t_vm *vm, t_process *process)
 		while (pt < max_print)
 		{
 			vm->mem[pt % MEM_SIZE][MEM_SRC] = tab[DIR_SIZE - (max_print - pt)];
-			vm->mem[pt++ % MEM_SIZE][MEM_DESC] = process->id_parent;
+			vm->mem[pt++ % MEM_SIZE][MEM_DESC] = process->id_parent + NULL_COLOR;
 		}
 		free(tab);
 	}

@@ -6,7 +6,7 @@
 #    By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/16 12:33:04 by mbelalou          #+#    #+#              #
-#    Updated: 2018/10/17 19:58:14 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/10/18 18:53:08 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,8 @@ DIR_PROCESS_VM		= vm/process
 SRC_PROCESS_VM		= ft_add_process.c ft_dell_list_process.c ft_init_process.c\
 					ft_new_process.c ft_put_process.c ft_get_next_instuction.c\
 					ft_process_desc_ok.c ft_process_desc_ko.c\
-					ft_get_total_live.c ft_check_survivor.c ft_copie_process.c
+					ft_check_survivor.c ft_copie_process.c\
+					ft_kill_process.c #ft_get_total_live.c
 SRCS_PROCESS_VM		= $(addprefix $(DIR_PROCESS_VM)/, $(SRC_PROCESS_VM))
 
 DIR_OPR_VM			= vm/opr
@@ -198,16 +199,16 @@ all					: $(NAME_ASM) $(NAME_VM)
 
 $(NAME_ASM)			: $(LIBFT) $(OBJS_DIR_ASM) $(OBJS_ASM)
 	@#echo $(OBJS_ASM)
-	@gcc $(OBJS_ASM) -L $(LIBFT_DIR) -lft -fsanitize=address -o $(NAME_ASM)
-	@#gcc $(OBJS_ASM) -L $(LIBFT_DIR) -lft -o $(NAME_ASM)
+	@#gcc $(OBJS_ASM) -L $(LIBFT_DIR) -lft -fsanitize=address -o $(NAME_ASM)
+	@gcc $(OBJS_ASM) -L $(LIBFT_DIR) -lft -o $(NAME_ASM)
 	@echo "$(GREEN)$(ASM) has been successfully created !$(WHITE)."
 	# -fsanitize=address
 	@#say "$(ASM) has been successfully created !"
 
 $(NAME_VM)			: $(LIBFT) $(OBJS_DIR_VM) $(OBJS_VM)
 	@#echo $(OBJS_VM)
-	@#gcc $(OBJS_VM) -L $(LIBFT_DIR) -lft -o $(NAME_VM)
-	@gcc $(OBJS_VM) -L $(LIBFT_DIR) -lft -fsanitize=address -o $(NAME_VM)
+	@gcc $(OBJS_VM) -L $(LIBFT_DIR) -lft -o $(NAME_VM)
+	@#gcc $(OBJS_VM) -L $(LIBFT_DIR) -lft -fsanitize=address -o $(NAME_VM)
 	@echo "$(GREEN)$(NAME_VM_CORE) has been successfully created !$(WHITE)."
 	# -fsanitize=address
 	@#say "$(NAME_VM_CORE) has been successfully created !"

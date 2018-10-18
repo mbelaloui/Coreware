@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:34:46 by mint              #+#    #+#             */
-/*   Updated: 2018/10/17 21:38:21 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/18 19:07:12 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,35 +18,33 @@
 **	et faire plus tot des free a la palce
 **	ft_printf("process id =%d  pc =%d \n",
 **	list_process->id_parent , list_process->pc);
+**  renvoie le nbr de live fait apres avoir clean la liste des process
 ** ************************************************************************* **
 */
 
-BOOL	ft_check_survivor(t_process *list_process, t_vm *vm)
+int	ft_check_survivor(t_process *list_process, t_vm *vm)
 {
-	int id_process;
+	int total_live;
 
+	//ft_printf("iicicicicic\n\n");
+
+
+	total_live = 0;
 	if (!list_process)
-		return (F);
-	id_process = 0;
+		return (-1);
 	while (list_process)
 	{
+		total_live += list_process->nbr_live;
 		if (!list_process->nbr_live)
 		{
-			ft_rest_color(vm, list_process);
+			ft_rest_color(vm, list_process);///// enlever juste la valeur du pointeur ici de la description de la memeoire
 			list_process->a_live = F;
-		//	ft_temporize(15);
-			ft_put_mem(vm->mem);
-			id_process--;
 		}
 		else
-		{
 			list_process->nbr_live = 0;
-			id_process++;
-		}
 		list_process = list_process->next;
-//		ft_printf("   life   [%d]", list_process->nbr_live);
-//		exit(0);
 	}
-	return (T);
-	//	id_process a la fin doit etre == a la taill de la list_process
+	vm->head_list_process = ft_kill_process(vm->head_list_process);
+//	ft_put_mem(vm->mem);
+	return (total_live);
 }

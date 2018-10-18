@@ -6,52 +6,33 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/08 10:26:43 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/11 17:27:44 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/18 16:18:58 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/vm.h"
 
 static void			put_src_mem(int mem[MEM_SIZE][2], t_vm_inst *list_src,
-	int start, int pos)
+	int pt, int id_color)
 {
 	t_int_list	*src;
-	int			pt;
+//	int			start;
 
-	pt = start;
+//	start = pt;
+	id_color = id_color + NULL_COLOR;
 	while (list_src)
 	{
 		src = list_src->src;
 		while (src)
 		{
 			mem[pt][MEM_SRC] = (unsigned char)src->data;
-			if (pt == start)
-				mem[pt++][MEM_DESC] = pos + ACTUAL_ACTION;
-			else
-				mem[pt++][MEM_DESC] = pos;
+			mem[pt++][MEM_DESC] = id_color;
 			src = src->next;
 		}
 		list_src = list_src->next;
 	}
+//	mem[start][MEM_DESC] = NULL_COLOR + id_color;
 }
-
-/*
-**static t_champ		*ft_invers_list(t_champ *list)
-**{
-**	t_champ *ret;
-**	t_champ *pt;
-**
-**	ret = NULL;
-**	while (list)
-**	{
-**		pt = list;
-**		list = list->next;
-**		pt->next = NULL;
-**		ft_add_end_champ(pt, &ret);
-**	}
-**	return (ret);
-**}
-*/
 
 static t_int_list	*set_pt_start(t_process *list)
 {
@@ -64,6 +45,18 @@ static t_int_list	*set_pt_start(t_process *list)
 		list = list->next;
 	}
 	return (ret);
+}
+
+static void			init_null_desc(t_vm *vm)
+{
+	int pt;
+
+	pt = 0;
+	while (pt < MEM_SIZE)
+	{
+		vm->mem[pt][MEM_DESC] = NULL_COLOR;
+		pt++;
+	}
 }
 
 /*
@@ -83,6 +76,7 @@ void				ft_init_mem(t_vm *vm, t_process *list_process)
 	champ = vm->champs;
 	pos = set_pt_start(list_process);
 	temp_pos = pos;
+	init_null_desc(vm);
 	while (list_process && champ)
 	{
 		put_src_mem(vm->mem, champ->src, pos->data, id_color++);

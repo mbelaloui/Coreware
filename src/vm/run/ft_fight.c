@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 10:30:18 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/17 20:50:17 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/18 19:40:26 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	put_winer(t_champ *winer)
 {
 	ft_printf("{green}/ ****************************************** \\\n{eoc}");
-	ft_printf("/ %-42s \\\n", winer->name);
+	ft_printf("/id champion [%d] %-25s \\\n", winer->num, winer->name);
 	ft_printf("{green}/ ****************************************** \\\n{eoc}");
 	ft_printf("/ %-42s \\\n", winer->comment);
 	ft_printf("{green}/ ****************************************** \\\n{eoc}");
@@ -37,7 +37,7 @@ void	ft_put_winer(t_vm *vm)
 	pt_champ = vm->champs;
 	while (pt_champ)
 	{
-		if (pt_champ->id == vm->id_last_a_live)
+		if (pt_champ->num == vm->id_last_a_live)
 			winer = pt_champ;
 		pt_champ = pt_champ->next;
 	}
@@ -63,57 +63,57 @@ BOOL		execution(t_vm *vm, t_process *process)
 		if (process->curent_instruction.id_opr > 0
 		&& process->curent_instruction.id_opr <= NBR_OP)
 		{
+		//	ft_put_opr_exe(&(process->curent_instruction), vm->op_tab);
 			ft_init_tab_instruction(action_instructions);//mettre en dehors de cette fonction un peut plus en avant
-			action_instructions[process->curent_instruction.id_opr](vm, process);
+			action_instructions[process->curent_instruction.id_opr](vm, vm->head_list_process);
+//			ft_put_opr_exe(&(process->curent_instruction), vm->op_tab);
+
+
+//			ft_put_mem(vm->mem);
+//			exit(0);
+
 		}
-/*
-		else
-		{
-			kill the process :
-			set the process as kiled
-		or
-			free the process
-		}
-*/
 	}
 	return (T);
 }
 
-static void run_cycle(t_vm *vm, t_process *list_process, t_op *op_tab[NBR_OP])
+static void	run_cycle(t_vm *vm, t_process *list_process, t_op *op_tab[NBR_OP])
 {
-	BOOL	live;
+	t_process *process;
 
-	live = F;
-	while (list_process)
-	{
-		if (list_process->a_live)
-		{
-			live = T;
-			if (list_process->time_to_exe > 0)
-				list_process->time_to_exe--;
-			else
-			{
-				if (list_process->curent_instruction.id_opr != -1)
-				{
-					ft_rest_color(vm, list_process);
-					execution(vm, list_process);//can be used to kill the process if i get process id_opr == 0 ==> kill
-				}
-				ft_bzero((&list_process->curent_instruction),
-				sizeof(list_process->curent_instruction));
-				ft_get_next_instuction(&list_process->curent_instruction, vm,
-					list_process, op_tab);
-				list_process->time_to_exe = op_tab[list_process->curent_instruction.id_opr]->cycle;
-			}
-		}
-		list_process = list_process->next;
-	}
-	if (!live)
+	process = list_process;
+	if (!process)
 		ft_put_winer(vm);
+	while (process)
+	{
+	//	ft_printf("pc [%d]    id process [%d]\n", process->pc, process->id_parent);
+
+		if (process->time_to_exe > 0)
+			process->time_to_exe--;
+		else
+		{
+			if (process->curent_instruction.id_opr != -1)
+			{
+				ft_put_opr_exe(&(process->curent_instruction), vm->op_tab);
+
+				ft_rest_color(vm, process);
+				execution(vm, process);
+			}
+			ft_bzero((&process->curent_instruction),
+			sizeof(process->curent_instruction));
+			ft_get_next_instuction(&process->curent_instruction, vm,
+				process, op_tab);
+		}
+		process = process->next;
+	}
+//	exit(0);
 	ft_put_mem(vm->mem);
 }
 
 void		ft_fight(t_vm *vm)
 {
+	int nbr_live_cycl;
+
 	while (vm->cycle_to_die > 0)
 	{
 		vm->time = 0;
@@ -124,9 +124,9 @@ void		ft_fight(t_vm *vm)
 			run_cycle(vm, vm->head_list_process, vm->op_tab);
 		}
 		vm->time_total += vm->time;
-		if (!ft_check_survivor(vm->head_list_process, vm))
+		if ((nbr_live_cycl = ft_check_survivor(vm->head_list_process, vm)) < 0)
 			ft_put_winer(vm);
-		if (ft_get_total_live(vm->head_list_process) >= NBR_LIVE)
+		else if (nbr_live_cycl >= NBR_LIVE)
 			vm->cycle_to_die -= CYCLE_DELTA;
 		if (vm->check == MAX_CHECKS)
 		{
@@ -136,4 +136,5 @@ void		ft_fight(t_vm *vm)
 		else
 			vm->check++;
 	}
+//	ft_printf("hellow\n");
 }

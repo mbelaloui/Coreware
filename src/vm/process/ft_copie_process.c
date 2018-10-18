@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/17 19:17:33 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/17 19:57:33 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/18 18:40:35 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_process	*ft_copie_process(int add_start, t_process *process)
 	ret->curent_instruction.id_opr = -1;
 	copie_reg(ret->reg, process->reg, REG_NUMBER);
 	ret->reg[0] = process->reg[0];
-	ret->color_start = process->color_start;
+	//ret->color_start = process->color_start;
 	ret->nbr_live = 0;
 	ret->a_live = T;
 	ret->next = NULL;
