@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:46:02 by mint              #+#    #+#             */
-/*   Updated: 2018/10/17 20:51:17 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/19 17:28:09 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 BOOL	ft_aff(t_vm *vm, t_process *process)
 {
-	ft_put_opr_exe(&(process->curent_instruction), vm->op_tab);
+	ft_printf("%c", process->curent_instruction.vale_arg[0]);
+	(void)vm;
 	return (T);
 }

@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 10:30:18 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/19 14:56:52 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/19 17:04:01 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ static void	run_cycle(t_vm *vm, t_process *list_process, t_op *op_tab[NBR_OP])
 	}
 	if (vm->op_vm->v)
 		ft_put_mem(vm->mem);
+//		ft_printf("heyyy je suis la \n");
 }
 
 void		ft_fight(t_vm *vm)

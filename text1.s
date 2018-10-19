@@ -173,34 +173,34 @@
 #zjmp %-64
 
 
-fork     %128
+#fork     %128
 
 #lldi	%-10,%-10,r2
 
-st		r2,64
+#st		r2,64
 #ldi		%1,r2
-zjmp	%-64
-st		r1,64
-st		r2,64
-st		r3,64
+#zjmp	%-64
+#st		r1,64
+#st		r2,64
+#st		r3,64
 
 #ld		%0,r2
 #and		r1,r1,r3
 #and		r1,r1,r3
 #or		r1,r1,r3
 ##sub		r1,r2,r3
-xor		r1,r2,r3
-zjmp	%-64
+#xor		r1,r2,r3
+#zjmp	%-64
 
-st		r1,64
-st		r2,64
-st		r3,64
+#st		r1,64
+#st		r2,64
+#st		r3,64
 
 #or		r2,r2,r3
 #sub		r2,r2,r3
-xor		r2,r2,r3
+#xor		r2,r2,r3
 #and		r1,r1,r3
-zjmp	%-64
+#zjmp	%-64
 
 
 #zjmp	%-1024
@@ -212,3 +212,9 @@ zjmp	%-64
 #live	%3
 
 
+st r1,6
+live %4
+#lld -45,r3
+
+#st r3,64
+#fork %64

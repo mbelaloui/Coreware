@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 10:25:55 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/19 14:56:10 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/19 17:14:01 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ static BOOL	is_valide_desc_arg(t_vm *vm, t_opr_exe *opr)
 			opr->id_opr = 0;
 			return (F);
 		}
+		if (opr->type_arg[pt][TYPE_2] == REG_CODE
+		&& opr->vale_arg[pt] > REG_NUMBER)
+			return (F);
 		pt++;
 	}
 	return (T);
