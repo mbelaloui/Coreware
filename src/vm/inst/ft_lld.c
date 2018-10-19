@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:46:42 by mint              #+#    #+#             */
-/*   Updated: 2018/10/18 16:07:41 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/19 12:58:44 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,10 @@ BOOL	ft_lld(t_vm *vm, t_process *process)
 	int				val;
 	int				id_reg;
 
-	val = 0;
 	id_reg = process->curent_instruction.vale_arg[1] - 1;
+	val = process->curent_instruction.vale_arg[0];
 	if (process->curent_instruction.type_arg[0][type_2] == IND_CODE)
 	{
-		val = process->curent_instruction.vale_arg[0];
 		add_val = process->curent_pc + val;
 		tab[0] = (process->curent_instruction.vale_arg[0] == 1) ? -1 : 0;
 		tab[1] = (process->curent_instruction.vale_arg[0] == 1) ? -1 : 0;
@@ -38,10 +37,7 @@ BOOL	ft_lld(t_vm *vm, t_process *process)
 		val = ft_byts_to_int(tab);
 	}
 	else
-	{
-		val = process->curent_instruction.vale_arg[0];
 		process->carry = (!val) ? T : F;
-	}
 	process->reg[id_reg] = val;
 	return (T);
 }

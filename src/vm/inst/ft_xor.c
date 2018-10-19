@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:47:10 by mint              #+#    #+#             */
-/*   Updated: 2018/10/17 20:44:41 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/19 13:05:01 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ BOOL	ft_xor(t_vm *vm, t_process *process)
 	reg1 = process->reg[id_reg_1];
 	reg2 = process->reg[id_reg_2];
 	process->reg[id_reg_3] = reg1 ^ reg2;
-//	process->carry = (process->reg[id_reg_3]) ? F : T;
+	process->carry = (process->reg[id_reg_3]) ? F : T;
 	(void)vm;
 	return (T);
 }

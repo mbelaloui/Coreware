@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:46:53 by mint              #+#    #+#             */
-/*   Updated: 2018/10/18 16:07:22 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/19 11:32:40 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,5 @@ BOOL		ft_ldi(t_vm *vm, t_process *process)
 	id_reg_dest = process->curent_instruction.vale_arg[2] - 1;
 	add = (process->curent_pc + (param1 + param2) % IDX_MOD) % MEM_SIZE;
 	process->reg[id_reg_dest] = ft_read_indirect(vm, add);
-	//process->carry = (process->reg[id_reg_dest]) ? F : T;
 	return (T);
 }

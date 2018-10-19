@@ -20,7 +20,7 @@ entry:	sti r1, %:live, %1
 #		st r3, -206
 
 
-#live:	live %15
+live:	live %15
 #		zjmp %3
 
 #def:	st r2, -270

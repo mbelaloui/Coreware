@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fight.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mint <mint@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 10:30:18 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/18 20:22:57 by mint             ###   ########.fr       */
+/*   Updated: 2018/10/19 13:23:41 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,15 +86,13 @@ static void	run_cycle(t_vm *vm, t_process *list_process, t_op *op_tab[NBR_OP])
 		ft_put_winer(vm);
 	while (process)
 	{
-	//	ft_printf("pc [%d]    id process [%d]\n", process->pc, process->id_parent);
-
 		if (process->time_to_exe > 0)
 			process->time_to_exe--;
 		else
 		{
 			if (process->curent_instruction.id_opr != -1)
 			{
-				ft_put_opr_exe(&(process->curent_instruction), vm->op_tab);
+			//	ft_put_opr_exe(&(process->curent_instruction), vm->op_tab);
 
 				ft_rest_color(vm, process);
 				execution(vm, process);
@@ -107,7 +105,9 @@ static void	run_cycle(t_vm *vm, t_process *list_process, t_op *op_tab[NBR_OP])
 		process = process->next;
 	}
 //	exit(0);
-	ft_put_mem(vm->mem);
+	if (vm->op_vm->v)
+		ft_put_mem(vm->mem);
+
 }
 
 void		ft_fight(t_vm *vm)
@@ -136,5 +136,4 @@ void		ft_fight(t_vm *vm)
 		else
 			vm->check++;
 	}
-//	ft_printf("hellow\n");
 }

@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/16 11:22:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/18 18:39:27 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/19 13:12:00 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ typedef struct			s_vm
 	int					id_last_a_live;		/// pour recuperer l\id de champion gagnant
 	t_process			*head_list_process; // a terminer
 	t_op				*op_tab[NBR_OP];
-
+	t_vm_option			*op_vm;
 }						t_vm;
 
 
@@ -236,7 +236,7 @@ t_process				*ft_kill_process(t_process *list_process);
 /*
 ** a
 */
-
+void					ft_put_to_mem(int add, int val, t_process *process, t_vm *vm);
 void					ft_put_opr_exe(t_opr_exe *opr, t_op *op_tab[NBR_OP]);
 int						ft_get_size_type(int id_opr, int arg,
 	t_op *op_tab[NBR_OP]);
