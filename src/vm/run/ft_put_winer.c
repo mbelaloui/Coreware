@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/19 13:50:17 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/19 13:50:46 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/19 22:46:55 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void		ft_put_winer(t_vm *vm)
 
 	winer = NULL;
 	pt_champ = vm->champs;
+	ft_put_mem(vm->mem);
 	while (pt_champ)
 	{
 		if (pt_champ->num == vm->id_last_a_live)

@@ -68,13 +68,13 @@ car les roles sont deja figées.
 Je Suis le Prédateur, tu est Ma Proie"
 
 begin_coromp2:
-#	st				r1, :stock
+	st				r1, :stock
 	ld				%151068160,r1
 #	st				r1, :begin_coromp2
 	ld				%506,r2
 	ld				%100,r3
 	live			%0
-#	fork            %:corruption_second2
+	fork            %:corruption_second2
 
 corruption_first2:
 	ld				%34144757,r4
@@ -89,8 +89,8 @@ corruption_first2:
 	st				r4,r8
 	st				r4,r9
 	st				r4,r10
-#	st				r6,64
-#	st				r4,64
+#st				r6,64
+#st				r4,64
 	ld				%167685120,r11
 #st	r11,64
 
@@ -102,7 +102,7 @@ corruption_first2:
 	sub             r16, r16, r16
 #st	r16,64
 
-#	zjmp            %:end2
+	zjmp            %:end2
 
 corruption_second2:
 	ld		%190055681,r4
@@ -132,7 +132,7 @@ corruption_second2:
 	ld		%0, r1
 #st	r1,64
 
-#	zjmp	%:end2
+	zjmp	%:end2
 	live	%0
 	live	%0
 	live	%0
@@ -148,7 +148,7 @@ stock:
 	live	%0
 
 rebond:
-#	zjmp	%:atterissage
+	zjmp	%:atterissage
 	aff		r2
 	aff		r2
 	aff		r2
@@ -184,10 +184,10 @@ llll:
 #st	r1,64
 	and		r1,r1,r16
 #st	r16,64
-#	zjmp	%:part2
+	zjmp	%:part2
 
 part1:
-#	fork	%:part3
+	fork	%:part3
 	ld		%190055684, r5
 #st	r5,64
 	ld		%190055684, r9
@@ -198,10 +198,10 @@ part1:
 #st	r10,64
 	sub		r16, r16, r16
 #st	r16,64
-#	zjmp	%:end
+	zjmp	%:end
 #
 part2:
-#	fork	%:part4
+	fork	%:part4
 	ld		%84149761, r5
 #st	r5,64
 	ld		%151259145, r10
@@ -209,52 +209,69 @@ part2:
 	st		r5, r9
 #st	r9,64
 	ld		%12, r4
-st	r4,64
+#st	r4,64
 	sub		r16, r16, r16
-st	r16,64
-#	zjmp	%:end
+#st	r16,64
+	zjmp	%:end
 
-#part3:
-#	ld		%0000, r7
-#	st		r5, r9
-#	ld		%32768000, r10
+part3:
+	ld		%0000, r7
+#st		r7, 64
+#st		r5, 64
+	st		r5, r9
+#st		r9, 64
+	ld		%32768000, r10
+#st		r10, 64
 #	aff		r1
-#	ld		%16, r4
-#	sub		r16, r16, r16
-#	zjmp	%:end
+	ld		%16, r4
+#st		r4, 64
+	sub		r16, r16, r16
+#st		r16, 64
+	zjmp	%:end
 
-#part4:
-#	live	%1
-#	ld		%151587073, r5
-#	st		r5, r9
-#	st		r9, r10
-#	ld		%511, r4
-#	sub		r16, r16, r16
-#	zjmp	%:end
+part4:
+	live	%1
+	ld		%151587073, r5
+#st		r5, 64
+	st		r5, r9
+#st		r9, 64
+	st		r9, r10
+#st		r10, 64
+	ld		%511, r4
+#st		r4, 64
+	sub		r16, r16, r16
+#st		r16, 64
+	zjmp	%:end
 
-#end:
-#	ld		%495, r8
-#	add		r16, r16, r16
-#	sti		r10, r8, r4
-#	zjmp	%500
-#	aff		r4
-#	aff		r4
-#	aff		r4
-#	live	%0
-#	live	%0
-#	live	%0
-#	live	%0
-#	live	%0
-#	live	%0
-#	live	%0
-#	live	%0
-#	live	%0
-#	live	%0
-#	live	%0
-#	live	%0
+end:
+	ld		%495, r8
+#st		r8, 64
 
-#end2:
-#	sti		r4,r1,%505
-#	zjmp	%499
+	add		r16, r16, r16
+#st		r16, 64
+#st		r8, 64
+#st		r10, 64
+	sti		r10, r8, r4
+#st		r4, 64
+	zjmp	%500
+	aff		r4
+	aff		r4
+	aff		r4
+	live	%0
+	live	%0
+	live	%0
+	live	%0
+	live	%0
+	live	%0
+	live	%0
+	live	%0
+	live	%0
+	live	%0
+	live	%0
+	live	%0
+
+end2:
+	sti		r4,r1,%505
+	zjmp	%499
 
 #deux jump a 500

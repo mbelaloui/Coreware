@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 10:30:18 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/19 20:05:36 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/19 23:18:17 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void		ft_fight(t_vm *vm)
 			run_cycle(vm, vm->head_list_process, vm->op_tab);
 		}
 		vm->time_total += vm->time;
-		if ((nbr_live_cycl = ft_check_survivor(vm->head_list_process, vm)) < 0)
+		if ((nbr_live_cycl = ft_check_survivor(vm->head_list_process, vm)) <= 0)
 			ft_put_winer(vm);
 		else if (nbr_live_cycl >= NBR_LIVE)
 			vm->cycle_to_die -= CYCLE_DELTA;
@@ -82,5 +82,7 @@ void		ft_fight(t_vm *vm)
 		}
 		else
 			vm->check++;
+	//ft_printf("cucle {%d} [%d]", vm->time_total, vm->total_live_cycle);
+	//	ft_temporize(5);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 11:53:33 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/19 14:57:05 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/19 22:38:59 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	ft_init_vm(t_vm *vm, t_url_file *url_champ, t_vm_option op_vm)
 		ft_error_param_vm(ERROR_BAD_NBR_FILE, " ");
 	ft_get_op_tab(vm->op_tab);
 	vm->dump = op_vm.d;
+	vm->total_live_cycle = 0;
 	pos = 1;
 	while (url_champ)
 	{

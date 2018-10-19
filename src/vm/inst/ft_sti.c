@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:46:50 by mint              #+#    #+#             */
-/*   Updated: 2018/10/19 14:19:20 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/19 23:06:50 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	get_val_arg3(t_process *process, int param3)
 	return (ret);
 }
 
-void		ft_put_to_mem(int add, int val, t_process *process, t_vm *vm)
+void		ft_put_to_mem(int add, int val, t_process *process, t_vm *vm)// mettre toute seul
 {
 	unsigned char	*tab;
 	int				max_print;
@@ -74,7 +74,7 @@ BOOL		ft_sti(t_vm *vm, t_process *process)
 	% IDX_MOD;
 	param3 = get_val_arg3(process, process->curent_instruction.vale_arg[2])
 	% IDX_MOD;
-	add = (param2 % IDX_MOD) + (param3 % IDX_MOD) + process->curent_pc;
+	add = ((param2 + param3) % IDX_MOD) + process->curent_pc;
 	ft_put_to_mem(add, val, process, vm);
 	return (T);
 }

@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/16 11:22:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/19 19:50:57 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/19 22:38:40 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,6 +183,8 @@ typedef struct			s_vm
 	t_vm_option			*op_vm;
 	BOOL				(*action_instructions[NBR_OP])
 		(struct s_vm*, t_process*);
+///	BOOL				final;
+	int					total_live_cycle;
 }						t_vm;
 
 void					ft_init_vm_option(t_vm_option *op);

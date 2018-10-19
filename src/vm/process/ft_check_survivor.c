@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:34:46 by mint              #+#    #+#             */
-/*   Updated: 2018/10/19 21:20:16 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/19 22:46:19 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@
 int	ft_check_survivor(t_process *list_process, t_vm *vm)
 {
 	int total_live;
+	int live_cycle;
 
+	live_cycle = vm->total_live_cycle;
+	vm->total_live_cycle = 0;
 	total_live = 0;
 	if (!list_process)
 		return (-1);
@@ -42,5 +45,5 @@ int	ft_check_survivor(t_process *list_process, t_vm *vm)
 		list_process = list_process->next;
 	}
 	vm->head_list_process = ft_kill_process(vm->head_list_process);
-	return (total_live);
+	return ((live_cycle) ? total_live : 0);
 }

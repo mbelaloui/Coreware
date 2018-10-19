@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/08 10:25:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/19 19:57:14 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/19 23:27:54 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ void	ft_put_mem(int mem[MEM_SIZE][2])
 	{
 		if ((pt % MEM_LINE == 0))
 			ft_printf("\n");
-		if (mem[pt][MEM_DESC] < 0) //c'est la que sa foire conardd de merde putin 
-			exit(-1);
-		else if (mem[pt][MEM_DESC] <= NULL_COLOR + MAX_PLAYERS)
+/*		if (mem[pt][MEM_DESC] < 0) //c'est la que sa foire conardd de merde putin 
+			exit(-1);*/
+/*		else */if (mem[pt][MEM_DESC] <= NULL_COLOR + MAX_PLAYERS)
 			put_desc_player(mem[pt][MEM_DESC]);
 		else if (mem[pt][MEM_DESC] <= REVERS_COLOR + NULL_COLOR)
 			put_desc_process(mem[pt][MEM_DESC]);
