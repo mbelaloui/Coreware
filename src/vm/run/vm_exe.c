@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 14:00:03 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/19 13:12:57 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/19 14:17:30 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,6 @@
 **}
 */
 
-BOOL	start()  //a revoir cette fonction
-{
-	char *line;
-
-	line = NULL;
-	get_next_line(STD_IN, &line);
-	ft_strdel(&line);
-	return (T);
-}
-
 void	ft_put_list_champ(t_champ *list_champ)
 {
 	while (list_champ)
@@ -42,8 +32,6 @@ void	ft_put_list_champ(t_champ *list_champ)
 		list_champ = list_champ->next;
 	}
 }
-
-
 
 void	run_vm(t_url_file *url_champ, t_vm_option op_vm)
 {
@@ -55,18 +43,14 @@ void	run_vm(t_url_file *url_champ, t_vm_option op_vm)
 	ft_init_mem(&vm, vm.head_list_process);
 	vm.op_vm = &op_vm;
 	//condition pour si ont veu voir le visu clasique if (op->blabla)  ou mettere cette action dasn ft_fight
-
 	if (op_vm.v)
 		ft_put_mem(vm.mem);
-	//if (start() && vm.head_list_process) tant que gnl n'est pas opti
 	if (vm.head_list_process)
 		ft_fight(&vm);
-//	ft_put_winner(vm); tester ici
 	ft_dell_vm(&vm);
 }
 
-
-int	main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	t_vm_option	op_vm;
 	t_url_file	*info_champ;
@@ -83,9 +67,6 @@ int	main(int argc, char **argv)
 		ft_error_exe(ERROR_NOT_ENOUGH_MEM);
 	pt = ft_search_for_op(tab, &op_vm);
 	info_champ = ft_get_id_champ(tab + pt);
-
-//	ft_put_url_file(info_champ);
-//	exit(0);
 
 	if (info_champ)
 		run_vm(info_champ, op_vm);

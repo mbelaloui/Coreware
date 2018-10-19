@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 10:18:58 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/18 16:09:53 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/19 14:20:38 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	put_general_info(t_opr_exe *opr, t_op *op_tab[NBR_OP])
 	ft_printf("operations [%s] type arg[", op_tab[opr->id_opr]->name);
 	while (pt < op_tab[opr->id_opr]->nbr_param)
 	{
-		name = get_name_type(opr->type_arg[pt][type_2]);
+		name = get_name_type(opr->type_arg[pt][TYPE_2]);
 		ft_printf("{green}%s{eoc}", name);
 		ft_strdel(&name);
 		pt++;

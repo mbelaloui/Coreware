@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:56:51 by mint              #+#    #+#             */
-/*   Updated: 2018/10/15 13:57:04 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/19 13:59:11 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void		ft_dump(t_vm *vm)
 {
-		ft_put_mem(vm->mem);
-		exit(0);	// sortie normale du programe
+	ft_put_mem(vm->mem);
+	exit(0);
 }

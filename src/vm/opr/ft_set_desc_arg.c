@@ -6,14 +6,11 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 10:23:34 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/18 17:39:22 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/19 14:22:02 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/vm.h"
-
-// verifier que la description des arguments par apport a l'operation
-// est bien coherente
 
 static int	get_id_pos_direct(int pos)
 {
@@ -57,7 +54,7 @@ int			get_desc_args(int code, int pos)
 	return (0);
 }
 
-void	ft_set_desc_arg(int ocp, int nbr_param, t_opr_exe *opr_exe)
+void		ft_set_desc_arg(int ocp, int nbr_param, t_opr_exe *opr_exe)
 {
 	int param;
 	int desc;
@@ -68,18 +65,18 @@ void	ft_set_desc_arg(int ocp, int nbr_param, t_opr_exe *opr_exe)
 		desc = (ocp & MASK_PARAM) >> 6;
 		if (desc == REG_CODE)
 		{
-			opr_exe->type_arg[param][type_1] = get_desc_args(REG_CODE, param);
-			opr_exe->type_arg[param][type_2] = REG_CODE;
+			opr_exe->type_arg[param][TYPE_1] = get_desc_args(REG_CODE, param);
+			opr_exe->type_arg[param][TYPE_2] = REG_CODE;
 		}
 		else if (desc == IND_CODE)
 		{
-			opr_exe->type_arg[param][type_1] = get_desc_args(IND_CODE, param);
-			opr_exe->type_arg[param][type_2] = IND_CODE;
+			opr_exe->type_arg[param][TYPE_1] = get_desc_args(IND_CODE, param);
+			opr_exe->type_arg[param][TYPE_2] = IND_CODE;
 		}
 		else if (desc == DIR_CODE)
 		{
-			opr_exe->type_arg[param][type_1] = get_desc_args(DIR_CODE, param);
-			opr_exe->type_arg[param][type_2] = DIR_CODE;
+			opr_exe->type_arg[param][TYPE_1] = get_desc_args(DIR_CODE, param);
+			opr_exe->type_arg[param][TYPE_2] = DIR_CODE;
 		}
 		ocp = ocp << 2;
 		param++;

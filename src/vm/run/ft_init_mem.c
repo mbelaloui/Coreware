@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/08 10:26:43 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/18 16:18:58 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/19 14:04:58 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ static void			put_src_mem(int mem[MEM_SIZE][2], t_vm_inst *list_src,
 	int pt, int id_color)
 {
 	t_int_list	*src;
-//	int			start;
 
-//	start = pt;
 	id_color = id_color + NULL_COLOR;
 	while (list_src)
 	{
@@ -31,7 +29,6 @@ static void			put_src_mem(int mem[MEM_SIZE][2], t_vm_inst *list_src,
 		}
 		list_src = list_src->next;
 	}
-//	mem[start][MEM_DESC] = NULL_COLOR + id_color;
 }
 
 static t_int_list	*set_pt_start(t_process *list)

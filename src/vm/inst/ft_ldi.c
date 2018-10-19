@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:46:53 by mint              #+#    #+#             */
-/*   Updated: 2018/10/19 11:32:40 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/19 14:18:50 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ static int	get_val_arg1(t_vm *vm, t_process *process, int param1)
 	int ret;
 
 	ret = param1;
-	if (process->curent_instruction.type_arg[0][type_2] == REG_CODE)
+	if (process->curent_instruction.type_arg[0][TYPE_2] == REG_CODE)
 		ret = process->reg[param1 - 1];
-	else if (process->curent_instruction.type_arg[0][type_2] == IND_CODE)
+	else if (process->curent_instruction.type_arg[0][TYPE_2] == IND_CODE)
 		ret = ft_read_indirect(vm, param1 % IDX_MOD);
-	else if (process->curent_instruction.type_arg[0][type_2] == DIR_CODE)
+	else if (process->curent_instruction.type_arg[0][TYPE_2] == DIR_CODE)
 		ret = process->curent_instruction.vale_arg[0];
 	return (ret);
 }
@@ -37,9 +37,9 @@ static int	get_val_arg2(t_process *process, int param2)
 	int ret;
 
 	ret = param2;
-	if (process->curent_instruction.type_arg[1][type_2] == REG_CODE)
+	if (process->curent_instruction.type_arg[1][TYPE_2] == REG_CODE)
 		ret = process->reg[param2 - 1];
-	else if (process->curent_instruction.type_arg[1][type_2] == DIR_CODE)
+	else if (process->curent_instruction.type_arg[1][TYPE_2] == DIR_CODE)
 		ret = process->curent_instruction.vale_arg[1];
 	return (ret);
 }

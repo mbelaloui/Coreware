@@ -6,47 +6,11 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 10:30:18 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/19 13:23:41 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/19 13:51:40 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/vm.h"
-
-void	put_winer(t_champ *winer)
-{
-	ft_printf("{green}/ ****************************************** \\\n{eoc}");
-	ft_printf("/id champion [%d] %-25s \\\n", winer->num, winer->name);
-	ft_printf("{green}/ ****************************************** \\\n{eoc}");
-	ft_printf("/ %-42s \\\n", winer->comment);
-	ft_printf("{green}/ ****************************************** \\\n{eoc}");
-}
-
-void	put_message(void)
-{
-	ft_printf("{green}/ ****************************************** \\\n{eoc}");
-	ft_printf("/ %-42s \\\n", "no champion has made live !!!!");
-	ft_printf("{green}/ ****************************************** \\\n{eoc}");
-}
-
-void	ft_put_winer(t_vm *vm)
-{
-	t_champ *pt_champ;
-	t_champ *winer;
-
-	winer = NULL;
-	pt_champ = vm->champs;
-	while (pt_champ)
-	{
-		if (pt_champ->num == vm->id_last_a_live)
-			winer = pt_champ;
-		pt_champ = pt_champ->next;
-	}
-	if (winer)
-		put_winer(winer);
-	else
-		put_message();
-	exit(0);
-}
 
 /*
 ** ************************************************************************* **
@@ -56,24 +20,10 @@ void	ft_put_winer(t_vm *vm)
 
 BOOL		execution(t_vm *vm, t_process *process)
 {
-	BOOL	(*action_instructions[NBR_OP])(t_vm *vm, t_process *process);
-
-//	if (process->curent_instruction.id_opr != -1)
-	{
-		if (process->curent_instruction.id_opr > 0
+	if (process->curent_instruction.id_opr > 0
 		&& process->curent_instruction.id_opr <= NBR_OP)
-		{
-		//	ft_put_opr_exe(&(process->curent_instruction), vm->op_tab);
-			ft_init_tab_instruction(action_instructions);//mettre en dehors de cette fonction un peut plus en avant
-			action_instructions[process->curent_instruction.id_opr](vm, process);
-//			ft_put_opr_exe(&(process->curent_instruction), vm->op_tab);
-
-
-//			ft_put_mem(vm->mem);
-//			exit(0);
-
-		}
-	}
+		vm->action_instructions[process->curent_instruction.id_opr]
+(vm, process);
 	return (T);
 }
 
@@ -92,8 +42,6 @@ static void	run_cycle(t_vm *vm, t_process *list_process, t_op *op_tab[NBR_OP])
 		{
 			if (process->curent_instruction.id_opr != -1)
 			{
-			//	ft_put_opr_exe(&(process->curent_instruction), vm->op_tab);
-
 				ft_rest_color(vm, process);
 				execution(vm, process);
 			}
@@ -104,10 +52,8 @@ static void	run_cycle(t_vm *vm, t_process *list_process, t_op *op_tab[NBR_OP])
 		}
 		process = process->next;
 	}
-//	exit(0);
 	if (vm->op_vm->v)
 		ft_put_mem(vm->mem);
-
 }
 
 void		ft_fight(t_vm *vm)

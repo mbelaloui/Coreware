@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 11:53:33 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/18 14:31:57 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/19 14:04:40 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@
 
 void	ft_init_vm(t_vm *vm, t_url_file *url_champ, t_vm_option op_vm)
 {
-
 	t_champ	*champ;
 	int		fd;
 	int		pos;
@@ -55,4 +54,5 @@ void	ft_init_vm(t_vm *vm, t_url_file *url_champ, t_vm_option op_vm)
 	}
 	vm->cycle_to_die = CYCLE_TO_DIE;
 	vm->check = 1;
+	ft_init_tab_instruction(vm->action_instructions);
 }

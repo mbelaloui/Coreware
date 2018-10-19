@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:34:46 by mint              #+#    #+#             */
-/*   Updated: 2018/10/18 19:07:12 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/19 13:59:50 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@ int	ft_check_survivor(t_process *list_process, t_vm *vm)
 {
 	int total_live;
 
-	//ft_printf("iicicicicic\n\n");
-
-
 	total_live = 0;
 	if (!list_process)
 		return (-1);
@@ -37,7 +34,7 @@ int	ft_check_survivor(t_process *list_process, t_vm *vm)
 		total_live += list_process->nbr_live;
 		if (!list_process->nbr_live)
 		{
-			ft_rest_color(vm, list_process);///// enlever juste la valeur du pointeur ici de la description de la memeoire
+			ft_rest_color(vm, list_process);
 			list_process->a_live = F;
 		}
 		else
@@ -45,6 +42,5 @@ int	ft_check_survivor(t_process *list_process, t_vm *vm)
 		list_process = list_process->next;
 	}
 	vm->head_list_process = ft_kill_process(vm->head_list_process);
-//	ft_put_mem(vm->mem);
 	return (total_live);
 }

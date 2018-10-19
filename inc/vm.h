@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/16 11:22:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/19 13:12:00 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/19 14:11:17 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,12 @@
 **	printing define
 */
 
-# define type_1					0
-# define type_2					1
+# define TYPE_1					0
+# define TYPE_2					1
 
 # define MEM_SRC				0
 # define MEM_DESC				1
 # define MEM_LINE				64
-
 
 # define PLAYER_1				1
 # define PLAYER_2				2
@@ -50,13 +49,10 @@
 
 # define NULL_COLOR				10
 # define REVERS_COLOR			20
-# define PT_COLOR				100				//
+# define PT_COLOR				100
 
-
-
-# define COLOR_INVERS			MAX_PLAYERS * 2 //
-# define ACTUAL_ACTION			MAX_PLAYERS * 3 //
-//# define PT_COLOR_INCERS		1				//
+# define COLOR_INVERS			MAX_PLAYERS * 2
+# define ACTUAL_ACTION			MAX_PLAYERS * 3
 
 /*
 **          struct -h "aide"
@@ -84,8 +80,8 @@ typedef struct			s_vm_inst
 
 typedef struct			s_champ
 {
-	int					num;	// for the live stuff
-	int					pos;		// for the printing stuff
+	int					num;
+	int					pos;
 	char				*name;
 	char				*comment;
 	int					size;
@@ -111,20 +107,17 @@ typedef struct			s_opr_exe
 
 typedef struct			s_process
 {
-	int					id_parent;// pos
+	int					id_parent;
 	int					curent_pc;
 	int					pc;
 	BOOL				carry;
-	int					reg[REG_NUMBER]; //live_for
+	int					reg[REG_NUMBER];
 	int					time_to_exe;
 	t_opr_exe			curent_instruction;
 	int					nbr_live;
-//	int					color_start;
-	BOOL				a_live; //tempt enlever plus tard apres avoir fait en sort de free les process mort
+	BOOL				a_live;
 	struct s_process	*next;
 }						t_process;
-
-
 
 typedef struct			s_vm
 {
@@ -134,19 +127,18 @@ typedef struct			s_vm
 	t_champ				*champs;
 	int					live[MAX_PLAYERS];	// pour l'affichage de nbr_live / process 
 	int					time_last_live[MAX_PLAYERS];	// pour l'affichage de last_live pour chaque champ
-/**/
 	int					nbr_processus[MAX_PLAYERS];	// calcule du process  / nbr_process <nbr processus pour chaque joueur>
 	int 				cycle_to_die;				// va1-2 cycle to die
 	int					time_total;					//pour cycle
 	int 				check;						// pou check
 	int 				time;                      // va1-1 cycle to die
-/**/
 	int					id_last_a_live;		/// pour recuperer l\id de champion gagnant
 	t_process			*head_list_process; // a terminer
 	t_op				*op_tab[NBR_OP];
 	t_vm_option			*op_vm;
+	BOOL				(*action_instructions[NBR_OP])
+		(struct s_vm*, t_process*);
 }						t_vm;
-
 
 void					ft_init_vm_option(t_vm_option *op);
 void					ft_put_usage_vm(void);
@@ -219,9 +211,11 @@ int						ft_get_prev_num_urlfile(t_url_file *list);
 BOOL					ft_existe_num(int num, t_url_file *list);
 int						ft_size_url_champ(t_url_file *list);
 int						ft_read_indirect(t_vm *vm, int add_val);
+
 /*
 ** a
 */
+
 t_process				*ft_copie_process(int add_start, t_process *process);
 t_process				*ft_new_process(int num, int add_start, int pos);
 BOOL					ft_add_process(t_process *proces, t_process **list);
@@ -230,13 +224,15 @@ void					ft_put_process(t_process *process);
 void					ft_dell_list_process(t_process *list_process);
 void					ft_get_next_instuction(t_opr_exe *opr_exe, t_vm *vm,
 	t_process *process, t_op *op_tab[NBR_OP]);
-//int		ft_get_total_live(t_process *list_process);
 int	ft_check_survivor(t_process *list_process, t_vm *vm);
 t_process				*ft_kill_process(t_process *list_process);
+
 /*
 ** a
 */
-void					ft_put_to_mem(int add, int val, t_process *process, t_vm *vm);
+
+void					ft_put_to_mem(int add, int val, t_process *process,
+		t_vm *vm);
 void					ft_put_opr_exe(t_opr_exe *opr, t_op *op_tab[NBR_OP]);
 int						ft_get_size_type(int id_opr, int arg,
 	t_op *op_tab[NBR_OP]);
@@ -250,32 +246,36 @@ int						ft_process_desc_ok(t_opr_exe *opr_exe,
 	t_vm *vm, t_process *process);
 int						ft_process_desc_ko(t_opr_exe *opr_exe,
 	t_op *op_tab[NBR_OP], t_vm *vm, t_process *process);
-void					ft_set_color_inst(t_vm *vm, int start, int len, int id_process);
+void					ft_set_color_inst(t_vm *vm, int start, int len,
+		int id_process);
 
 void	ft_rest_color(t_vm *vm, t_process *list_process);
 
-void	ft_init_tab_instruction(BOOL (*action_instructions[NBR_OP])(t_vm *vm, t_process *process));
-BOOL	ft_null(t_vm *vm, t_process *process);
-BOOL	ft_aff(t_vm *vm, t_process *process);
-BOOL	ft_lfork(t_vm *vm, t_process *process);
-BOOL	ft_lldi(t_vm *vm, t_process *process);
-BOOL	ft_lld(t_vm *vm, t_process *process);
-BOOL	ft_fork(t_vm *vm, t_process *process);
-BOOL	ft_sti(t_vm *vm, t_process *process);
-BOOL	ft_ldi(t_vm *vm, t_process *process);
-BOOL	ft_zjmp(t_vm *vm, t_process *process);
-BOOL	ft_xor(t_vm *vm, t_process *process);
-BOOL	ft_or(t_vm *vm, t_process *process);
-BOOL	ft_and(t_vm *vm, t_process *process);
-BOOL	ft_sub(t_vm *vm, t_process *process);
-BOOL	ft_add(t_vm *vm, t_process *process);
-BOOL	ft_st(t_vm *vm, t_process *process);
-BOOL	ft_ld(t_vm *vm, t_process *process);
-BOOL	ft_live(t_vm *vm, t_process *process);
+void					ft_init_tab_instruction
+(BOOL (*action_instructions[NBR_OP])(t_vm *vm, t_process *process));
+BOOL					ft_null(t_vm *vm, t_process *process);
+BOOL					ft_aff(t_vm *vm, t_process *process);
+BOOL					ft_lfork(t_vm *vm, t_process *process);
+BOOL					ft_lldi(t_vm *vm, t_process *process);
+BOOL					ft_lld(t_vm *vm, t_process *process);
+BOOL					ft_fork(t_vm *vm, t_process *process);
+BOOL					ft_sti(t_vm *vm, t_process *process);
+BOOL					ft_ldi(t_vm *vm, t_process *process);
+BOOL					ft_zjmp(t_vm *vm, t_process *process);
+BOOL					ft_xor(t_vm *vm, t_process *process);
+BOOL					ft_or(t_vm *vm, t_process *process);
+BOOL					ft_and(t_vm *vm, t_process *process);
+BOOL					ft_sub(t_vm *vm, t_process *process);
+BOOL					ft_add(t_vm *vm, t_process *process);
+BOOL					ft_st(t_vm *vm, t_process *process);
+BOOL					ft_ld(t_vm *vm, t_process *process);
+BOOL					ft_live(t_vm *vm, t_process *process);
+
 /*
 ** a
 */
 
+void					ft_put_winer(t_vm *vm);
 void					ft_dump(t_vm *vm);
 void					ft_put_mem(int mem[MEM_SIZE][2]);
 void					ft_init_mem(t_vm *vm, t_process *list_process);

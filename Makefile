@@ -6,7 +6,7 @@
 #    By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/16 12:33:04 by mbelalou          #+#    #+#              #
-#    Updated: 2018/10/18 18:53:08 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/10/19 13:50:02 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,7 +78,7 @@ SRCS_OPR_VM			= $(addprefix $(DIR_OPR_VM)/, $(SRC_OPR_VM))
 
 DIR_RUN_VM			= vm/run
 SRC_RUN_VM			= ft_dell_vm.c ft_init_vm.c  vm_exe.c ft_init_mem.c\
-						ft_fight.c ft_rest_color.c
+						ft_fight.c ft_rest_color.c ft_put_winer.c
 SRCS_RUN_VM			= $(addprefix $(DIR_RUN_VM)/, $(SRC_RUN_VM))
 
 

@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:46:42 by mint              #+#    #+#             */
-/*   Updated: 2018/10/19 12:58:44 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/19 14:19:05 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ BOOL	ft_lld(t_vm *vm, t_process *process)
 
 	id_reg = process->curent_instruction.vale_arg[1] - 1;
 	val = process->curent_instruction.vale_arg[0];
-	if (process->curent_instruction.type_arg[0][type_2] == IND_CODE)
+	if (process->curent_instruction.type_arg[0][TYPE_2] == IND_CODE)
 	{
 		add_val = process->curent_pc + val;
 		tab[0] = (process->curent_instruction.vale_arg[0] == 1) ? -1 : 0;
