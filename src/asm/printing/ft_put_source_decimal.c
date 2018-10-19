@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_put_source_decimal.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 14:01:46 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/20 17:19:51 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/19 15:23:54 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ static void	put_decimal_source_bis1(int i, t_inst *data)
 		if (size == REG_SIZE)
 			ft_printf("\t[{green}%.3d{eoc}]\t |", ret[0]);
 		else if (size == IND_SIZE)
-			ft_printf("     [{red}%.3d{eoc}] [{red}%.3d{eoc}]\t"
-					"    |", ret[0], ret[1]);
+			ft_printf("\t[{red}%.3d{eoc}] [{red}%.3d{eoc}]\t"
+					" |", ret[0], ret[1]);
 		else if (size == DIR_SIZE)
 			ft_printf(" [{yellow}%.3d{eoc}][{yellow}%.3d{eoc}]"
 					" [{yellow}%.3d{eoc}][{yellow}%.3d{eoc}] |"
@@ -65,7 +65,7 @@ static void	put_decimal_source_bis2(int i, t_inst *data)
 		if (size == REG_SIZE)
 			ft_printf("\t   [{green}%.3d{eoc}]\t |", ret[0]);
 		else if (size == IND_SIZE)
-			ft_printf("     [{red}%.3d{eoc}] [{red}%.3d{eoc}]\t"
+			ft_printf("\t[{red}%.3d{eoc}] [{red}%.3d{eoc}]\t"
 					" |", ret[0], ret[1]);
 		else if (size == DIR_SIZE)
 			ft_printf(" [{yellow}%.3d{eoc}][{yellow}%.3d{eoc}]"

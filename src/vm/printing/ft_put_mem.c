@@ -6,13 +6,13 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/08 10:25:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/19 14:09:37 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/19 14:53:51 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/vm.h"
 
-void	put_desc_process(int desc_mem)
+static void	put_desc_process(int desc_mem)
 {
 	if (desc_mem == REVERS_COLOR + NULL_COLOR)
 		ft_printf("{Iwhite}");
@@ -26,7 +26,7 @@ void	put_desc_process(int desc_mem)
 		ft_printf("{Iyellow}");
 }
 
-void	put_desc_player(int desc_mem)
+static void	put_desc_player(int desc_mem)
 {
 	if (desc_mem == NULL_COLOR)
 		ft_printf("{white}");

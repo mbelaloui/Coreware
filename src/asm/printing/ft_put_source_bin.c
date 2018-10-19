@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_put_source_bin.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbelalou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 13:59:34 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/09/20 17:19:26 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/19 15:21:55 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ static void	put_bin_source_bis1(int i, t_inst *data)
 		if (size == REG_SIZE)
 			ft_printf("\t[{green}%8.8b{eoc}]\t    |", ret[0]);
 		else if (size == IND_SIZE)
-			ft_printf("     [{red}%8.8b{eoc}] [{red}%8.8b{eoc}]\t"
-					"    |", ret[0], ret[1]);
+			ft_printf("\t\t  [{red}%8.8b{eoc}] [{red}%8.8b{eoc}]  \t"
+					"  |", ret[0], ret[1]);
 		else if (size == DIR_SIZE)
 			ft_printf(" [{yellow}%8.8b{eoc}][{yellow}%8.8b{eoc}]"
 					" [{yellow}%8.8b{eoc}][{yellow}%8.8b{eoc}] |"
@@ -63,12 +63,12 @@ static void	put_bin_source_bis2(int i, t_inst *data)
 		size = data->size[i + 1];
 		ret = ft_int_to_byts(data->add[i], size);
 		if (size == REG_SIZE)
-			ft_printf("\t\t\t[{green}%8.8b{eoc}]\t\t  |", ret[0]);
+			ft_printf("\t               [{green}%8.8b{eoc}]\t\t  |", ret[0]);
 		else if (size == IND_SIZE)
-			ft_printf("\t\t  [{red}%8.8b{eoc}] [{red}%8.8b{eoc}]\t"
-					"\t  |", ret[0], ret[1]);
+			ft_printf("\t\t  [{red}%8.8b{eoc}] [{red}%8.8b{eoc}]\t\t"
+					"  |", ret[0], ret[1]);
 		else if (size == DIR_SIZE)
-			ft_printf(" [{yellow}%8.8b{eoc}][{yellow}%8.8b{eoc}]"
+			ft_printf("\t[{yellow}%8.8b{eoc}][{yellow}%8.8b{eoc}]"
 					" [{yellow}%8.8b{eoc}][{yellow}%8.8b{eoc}] |"
 					, ret[0], ret[1], ret[2], ret[3]);
 		free(ret);
@@ -107,7 +107,7 @@ static void	put_bin_data(t_player *player)
 
 void		ft_put_bin_source(t_player *player)
 {
-	ft_printf("    _____\t___\t	\t  ____\t\t\t\t\t\t   ____ \t\t\t\t\t"
+	ft_printf("{white}    _____\t___\t	\t  ____\t\t\t\t\t\t   ____ \t\t\t\t\t"
 			"   ____\n");
 	ft_printf("\n|   code   |    ocp   |\t\t\t  arg1\t\t\t  |\t\t\t   arg2"
 			"\t\t\t  |\t\t\t   arg3\t\t\t  |\n");

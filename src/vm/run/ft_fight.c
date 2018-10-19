@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 10:30:18 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/19 13:51:40 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/19 14:56:52 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** ************************************************************************* **
 */
 
-BOOL		execution(t_vm *vm, t_process *process)
+static BOOL	execution(t_vm *vm, t_process *process)
 {
 	if (process->curent_instruction.id_opr > 0
 		&& process->curent_instruction.id_opr <= NBR_OP)

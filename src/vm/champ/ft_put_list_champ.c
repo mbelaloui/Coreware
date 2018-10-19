@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_type_param.c                                :+:      :+:    :+:   */
+/*   ft_put_list_champ.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/04 17:18:59 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/19 14:59:31 by mbelalou         ###   ########.fr       */
+/*   Created: 2018/10/19 15:03:02 by mbelalou          #+#    #+#             */
+/*   Updated: 2018/10/19 15:03:25 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/op.h"
+#include "../../../inc/vm.h"
 
-int		ft_get_type_param(t_op *op_tab)
+void	ft_put_list_champ(t_champ *list_champ)
 {
-	return (op_tab->param);
+	while (list_champ)
+	{
+		ft_put_champ(list_champ);
+		list_champ = list_champ->next;
+	}
 }

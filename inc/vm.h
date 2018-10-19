@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/16 11:22:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/19 14:11:17 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/19 14:34:59 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct			s_vm_option
 {
 	int					d;
 	char				h;
+	char				g;
 	char				n;
 	char				v;
 }						t_vm_option;
@@ -142,7 +143,7 @@ typedef struct			s_vm
 
 void					ft_init_vm_option(t_vm_option *op);
 void					ft_put_usage_vm(void);
-void					ft_display_help(void);
+void					ft_put_help_vm(void);
 
 void					ft_init_vm(t_vm *vm, t_url_file *url_champ,
 	t_vm_option op_vm);

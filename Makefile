@@ -6,7 +6,7 @@
 #    By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/16 12:33:04 by mbelalou          #+#    #+#              #
-#    Updated: 2018/10/19 13:50:02 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/10/19 15:03:31 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,8 @@ DIR_CHAMP_VM		= vm/champ
 SRC_CHAMP_VM		= ft_dell_champ.c ft_put_raw_src_champ.c ft_manage_opr.c\
 					  ft_read_champ_file.c ft_put_champ.c\
 					  ft_put_inst_src_vm.c ft_read_src.c ft_new_champ.c\
-					  ft_add_bgn_champ.c ft_put_listchamp.c ft_add_end_champ.c
+					  ft_add_bgn_champ.c ft_put_listchamp.c ft_add_end_champ.c\
+					  ft_put_list_champ.c
 SRCS_CHAMP_VM		= $(addprefix $(DIR_CHAMP_VM)/, $(SRC_CHAMP_VM))
 
 DIR_INST_VM			= vm/inst
@@ -48,11 +49,12 @@ SRC_INST_VM			= ft_add.c ft_and.c ft_ld.c ft_ldi.c ft_lld.c ft_null.c\
 					  ft_sti.c ft_xor.c ft_add_vm_instlist.c ft_fork.c\
 					  ft_lfork.c ft_lldi.c ft_or.c ft_str_to_list_inst.c\
 					  ft_zjmp.c ft_aff.c ft_init_tab_instruction.c ft_live.c\
-					  ft_new_vm_inst.c ft_st.c ft_sub.c ft_read_indirect.c
+					  ft_new_vm_inst.c ft_st.c ft_sub.c ft_read_indirect.c\
+					  ft_set_color_inst.c
 SRCS_INST_VM		= $(addprefix $(DIR_INST_VM)/, $(SRC_INST_VM))
 
 DIR_PRINTING_VM		= vm/printing
-SRC_PRINTING_VM		= ft_put_usage_vm.c ft_display_help.c ft_put_vm.c ft_put_mem.c\
+SRC_PRINTING_VM		= ft_put_usage_vm.c ft_put_help_vm.c ft_put_vm.c ft_put_mem.c\
 					  ft_dump.c					  
 SRCS_PRINTING_VM	= $(addprefix $(DIR_PRINTING_VM)/, $(SRC_PRINTING_VM))
 
@@ -80,16 +82,6 @@ DIR_RUN_VM			= vm/run
 SRC_RUN_VM			= ft_dell_vm.c ft_init_vm.c  vm_exe.c ft_init_mem.c\
 						ft_fight.c ft_rest_color.c ft_put_winer.c
 SRCS_RUN_VM			= $(addprefix $(DIR_RUN_VM)/, $(SRC_RUN_VM))
-
-
-
-
-
-
-
-
-
-
 
 DIR_OP				= op
 SRC_OP				= ft_dell_op.c ft_get_nbr_param.c ft_get_type_param.c\
@@ -183,8 +175,7 @@ SRCS_ASM			= $(SRCS_PARSING_ASM) $(SRCS_ERROR_ASM)\
 SRCS_VM				= $(SRCS_RUN_VM) $(SRCS_OP) $(SRCS_CHAMP_VM)\
 					  $(SRCS_PARSING_VM) $(SRCS_ERROR_VM) $(SRCS_INST_VM)\
 					  $(SRCS_PRINTING_VM) $(SRCS_URL_FILE) $(SRCS_PROCESS_VM)\
-					  $(SRCS_OPR_VM)# $(SRCS_PLAYER_ASM)
-					  # $(SRCS_LIST_CHAMP)
+					  $(SRCS_OPR_VM)
 
 RED					= \033[31m
 GREEN				= \033[32m
@@ -198,21 +189,16 @@ OBJS_VM				= $(addprefix $(OBJS_DIR), $(SRCS_VM:.c=.o))
 all					: $(NAME_ASM) $(NAME_VM)
 
 $(NAME_ASM)			: $(LIBFT) $(OBJS_DIR_ASM) $(OBJS_ASM)
-	@#echo $(OBJS_ASM)
-	@#gcc $(OBJS_ASM) -L $(LIBFT_DIR) -lft -fsanitize=address -o $(NAME_ASM)
-	@gcc $(OBJS_ASM) -L $(LIBFT_DIR) -lft -o $(NAME_ASM)
+	@gcc $(OBJS_ASM) -L $(LIBFT_DIR) -lft -fsanitize=address -o $(NAME_ASM)
+	@#gcc $(OBJS_ASM) -L $(LIBFT_DIR) -lft -o $(NAME_ASM)
 	@echo "$(GREEN)$(ASM) has been successfully created !$(WHITE)."
-	# -fsanitize=address
 	@#say "$(ASM) has been successfully created !"
 
 $(NAME_VM)			: $(LIBFT) $(OBJS_DIR_VM) $(OBJS_VM)
-	@#echo $(OBJS_VM)
-	@gcc $(OBJS_VM) -L $(LIBFT_DIR) -lft -o $(NAME_VM)
-	@#gcc $(OBJS_VM) -L $(LIBFT_DIR) -lft -fsanitize=address -o $(NAME_VM)
+	@gcc $(OBJS_VM) -L $(LIBFT_DIR) -lft -fsanitize=address -o $(NAME_VM)
+	@#gcc $(OBJS_VM) -L $(LIBFT_DIR) -lft -o $(NAME_VM)
 	@echo "$(GREEN)$(NAME_VM_CORE) has been successfully created !$(WHITE)."
-	# -fsanitize=address
 	@#say "$(NAME_VM_CORE) has been successfully created !"
-
 
 $(OBJS_DIR)%.o		: ./src/%.c $(INC_DIR)
 	@echo "$< $(GREEN) compiled $(WHITE)"
@@ -237,7 +223,6 @@ $(OBJS_DIR_ASM)		:
 
 $(OBJS_DIR_VM)			:
 	@mkdir -p $(OBJS_DIR);
-	@#mkdir -p $(OBJS_DIR)$(DIR_VM);
 	@mkdir -p $(OBJS_DIR)$(DIR_RUN_VM);
 	@mkdir -p $(OBJS_DIR)$(DIR_PROCESS_VM);
 	@mkdir -p $(OBJS_DIR)$(DIR_OP);
@@ -246,8 +231,6 @@ $(OBJS_DIR_VM)			:
 	@mkdir -p $(OBJS_DIR)$(DIR_PRINTING_VM);
 	@mkdir -p $(OBJS_DIR)$(DIR_URL_FILE);
 	@mkdir -p $(OBJS_DIR)$(DIR_OPR_VM);
-	@#mkdir -p $(OBJS_DIR)$(DIR_INST);
-	@#mkdir -p $(OBJS_DIR)$(DIR_PLAYER);
 	@mkdir -p $(OBJS_DIR)$(DIR_PARSING_VM);
 	@mkdir -p $(OBJS_DIR)$(DIR_ERROR_VM);
 
