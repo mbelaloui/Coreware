@@ -20,12 +20,12 @@
 
 BOOL	ft_st(t_vm *vm, t_process *process)
 {
-	unsigned char	*tab;
+//	unsigned char	*tab;
 	int				id_reg_src;
 	int				reg_src;
 	int				add;
 
-	tab = NULL;
+//	tab = NULL;
 	id_reg_src = process->curent_instruction.vale_arg[0] - 1;
 	reg_src = process->reg[id_reg_src];
 	if (process->curent_instruction.type_arg[1][TYPE_2] == REG_CODE)
