@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 13:59:34 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/19 15:21:55 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/21 04:03:55 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	put_bin_source_bis1(int i, t_inst *data)
 		size = data->size[i];
 		ret = ft_int_to_byts(data->add[i - 2], size);
 		if (size == REG_SIZE)
-			ft_printf("\t[{green}%8.8b{eoc}]\t    |", ret[0]);
+			ft_printf("\t[{green}%8.8b{eoc}]\t  |", ret[0]);
 		else if (size == IND_SIZE)
 			ft_printf("\t\t  [{red}%8.8b{eoc}] [{red}%8.8b{eoc}]  \t"
 					"  |", ret[0], ret[1]);
