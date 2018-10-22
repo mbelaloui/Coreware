@@ -6,22 +6,11 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/19 19:47:16 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/22 14:55:46 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/22 17:12:13 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/vm.h"
-
-static void		init_visu(void)
-{
-	initscr();
-	start_color();
-	init_color(COLOR_WHITE, 999, 999, 999);
-	noecho();
-	nodelay(stdscr, TRUE);
-	curs_set(0);
-	keypad(stdscr, TRUE);
-}
 
 static WINDOW	*init_win_map(WINDOW *map)
 {

@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/16 11:22:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/22 15:13:59 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/22 17:18:34 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -338,9 +338,11 @@ int						ft_calcule_add(int val, int pc);
 
 void					esc_visu(t_vm *vm, int i);
 
-int						ft_get_nbr_process_ceated_by_champ(t_process *list_process,
-		int id_champ);
+int						ft_get_nbr_process_ceated_by_champ
+		(t_process *list_process, int id_champ);
 int		ft_get_nbr_process_working_for_champ(t_process *list_process,
 		int id_champ);
 int						ft_get_size_list_process(const t_process *list_process);
+static void				init_visu(void);
+t_champ					*get_winner(t_vm *vm);
 #endif

@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 10:30:18 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/22 13:30:22 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/22 17:06:58 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static BOOL	execution(t_vm *vm, t_process *process)
 {
 	if (process->curent_instruction.id_opr > 0
 		&& process->curent_instruction.id_opr <= NBR_OP)
-	//	process->a_live =
+		process->a_live =
 			vm->action_instructions[process->curent_instruction.id_opr]
 (vm, process);
 	return (T);
@@ -59,6 +59,13 @@ static void	run_cycle(t_vm *vm, t_process *list_process, t_op *op_tab[NBR_OP])
 		ft_print_visu(vm);
 }
 
+
+static void	check(t_vm *vm)
+{
+	vm->cycle_to_die = vm->cycle_to_die - CYCLE_DELTA;
+	vm->check = 1;
+}
+
 void		ft_fight(t_vm *vm)
 {
 	int nbr_live_cycl;
@@ -83,10 +90,7 @@ void		ft_fight(t_vm *vm)
 			vm->check = 1;
 		}
 		else if (vm->check == MAX_CHECKS)
-		{
-			vm->cycle_to_die = vm->cycle_to_die - CYCLE_DELTA;
-			vm->check = 1;
-		}
+			check(vm);
 		else
 			vm->check++;
 	}

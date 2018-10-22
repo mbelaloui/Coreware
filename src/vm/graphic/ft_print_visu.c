@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/19 19:51:30 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/22 15:17:40 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/22 17:20:43 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,6 @@ static void		print_player(t_vm *vm, WINDOW *player, int nb)
 	mvwprintw(player, 5, 4, "Processes Working  : %-5d",
 	ft_get_nbr_process_working_for_champ(vm->head_list_process, champ->num));
 	wrefresh(player);
-}
-
-t_champ		*get_winner(t_vm *vm)
-{
-	t_champ *pt_champ;
-
-	pt_champ = vm->champs;
-	while (pt_champ)
-	{
-		if (pt_champ->num == vm->id_last_a_live)
-			return (pt_champ);
-		pt_champ = pt_champ->next;
-	}
-	return (NULL);
 }
 
 static void		print_stats(t_vm *vm, WINDOW *stats, int time)/// voir seb temp
@@ -81,7 +67,7 @@ static void		print_border(WINDOW *border, char *str, int color)
 	wrefresh(border);
 }
 
-void		print_all(t_vm *vm, int time)
+void			print_all(t_vm *vm, int time)
 {
 	int		color;
 
@@ -109,7 +95,7 @@ void		print_all(t_vm *vm, int time)
 	print_stats(vm, vm->stats, time);
 }
 
-void		ft_print_visu(t_vm *vm)
+void			ft_print_visu(t_vm *vm)
 {
 	int		j;
 	int		c;

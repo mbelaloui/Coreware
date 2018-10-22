@@ -6,11 +6,22 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/19 19:51:30 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/21 11:28:57 by sgarcia          ###   ########.fr       */
+/*   Updated: 2018/10/22 17:13:24 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/vm.h"
+
+static void		init_visu(void)
+{
+	initscr();
+	start_color();
+	init_color(COLOR_WHITE, 999, 999, 999);
+	noecho();
+	nodelay(stdscr, TRUE);
+	curs_set(0);
+	keypad(stdscr, TRUE);
+}
 
 void		visu_pause(t_vm *vm)
 {
@@ -41,7 +52,6 @@ void			print_map(t_vm *vm)
 	int		i;
 	int		j;
 	int		id;
-//int		k = 0; pour test MEM_DESC
 
 	i = 0;
 	j = 0;
@@ -50,34 +60,6 @@ void			print_map(t_vm *vm)
 	while (i < MEM_SIZE)
 	{
 		id = vm->mem[i][MEM_DESC];
-
-
-
-/*
-// pour test MEM_DESC 
-k = 0;
-while (k < 100)
-{
-	if (vm->mem[i][MEM_DESC] == vm->tab[k])
-		break;
-	k++;
-}
-if (k == 100)
-	vm->tab[vm->caca++] = vm->mem[i][MEM_DESC];
-k = 0;
-wmove(vm->map, 0, 0);
-while (k <= vm->caca)
-{
-	wprintw(vm->map, "%d ", vm->tab[k]);
-	k++;
-}
-//
-*/
-
-
-
-
-// pour visu normal
 		if (vm->mem[i][MEM_SRC] < EXA)
 			buf[j++] = '0';
 		itoa_hex(vm->mem[i][MEM_SRC], buf, &j, "0123456789abcdef");
@@ -92,8 +74,6 @@ while (k <= vm->caca)
 			ft_bzero(buf, MEM_SIZE * 3);
 			j = 0;
 		}
-//
-
 	}
 	wrefresh(vm->map);
 }
