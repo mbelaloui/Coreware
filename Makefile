@@ -6,7 +6,7 @@
 #    By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/16 12:33:04 by mbelalou          #+#    #+#              #
-#    Updated: 2018/10/22 15:19:38 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/10/22 19:12:41 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,7 +81,7 @@ SRCS_OPR_VM			= $(addprefix $(DIR_OPR_VM)/, $(SRC_OPR_VM))
 
 DIR_RUN_VM			= vm/run
 SRC_RUN_VM			= ft_dell_vm.c ft_init_vm.c  vm_exe.c ft_init_mem.c\
-						ft_fight.c ft_rest_color.c ft_put_winer.c
+						ft_fight.c ft_rest_color.c ft_put_winer.c ft_run_cycle.c
 SRCS_RUN_VM			= $(addprefix $(DIR_RUN_VM)/, $(SRC_RUN_VM))
 
 DIR_OP				= op
@@ -151,12 +151,8 @@ SRCS_PLAYER_ASM		= $(addprefix $(DIR_PLAYER_ASM)/, $(SRC_PLAYER_ASM))
 
 DIR_GRAPHIC			= vm/graphic
 SRC_GRAPHIC			= ft_init_windows.c init_win_player.c ft_print_visu.c\
-					  ft_print_visu2.c esc_visu.c
+					  ft_print_visu2.c esc_visu.c init_visu.c visu_pause.c
 SRCS_GRAPHIC		= $(addprefix $(DIR_GRAPHIC)/, $(SRC_GRAPHIC))
-
-#DIR_		=
-#SRC_		=
-#SRCS_		= $(addprefix $(DIR_)/, $(SRC_))
 
 INC_DIR				= inc/
 
@@ -193,13 +189,13 @@ $(NAME_ASM)			: $(LIBFT) $(OBJS_DIR_ASM) $(OBJS_ASM)
 	@#gcc $(OBJS_ASM) -L $(LIBFT_DIR) -lft -fsanitize=address -o $(NAME_ASM)
 	@gcc $(OBJS_ASM) -L $(LIBFT_DIR) -lft -o $(NAME_ASM)
 	@echo "$(GREEN)$(ASM) has been successfully created !$(WHITE)."
-	@#say "$(ASM) has been successfully created !"
+	@say "$(ASM) has been successfully created !"
 
 $(NAME_VM)			: $(LIBFT) $(OBJS_DIR_VM) $(OBJS_VM)
 	@#gcc $(OBJS_VM) -L $(LIBFT_DIR) -lft -fsanitize=address -lncurses -o $(NAME_VM)
 	@gcc $(OBJS_VM) -L $(LIBFT_DIR) -lft -lncurses -o $(NAME_VM)
 	@echo "$(GREEN)$(NAME_VM_CORE) has been successfully created !$(WHITE)."
-	@#say "$(NAME_VM_CORE) has been successfully created !"
+	@say "$(NAME_VM_CORE) has been successfully created !"
 
 $(OBJS_DIR)%.o		: ./src/%.c $(INC_DIR)
 	@echo "$< $(GREEN) compiled $(WHITE)"
@@ -238,19 +234,19 @@ $(OBJS_DIR_VM)			:
 	
 clean				:
 	@clear
-	@#make -C $(LIBFT_DIR) clean
+	@make -C $(LIBFT_DIR) clean
 	@rm -fr $(OBJS_DIR)
 	@echo "$(RED)cleaned the $(CORE_WAR) binary files$(WHITE)."
-	@#say "cleaned the $(CORE_WAR) binary files."
+	@say "cleaned the $(CORE_WAR) binary files."
 
 fclean				:
 	@clear
-	@#make -C $(LIBFT_DIR) fclean
+	@make -C $(LIBFT_DIR) fclean
 	@rm -fr $(OBJS_DIR)
 	@echo "$(RED)cleaned the $(NAME_ASM) file$(WHITE)."
 	@rm -f $(NAME_ASM) $(NAME_VM)
 	@echo "$(GREEN)the $(CORE_WAR) directory is totaly cleaned !!$(WHITE)."
-	@#say "the $(CORE_WAR) directory is totaly cleaned !"
+	@say "the $(CORE_WAR) directory is totaly cleaned !"
 
 re					: fclean all
 

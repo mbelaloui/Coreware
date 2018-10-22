@@ -6,21 +6,11 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 14:00:03 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/22 15:05:27 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/22 18:39:58 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/vm.h"
-
-void		put_op(t_vm_option *op_vm)
-{
-	ft_printf(" d = [%s]  \n", (op_vm->d >= 0) ? "ok" : "--");
-	ft_printf(" g = [%d]  \n", (op_vm->g) ? "ok" : "--");
-	ft_printf(" h = [%s]  \n", (op_vm->h) ? "ok" : "--");
-	ft_printf(" n = [%s]  \n", (op_vm->n) ? "ok" : "--");
-	ft_printf(" v = [%s]  \n", (op_vm->v) ? "ok" : "--");
-	ft_printf(" d = [%d]  \n", (op_vm->d));
-}
 
 static void	run_vm(t_url_file *url_champ, t_vm_option op_vm)
 {

@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/16 11:22:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/22 18:00:10 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/22 19:10:29 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,12 +160,8 @@ typedef struct			s_vm
 	int					speed;
 	char				c;
 	int					color;
-
-//	int					tab[100]; // pour des tests
-//	int					caca;
 	char				line_border_x[WIN_BORDER_X];
 	char				line_border_y[WIN_BORDER_Y * 2];
-
 	WINDOW				*map;
 	WINDOW				*stats;
 	WINDOW				*border1;
@@ -293,7 +289,7 @@ int						ft_process_desc_ko(t_opr_exe *opr_exe,
 void					ft_set_color_inst(t_vm *vm, int start, int len,
 		int id_process);
 
-void	ft_rest_color(t_vm *vm, t_process *list_process);
+void					ft_rest_color(t_vm *vm, t_process *list_process);
 
 void					ft_init_tab_instruction
 (BOOL (*action_instructions[NBR_OP])(t_vm *vm, t_process *process));
@@ -325,7 +321,6 @@ void					ft_put_winer(t_vm *vm);
 void					ft_dump(t_vm *vm);
 void					ft_put_mem(int mem[MEM_SIZE][2]);
 void					ft_init_mem(t_vm *vm, t_process *list_process);
-
 void					ft_init_windows(t_vm *vm);
 WINDOW					*init_win_player(WINDOW *player, int num, int color);
 void					ft_print_visu(t_vm *vm);
@@ -335,15 +330,15 @@ void					esc_visu(t_vm *vm, int i);
 
 BOOL					ft_is_good_id_reg(int id_reg);
 int						ft_calcule_add(int val, int pc);
-
 void					esc_visu(t_vm *vm, int i);
-
 int						ft_get_nbr_process_ceated_by_champ
 		(t_process *list_process, int id_champ);
-int		ft_get_nbr_process_working_for_champ(t_process *list_process,
-		int id_champ);
+int						ft_get_nbr_process_working_for_champ
+		(t_process *list_process, int id_champ);
 int						ft_get_size_list_process(const t_process *list_process);
 void					init_visu(void);
 t_champ					*get_winner(t_vm *vm);
-
+void					visu_pause(t_vm *vm);
+void					run_cycle(t_vm *vm, t_process *list_process,
+		t_op *op_tab[NBR_OP]);
 #endif

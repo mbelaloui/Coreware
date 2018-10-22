@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:47:48 by mint              #+#    #+#             */
-/*   Updated: 2018/10/22 12:18:22 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/22 18:22:32 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ BOOL	ft_live(t_vm *vm, t_process *process)
 		if (pt_champ->num == live_for)
 		{
 			pt_tab = pt_champ->pos - 1;
+			if (vm->op_vm->v)
+				ft_printf("un processus dit que le joueur %d({green}%s{eoc})"
+				" est en vie", pt_champ->pos, pt_champ->name);
 			vm->id_last_a_live = live_for;
 			vm->live[pt_tab] = vm->live[pt_tab] + 1;
 			vm->time_last_live[pt_tab] = vm->time_total + vm->time;
