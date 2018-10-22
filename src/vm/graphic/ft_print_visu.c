@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/19 19:51:30 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/22 17:20:43 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/22 18:02:10 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void		print_player(t_vm *vm, WINDOW *player, int nb)
 	wrefresh(player);
 }
 
-static void		print_stats(t_vm *vm, WINDOW *stats, int time)/// voir seb temp
+static void		print_stats(t_vm *vm, WINDOW *stats)
 {
 	t_champ *win;
 
@@ -57,7 +57,6 @@ static void		print_stats(t_vm *vm, WINDOW *stats, int time)/// voir seb temp
 	mvwprintw(stats, 7, 4, "Actually winner    : %-35.35s",
 	(win) ? win->name : "NONNE XD hihihi");
 	wrefresh(stats);
-	(void)time;
 }
 
 static void		print_border(WINDOW *border, char *str, int color)
@@ -67,7 +66,7 @@ static void		print_border(WINDOW *border, char *str, int color)
 	wrefresh(border);
 }
 
-void			print_all(t_vm *vm, int time)
+void			print_all(t_vm *vm)
 {
 	int		color;
 
@@ -92,7 +91,7 @@ void			print_all(t_vm *vm, int time)
 		print_player(vm, vm->player_3, 3);
 	if (vm->nbr_champ > 3)
 		print_player(vm, vm->player_4, 4);
-	print_stats(vm, vm->stats, time);
+	print_stats(vm, vm->stats);
 }
 
 void			ft_print_visu(t_vm *vm)
@@ -101,7 +100,7 @@ void			ft_print_visu(t_vm *vm)
 	int		c;
 
 	j = 1;
-	print_all(vm, vm->speed);
+	print_all(vm);
 	c = getch();
 	if (c == 27)
 		esc_visu(vm, 0);

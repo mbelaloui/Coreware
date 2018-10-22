@@ -6,13 +6,13 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/19 19:51:30 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/22 17:13:24 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/22 17:31:09 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/vm.h"
 
-static void		init_visu(void)
+void		init_visu(void)
 {
 	initscr();
 	start_color();

@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/16 11:22:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/22 17:18:34 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/22 18:00:10 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,8 +161,8 @@ typedef struct			s_vm
 	char				c;
 	int					color;
 
-	int					tab[100]; // pour des tests
-	int					caca;
+//	int					tab[100]; // pour des tests
+//	int					caca;
 	char				line_border_x[WIN_BORDER_X];
 	char				line_border_y[WIN_BORDER_Y * 2];
 
@@ -343,6 +343,7 @@ int						ft_get_nbr_process_ceated_by_champ
 int		ft_get_nbr_process_working_for_champ(t_process *list_process,
 		int id_champ);
 int						ft_get_size_list_process(const t_process *list_process);
-static void				init_visu(void);
+void					init_visu(void);
 t_champ					*get_winner(t_vm *vm);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 10:30:18 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/22 17:06:58 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/22 17:48:54 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,7 @@ static void	run_cycle(t_vm *vm, t_process *list_process, t_op *op_tab[NBR_OP])
 		ft_print_visu(vm);
 }
 
-
-static void	check(t_vm *vm)
+static void	new_cycle(t_vm *vm)
 {
 	vm->cycle_to_die = vm->cycle_to_die - CYCLE_DELTA;
 	vm->check = 1;
@@ -85,12 +84,9 @@ void		ft_fight(t_vm *vm)
 		if ((nbr_live_cycl = ft_check_survivor(vm->head_list_process, vm)) <= 0)
 			ft_put_winer(vm);
 		else if (nbr_live_cycl >= NBR_LIVE)
-		{
-			vm->cycle_to_die = vm->cycle_to_die - CYCLE_DELTA;
-			vm->check = 1;
-		}
+			new_cycle(vm);
 		else if (vm->check == MAX_CHECKS)
-			check(vm);
+			new_cycle(vm);
 		else
 			vm->check++;
 	}
