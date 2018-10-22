@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:46:34 by mint              #+#    #+#             */
-/*   Updated: 2018/10/22 19:43:39 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/22 20:05:52 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	get_val_arg1(t_vm *vm, t_process *process, int param1)
 		ret = process->reg[param1 - 1];
 	else if (process->curent_instruction.type_arg[0][TYPE_2] == IND_CODE)
 	{
-		param1 = process->curent_pc + (param1 % IDX_MOD);
+		param1 = ft_calcule_add(param1, process->curent_pc);
 		ret = ft_read_indirect(vm, param1);
 	}
 	else if (process->curent_instruction.type_arg[0][TYPE_2] == DIR_CODE)

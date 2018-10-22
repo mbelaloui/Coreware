@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:46:42 by mint              #+#    #+#             */
-/*   Updated: 2018/10/22 19:32:31 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/22 20:05:21 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_lld(t_vm *vm, t_process *process)
 	val = process->curent_instruction.vale_arg[0];
 	if (process->curent_instruction.type_arg[0][TYPE_2] == IND_CODE)
 	{
-		add_val = process->curent_pc + (val % IDX_MOD);
+		add_val = ft_calcule_add(val, process->curent_pc);
 		tab[0] = (process->curent_instruction.vale_arg[0] == 1) ? -1 : 0;
 		tab[1] = (process->curent_instruction.vale_arg[0] == 1) ? -1 : 0;
 		tab[2] = vm->mem[(add_val + 0) % MEM_SIZE][MEM_SRC];
