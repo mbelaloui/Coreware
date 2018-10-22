@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:47:46 by mint              #+#    #+#             */
-/*   Updated: 2018/10/22 19:37:12 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/22 20:01:15 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ int	ft_st(t_vm *vm, t_process *process)
 	}
 	else if (process->curent_instruction.type_arg[1][TYPE_2] == IND_CODE)
 	{
-		add = (process->curent_instruction.vale_arg[1] % IDX_MOD);
-		add = (process->curent_pc + add) % MEM_SIZE;
+		add = ft_calcule_add(process->curent_instruction.vale_arg[1],
+	process->curent_pc);
 		ft_put_to_mem(add, val, process, vm);
 	}
 	return (T);
