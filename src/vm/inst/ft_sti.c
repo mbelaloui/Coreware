@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:46:50 by mint              #+#    #+#             */
-/*   Updated: 2018/10/22 14:37:59 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/22 19:43:49 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	get_val_arg3(t_process *process, int param3)
 	return (ret);
 }
 
-BOOL		ft_sti(t_vm *vm, t_process *process)
+int			ft_sti(t_vm *vm, t_process *process)
 {
 	int id_reg;
 	int param2;

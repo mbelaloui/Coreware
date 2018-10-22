@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:47:48 by mint              #+#    #+#             */
-/*   Updated: 2018/10/22 18:22:32 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/22 19:33:15 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** ************************************************************************* **
 */
 
-BOOL	ft_live(t_vm *vm, t_process *process)
+int	ft_live(t_vm *vm, t_process *process)
 {
 	t_champ	*pt_champ;
 	int		live_for;

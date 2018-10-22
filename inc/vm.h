@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/16 11:22:10 by mbelalou          #+#    #+#             */
-/*   Updated: 2018/10/22 19:10:29 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/22 19:35:33 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,7 @@ typedef struct			s_vm
 	t_process			*head_list_process;
 	t_op				*op_tab[NBR_OP];
 	t_vm_option			*op_vm;
-	BOOL				(*action_instructions[NBR_OP])
+	int					(*action_instructions[NBR_OP])
 		(struct s_vm*, t_process*);
 	int					total_live_cycle;
 }						t_vm;
@@ -292,24 +292,24 @@ void					ft_set_color_inst(t_vm *vm, int start, int len,
 void					ft_rest_color(t_vm *vm, t_process *list_process);
 
 void					ft_init_tab_instruction
-(BOOL (*action_instructions[NBR_OP])(t_vm *vm, t_process *process));
-BOOL					ft_null(t_vm *vm, t_process *process);
-BOOL					ft_aff(t_vm *vm, t_process *process);
-BOOL					ft_lfork(t_vm *vm, t_process *process);
-BOOL					ft_lldi(t_vm *vm, t_process *process);
-BOOL					ft_lld(t_vm *vm, t_process *process);
-BOOL					ft_fork(t_vm *vm, t_process *process);
-BOOL					ft_sti(t_vm *vm, t_process *process);
-BOOL					ft_ldi(t_vm *vm, t_process *process);
-BOOL					ft_zjmp(t_vm *vm, t_process *process);
-BOOL					ft_xor(t_vm *vm, t_process *process);
-BOOL					ft_or(t_vm *vm, t_process *process);
-BOOL					ft_and(t_vm *vm, t_process *process);
-BOOL					ft_sub(t_vm *vm, t_process *process);
-BOOL					ft_add(t_vm *vm, t_process *process);
-BOOL					ft_st(t_vm *vm, t_process *process);
-BOOL					ft_ld(t_vm *vm, t_process *process);
-BOOL					ft_live(t_vm *vm, t_process *process);
+(int (*action_instructions[NBR_OP])(t_vm *vm, t_process *process));
+int						ft_null(t_vm *vm, t_process *process);
+int						ft_aff(t_vm *vm, t_process *process);
+int						ft_lfork(t_vm *vm, t_process *process);
+int						ft_lldi(t_vm *vm, t_process *process);
+int						ft_lld(t_vm *vm, t_process *process);
+int						ft_fork(t_vm *vm, t_process *process);
+int						ft_sti(t_vm *vm, t_process *process);
+int						ft_ldi(t_vm *vm, t_process *process);
+int						ft_zjmp(t_vm *vm, t_process *process);
+int						ft_xor(t_vm *vm, t_process *process);
+int						ft_or(t_vm *vm, t_process *process);
+int						ft_and(t_vm *vm, t_process *process);
+int						ft_sub(t_vm *vm, t_process *process);
+int						ft_add(t_vm *vm, t_process *process);
+int						ft_st(t_vm *vm, t_process *process);
+int						ft_ld(t_vm *vm, t_process *process);
+int						ft_live(t_vm *vm, t_process *process);
 int						ft_get_val_param(int param, t_process *process,
 		int type);
 
@@ -341,4 +341,5 @@ t_champ					*get_winner(t_vm *vm);
 void					visu_pause(t_vm *vm);
 void					run_cycle(t_vm *vm, t_process *list_process,
 		t_op *op_tab[NBR_OP]);
+BOOL					ft_is_good_id_reg(int id_reg);
 #endif

@@ -6,7 +6,7 @@
 #    By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/16 12:33:04 by mbelalou          #+#    #+#              #
-#    Updated: 2018/10/22 19:12:41 by mbelalou         ###   ########.fr        #
+#    Updated: 2018/10/22 19:38:00 by mbelalou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,8 @@ SRC_INST_VM			= ft_add.c ft_and.c ft_ld.c ft_ldi.c ft_lld.c ft_null.c\
 					  ft_lfork.c ft_lldi.c ft_or.c ft_str_to_list_inst.c\
 					  ft_zjmp.c ft_aff.c ft_init_tab_instruction.c ft_live.c\
 					  ft_new_vm_inst.c ft_st.c ft_sub.c ft_read_indirect.c\
-					  ft_set_color_inst.c ft_put_to_mem.c ft_calcule_add.c
+					  ft_set_color_inst.c ft_put_to_mem.c ft_calcule_add.c\
+  					  ft_is_good_id_reg.c
 SRCS_INST_VM		= $(addprefix $(DIR_INST_VM)/, $(SRC_INST_VM))
 
 DIR_PRINTING_VM		= vm/printing

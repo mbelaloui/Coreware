@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:46:46 by mint              #+#    #+#             */
-/*   Updated: 2018/10/22 15:08:41 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/22 19:38:31 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** ************************************************************************* **
 */
 
-BOOL	ft_fork(t_vm *vm, t_process *process)
+int	ft_fork(t_vm *vm, t_process *process)
 {
 	t_process	*new_process;
 	int			new_pc;

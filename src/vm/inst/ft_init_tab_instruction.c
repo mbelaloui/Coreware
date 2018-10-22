@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:39:24 by mint              #+#    #+#             */
-/*   Updated: 2018/10/22 19:24:45 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/22 19:34:42 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** ************************************************************************* **
 */
 
-void	ft_init_tab_instruction(BOOL (*action_instructions[NBR_OP])
+void	ft_init_tab_instruction(int (*action_instructions[NBR_OP])
 (t_vm *vm, t_process *process))
 {
 	action_instructions[0] = &ft_null;

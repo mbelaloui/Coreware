@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:46:53 by mint              #+#    #+#             */
-/*   Updated: 2018/10/22 14:49:07 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/22 19:43:30 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	get_val_arg2(t_process *process, int param2)
 	return (ret);
 }
 
-BOOL		ft_ldi(t_vm *vm, t_process *process)
+int			ft_ldi(t_vm *vm, t_process *process)
 {
 	int param1;
 	int param2;

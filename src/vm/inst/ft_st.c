@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:47:46 by mint              #+#    #+#             */
-/*   Updated: 2018/10/20 23:43:31 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/22 19:37:12 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,7 @@
 ** ************************************************************************* **
 */
 
-BOOL	ft_is_good_id_reg(int id_reg)
-{
-	if (id_reg < 0 || id_reg >= REG_NUMBER)
-		return (F);
-	return (T);
-}
-
-BOOL	ft_st(t_vm *vm, t_process *process)
+int	ft_st(t_vm *vm, t_process *process)
 {
 	int				id_reg_src;
 	int				id_reg_dest;

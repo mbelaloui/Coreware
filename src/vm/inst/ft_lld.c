@@ -6,7 +6,7 @@
 /*   By: mbelalou <mbelalou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:46:42 by mint              #+#    #+#             */
-/*   Updated: 2018/10/21 01:28:21 by mbelalou         ###   ########.fr       */
+/*   Updated: 2018/10/22 19:32:31 by mbelalou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** ************************************************************************* **
 */
 
-BOOL	ft_lld(t_vm *vm, t_process *process)
+int	ft_lld(t_vm *vm, t_process *process)
 {
 	unsigned char	tab[4];
 	int				add_val;
